@@ -303,30 +303,130 @@
         </div>
     </main>
 
-    <div class="bottom-nav-wrap">
-        <nav class="bottom-nav">
-            <a href="index.html" class="nav-item">
-                <i data-lucide="home"></i>
-                <span>Home</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i data-lucide="users"></i>
-                <span>Our Team</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i data-lucide="book-open"></i>
-                <span>Our Story</span>
-            </a>
-            <a href="contact.html" class="nav-item active">
-                <i data-lucide="mail"></i>
-                <span>Contact</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i data-lucide="user"></i>
-                <span>Profile</span>
-            </a>
-        </nav>
-    </div>
+ 
+     <nav class="bottom-nav">
+    <a href="../index.html" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="home"></i></div>
+        <span>Home</span>
+    </a>
+    <a href="./Team.html" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="users"></i></div>
+        <span>Our Team</span>
+    </a>
+    <a href="./Story.html" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="book-open"></i></div>
+        <span>Our Story</span>
+    </a>
+    <a href="./contact.html" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="mail"></i></div>
+        <span>Contact</span>
+    </a>
+    <a href="#login" class="nav-item profile-nav">
+        <div class="nav-icon-wrapper"><i data-lucide="user"></i></div>
+        <span>Profile</span>
+    </a>
+</nav>
+<style>
+          /* --- BOTTOM NAVIGATION (App Style) --- */
+       :root {
+    --accent: #ffd000;
+    
+    --nav-bg: rgba(255, 255, 255, 0.49);
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 480px;
+    height: 75px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.65rem;
+    font-weight: 600;
+    position: relative;
+    width: 60px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Icon Wrapper for Animation */
+.nav-icon-wrapper {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-bottom: 2px;
+}
+
+.nav-item i {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2.2;
+}
+
+/* --- THE AMAZING HOVER ANIMATION --- */
+.nav-item:hover {
+    color: var(--accent);
+}
+
+.nav-item:hover .nav-icon-wrapper {
+    background: black;
+    color: #fff;
+    transform: translateY(-25px) scale(1.2); /* Icon bahar aa jayega */
+    box-shadow: 0 10px 20px rgba(17, 17, 17, 0.3);
+}
+
+/* Hover par text hide karna (Optional: Agar aapko clean look chahiye) */
+.nav-item span {
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.nav-item:hover span {
+    transform: translateY(5px);
+    opacity: 0; /* Jab icon upar jaye to text hide ho jaye for cool effect */
+}
+
+/* Special Styling for Profile Item */
+.profile-nav .nav-icon-wrapper {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Active State (JS se class add kar sakte ho) */
+.nav-item.active {
+    color: var(--accent);
+}
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
+            .grid-box { border-width: 0.2px; } /* Thinner grid on mobile */
+            .bottom-nav { width: 95%; bottom: 15px; border-radius: 20px; }
+        }
+</style>
 
     <script>
         lucide.createIcons();
