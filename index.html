@@ -7,8 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="./CSS/trust.css">
-    <link rel="stylesheet" href="./CSS/Services.css">
-    <link rel="stylesheet" href="./CSS/Process.css">
+    <link rel="stylesheet" href="./CSS/Services.css"> 
     <link rel="stylesheet" href="./CSS/portfolio.css">
     <link rel="stylesheet" href="./CSS/Plus.css">
     <link rel="stylesheet" href="./CSS/footer.css">
@@ -220,6 +219,44 @@
     </style>
 
 </head>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js"></script>
+
+<script>
+  function initializeIcons() {
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+      console.log("Icons Initialized!");
+    } else {
+      console.error("Lucide library nahi mili. Internet check karein.");
+    }
+  }
+
+  // 2. Method 1: Jab DOM ready ho
+  document.addEventListener('DOMContentLoaded', initializeIcons);
+
+  // 3. Method 2: Backup delay (taki confirm show hon)
+  setTimeout(initializeIcons, 500);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js"></script>
+
+<script>
+  function initializeIcons() {
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+      console.log("Icons Initialized!");
+    } else {
+      console.error("Lucide library nahi mili. Internet check karein.");
+    }
+  }
+
+  // 2. Method 1: Jab DOM ready ho
+  document.addEventListener('DOMContentLoaded', initializeIcons);
+
+  // 3. Method 2: Backup delay (taki confirm show hon)
+  setTimeout(initializeIcons, 500);
+</script>
 <body>
 
     <section class="hero">
@@ -563,94 +600,99 @@ createBoard(true);
 
 
 <!--PROCESS-->
-  
-<section class="workflow-section">
-    <div class="workflow-container">
-        <h2 class="workflow-title">Our <span>Process</span></h2>
-        
-        <div class="flow-wrapper">
-            <svg class="flow-line" viewBox="0 0 100 500" preserveAspectRatio="none">
-                <path d="M50,0 L50,500" class="path-bg"></path>
-                <path d="M50,0 L50,500" class="path-fill"></path>
-            </svg>
+  <section class="cr-reviews-sec">
+    <div class="cr-header">
+        <div class="cr-title">
+            <p style="color: var(--cc-yellow); font-weight: 800;">FEEDBACK</p>
+            <h2>Kind Words <br>From Partners.</h2>
+        </div>
+        <button class="cr-btn" onclick="openModal()">+ LEAVE REVIEW</button>
+    </div>
 
-            <div class="flow-step">
-                <div class="step-num">1</div>
-                <div class="flow-card">
-                    <i data-lucide="coffee"></i>
-                    <h4>Chai & Chat</h4>
-                    <p>Discovery call jahan hum aapka vision aur goals samjhte hain.</p>
-                </div>
-            </div>
+    <div class="cr-review-grid" id="reviewGrid">
+        <div class="cr-card">
+            <h4>Global Tech Inc.</h4>
+            <p>"The engineering standards at CodeCrafte are unmatched. They delivered our V2 ahead of schedule."</p>
+        </div>
+        <div class="cr-card">
+            <h4>Urban Design</h4>
+            <p>"Pixels polished to perfection. Their minimalist approach changed our brand identity."</p>
+        </div>
+    </div>
 
-            <div class="flow-step">
-                <div class="step-num">2</div>
-                <div class="flow-card">
-                    <i data-lucide="layers"></i>
-                    <h4>Blueprint</h4>
-                    <p>Wireframes aur project strategy jo success ka rasta tay karein.</p>
-                </div>
-            </div>
+    <div class="cr-dots" id="dotsContainer">
+        <div class="cr-dot active"></div>
+        <div class="cr-dot"></div>
+    </div>
 
-            <div class="flow-step">
-                <div class="step-num">3</div>
-                <div class="flow-card">
-                    <i data-lucide="palette"></i>
-                    <h4>Premium UI</h4>
-                    <p>Custom design jo aapke brand ko elite look dega.</p>
-                </div>
-            </div>
-
-            <div class="flow-step">
-                <div class="step-num">4</div>
-                <div class="flow-card">
-                    <i data-lucide="code-2"></i>
-                    <h4>Development</h4>
-                    <p>Clean code aur modern tech stack se functionality build karna.</p>
-                </div>
-            </div>
-
-            <div class="flow-step">
-                <div class="step-num">5</div>
-                <div class="flow-card">
-                    <i data-lucide="rocket"></i>
-                    <h4>Launch Day</h4>
-                    <p>Live deployment aur 1-month free support ke sath shubharambh.</p>
-                </div>
+    <div class="cr-modal" id="reviewModal">
+        <div class="cr-form-box">
+            <h3 style="margin-bottom: 20px; font-weight: 900;">Drop a Review</h3>
+            <input type="text" id="bizName" placeholder="Business Name">
+            <textarea id="bizReview" rows="4" placeholder="Your Experience..."></textarea>
+            <div style="display: flex; gap: 10px;">
+                <button class="cr-btn" style="flex: 1;" onclick="addReview()">SUBMIT</button>
+                <button class="cr-btn" style="background: #eee; color: #000; flex: 1;" onclick="closeModal()">CANCEL</button>
             </div>
         </div>
     </div>
 </section>
-<script>
-    window.addEventListener('scroll', () => {
-    const path = document.querySelector('.path-fill');
-    const scrollContainer = document.querySelector('.flow-wrapper');
-    
-    // Calculate scroll percentage within the workflow section
-    const sectionTop = scrollContainer.getBoundingClientRect().top;
-    const sectionHeight = scrollContainer.offsetHeight;
-    const windowHeight = window.innerHeight;
+ <script>
+const modal = document.getElementById('reviewModal');
+const grid = document.getElementById('reviewGrid');
 
-    let scrollPercent = (windowHeight / 2 - sectionTop) / sectionHeight;
-    scrollPercent = Math.min(Math.max(scrollPercent, 0), 1);
+// 1. Load reviews from LocalStorage on Startup
+window.onload = () => {
+    const savedReviews = JSON.parse(localStorage.getItem('cc_reviews')) || [];
+    savedReviews.forEach(rev => createReviewCard(rev.name, rev.text));
+    updateDots();
+};
 
-    // Update SVG Path
-    const drawLength = 500 * scrollPercent;
-    path.style.strokeDashoffset = 500 - drawLength;
+function openModal() { modal.style.display = 'flex'; }
+function closeModal() { modal.style.display = 'none'; }
 
-    // Optional: Fade in cards as they hit the line
-    document.querySelectorAll('.flow-card').forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        if (cardTop < windowHeight * 0.7) {
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-        }
-    });
-});
+function addReview() {
+    const name = document.getElementById('bizName').value;
+    const text = document.getElementById('bizReview').value;
 
-// Initialize Lucide
-lucide.createIcons();
+    if(name && text) {
+        // Save to UI
+        createReviewCard(name, text);
+        
+        // Save to LocalStorage
+        const savedReviews = JSON.parse(localStorage.getItem('cc_reviews')) || [];
+        savedReviews.push({name, text});
+        localStorage.setItem('cc_reviews', JSON.stringify(savedReviews));
+
+        // Reset & Close
+        document.getElementById('bizName').value = '';
+        document.getElementById('bizReview').value = '';
+        closeModal();
+        updateDots();
+    } else {
+        alert("Bhai, dono fields bharna lazmi hain!");
+    }
+}
+
+function createReviewCard(name, text) {
+    const card = document.createElement('div');
+    card.className = 'cr-card';
+    card.innerHTML = `<h4>${name}</h4><p>"${text}"</p>`;
+    grid.appendChild(card);
+}
+
+function updateDots() {
+    const dotsCount = grid.children.length;
+    const container = document.getElementById('dotsContainer');
+    container.innerHTML = '';
+    for(let i=0; i<dotsCount; i++) {
+        const dot = document.createElement('div');
+        dot.className = `cr-dot ${i === 0 ? 'active' : ''}`;
+        container.appendChild(dot);
+    }
+}
 </script>
+ 
 <!--Pulse-->
 
 
@@ -917,9 +959,7 @@ if(window.lucide) lucide.createIcons();
         </div>
     </div>
 </section>
-
-
-
+ 
 <script>
 (function() {
     const pTrack = document.getElementById('track');
@@ -1120,14 +1160,15 @@ if(window.lucide) lucide.createIcons();
             </p>
             
             <div class="action-buttons">
-                <a href="https://wa.me/yournumber" class="primary-btn">
+                <a href="https://wa.me/923059462051" target="_blank" class="primary-btn">
                     MESSAGE ON WHATSAPP
                 </a>
                 
-                <div class="secondary-links">
-                    <a class="text-link" onclick="popColor(this)">EMAIL</a>
-                    <a class="text-link" onclick="popColor(this)">BOOK CALL</a>
-                </div>
+                <div class="secondary-links"> 
+  <a href="mailto:codecrafte07@gmail.com" class="text-link" onclick="popColor(this)">EMAIL</a> 
+  <a href="tel:03286658507" class="text-link" onclick="popColor(this)">BOOK CALL</a> 
+</div>
+
             </div>
         </div>
     </div>
@@ -1159,7 +1200,7 @@ function popColor(el) {
         </div>
         <div class="marquee slanted-down">
             <div class="marquee-inner">
-                <span>CODECRAFTE • INNOVATION • FUTURE • CODECRAFTE • INNOVATION • FUTURE •</span>
+                <span>CODECRAFTE • INNOVATION • FUTURE • CRMS • POS • PMS •</span>
             </div>
         </div>
     </div>
@@ -1175,18 +1216,49 @@ function popColor(el) {
             </div>
 
             <div class="bento-tile social-box">
-                <span class="mini-tag">CONNECT</span>
-                <div class="social-links-grid">
-                    <a href="#" class="s-link"><i data-lucide="instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/codecrafte-dev-s-3941b43b3/" class="s-link"><i data-lucide="linkedin"></i></a>
-                    <a href="#" class="s-link"><i data-lucide="facebook"></i></a>
-                    <a href="#" class="s-link"><i data-lucide="twitter"></i></a>
-                    <!--<a href="#" class="s-link"><i data-lucide="github"></i></a>
-                    <a href="#" class="s-link"><i data-lucide="message-circle"></i></a>-->
-                    
-                </div>
-            </div>
+    <span class="mini-tag">CONNECT</span>
+    <div class="social-links-grid">
+        <a href="https://www.instagram.com/codecrafte.pk/" class="s-link"><i data-lucide="instagram"></i></a>
+        <a href="www.linkedin.com/in/omaan-dev-s-3941b43b3" class="s-link"><i data-lucide="linkedin"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61581311813987" class="s-link"><i data-lucide="facebook"></i></a>
+<a href="https://www.tiktok.com/@codecrafte.pk" class="s-link cr-tiktok-link" target="_blank">
+            <svg class="lucide-custom cr-tiktok-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="currentColor" d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.4 121.4 0 0 0 67 20.14Z"></path>
+            </svg>
+        </a>        <a href="https://github.com/codecrafte-org" class="s-link"><i data-lucide="github"></i></a>
+        <a href="tel:03286658507" class="s-link"><i data-lucide="phone"></i></a>
+    </div>
+</div>
+            
+<style>
+  /* Base Style for all icons (Lucide & Custom SVG) */
+  .social-links-grid .s-link [data-lucide],
+  .social-links-grid .s-link .lucide-custom {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    stroke-width: 2; /* Unified stroke for Lucide */
+    fill: none; /* Default for Lucide */
+    color: inherit; /* Inherit link color */
+  }
 
+  /* Custom Rule for TikTok SVG (Needs 'fill' instead of 'stroke') */
+  .social-links-grid .s-link .cr-tiktok-svg {
+    stroke-width: 0; /* No stroke for TikTok */
+    fill: currentColor; /* Inherit link color for 'fill' */
+    width: 18px; /* Slightly smaller width for standard visual balance */
+    height: 18px;
+    position: relative;
+    top: -1px; /* Precision alignment */
+  }
+
+  /* Unified Hover for all Icons */
+  .social-links-grid .s-link:hover {
+    color: #ffcc00; /* CodeCrafte Yellow */
+    transform: scale(1.15) translateY(-2px);
+  }
+</style>
             <div class="bento-tile links-box">
                 <span class="mini-tag">EXPLORE</span>
                 <div class="link-columns">
@@ -1195,7 +1267,9 @@ function popColor(el) {
                     <a href="#work">Portfolio</a>
                     <a href="#contact">Contact</a>
                 </div>
+                
             </div>
+            
             <style>
                 .link-columns {
     display: flex;
@@ -1245,12 +1319,12 @@ function popColor(el) {
         <div class="contact-details-text">
             <div class="c-item"><i data-lucide="mail"></i> <span>codecrafte07@gmail.com</span></div>
             <div class="c-item"><i data-lucide="phone"></i> <span>+92 3059462051</span></div>
-            <div class="c-item"><i data-lucide="map-pin"></i> <span>Shahzad Nagar, BahawalNagar, Punjab</span></div>
+            <div class="c-item"><i data-lucide="map-pin"></i> <span>Lahore, Punjab</span></div>
         </div>
         
         <div class="contact-map">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13735.61765053272!2d73.2644265!3d29.9950785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3914f7762692257f%3A0x867332219b168972!2sBahawalnagar%2C%20Punjab!5e0!3m2!1sen!2spk!4v1700000000000!5m2!1sen!2spk" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13735.61765053272!2d73.2644265!3d29.9950785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3914f7762692257f%3A0x867332219b168972!2slahore%2C%20Punjab!5e0!3m2!1sen!2spk!4v1700000000000!5m2!1sen!2spk" 
                 width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
         </div>
