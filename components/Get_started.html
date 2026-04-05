@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Project | CodeCrafte</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        :root { --cc-yellow: #0070f3; --cc-dark: #0a0a0a; --cc-gray: #f4f4f4; }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
+        
+        body {
+            background: var(--cc-gray);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* --- Progress Bar --- */
+        .nav-header { position: fixed; top: 30px; width: 100%; text-align: center; z-index: 100; }
+        .progress-wrap { width: 200px; height: 6px; background: #ddd; margin: 10px auto; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 20%; background: var(--cc-yellow); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+        /* --- The Card Deck Container --- */
+        .deck-container {
+            position: relative;
+            width: 90%;
+            max-width: 420px;
+            height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 35px;
+            padding: 45px 35px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.05);
+            pointer-events: none; /* Default disabled */
+            opacity: 0;
+            transform-origin: bottom center;
+        }
+
+        /* Current Active Card */
+        .card.active { pointer-events: all; opacity: 1; z-index: 10; }
+        
+        /* Behind Cards Styling */
+        .card.next { opacity: 0.6; transform: scale(0.9) translateY(40px); z-index: 5; }
+        .card.last { opacity: 0.3; transform: scale(0.8) translateY(80px); z-index: 1; }
+
+        /* Typography */
+        .card .step-num { color: var(--cc-yellow); font-weight: 900; font-size: 14px; margin-bottom: 15px; display: block; }
+        .card h2 { font-size: 2.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 25px; color: var(--cc-dark); letter-spacing: -1px; }
+        
+        /* Inputs & Options */
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 3px solid var(--cc-dark);
+            font-size: 1.4rem;
+            font-weight: 700;
+            outline: none;
+            margin-bottom: 30px;
+        }
+
+        .opt-grid { display: grid; gap: 12px; }
+        .opt-btn {
+            background: #f9f9f9;
+            padding: 18px;
+            border-radius: 18px;
+            border: 2px solid transparent;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: left;
+        }
+        .opt-btn:hover { border-color: var(--cc-yellow); background: white; }
+
+        .continue-btn {
+            margin-top: auto;
+            background: var(--cc-dark);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            border: none;
+            font-weight: 900;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Success State */
+        .success-msg { text-align: center; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="nav-header">
+        <strong>CODECRAFTE</strong>
+        <div class="progress-wrap"><div class="progress-fill" id="pBar"></div></div>
+    </div>
+
+    <div class="deck-container" id="deck">
+        
+        <div class="card active" id="c1">
+            <span class="step-num">STEP 01</span>
+            <h2>Tell us your <br>Business Name</h2>
+            <input type="text" id="bizName" placeholder="e.g. Madni Steel" onkeypress="handleEnter(event, 1)">
+            <button class="continue-btn" onclick="popCard(1)">CONTINUE &rarr;</button>
+        </div>
+
+        <div class="card next" id="c2">
+            <span class="step-num">STEP 02</span>
+            <h2>What are we <br>Building today?</h2>
+            <div class="opt-grid">
+                <div class="opt-btn" onclick="popCard(2)">🌐 Modern Website/App</div>
+                <div class="opt-btn" onclick="popCard(2)">✨ Managment Software</div>
+                <div class="opt-btn" onclick="popCard(2)">📱 Marketing/Meta Ads</div> 
+            </div>
+        </div>
+
+        <div class="card last" id="c3">
+            <span class="step-num">STEP 03</span>
+            <h2>Select your <br>Budget Range</h2>
+            <div class="opt-grid">
+                <div class="opt-btn" onclick="popCard(3)">💰 Startup ($500 - $2k)</div>
+                <div class="opt-btn" onclick="popCard(3)">💎 Business ($2k - $10k)</div>
+                <div class="opt-btn" onclick="popCard(3)">⚡ Custom Quote</div>
+            </div>
+        </div>
+
+        <div class="card" id="c4">
+            <span class="step-num">STEP 04</span>
+            <h2>The Project <br>Timeline?</h2>
+            <div class="opt-grid">
+                <div class="opt-btn" onclick="popCard(4)">🚀 ASAP (Urgent)</div>
+                <div class="opt-btn" onclick="popCard(4)">⏳ disucess ?</div>
+                <div class="opt-btn" onclick="popCard(4)">📅 Just Planning</div>
+            </div>
+        </div>
+
+        <div class="card" id="c5">
+            <span class="step-num">STEP 05</span>
+            <h2>Drop your <br>WhatsApp/Email</h2>
+            <input type="text" id="contactInfo" placeholder="Contact Detail...">
+            <button class="continue-btn" onclick="finishProject()">FINISH & SUBMIT</button>
+        </div>
+
+    </div>
+
+   <div class="success-msg" id="done">
+    <h1 style="font-size: 4rem; margin-bottom: 10px;">🎉</h1>
+    <h2 style="font-size: 2.5rem; font-weight: 900; letter-spacing: -1.5px;">LIT! WE GOT IT.</h2>
+    <p style="color: #666; margin-bottom: 35px; font-size: 1.1rem;">Our team will reach out to you within 24 hours.</p>
+    
+    <div style="display: flex; flex-direction: column; gap: 12px; max-width: 250px; margin: 0 auto;">
+        <a href="./Portfolio.html" class="continue-btn" style="text-decoration: none; display: block; text-align: center;">
+            EXPLORE PROJECTS
+        </a>
+        <a href="../index.html" style="text-decoration: none; color: var(--cc-dark); font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">
+            Go Back Home
+        </a>
+    </div>
+</div>
+
+    <script>
+        let current = 1;
+        const total = 5;
+
+        function popCard(step) {
+            // Validation for Name field
+            if(step === 1 && document.getElementById('bizName').value === "") {
+                alert("Action Required! Enter Busniess Name.    "); return;
+            }
+
+            const currentCard = document.getElementById(`c${step}`);
+            const nextCard = document.getElementById(`c${step+1}`);
+            const thirdCard = document.getElementById(`c${step+2}`);
+
+            // 1. Fly-out animation for the current card
+            gsap.to(currentCard, {
+                y: -500,
+                x: 100,
+                rotation: -15,
+                opacity: 0,
+                duration: 0.7,
+                ease: "power3.in"
+            });
+
+            // 2. Move next card to front
+            if(nextCard) {
+                nextCard.classList.remove('next');
+                nextCard.classList.add('active');
+                gsap.to(nextCard, { scale: 1, y: 0, opacity: 1, duration: 0.5, delay: 0.2 });
+            }
+
+            // 3. Prepare the third card (move it from last to next position)
+            if(thirdCard) {
+                thirdCard.classList.remove('last');
+                thirdCard.classList.add('next');
+                gsap.to(thirdCard, { scale: 0.9, y: 40, opacity: 0.6, duration: 0.5, delay: 0.2 });
+            }
+
+            current++;
+            document.getElementById('pBar').style.width = (current/total * 100) + "%";
+        }
+
+        function handleEnter(e, step) { if(e.key === 'Enter') popCard(step); }
+
+        function finishProject() {
+            gsap.to("#deck", { scale: 0.8, opacity: 0, duration: 0.5, onComplete: () => {
+                document.getElementById('deck').style.display = "none";
+                document.getElementById('done').style.display = "block";
+                gsap.from("#done", { y: 50, opacity: 0, duration: 0.8 });
+            }});
+        }
+    </script>
+</body>
+</html>

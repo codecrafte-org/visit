@@ -267,7 +267,7 @@
         <div class="hero-content">
             <h1>CODECRAFTE</h1>
             <p>Build your digital future</p>
-            <button class="cta-btn">Get Started</button>
+           <a href="./components/Get_started.html"> <button class="cta-btn">Get Started</button></a>
         </div>
     </section>
 
@@ -366,7 +366,8 @@
         </div>
 
         <div class="services-grid">
-            <div class="service-card">
+           <a href="./components/Services/Web.html">
+ <div class="service-card">
                 <div class="card-bg"></div>
                 <div class="card-content">
                     <i data-lucide="code-2" class="s-icon"></i>
@@ -374,13 +375,17 @@
                 </div>
             </div>
 
-            <div class="service-card">
+           </a>
+
+            <a href="./components/Services/app.html">
+                <div class="service-card">
                 <div class="card-bg"></div>
                 <div class="card-content">
                     <i data-lucide="smartphone" class="s-icon"></i>
                     <h3>App Dev.</h3>
                 </div>
             </div>
+            </a>
 
             <div class="service-card">
                 <div class="card-bg"></div>
@@ -514,7 +519,7 @@ function createBoard(isPreview = false) {
     tiles.forEach((tileNum, index) => {
         const tile = document.createElement('div');
         tile.classList.add('tile');
-        tile.style.backgroundImage = "url('./images/logo.png')"; 
+        tile.style.backgroundImage = "url('./images/logo.webp')"; 
         tile.style.backgroundSize = "330px 330px";
 
         // Calculate correct positions
@@ -1214,7 +1219,7 @@ function popColor(el) {
                 <span class="mini-tag">GET STARTED</span>
                 <h2>Let’s build something <br><span>Extraordinary.</span></h2>
                 <p>Digital solutions tailored to your brand's growth.</p>
-                <a href="#contact" class="footer-btn">Start Project <i data-lucide="arrow-up-right"></i></a>
+                <a href="./components/contact.html" class="footer-btn">Start Project <i data-lucide="arrow-up-right"></i></a>
             </div>
 
             <div class="bento-tile social-box">
