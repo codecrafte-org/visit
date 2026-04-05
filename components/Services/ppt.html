@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch Deck & PPT Design | CodeCrafte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        :root { --purple: #8a2be2; --black: #000; --white: #fff; --gray: #f4f4f4; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--white); overflow-x: hidden; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 8%;
+            flex-wrap: wrap;
+            gap: 60px;
+        }
+
+        .hero-content { flex: 1; min-width: 350px; }
+        .sub-heading { font-family: 'Syncopate', sans-serif; font-size: 11px; letter-spacing: 6px; color: var(--purple); margin-bottom: 20px; display: block; }
+        .ultra-heading { font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.85; letter-spacing: -5px; font-weight: 900; text-transform: uppercase; }
+        .purple-outline { -webkit-text-stroke: 1.5px var(--purple); color: transparent; }
+
+        /* --- PPT VISUAL (RIGHT SIDE) --- */
+        .hero-visual {
+            flex: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 550px;
+            perspective: 1200px;
+        }
+
+        /* Slide Stack Logic */
+        .slide-deck {
+            position: relative;
+            width: 400px;
+            height: 250px;
+            transform-style: preserve-3d;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            transition: 0.5s;
+        }
+
+        .slide-1 { transform: translateZ(40px) rotateX(10deg) rotateY(-10deg); z-index: 3; border-left: 5px solid var(--purple); }
+        .slide-2 { transform: translateZ(0px) translateY(-30px) rotateX(10deg) rotateY(-10deg); z-index: 2; opacity: 0.8; }
+        .slide-3 { transform: translateZ(-40px) translateY(-60px) rotateX(10deg) rotateY(-10deg); z-index: 1; opacity: 0.5; }
+
+        /* Slide Content Mockup */
+        .s-line { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 10px; }
+        .s-title { width: 60%; height: 15px; background: var(--purple); margin-bottom: 20px; border-radius: 4px; }
+
+        /* Floating Tags */
+        .ppt-tag {
+            position: absolute;
+            background: var(--black);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 800;
+            z-index: 10;
+        }
+        .tag-pitch { top: 10%; right: 0; background: var(--purple); }
+        .tag-investor { bottom: 15%; left: -20px; }
+
+        @media (max-width: 900px) {
+            .hero { text-align: center; padding-top: 100px; }
+            .hero-visual { transform: scale(0.7); min-height: 400px; }
+            .slide-deck { margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="sub-heading">VISUAL STORYTELLING // DECKS</span>
+            <h1 class="ultra-heading">
+                IMPACTFUL <br> <span class="purple-outline">SLIDES</span> <br> DESIGN.
+            </h1>
+            <p style="margin-top:35px; color:#666; max-width:450px; line-height:1.6; font-weight:500;">
+                Hum boring presentations ko investor-ready pitch decks mein transform karte hain. Clean visuals, data storytelling, aur premium aesthetics.
+            </p>
+        </div>
+
+        <div class="hero-visual">
+            <div class="slide-deck" id="deck">
+                <div class="slide slide-3">
+                    <div class="s-title" style="width:40%"></div>
+                    <div class="s-line"></div><div class="s-line"></div>
+                </div>
+                <div class="slide slide-2">
+                    <div class="s-title" style="width:50%"></div>
+                    <div class="s-line"></div><div class="s-line"></div><div class="s-line"></div>
+                </div>
+                <div class="slide slide-1">
+                    <div class="s-title"></div>
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <div style="flex:1; height:60px; background:#f9f9f9; border-radius:8px;"></div>
+                        <div style="flex:1; height:60px; background:#f9f9f9; border-radius:8px;"></div>
+                    </div>
+                    <div class="s-line"></div>
+                    <div class="s-line" style="width:70%"></div>
+                </div>
+            </div>
+
+            <div class="ppt-tag tag-pitch">🚀 INVESTOR READY</div>
+            <div class="ppt-tag tag-investor">💎 PREMIUM AESTHETICS</div>
+        </div>
+    </section>
+
+    <section style="padding: 100px 5%; background: #fafafa;">
+        <div style="text-align: center; margin-bottom: 70px;">
+            <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -3px;">PICK YOUR DECK</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto;">
+            <div style="background:#fff; padding:50px 35px; border-radius:40px; border:1px solid #eee; display: flex; flex-direction: column;">
+                <p style="font-size:12px; font-weight:800; color:#aaa; letter-spacing:3px;">STARTER</p>
+                <div style="font-size:3.5rem; font-weight:900; margin:20px 0; letter-spacing:-2px;">15K<span>/-</span></div>
+                <ul style="list-style:none; margin-bottom:40px; color:#555; font-size:14px; font-weight:600; flex-grow: 1;">
+                    <li style="padding:12px 0; border-bottom:1px solid #f9f9f9;">✓ Up to 10 Slides</li>
+                    <li style="padding:12px 0; border-bottom:1px solid #f9f9f9;">✓ Custom Template</li>
+                    <li style="padding:12px 0; border-bottom:1px solid #f9f9f9;">✓ PDF & PPTX Format</li>
+                </ul>
+                <button style="width:100%; padding:20px; background:#000; color:#fff; border:none; border-radius:20px; font-weight:800; cursor:pointer;">ORDER BASIC</button>
+            </div>
+
+            <div style="background:#fff; padding:50px 35px; border-radius:40px; border:2px solid var(--purple); position:relative; display: flex; flex-direction: column;">
+                <div style="position:absolute; top:-15px; left:50%; transform:translateX(-50%); background:var(--purple); color:white; padding:6px 18px; border-radius:50px; font-size:10px; font-weight:900;">MOST POPULAR</div>
+                <p style="font-size:12px; font-weight:800; color:var(--purple); letter-spacing:3px;">PITCH DECK</p>
+                <div style="font-size:3.5rem; font-weight:900; margin:20px 0; letter-spacing:-2px;">35K<span>/-</span></div>
+                <ul style="list-style:none; margin-bottom:40px; color:#555; font-size:14px; font-weight:600; flex-grow: 1;">
+                    <li style="padding:12px 0; border-bottom:1px solid #f9f9f9;">✓ Up to 20 Slides</li>
+                    <li style="padding:12px 0; border-bottom:1px solid #f9f9f9;">✓ Data Visualization/Infographics</li>
+                    <li style="padding:12px 0; border-bottom:1px solid #f9f9f9;">✓ Investor-Ready Storyline</li>
+                </ul>
+                <button style="width:100%; padding:20px; background:var(--purple); color:#fff; border:none; border-radius:20px; font-weight:800; cursor:pointer;">ORDER PITCH</button>
+            </div>
+
+            <div style="background:#fff; padding:50px 35px; border-radius:40px; border:1px solid #eee; display: flex; flex-direction: column;">
+                <p style="font-size:12px; font-weight:800; color:#aaa; letter-spacing:3px;">CORPORATE</p>
+                <div style="font-size:3.5rem; font-weight:900; margin:20px 0; letter-spacing:-2px;">60K<span>+</span></div>
+                <ul style="list-style:none; margin-bottom:40px; color:#555; font-size:14px; font-weight:600; flex-grow: 1;">
+                    <li style="padding:12px 0; border-bottom:1px solid #f9f9f9;">✓ Unlimited Slides</li>
+                    <li style="padding:12px 0; border-bottom:1px solid #f9f9f9;">✓ Custom Illustrations</li>
+                    <li style="padding:12px 0; border-bottom:1px solid #f9f9f9;">✓ Branding Style Guide</li>
+                </ul>
+                <button style="width:100%; padding:20px; background:#000; color:#fff; border:none; border-radius:20px; font-weight:800; cursor:pointer;">CONTACT US</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 3D Deck Tilt
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 900) {
+                const x = (window.innerWidth / 2 - e.pageX) / 40;
+                const y = (window.innerHeight / 2 - e.pageY) / 40;
+                gsap.to("#deck", { rotationY: x, rotationX: -y, duration: 0.8 });
+            }
+        });
+
+        // Floating Tags
+        gsap.to(".ppt-tag", { y: -15, duration: 2.5, repeat: -1, yoyo: true, ease: "sine.inOut", stagger: 0.4 });
+    </script>
+
+
+
+<!--Get starteddddddddddddddddddddddd-->
+
+<style>
+    /* --- The Grand Finale CTA --- */
+    .cta-final {
+        padding: 150px 5%;
+        background: var(--white);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    /* Animated Heading: Text that breathes */
+    .cta-heading {
+        font-size: clamp(3rem, 12vw, 8rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -6px;
+        margin-bottom: 50px;
+        color: var(--black);
+        text-transform: uppercase;
+    }
+
+    .cta-heading span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--black);
+        transition: 0.5s;
+    }
+
+    .cta-final:hover .cta-heading span {
+        color: var(--blue);
+        -webkit-text-stroke: 1.5px var(--blue);
+        filter: drop-shadow(0 0 30px rgba(0, 112, 243, 0.3));
+    }
+
+    /* Ultra Animated Button */
+    .ultra-btn {
+        position: relative;
+        padding: 25px 60px;
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--white);
+        background: var(--black);
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 0.4s;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        z-index: 1;
+    }
+
+    .ultra-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 0; height: 0;
+        background: var(--blue);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+        z-index: -1;
+    }
+
+    .ultra-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 20px 40px rgba(0, 112, 243, 0.4);
+    }
+
+    .ultra-btn:hover::before {
+        width: 400px;
+        height: 400px;
+    }
+
+    /* Floating Particles for that "Manzar" */
+    .particle {
+        position: absolute;
+        background: var(--blue);
+        border-radius: 50%;
+        opacity: 0.1;
+        pointer-events: none;
+    }
+
+    /* Mobile Responsive Logic */
+    @media (max-width: 768px) {
+        .cta-heading { letter-spacing: -3px; margin-bottom: 30px; }
+        .cta-final { padding: 100px 5%; }
+        .ultra-btn { padding: 20px 40px; font-size: 14px; }
+    }
+</style>
+
+<section class="cta-final">
+    <div id="particle-container"></div>
+
+    <h2 class="cta-heading">
+        READY TO <br>
+        <span>INITIALIZE?</span>
+    </h2>
+
+    <p style="color: #666; font-weight: 500; margin-bottom: 40px; font-size: 1.1rem;">
+        Let's build the future of your business, one pixel at a time.
+    </p>
+
+    <button class="ultra-btn" onclick="location.href='get-started.html'">
+        Start Your Project &rarr;
+    </button>
+
+    <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #aaa;">
+        <span>© 2026 CODECRAFTE STUDIO</span>
+        <div style="display: flex; gap: 20px;">
+            <a href="#" style="color: inherit; text-decoration: none;">INSTAGRAM</a>
+            <a href="#" style="color: inherit; text-decoration: none;">LINKEDIN</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Creating some random floating particles
+    const container = document.getElementById('particle-container');
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 50 + 10;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.left = Math.random() * 100 + '%';
+        container.appendChild(p);
+        
+        gsap.to(p, {
+            y: -100,
+            x: Math.random() * 50,
+            duration: Math.random() * 5 + 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+
+    // Scroll trigger for heading
+    gsap.from(".cta-heading", {
+        scrollTrigger: ".cta-final",
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    });
+</script>
+</body>
+</html>

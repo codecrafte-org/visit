@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Management System | CodeCrafte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        :root { --blue: #0070f3; --black: #000; --white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--white); overflow-x: hidden; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 8%;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .hero-content { flex: 1.2; min-width: 350px; }
+
+        .sub-heading {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 11px; letter-spacing: 6px;
+            color: var(--blue); margin-bottom: 20px; display: block;
+        }
+
+        .ultra-heading {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            line-height: 0.85; letter-spacing: -5px;
+            font-weight: 900; text-transform: uppercase;
+        }
+
+        .blue-outline { -webkit-text-stroke: 1.5px var(--blue); color: transparent; }
+
+        /* --- PMS DASHBOARD VISUAL (RIGHT SIDE) --- */
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1200px;
+            min-height: 500px;
+        }
+
+        .pms-dashboard {
+            width: 400px;
+            height: 300px;
+            background: #f8f9fa;
+            border: 2px solid #eee;
+            border-radius: 20px;
+            position: relative;
+            transform-style: preserve-3d;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        /* Floating Cards representing Data */
+        .floating-card {
+            position: absolute;
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border: 1px solid var(--blue);
+            font-size: 10px;
+            font-weight: 800;
+            z-index: 5;
+            transition: 0.3s;
+        }
+
+        .card-1 { top: -30px; right: -20px; width: 120px; } /* Occupancy Chart */
+        .card-2 { bottom: -20px; left: -40px; width: 140px; } /* Revenue Card */
+        .card-3 { top: 40%; right: -50px; width: 110px; } /* Building Stats */
+
+        .dashboard-screen {
+            width: 100%; height: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bar { height: 10px; background: #f0f0f0; border-radius: 5px; width: 100%; }
+        .bar.active { background: var(--blue); width: 60%; }
+
+        /* Mobile Fix */
+        @media (max-width: 900px) {
+            .hero { text-align: center; padding-top: 120px; }
+            .hero-visual { min-height: 450px; transform: scale(0.85); }
+            .pms-dashboard { width: 320px; margin-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="sub-heading">03 // REAL ESTATE LOGIC</span>
+            <h1 class="ultra-heading">
+                MODERN <br> <span class="blue-outline">PMS</span> <br> ENGINE.
+            </h1>
+            <p style="margin-top:30px; color:#666; max-width:450px; line-height:1.6; font-weight:500;">
+                Hum Property Managers ke liye bespoke systems design karte hain jo Rent, Tenants aur Maintenance ko auto-pilot par le aate hain.
+            </p>
+        </div>
+
+        <div class="hero-visual">
+            <div class="pms-dashboard" id="dashboard">
+                <div class="dashboard-screen">
+                    <div style="display:flex; gap:5px;">
+                        <div style="width:15px; height:15px; background:var(--blue); border-radius:4px;"></div>
+                        <div style="width:100px; height:15px; background:#f0f0f0; border-radius:4px;"></div>
+                    </div>
+                    <div class="bar active"></div>
+                    <div class="bar"></div>
+                    <div class="bar active" style="width:40%"></div>
+                    <div style="margin-top:auto; display:flex; justify-content:space-between;">
+                        <div style="width:45%; height:40px; background:#f9f9f9; border-radius:5px;"></div>
+                        <div style="width:45%; height:40px; background:#f9f9f9; border-radius:5px;"></div>
+                    </div>
+                </div>
+
+                <div class="floating-card card-1">📈 OCCUPANCY: 94%</div>
+                <div class="floating-card card-2">💰 RENT COLLECTED</div>
+                <div class="floating-card card-3">🏢 12 PROPERTIES</div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 80px 8%; background: #fafafa; border-top: 1px solid #eee;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 3rem; font-weight: 900; letter-spacing: -2px;">PMS PRICING</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+            <div style="background:#fff; padding:40px; border-radius:30px; border:1px solid #eee;">
+                <p style="font-size:12px; font-weight:900; color:#ccc;">BASIC</p>
+                <div style="font-size:3rem; font-weight:900; margin:15px 0;">45K<span>/-</span></div>
+                <ul style="list-style:none; margin-bottom:20px; font-size:14px; color:#666;">
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Up to 10 Units</li>
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Tenant Portal</li>
+                </ul>
+                <button style="width:100%; padding:15px; background:#000; color:#fff; border:none; border-radius:15px; font-weight:800;">START SYSTEM</button>
+            </div>
+
+            <div style="background:#fff; padding:40px; border-radius:30px; border:2px solid var(--blue);">
+                <p style="font-size:12px; font-weight:900; color:var(--blue);">PROFESSIONAL</p>
+                <div style="font-size:3rem; font-weight:900; margin:15px 0;">95K<span>/-</span></div>
+                <ul style="list-style:none; margin-bottom:20px; font-size:14px; color:#666;">
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Unlimited Units</li>
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Automated Rent Tracking</li>
+                </ul>
+                <button style="width:100%; padding:15px; background:var(--blue); color:#fff; border:none; border-radius:15px; font-weight:800;">MOST POPULAR</button>
+            </div>
+
+            <div style="background:#fff; padding:40px; border-radius:30px; border:1px solid #eee;">
+                <p style="font-size:12px; font-weight:900; color:#ccc;">CUSTOM</p>
+                <div style="font-size:3rem; font-weight:900; margin:15px 0;">180K<span>/-</span></div>
+                <ul style="list-style:none; margin-bottom:20px; font-size:14px; color:#666;">
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Custom Enterprise Logic</li>
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Maintenance App</li>
+                </ul>
+                <button style="width:100%; padding:15px; background:#000; color:#fff; border:none; border-radius:15px; font-weight:800;">BUILD ENTERPRISE</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 3D Dashboard Tilt
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 900) {
+                const x = (window.innerWidth / 2 - e.pageX) / 35;
+                const y = (window.innerHeight / 2 - e.pageY) / 35;
+                gsap.to("#dashboard", { rotationY: x, rotationX: -y, duration: 0.6 });
+            }
+        });
+
+        // Floating Cards Animation
+        gsap.to(".floating-card", {
+            y: 15,
+            duration: 2.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: 0.4
+        });
+    </script>
+
+    <!--clinettttttttt-->
+<style>
+    .pms-stats {
+        padding: 80px 8%;
+        background: #fff;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    .stats-grid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto 80px;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    .stat-item { flex: 1; min-width: 250px; }
+
+    .stat-num {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        color: var(--black);
+        letter-spacing: -2px;
+        display: block;
+    }
+
+    .stat-txt {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--blue);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    /* Client Logos (Healthcare Focused) */
+    .pms-clients {
+        text-align: center;
+        border-top: 1px solid #f9f9f9;
+        padding-top: 60px;
+    }
+
+    .client-scroll {
+        display: flex;
+        gap: 60px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        opacity: 0.6;
+        margin-top: 30px;
+    }
+
+    .client-logo {
+        font-size: 18px;
+        font-weight: 900;
+        color: #444;
+        letter-spacing: -1px;
+        filter: grayscale(1);
+        transition: 0.3s;
+    }
+
+    .client-logo:hover { filter: grayscale(0); opacity: 1; color: var(--blue); }
+
+    @media (max-width: 768px) {
+        .stats-grid { text-align: center; justify-content: center; }
+        .client-scroll { gap: 30px; }
+    }
+</style>
+
+<section class="pms-stats">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <span class="stat-txt">Deployments</span>
+            <span class="stat-num" id="pms-count1">15+</span>
+            <p style="color:#888; font-size:14px; margin-top:10px;">Medical Centers Digitized</p>
+        </div>
+        <div class="stat-item" style="border-left: 2px solid #f0f0f0; padding-left: 30px;">
+            <span class="stat-txt">Patient Flow</span>
+            <span class="stat-num" id="pms-count2">50k+</span>
+            <p style="color:#888; font-size:14px; margin-top:10px;">Daily Appointments Managed</p>
+        </div>
+        <div class="stat-item" style="border-left: 2px solid #f0f0f0; padding-left: 30px;">
+            <span class="stat-txt">Data Security</span>
+            <span class="stat-num">100%</span>
+            <p style="color:#888; font-size:14px; margin-top:10px;">HIPAA Compliant Structure</p>
+        </div>
+    </div>
+
+    <div class="pms-clients">
+        <p style="font-size:11px; font-weight:800; letter-spacing:4px; color:#aaa;">TRUSTED BY MEDICAL INSTITUTIONS</p>
+        <div class="client-scroll">
+            <div class="client-logo">MADNI<span style="color:var(--blue)">HEALTH</span></div>
+            <div class="client-logo">ROOH<span style="color:var(--blue)">REHAB</span></div>
+            <div class="client-logo">LIFE<span style="color:var(--blue)">CARE</span> CLINIC</div>
+            <div class="client-logo">TECH<span style="color:var(--blue)">MED</span> SYSTEMS</div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Counter Animation
+    gsap.from("#pms-count1", {
+        scrollTrigger: "#pms-count1",
+        textContent: 0,
+        duration: 2,
+        snap: { textContent: 1 }
+    });
+    
+    gsap.from("#pms-count2", {
+        scrollTrigger: "#pms-count2",
+        textContent: 0,
+        duration: 2.5,
+        snap: { textContent: 100 }
+    });
+</script>
+
+
+
+
+<!--Get starteddddddddddddddddddddddd-->
+
+<style>
+    /* --- The Grand Finale CTA --- */
+    .cta-final {
+        padding: 150px 5%;
+        background: var(--white);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    /* Animated Heading: Text that breathes */
+    .cta-heading {
+        font-size: clamp(3rem, 12vw, 8rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -6px;
+        margin-bottom: 50px;
+        color: var(--black);
+        text-transform: uppercase;
+    }
+
+    .cta-heading span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--black);
+        transition: 0.5s;
+    }
+
+    .cta-final:hover .cta-heading span {
+        color: var(--blue);
+        -webkit-text-stroke: 1.5px var(--blue);
+        filter: drop-shadow(0 0 30px rgba(0, 112, 243, 0.3));
+    }
+
+    /* Ultra Animated Button */
+    .ultra-btn {
+        position: relative;
+        padding: 25px 60px;
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--white);
+        background: var(--black);
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 0.4s;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        z-index: 1;
+    }
+
+    .ultra-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 0; height: 0;
+        background: var(--blue);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+        z-index: -1;
+    }
+
+    .ultra-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 20px 40px rgba(0, 112, 243, 0.4);
+    }
+
+    .ultra-btn:hover::before {
+        width: 400px;
+        height: 400px;
+    }
+
+    /* Floating Particles for that "Manzar" */
+    .particle {
+        position: absolute;
+        background: var(--blue);
+        border-radius: 50%;
+        opacity: 0.1;
+        pointer-events: none;
+    }
+
+    /* Mobile Responsive Logic */
+    @media (max-width: 768px) {
+        .cta-heading { letter-spacing: -3px; margin-bottom: 30px; }
+        .cta-final { padding: 100px 5%; }
+        .ultra-btn { padding: 20px 40px; font-size: 14px; }
+    }
+</style>
+
+<section class="cta-final">
+    <div id="particle-container"></div>
+
+    <h2 class="cta-heading">
+        READY TO <br>
+        <span>INITIALIZE?</span>
+    </h2>
+
+    <p style="color: #666; font-weight: 500; margin-bottom: 40px; font-size: 1.1rem;">
+        Let's build the future of your business, one pixel at a time.
+    </p>
+
+    <button class="ultra-btn" onclick="location.href='get-started.html'">
+        Start Your Project &rarr;
+    </button>
+
+    <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #aaa;">
+        <span>© 2026 CODECRAFTE STUDIO</span>
+        <div style="display: flex; gap: 20px;">
+            <a href="#" style="color: inherit; text-decoration: none;">INSTAGRAM</a>
+            <a href="#" style="color: inherit; text-decoration: none;">LINKEDIN</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Creating some random floating particles
+    const container = document.getElementById('particle-container');
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 50 + 10;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.left = Math.random() * 100 + '%';
+        container.appendChild(p);
+        
+        gsap.to(p, {
+            y: -100,
+            x: Math.random() * 50,
+            duration: Math.random() * 5 + 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+
+    // Scroll trigger for heading
+    gsap.from(".cta-heading", {
+        scrollTrigger: ".cta-final",
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    });
+</script>
+</body>
+</html>
