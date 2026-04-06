@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Agreement | CodeCrafte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #0a4dd4;
+            --black: #000;
+            --white: #fff;
+            --border: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #f4f4f4; padding: 40px 0; }
+
+        /* Controls / Buttons */
+        .controls {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .btn-download { background: var(--primary); color: white; }
+        .btn-print { background: var(--black); color: white; }
+
+        /* Contract Page Styling */
+        .contract-page {
+            background: var(--white);
+            width: 210mm; /* A4 Width */
+            min-height: 297mm; /* A4 Height */
+            margin: 0 auto;
+            padding: 20mm;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+            border-top: 15px solid var(--primary);
+        }
+
+        .header-logo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--black);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo-text { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 24px; letter-spacing: -1px; }
+        .contract-title { font-family: 'Playfair Display', serif; font-size: 28px; font-style: italic; }
+
+        .meta-info { display: flex; justify-content: space-between; margin-bottom: 40px; font-size: 13px; }
+        
+        .section { margin-bottom: 25px; }
+        .section h3 { 
+            font-size: 14px; 
+            text-transform: uppercase; 
+            color: var(--primary); 
+            margin-bottom: 10px; 
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .section p, .section li { font-size: 13px; color: #333; line-height: 1.6; margin-bottom: 8px; }
+        
+        .field-input {
+            border: none;
+            border-bottom: 1px dashed #ccc;
+            width: 200px;
+            padding: 2px 5px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Signatures Area */
+        .signature-section {
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sig-box { width: 45%; text-align: center; }
+        .sig-line { border-top: 1px solid var(--black); margin-bottom: 10px; padding-top: 10px; }
+        .sig-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+        .stamp {
+            position: absolute;
+            bottom: 150px;
+            right: 100px;
+            width: 120px;
+            height: 120px;
+            border: 3px double var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 900;
+            color: var(--primary);
+            opacity: 0.2;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        @media print {
+            .controls { display: none; }
+            body { background: white; padding: 0; }
+            .contract-page { box-shadow: none; margin: 0; border: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <h2 style="font-size: 16px; font-weight: 800;">OFFICIAL AGREEMENT EDITOR</h2>
+        <div>
+            <button class="btn btn-print" onclick="window.print()">Print Document</button>
+            <button class="btn btn-download" onclick="downloadPDF()">Download as PDF</button>
+        </div>
+    </div>
+
+    <div class="contract-page" id="contract">
+        <div class="stamp">CODECRAFTE<br>OFFICIAL SEAL<br>2026</div>
+
+        <div class="header-logo">
+            <div class="logo-text">CODECRAFTE<span style="color:var(--primary)"></span></div>
+            <div class="contract-title">Service Agreement</div>
+        </div>
+
+        <div class="meta-info">
+            <div>
+                <strong>Agreement No:</strong> <span class="field-input">CC-2026- [ --- ]</span><br>
+                <strong>Date:</strong> <span class="field-input"> - - -</span>
+            </div>
+            <div style="text-align: right;">
+                <strong>Project Type:</strong> <span class="field-input">Custom Development</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>1. The Parties</h3>
+            <p>This agreement is made between <strong>CodeCrafte Operations</strong> (the "Agency") and 
+            <input type="text" class="field-input" placeholder="Client Full Name / Company"> (the "Client").</p>
+        </div>
+
+        <div class="section">
+            <h3>2. Project Scope</h3>
+            <p>The Agency agrees to provide the following services as discussed:</p>
+            <ul style="padding-left: 20px;">
+                <li>Complete Development of <input type="text" class="field-input" placeholder="Project Name">.</li>
+                <li>Delivery within <input type="text" class="field-input" style="width:50px" placeholder="30"> business days.</li>
+                <li>Revisions as per the selected package (2 Rounds included).</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>3. Payment Terms</h3>
+            <p>The total project cost is <strong>PKR <input type="text" class="field-input" placeholder="0.00"></strong>.</p>
+            <ul style="padding-left: 20px;">
+                <li><strong>Advance:</strong> 50% (Non-refundable) to initiate the work.</li>
+                <li><strong>Final:</strong> 50% upon project completion and before final handover.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>4. Termination & Notice</h3>
+            <p>Either party may terminate this agreement with a <strong>24-hour written notice</strong>. In case of termination, the client is liable to pay for the work completed up to that point.</p>
+        </div>
+
+        <div class="section">
+            <h3>5. Confidentiality</h3>
+            <p>Agency agrees to keep all client data, business logic, and project details strictly confidential and will not share them with third parties.</p>
+        </div>
+
+        <div class="signature-section">
+            <div class="sig-box">
+                <div style="margin-bottom: 10px;">
+                   <!-- <img src="#" alt="Agency Sign" style="max-width: 150px; filter: grayscale(1);">-->
+                    <h4 style="color: #535353;">CODECRAFTE</h4>
+                </div>
+                <div class="sig-line"></div>
+                <div class="sig-label">Authorized Signature<br>(CodeCrafte)</div>
+            </div>
+
+            <div class="sig-box">
+                <div style="height: 60px;"></div> <div class="sig-line"></div>
+                <div class="sig-label">Client Signature<br>(Acceptance of Terms)</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; font-size: 10px; color: #999; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+            This is a legally binding document. By signing, both parties agree to the terms mentioned above.
+            <br>CodeCrafte | 2026 | www.codecrafte.org
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('contract');
+            const opt = {
+                margin:       0,
+                filename:     'CodeCrafte_Agreement.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // New Promise-based usage:
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>

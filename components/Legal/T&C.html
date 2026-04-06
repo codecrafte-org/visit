@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | CodeCrafte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0a4dd4;
+            --black: #000;
+            --white: #fff;
+            --text: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--white); color: var(--text); line-height: 1.6; top: 0px !important; }
+
+        /* Translator Buttons - Top Right */
+        .translate-container {
+            position: fixed;
+            top: 25px;
+            right: 5%;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            border-radius: 50px;
+            display: flex;
+            gap: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 800;
+            transition: 0.3s;
+            background: transparent;
+            color: #fff;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* Header */
+        .terms-header {
+            padding: 140px 8% 80px;
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .terms-header h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; letter-spacing: -2px; }
+        .last-update { margin-top: 15px; font-size: 12px; font-weight: 600; color: var(--primary); letter-spacing: 2px; }
+
+        /* Container */
+        .terms-container {
+            max-width: 900px;
+            margin: -50px auto 100px;
+            background: var(--white);
+            padding: 60px 8%;
+            border-radius: 40px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
+        .terms-section { margin-bottom: 45px; }
+        .terms-section h2 { font-size: 1.6rem; font-weight: 800; color: var(--black); margin-bottom: 15px; display: flex; align-items: center; gap: 12px; }
+        .terms-section h2::before { content: ''; width: 10px; height: 10px; background: var(--primary); border-radius: 50%; display: inline-block; }
+        
+        .terms-list { list-style: none; padding-left: 20px; }
+        .terms-list li { position: relative; margin-bottom: 12px; font-size: 15px; color: #555; }
+        .terms-list li::before { content: '→'; position: absolute; left: -25px; color: var(--primary); font-weight: 900; }
+
+        /* Termination Box */
+        .termination-box {
+            background: #fff5f5;
+            padding: 30px;
+            border-left: 5px solid #ff4d4d;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        /* CEO Verification */
+        .verification-footer {
+            margin-top: 80px;
+            padding-top: 50px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .ceo-badge {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--black);
+            color: var(--white);
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        /* Hide Google Elements */
+        #google_translate_element, .skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .terms-container { margin: -40px 5% 60px; padding: 40px 6%; }
+            .translate-container { top: 15px; right: 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="translate-container">
+        <button onclick="changeLang('en')" class="lang-btn active" id="btn-en">ENGLISH</button>
+        <button onclick="changeLang('ur')" class="lang-btn" id="btn-ur">اردو</button>
+    </div>
+
+    <div id="google_translate_element"></div>
+
+    <header class="terms-header">
+        <h1 class="notranslate">CodeCrafte</h1>
+        <h1 style="font-size: 1.5rem; margin-top: 10px;">Terms & Conditions</h1>
+        <p class="last-update">UPDATED: APRIL 06, 2026</p>
+    </header>
+
+    <main class="terms-container">
+        
+        <section class="terms-section">
+            <h2>Project Scope</h2>
+            <p>Hum sirf wahi kaam mukammal karne ke zimmedar hain jo written agreement mein teh paya hai. Koi bhi naya feature "Extra Work" tasawwur kiya jayega aur uske charges alag honge.</p>
+        </section>
+
+        <section class="terms-section">
+            <h2>Payment Policy</h2>
+            <ul class="terms-list">
+                <li>Kaam shuru karne ke liye 50% Advance lazmi hai.</li>
+                <li>Final files handover karne se pehle baqi 50% clear karna hoga.</li>
+                <li>Refund sirf tabhi milega agar kaam agreement ke mutabiq na ho.</li>
+            </ul>
+        </section>
+
+        <section class="terms-section">
+            <h2>Revision Rules</h2>
+            <p>Hum har client ko 2 rounds free revisions ke dete hain. Uske baad mazeed tabdeeliyon par extra fees apply hogi.</p>
+        </section>
+
+        <section class="terms-section">
+            <h2>Termination (Cancellation)</h2>
+            <div class="termination-box">
+                <p><strong>1-Day Notice:</strong> Agar aap project rokna chahte hain, toh <strong>24 ghantay</strong> pehle batana lazmi hai. Jitna kaam us waqt tak ho chuka hoga, uski payment karni hogi.</p>
+            </div>
+        </section>
+
+        <section class="terms-section">
+            <h2>Owner Rights</h2>
+            <p>Jab tak poori payment nahi mil jati, design aur code ke asli maalik hum hain. Payment ke baad tamam rights aapke ho jayenge.</p>
+        </section>
+
+        <footer class="verification-footer">
+            <div class="ceo-badge">VERIFIED BY CEO</div>
+            <p style="margin-top: 20px; font-weight: 800; font-style: italic;">CodeCrafte Operations Team</p>
+            <p style="font-size: 11px; color: #aaa; margin-top: 10px;">Security Verified Document ID: CC-2026-TNC</p>
+        </footer>
+
+    </main>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,ur',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function changeLang(lang) {
+            const select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            }
+            
+            // Toggle Active Class
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-ur').classList.remove('active');
+            if(lang === 'en') document.getElementById('btn-en').classList.add('active');
+            else document.getElementById('btn-ur').classList.add('active');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

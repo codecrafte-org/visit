@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Policy | CodeCrafte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0a4dd4;
+            --black: #000;
+            --white: #fff;
+            --text: #333;
+            --danger: #ff4d4d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--white); color: var(--text); line-height: 1.6; top: 0px !important; }
+
+        /* Translator UI */
+        .translate-container {
+            position: fixed;
+            top: 25px;
+            right: 5%;
+            z-index: 9999;
+            background: rgba(10, 77, 212, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            border-radius: 50px;
+            display: flex;
+            gap: 5px;
+            border: 1px solid rgba(10, 77, 212, 0.2);
+        }
+
+        .lang-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 800;
+            transition: 0.3s;
+            background: transparent;
+            color: var(--black);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* Header */
+        .policy-header {
+            padding: 140px 8% 80px;
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .policy-header h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; letter-spacing: -2px; }
+        .sub-tag { color: var(--primary); font-size: 12px; font-weight: 900; letter-spacing: 4px; display: block; margin-bottom: 10px; }
+
+        /* Content Container */
+        .policy-container {
+            max-width: 900px;
+            margin: -50px auto 100px;
+            background: var(--white);
+            padding: 60px 8%;
+            border-radius: 40px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
+        .policy-section { margin-bottom: 40px; }
+        .policy-section h2 { font-size: 1.5rem; font-weight: 800; color: var(--black); margin-bottom: 15px; }
+        
+        .refund-card {
+            background: #f8faff;
+            padding: 30px;
+            border-radius: 24px;
+            border-left: 5px solid var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .refund-card.warning { border-left-color: var(--danger); background: #fff5f5; }
+
+        .refund-card p { font-size: 15px; color: #555; font-weight: 500; }
+        .refund-card strong { color: var(--black); display: block; margin-bottom: 8px; font-size: 17px; }
+
+        /* Footer Badge */
+        .footer-badge {
+            margin-top: 60px;
+            padding: 30px;
+            border-radius: 20px;
+            background: #f1f5ff;
+            text-align: center;
+        }
+
+        .footer-badge p { font-size: 13px; font-weight: 700; color: var(--primary); }
+
+        /* Hide Google */
+        #google_translate_element, .skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+
+        @media (max-width: 768px) {
+            .policy-container { margin: -40px 5% 60px; padding: 40px 6%; }
+            .translate-container { top: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="translate-container">
+        <button onclick="changeLang('en')" class="lang-btn active" id="btn-en">ENGLISH</button>
+        <button onclick="changeLang('ur')" class="lang-btn" id="btn-ur">اردو</button>
+    </div>
+
+    <div id="google_translate_element"></div>
+
+    <header class="policy-header">
+        <span class="sub-tag">TRANSPARENCY</span>
+        <h1 class="notranslate">CodeCrafte</h1>
+        <h1 style="font-size: 1.8rem; margin-top: 10px; opacity: 0.9;">Refund Policy</h1>
+    </header>
+
+    <main class="policy-container">
+        
+        <section class="policy-section">
+            <div class="refund-card">
+                <strong>Project Kick-off (Advance)</strong>
+                <p>Kaam shuru karne ke liye jo 50% advance payment li jati hai, wo non-refundable hai. Ye payment hamari team ke time aur resources reserve karne ke liye hoti hai.</p>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <div class="refund-card warning">
+                <strong>Cancellation Policy</strong>
+                <p>Agar aap project ke darmiyan kaam rokna chahte hain, toh jitna fees pay ki ja chuki hogi wo refund nahi hogi. Mazeed ye ke, jitna extra kaam ho chuka hoga, uske charges bhi client ko dene honge.</p>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <div class="refund-card">
+                <strong>Exceptional Cases</strong>
+                <p>Refund sirf aik soorat mein diya ja sakta hai: Agar CodeCrafte agreement ke mutabiq deliverables provide karne mein mukammal nakam ho jaye aur koi munasib hal na nikal sakay.</p>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <div class="refund-card">
+                <strong>Post-Handover</strong>
+                <p>Ek baar final files ya source code client ko handover kar diya jaye, uske baad koi bhi refund request qabil-e-qabool nahi hogi.</p>
+            </div>
+        </section>
+
+        <div class="footer-badge">
+            <p>VERIFIED & APPROVED BY CODECRAFTE MANAGEMENT</p>
+            <p style="color: #888; font-size: 11px; margin-top: 5px;">Last Revised: April 06, 2026</p>
+        </div>
+
+    </main>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,ur',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function changeLang(lang) {
+            const select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            }
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-ur').classList.remove('active');
+            if(lang === 'en') document.getElementById('btn-en').classList.add('active');
+            else document.getElementById('btn-ur').classList.add('active');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
