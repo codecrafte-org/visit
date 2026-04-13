@@ -125,7 +125,7 @@
 
  #s-app:hover .s-icon,
 #s-app:hover h3 {
-    color: #7d33ff;
+    color: #e7ff33;
  }
 
  #s-pms:hover .s-icon,
@@ -157,5 +157,11 @@
 #s-smm:hover h3 {
     color: #ff0050;
  }
+
+  #s-ai:hover .s-icon,
+#s-ai:hover h3 {
+    color: #1aff00 ;
+ }
+
 
  

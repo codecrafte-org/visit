@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Automation | CodeCrafte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        :root { --primary: #1aff00; --accent: #0070f3; --black: #000; --white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--white); overflow-x: hidden; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 8%;
+            flex-wrap: wrap;
+            gap: 60px;
+        }
+
+        .hero-content { flex: 1; min-width: 350px; }
+        .sub-heading { font-family: 'Syncopate', sans-serif; font-size: 11px; letter-spacing: 6px; color: var(--primary); margin-bottom: 20px; display: block; }
+        .ultra-heading { font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.85; letter-spacing: -5px; font-weight: 900; text-transform: uppercase; }
+        .ai-outline { -webkit-text-stroke: 1.5px var(--accent); color: transparent; }
+
+        /* --- AI VISUAL (RIGHT SIDE) --- */
+        .hero-visual {
+            flex: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 500px;
+        }
+
+        /* AI Core Design */
+        .ai-core {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: blur(1px);
+            box-shadow: 0 0 100px rgba(125, 51, 255, 0.3);
+        }
+
+        .core-inner {
+            width: 150px;
+            height: 150px;
+            background: var(--black);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        /* Neural Connections Rings */
+        .ring {
+            position: absolute;
+            border: 1px solid rgba(10, 77, 212, 0.3);
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .ring-1 { width: 350px; height: 350px; animation: rotate 10s linear infinite; }
+        .ring-2 { width: 450px; height: 450px; animation: rotate 15s linear infinite reverse; }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* Floating Nodes */
+        .node {
+            position: absolute;
+            background: var(--primary);
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* Pricing Section */
+        .pricing-section { padding: 100px 5%; background: #fafafa; }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: #fff;
+            padding: 50px 35px;
+            border-radius: 40px;
+            border: 1px solid #eee;
+            transition: 0.4s;
+        }
+        .price-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+        .price-card.featured { border: 2px solid var(--primary); position: relative; }
+        .featured-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #fff; padding: 5px 15px; border-radius: 50px; font-size: 10px; font-weight: 900; }
+
+        .price-btn { width: 100%; padding: 18px; border-radius: 15px; border: none; font-weight: 800; cursor: pointer; margin-top: 30px; transition: 0.3s; }
+        .btn-dark { background: var(--black); color: #fff; }
+        .btn-primary { background: var(--primary); color: #fff; }
+
+        @media (max-width: 900px) {
+            .hero { text-align: center; padding-top: 100px; }
+            .hero-visual { transform: scale(0.6); min-height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="sub-heading">AI // FUTURE OF WORK</span>
+            <h1 class="ultra-heading">
+                SMARTER <br> <span class="ai-outline">WORKFLOWS</span> <br> WITH AI.
+            </h1>
+            <p style="margin-top:35px; color:#666; max-width:450px; line-height:1.6;">
+                Hum aapke business mein AI Agent aur Custom Automations deploy karte hain jo 24/7 kaam karte hain. Manual tasks ko khatam karein aur scale karein.
+            </p>
+        </div>
+
+        <div class="hero-visual">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ai-core" id="core">
+                <div class="core-inner">
+                    <div style="color:var(--primary); font-weight:900; font-size:24px;">AI</div>
+                </div>
+                <div class="node" style="top:10%; left:20%;"></div>
+                <div class="node" style="bottom:20%; right:10%;"></div>
+                <div class="node" style="top:50%; right:-5px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div style="text-align: center; margin-bottom: 70px;">
+            <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -3px;">AI AUTOMATION PLANS</h2>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="price-card">
+                <p style="font-size:12px; font-weight:800; color:#aaa; letter-spacing:3px;">ASSISTANT</p>
+                <div style="font-size:3rem; font-weight:900; margin:20px 0;">50K<span>/-</span></div>
+                <ul style="list-style:none; color:#555; font-size:14px; font-weight:600;">
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ AI Chatbot (Basic)</li>
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Zapier Integration</li>
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Email Automation</li>
+                </ul>
+                <button class="price-btn btn-dark">GET STARTED</button>
+            </div>
+
+            <div class="price-card featured">
+                <div class="featured-tag">MOST EFFICIENT</div>
+                <p style="font-size:12px; font-weight:800; color:var(--primary); letter-spacing:3px;">AI AGENT</p>
+                <div style="font-size:3rem; font-weight:900; margin:20px 0;">120K<span>/-</span></div>
+                <ul style="list-style:none; color:#555; font-size:14px; font-weight:600;">
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Custom AI Agent (GPT-4)</li>
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ CRM Auto-Pilot</li>
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Voice AI Integration</li>
+                </ul>
+                <button class="price-btn btn-primary">SCALE NOW</button>
+            </div>
+
+            <div class="price-card">
+                <p style="font-size:12px; font-weight:800; color:#aaa; letter-spacing:3px;">ENTERPRISE</p>
+                <div style="font-size:3rem; font-weight:900; margin:20px 0;">250K<span>+</span></div>
+                <ul style="list-style:none; color:#555; font-size:14px; font-weight:600;">
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Full Business Ecosystem</li>
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Private LLM Setup</li>
+                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ 24/7 AI Maintenance</li>
+                </ul>
+                <button class="price-btn btn-dark">CONTACT US</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // AI Core Reaction
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 900) {
+                const x = (window.innerWidth / 2 - e.pageX) / 30;
+                const y = (window.innerHeight / 2 - e.pageY) / 30;
+                gsap.to("#core", { rotationY: x, rotationX: -y, duration: 1 });
+            }
+        });
+
+        // Node Glow Pulse
+        gsap.to(".node", { opacity: 0.3, duration: 1, repeat: -1, yoyo: true, stagger: 0.3 });
+    </script>
+
+
+<!--Get starteddddddddddddddddddddddd-->
+
+<style>
+    /* --- The Grand Finale CTA --- */
+    .cta-final {
+        padding: 150px 5%;
+        background: var(--white);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    /* Animated Heading: Text that breathes */
+    .cta-heading {
+        font-size: clamp(3rem, 12vw, 8rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -6px;
+        margin-bottom: 50px;
+        color: var(--black);
+        text-transform: uppercase;
+    }
+
+    .cta-heading span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--black);
+        transition: 0.5s;
+    }
+
+    .cta-final:hover .cta-heading span {
+        color: var(--blue);
+        -webkit-text-stroke: 1.5px var(--blue);
+        filter: drop-shadow(0 0 30px rgba(0, 112, 243, 0.3));
+    }
+
+    /* Ultra Animated Button */
+    .ultra-btn {
+        position: relative;
+        padding: 25px 60px;
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--white);
+        background: var(--black);
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 0.4s;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        z-index: 1;
+    }
+
+    .ultra-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 0; height: 0;
+        background: var(--blue);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+        z-index: -1;
+    }
+
+    .ultra-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 20px 40px rgba(0, 112, 243, 0.4);
+    }
+
+    .ultra-btn:hover::before {
+        width: 400px;
+        height: 400px;
+    }
+
+    /* Floating Particles for that "Manzar" */
+    .particle {
+        position: absolute;
+        background: var(--blue);
+        border-radius: 50%;
+        opacity: 0.1;
+        pointer-events: none;
+    }
+
+    /* Mobile Responsive Logic */
+    @media (max-width: 768px) {
+        .cta-heading { letter-spacing: -3px; margin-bottom: 30px; }
+        .cta-final { padding: 100px 5%; }
+        .ultra-btn { padding: 20px 40px; font-size: 14px; }
+    }
+</style>
+
+<section class="cta-final">
+    <div id="particle-container"></div>
+
+    <h2 class="cta-heading">
+        READY TO <br>
+        <span>INITIALIZE?</span>
+    </h2>
+
+    <p style="color: #666; font-weight: 500; margin-bottom: 40px; font-size: 1.1rem;">
+        Let's build the future of your business, one pixel at a time.
+    </p>
+
+   <a href="../contact.html">
+     <button class="ultra-btn" onclick="location.href='get-started.html'">
+        Start Your Project &rarr;
+    </button>
+   </a>
+
+    <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #aaa;">
+        <span>© 2026 CODECRAFTE STUDIO</span>
+        <div style="display: flex; gap: 20px;">
+            <a href="https://www.instagram.com/codecrafte.pk/" style="color: inherit; text-decoration: none;">INSTAGRAM</a>
+            <a href="www.linkedin.com/in/omaan-dev-s-3941b43b3" style="color: inherit; text-decoration: none;">LINKEDIN</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Creating some random floating particles
+    const container = document.getElementById('particle-container');
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 50 + 10;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.left = Math.random() * 100 + '%';
+        container.appendChild(p);
+        
+        gsap.to(p, {
+            y: -100,
+            x: Math.random() * 50,
+            duration: Math.random() * 5 + 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+
+    // Scroll trigger for heading
+    gsap.from(".cta-heading", {
+        scrollTrigger: ".cta-final",
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    });
+</script>
+</body>
+</html>
