@@ -1,1198 +1,1421 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CODECRAFTE | Build Your Digital Future</title>
-
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="./images/fav-ion.webp">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="./style.css">
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XRJD6KM644"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XRJD6KM644');
-    </script>
-</head>
-
-<script src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js" defer></script>
-
-<script>
-  function initializeIcons() {
-    if (typeof lucide !== 'undefined') {
-      lucide.createIcons();
-      console.log("Icons Initialized!");
-    } else {
-      console.error("Lib. Not Found! :(");
-    }
-  }
-
-  // 2. Method 1: Jab DOM ready ho
-  document.addEventListener('DOMContentLoaded', initializeIcons);
-
-  // 3. Method 2: Backup delay (taki confirm show hon)
-  setTimeout(initializeIcons, 500);
-</script>
  
-<body>
+    <meta name="description" content="CodeCrafte is a premium digital agency specializing in Web & App Development, E-commerce, custom CRM/PMS/POS systems, AI Automation, Meta Ads, and SMM.">
+    <meta name="keywords" content="Web Development, App Development, CRM, PMS, POS, E-commerce Websites, AI Automation, Meta Ads, Paid Ads, SMM, Social Media Marketing, Business Presentations, CodeCrafte">
+    <meta name="author" content="CodeCrafte">
+    <link rel="canonical" href="https://codecrafte.site">
 
+    <meta property="og:title" content="CODECRAFTE | Build Your Digital Future">
+    <meta property="og:description" content="Scale your business with our custom Web/App Dev, E-commerce solutions, AI Automation, CRM/POS systems, and result-driven Paid Ads.">
+    <meta property="og:image" content="https://codecrafte.site/images/cc-logo.webp"> 
+    <meta property="og:url" content="https://codecrafte.site">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="./images/fav-ion.webp" sizes="48x48" type="image/webp">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XRJD6KM644"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XRJD6KM644");
+    </script>
+  </head>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js"
+    defer
+  ></script>
+
+  <script>
+    function initializeIcons() {
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+        console.log("Icons Initialized!");
+      } else {
+        console.error("Lib. Not Found! :(");
+      }
+    }
+
+    // 2. Method 1: Jab DOM ready ho
+    document.addEventListener("DOMContentLoaded", initializeIcons);
+
+    // 3. Method 2: Backup delay (taki confirm show hon)
+    setTimeout(initializeIcons, 500);
+  </script>
+
+  <body>
     <section class="hero">
-        <div id="grid-container"></div>
+      <div id="grid-container"></div>
 
-        <div class="hero-content">
-            <h1>CODECRAFTE</h1>
-            <p>Build your digital future</p>
-           <a href="./components/Get_started.html"> <button class="cta-btn">Get Started</button></a>
-        </div>
+      <div class="hero-content">
+        <h1>CODECRAFTE</h1>
+        <p>Build your digital future</p>
+        <a href="./components/Get_started.html">
+          <button class="cta-btn">Get Started</button></a
+        >
+      </div>
     </section>
 
-   <nav class="bottom-nav">
-    <a href="./index.html" class="nav-item">
+    <nav class="bottom-nav">
+      <a href="./index.html" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="home"></i></div>
         <span>Home</span>
-    </a>
-    <a href="./components/Team.html" class="nav-item">
+      </a>
+      <a href="./components/Team.html" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="users"></i></div>
         <span>Our Team</span>
-    </a>
-    <a href="./components/Story.html" class="nav-item">
+      </a>
+      <a href="./components/Story.html" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="book-open"></i></div>
         <span>Our Story</span>
-    </a>
-    <a href="./components/contact.html" class="nav-item">
+      </a>
+      <a href="./components/contact.html" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="mail"></i></div>
         <span>Contact</span>
-    </a>
-    <a href="./components/Profile.html" class="nav-item profile-nav">
+      </a>
+      <a href="./components/Profile.html" class="nav-item profile-nav">
         <div class="nav-icon-wrapper"><i data-lucide="user"></i></div>
         <span>Profile</span>
-    </a>
-</nav>
-    
+      </a>
+    </nav>
+
     <script>
-        // 1. Generate Grid Boxes
-        const gridContainer = document.getElementById('grid-container');
-        const totalBoxes = 300; // Adjusted for performance
+      // 1. Generate Grid Boxes
+      const gridContainer = document.getElementById("grid-container");
+      const totalBoxes = 300; // Adjusted for performance
 
-        for (let i = 0; i < totalBoxes; i++) {
-            const box = document.createElement('div');
-            box.classList.add('grid-box');
-            
-            // Hover for Desktop, Touch for Mobile
-            box.addEventListener('mouseenter', () => activateBox(box));
-            box.addEventListener('touchstart', () => activateBox(box));
-            
-            gridContainer.appendChild(box);
-        }
+      for (let i = 0; i < totalBoxes; i++) {
+        const box = document.createElement("div");
+        box.classList.add("grid-box");
 
-        function activateBox(el) {
-            el.classList.add('active');
-            setTimeout(() => {
-                el.classList.remove('active');
-            }, 800);
-        }
+        // Hover for Desktop, Touch for Mobile
+        box.addEventListener("mouseenter", () => activateBox(box));
+        box.addEventListener("touchstart", () => activateBox(box));
 
-        // 2. Initialize Icons
-        lucide.createIcons();
+        gridContainer.appendChild(box);
+      }
 
-        // 3. Optional: Parallax Effect on Hero Text
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            document.querySelector('.hero-content').style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
-    </script> 
+      function activateBox(el) {
+        el.classList.add("active");
+        setTimeout(() => {
+          el.classList.remove("active");
+        }, 800);
+      }
 
+      // 2. Initialize Icons
+      lucide.createIcons();
 
+      // 3. Optional: Parallax Effect on Hero Text
+      document.addEventListener("mousemove", (e) => {
+        const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+        const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+        document.querySelector(".hero-content").style.transform =
+          `translate(${moveX}px, ${moveY}px)`;
+      });
+    </script>
 
+    <!--TRUST-->
+    <section class="trust-deep-section">
+      <div class="bg-ghost-text">CODECRAFTE CODECRAFTE CODECRAFTE</div>
 
-<!--TRUST-->
-<section class="trust-deep-section">
-    <div class="bg-ghost-text">CODECRAFTE CODECRAFTE CODECRAFTE</div>
-
-    <div class="tape-container">
+      <div class="tape-container">
         <div class="deep-tape tape-yellow blur-effect">
-            <div class="tape-scroll">TOP SECRET INTEL • GLOBAL IMPACT • NEXT-GEN TECH • </div>
-             <div class="tape-scroll">TOP SECRET INTEL • GLOBAL IMPACT • NEXT-GEN TECH • </div>
-              <div class="tape-scroll">TOP SECRET INTEL • GLOBAL IMPACT • NEXT-GEN TECH • </div>
+          <div class="tape-scroll">
+            TOP SECRET INTEL • GLOBAL IMPACT • NEXT-GEN TECH •
+          </div>
+          <div class="tape-scroll">
+            TOP SECRET INTEL • GLOBAL IMPACT • NEXT-GEN TECH •
+          </div>
+          <div class="tape-scroll">
+            TOP SECRET INTEL • GLOBAL IMPACT • NEXT-GEN TECH •
+          </div>
         </div>
         <div class="deep-tape tape-black blur-effect">
-            <div class="tape-scroll-reverse">RESTRICTED ACCESS • ELITE PARTNERS • 2026 VISION • </div>
-            <div class="tape-scroll-reverse">RESTRICTED ACCESS • ELITE PARTNERS • 2026 VISION • </div>
-            <div class="tape-scroll-reverse">RESTRICTED ACCESS • ELITE PARTNERS • 2026 VISION • </div>
+          <div class="tape-scroll-reverse">
+            RESTRICTED ACCESS • ELITE PARTNERS • 2026 VISION •
+          </div>
+          <div class="tape-scroll-reverse">
+            RESTRICTED ACCESS • ELITE PARTNERS • 2026 VISION •
+          </div>
+          <div class="tape-scroll-reverse">
+            RESTRICTED ACCESS • ELITE PARTNERS • 2026 VISION •
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="main-sharp-content">
-        <h2 class="impact-text">TRUSTED BY THE<br><span class="outline-txt">DIGITAL ELITE.</span></h2>
-        <p class="sub-impact">Industry leaders choose CodeCrafte for raw innovation.</p>
-    </div>
-</section>
+      <div class="main-sharp-content">
+        <h2 class="impact-text">
+          TRUSTED BY THE<br /><span class="outline-txt">DIGITAL ELITE.</span>
+        </h2>
+        <p class="sub-impact">
+          Industry leaders choose CodeCrafte for raw innovation.
+        </p>
+      </div>
+    </section>
 
-
-
-
-<!--Services-->
-  <section class="services-section">
-    <div class="services-container">
+    <!--Services-->
+    <section class="services-section">
+      <div class="services-container">
         <div class="services-intro">
-            <span class="tag">SERVICES</span>
-            <h2>Our Core <br>Expertise</h2>
+          <span class="tag">SERVICES</span>
+          <h2>Our Core <br />Expertise</h2>
         </div>
 
         <div class="services-grid">
-           <a href="./components/Services/Web.html">
- <div class="service-card" >
-                <div class="card-bg"></div>
-                <div class="card-content" id="s-web">
-                    <i data-lucide="code-2" class="s-icon"></i>
-                    <h3>Web Dev.</h3>
-                </div>
+          <a href="./components/Services/Web.html">
+            <div class="service-card">
+              <div class="card-bg"></div>
+              <div class="card-content" id="s-web">
+                <i data-lucide="code-2" class="s-icon"></i>
+                <h3>Web Dev.</h3>
+              </div>
             </div>
+          </a>
 
-           </a>
-
-            <a href="./components/Services/app.html">
-                <div class="service-card" >
-                <div class="card-bg"></div>
-                <div class="card-content" id="s-app">
-                    <i data-lucide="smartphone" class="s-icon"></i>
-                    <h3>App Dev.</h3>
-                </div>
+          <a href="./components/Services/app.html">
+            <div class="service-card">
+              <div class="card-bg"></div>
+              <div class="card-content" id="s-app">
+                <i data-lucide="smartphone" class="s-icon"></i>
+                <h3>App Dev.</h3>
+              </div>
             </div>
-            </a>
+          </a>
 
-         <a href="./components/Services/PMS.html">
-               <div class="service-card"  >
-                <div class="card-bg"></div>
-                <div class="card-content" id="s-pms">
-                    <i data-lucide="layout-grid" class="s-icon"></i>
-                    <h3>PMS</h3>
-                </div>
+          <a href="./components/Services/PMS.html">
+            <div class="service-card">
+              <div class="card-bg"></div>
+              <div class="card-content" id="s-pms">
+                <i data-lucide="layout-grid" class="s-icon"></i>
+                <h3>PMS</h3>
+              </div>
             </div>
-         </a>
+          </a>
 
           <a href="./components/Services/CRM.html">
-              <div class="service-card"  >
-                <div class="card-bg"></div>
-                <div class="card-content" id="s-crm">
-                    <i data-lucide="database" class="s-icon"></i>
-                    <h3>CRM</h3>
-                </div>
+            <div class="service-card">
+              <div class="card-bg"></div>
+              <div class="card-content" id="s-crm">
+                <i data-lucide="database" class="s-icon"></i>
+                <h3>CRM</h3>
+              </div>
             </div>
-
           </a>
 
           <a href="./components/Services/Meta.html">
-              <div class="service-card"  >
-                <div class="card-bg"></div>
-                <div class="card-content" id="s-meta">
-                    <i data-lucide="facebook" class="s-icon"></i>
-                    <h3>Meta Ads</h3>
-                </div>
+            <div class="service-card">
+              <div class="card-bg"></div>
+              <div class="card-content" id="s-meta">
+                <i data-lucide="facebook" class="s-icon"></i>
+                <h3>Meta Ads</h3>
+              </div>
             </div>
           </a>
 
           <a href="./components/Services/E-com.html">
-              <div class="service-card" >
-                <div class="card-bg"></div>
-                <div class="card-content"  id="s-ecom">
-                    <i data-lucide="shopping-bag" class="s-icon"></i>
-                    <h3>E-com</h3>
-                </div>
+            <div class="service-card">
+              <div class="card-bg"></div>
+              <div class="card-content" id="s-ecom">
+                <i data-lucide="shopping-bag" class="s-icon"></i>
+                <h3>E-com</h3>
+              </div>
             </div>
           </a>
 
-            <a href="./components/Services/ppt.html">
-                 <div class="service-card" >
-                <div class="card-bg"></div>
-                <div class="card-content"  id="s-ppt">
-                    <i data-lucide="presentation" class="s-icon"></i>
-                    <h3>PPT Slides</h3>
-                </div>
+          <a href="./components/Services/ppt.html">
+            <div class="service-card">
+              <div class="card-bg"></div>
+              <div class="card-content" id="s-ppt">
+                <i data-lucide="presentation" class="s-icon"></i>
+                <h3>PPT Slides</h3>
+              </div>
             </div>
-            </a>
-             <a href="./components/Services/smm.html">
-                <div class="service-card"  >
-                <div class="card-bg"></div>
-                <div class="card-content" id="s-smm">
-                    <i data-lucide="megaphone" class="s-icon"></i>
-                    <h3>Social Media Marketing</h3>
-                </div>
+          </a>
+          <a href="./components/Services/smm.html">
+            <div class="service-card">
+              <div class="card-bg"></div>
+              <div class="card-content" id="s-smm">
+                <i data-lucide="megaphone" class="s-icon"></i>
+                <h3>Social Media Marketing</h3>
+              </div>
             </div>
-             </a>
-             <a href="./components/Services/ai.html">
-                <div class="service-card"  >
-                <div class="card-bg"></div>
-                <div class="card-content" id="s-ai">
-                    <i data-lucide="sparkles" class="s-icon"></i>
-                    <h3>AI Automation</h3>
-                </div>
+          </a>
+          <a href="./components/Services/ai.html">
+            <div class="service-card">
+              <div class="card-bg"></div>
+              <div class="card-content" id="s-ai">
+                <i data-lucide="sparkles" class="s-icon"></i>
+                <h3>AI Automation</h3>
+              </div>
             </div>
-             </a>
+          </a>
         </div>
-    </div>
-</section>
-<script>document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('mouseenter', function(e) {
-        // Ripple logic (optional enhancement)
-        const ripple = document.createElement('div');
-        ripple.classList.add('wave-ripple');
-        this.appendChild(ripple);
-        
-        setTimeout(() => ripple.remove(), 1000);
-    });
-});
+      </div>
+    </section>
+    <script>
+      document.querySelectorAll(".service-card").forEach((card) => {
+        card.addEventListener("mouseenter", function (e) {
+          // Ripple logic (optional enhancement)
+          const ripple = document.createElement("div");
+          ripple.classList.add("wave-ripple");
+          this.appendChild(ripple);
 
-// Icons initialize zaroor karna
-lucide.createIcons();</script>
+          setTimeout(() => ripple.remove(), 1000);
+        });
+      });
 
+      // Icons initialize zaroor karna
+      lucide.createIcons();
+    </script>
 
-<!--impactttt-->
+    <!--impactttt-->
 
- 
-<!--GAMEEEE-->
-<section class="puzzle-section">
-    <div class="puzzle-container-wrapper">
-        
+    <!--GAMEEEE-->
+    <section class="puzzle-section">
+      <div class="puzzle-container-wrapper">
         <div class="info-side">
-            <span class="exclusive-tag">CODECRAFTE EXCLUSIVE</span>
-            <div class="sale-badge" style="background-color: #0070f3;">
-                <span class="discount-num">15%</span>
-                <span class="discount-text">OFF</span>
-            </div>
-            <h2 class="glaze-text">Play & Unlock the Future</h2>
-            <h3 class="instruction-title">Wanna Save Big?</h3>
-            <p class="instruction-desc">
-                Solve this <strong style="color: #0070f3;">*Logo Challenge</strong> and unlock an instant 
-                <span class="highlight">15% Discount Token</span> for your project.
-            </p>
-            
-            <ul class="steps-list">
-                <li><i data-lucide="play-circle"></i> Click Start for a 3s preview.</li>
-                <li><i data-lucide="puzzle"></i> Rearrange the pieces correctly.</li>
-                <li><i data-lucide="check-circle"></i> Win and copy your unique code.</li>
-            </ul>
+          <span class="exclusive-tag">CODECRAFTE EXCLUSIVE</span>
+          <div class="sale-badge" style="background-color: #0070f3">
+            <span class="discount-num">15%</span>
+            <span class="discount-text">OFF</span>
+          </div>
+          <h2 class="glaze-text">Play & Unlock the Future</h2>
+          <h3 class="instruction-title">Wanna Save Big?</h3>
+          <p class="instruction-desc">
+            Solve this
+            <strong style="color: #0070f3">*Logo Challenge</strong> and unlock
+            an instant <span class="highlight">15% Discount Token</span> for
+            your project.
+          </p>
+
+          <ul class="steps-list">
+            <li>
+              <i data-lucide="play-circle"></i> Click Start for a 3s preview.
+            </li>
+            <li>
+              <i data-lucide="puzzle"></i> Rearrange the pieces correctly.
+            </li>
+            <li>
+              <i data-lucide="check-circle"></i> Win and copy your unique code.
+            </li>
+          </ul>
         </div>
 
         <div class="game-side">
-            <div class="board-wrapper">
-                <div id="game-overlay" class="game-overlay">
-                    <button id="start-btn" class="start-game-btn">START CHALLENGE</button>
-                </div>
-                
-                <div id="countdown-overlay" class="countdown-overlay" style="display: none;">
-                    <span id="countdown-text">3</span>
-                </div>
-
-                <div class="puzzle-board" id="board"></div>
-
-                <div id="win-display" class="win-display" style="display: none;">
-                    <h4>Victory!</h4>
-                    <p>Use this code in contact form:</p>
-                    <div class="code-box">
-                        <span id="promo-code">XXXXXX</span>
-                        <button onclick="copyCode()" class="copy-btn"><i data-lucide="copy"></i></button>
-                    </div>
-                </div>
+          <div class="board-wrapper">
+            <div id="game-overlay" class="game-overlay">
+              <button id="start-btn" class="start-game-btn">
+                START CHALLENGE
+              </button>
             </div>
+
+            <div
+              id="countdown-overlay"
+              class="countdown-overlay"
+              style="display: none"
+            >
+              <span id="countdown-text">3</span>
+            </div>
+
+            <div class="puzzle-board" id="board"></div>
+
+            <div id="win-display" class="win-display" style="display: none">
+              <h4>Victory!</h4>
+              <p>Use this code in contact form:</p>
+              <div class="code-box">
+                <span id="promo-code">XXXXXX</span>
+                <button onclick="copyCode()" class="copy-btn">
+                  <i data-lucide="copy"></i>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
 
-    </div>
-</section>
+    <script>
+      const board = document.getElementById("board");
+      const overlay = document.getElementById("game-overlay");
+      const countdownOverlay = document.getElementById("countdown-overlay");
+      const countdownText = document.getElementById("countdown-text");
+      const winDisplay = document.getElementById("win-display");
+      const startBtn = document.getElementById("start-btn");
 
-<script>
-    const board = document.getElementById('board');
-const overlay = document.getElementById('game-overlay');
-const countdownOverlay = document.getElementById('countdown-overlay');
-const countdownText = document.getElementById('countdown-text');
-const winDisplay = document.getElementById('win-display');
-const startBtn = document.getElementById('start-btn');
+      let tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+      let gameStarted = false;
 
-let tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-let gameStarted = false;
+      function createBoard(isPreview = false) {
+        board.innerHTML = "";
+        tiles.forEach((tileNum, index) => {
+          const tile = document.createElement("div");
+          tile.classList.add("tile");
+          tile.style.backgroundImage = "url('./images/cc-logo.webp')";
+          tile.style.backgroundSize = "330px 330px";
 
-function createBoard(isPreview = false) {
-    board.innerHTML = '';
-    tiles.forEach((tileNum, index) => {
-        const tile = document.createElement('div');
-        tile.classList.add('tile');
-        tile.style.backgroundImage = "url('./images/cc-logo.webp')"; 
-        tile.style.backgroundSize = "330px 330px";
+          // Calculate correct positions
+          const row = Math.floor(tileNum / 3);
+          const col = tileNum % 3;
+          tile.style.backgroundPosition = `-${col * 110}px -${row * 110}px`;
 
-        // Calculate correct positions
-        const row = Math.floor(tileNum / 3);
-        const col = tileNum % 3;
-        tile.style.backgroundPosition = `-${col * 110}px -${row * 110}px`;
-
-        if (!isPreview && tileNum === 8) {
+          if (!isPreview && tileNum === 8) {
             tile.style.background = "#1a1a1a";
-            tile.classList.add('empty');
-        } else if (gameStarted) {
-            tile.addEventListener('click', () => moveTile(index));
+            tile.classList.add("empty");
+          } else if (gameStarted) {
+            tile.addEventListener("click", () => moveTile(index));
+          }
+          board.appendChild(tile);
+        });
+      }
+
+      function moveTile(index) {
+        const emptyIndex = tiles.indexOf(8);
+
+        // Logic: Calculate row and col for both
+        const row = Math.floor(index / 3);
+        const col = index % 3;
+        const emptyRow = Math.floor(emptyIndex / 3);
+        const emptyCol = emptyIndex % 3;
+
+        // Glitch Fix: Check if distance is exactly 1 (Top, Bottom, Left, Right ONLY)
+        const isAdjacent =
+          Math.abs(row - emptyRow) + Math.abs(col - emptyCol) === 1;
+
+        if (isAdjacent) {
+          [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
+          createBoard();
+          checkWin();
         }
-        board.appendChild(tile);
-    });
-}
+      }
 
-function moveTile(index) {
-    const emptyIndex = tiles.indexOf(8);
-    
-    // Logic: Calculate row and col for both
-    const row = Math.floor(index / 3);
-    const col = index % 3;
-    const emptyRow = Math.floor(emptyIndex / 3);
-    const emptyCol = emptyIndex % 3;
+      startBtn.addEventListener("click", () => {
+        overlay.style.display = "none";
+        countdownOverlay.style.display = "flex";
 
-    // Glitch Fix: Check if distance is exactly 1 (Top, Bottom, Left, Right ONLY)
-    const isAdjacent = (Math.abs(row - emptyRow) + Math.abs(col - emptyCol)) === 1;
+        // Phase 1: Show full logo as preview
+        tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        createBoard(true);
 
-    if (isAdjacent) {
-        [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
-        createBoard();
-        checkWin();
-    }
-}
-
-startBtn.addEventListener('click', () => {
-    overlay.style.display = 'none';
-    countdownOverlay.style.display = 'flex';
-    
-    // Phase 1: Show full logo as preview
-    tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    createBoard(true);
-
-    let count = 3;
-    const timer = setInterval(() => {
-        count--;
-        if (count > 0) {
+        let count = 3;
+        const timer = setInterval(() => {
+          count--;
+          if (count > 0) {
             countdownText.innerText = count;
-        } else {
+          } else {
             clearInterval(timer);
             startGame();
+          }
+        }, 1000);
+      });
+
+      function startGame() {
+        countdownOverlay.style.display = "none";
+        gameStarted = true;
+        // Shuffle tiles
+        tiles = tiles.sort(() => Math.random() - 0.5);
+        createBoard();
+      }
+
+      function checkWin() {
+        if (tiles.every((tile, index) => tile === index)) {
+          const code = Math.floor(100000 + Math.random() * 900000);
+          document.getElementById("promo-code").innerText = code;
+          winDisplay.style.display = "flex";
+          gameStarted = false;
         }
-    }, 1000);
-});
+      }
 
-function startGame() {
-    countdownOverlay.style.display = 'none';
-    gameStarted = true;
-    // Shuffle tiles
-    tiles = tiles.sort(() => Math.random() - 0.5);
-    createBoard();
-}
+      function copyCode() {
+        const code = document.getElementById("promo-code").innerText;
+        navigator.clipboard.writeText(code);
+        alert("Code Copied! Use it in the contact form.");
+      }
 
-function checkWin() {
-    if (tiles.every((tile, index) => tile === index)) {
-        const code = Math.floor(100000 + Math.random() * 900000);
-        document.getElementById('promo-code').innerText = code;
-        winDisplay.style.display = 'flex';
-        gameStarted = false;
-    }
-}
+      // Initial State
+      createBoard(true);
+    </script>
 
-function copyCode() {
-    const code = document.getElementById('promo-code').innerText;
-    navigator.clipboard.writeText(code);
-    alert("Code Copied! Use it in the contact form.");
-}
-
-// Initial State
-createBoard(true);
-</script>
-
-
-
-
-<!--PROCESS-->
-  <section class="cr-reviews-sec">
-    <div class="cr-header">
+    <!--PROCESS-->
+    <section class="cr-reviews-sec">
+      <div class="cr-header">
         <div class="cr-title">
-            <p style="color: var(--cc-yellow); font-weight: 800;">FEEDBACK</p>
-            <h2>Kind Words <br>From Partners.</h2>
+          <p style="color: var(--cc-yellow); font-weight: 800">FEEDBACK</p>
+          <h2>Kind Words <br />From Partners.</h2>
         </div>
         <button class="cr-btn" onclick="openModal()">+ LEAVE REVIEW</button>
-    </div>
+      </div>
 
-    <div class="cr-review-grid" id="reviewGrid">
+      <div class="cr-review-grid" id="reviewGrid">
         <div class="cr-card">
-            <h2>Global Tech Inc.</h2>
-            <p>"The engineering standards at CodeCrafte are unmatched. They delivered our V2 ahead of schedule."</p>
+          <h2>Global Tech Inc.</h2>
+          <p>
+            "The engineering standards at CodeCrafte are unmatched. They
+            delivered our V2 ahead of schedule."
+          </p>
         </div>
         <div class="cr-card">
-            <h2>Urban Design</h2>
-            <p>"Pixels polished to perfection. Their minimalist approach changed our brand identity."</p>
+          <h2>Urban Design</h2>
+          <p>
+            "Pixels polished to perfection. Their minimalist approach changed
+            our brand identity."
+          </p>
         </div>
-    </div>
+      </div>
 
-    <div class="cr-dots" id="dotsContainer">
+      <div class="cr-dots" id="dotsContainer">
         <div class="cr-dot active"></div>
         <div class="cr-dot"></div>
-    </div>
+      </div>
 
-    <div class="cr-modal" id="reviewModal">
+      <div class="cr-modal" id="reviewModal">
         <div class="cr-form-box">
-            <h3 style="margin-bottom: 20px; font-weight: 900;">Drop a Review</h3>
-            <input type="text" id="bizName" placeholder="Business Name">
-            <textarea id="bizReview" rows="4" placeholder="Your Experience..."></textarea>
-            <div style="display: flex; gap: 10px;">
-                <button class="cr-btn" style="flex: 1;" onclick="addReview()">SUBMIT</button>
-                <button class="cr-btn" style="background: #eee; color: #000; flex: 1;" onclick="closeModal()">CANCEL</button>
-            </div>
+          <h3 style="margin-bottom: 20px; font-weight: 900">Drop a Review</h3>
+          <input type="text" id="bizName" placeholder="Business Name" />
+          <textarea
+            id="bizReview"
+            rows="4"
+            placeholder="Your Experience..."
+          ></textarea>
+          <div style="display: flex; gap: 10px">
+            <button class="cr-btn" style="flex: 1" onclick="addReview()">
+              SUBMIT
+            </button>
+            <button
+              class="cr-btn"
+              style="background: #eee; color: #000; flex: 1"
+              onclick="closeModal()"
+            >
+              CANCEL
+            </button>
+          </div>
         </div>
-    </div>
-</section>
- <script>
-const modal = document.getElementById('reviewModal');
-const grid = document.getElementById('reviewGrid');
+      </div>
+    </section>
+    <script>
+      const modal = document.getElementById("reviewModal");
+      const grid = document.getElementById("reviewGrid");
 
-// 1. Load reviews from LocalStorage on Startup
-window.onload = () => {
-    const savedReviews = JSON.parse(localStorage.getItem('cc_reviews')) || [];
-    savedReviews.forEach(rev => createReviewCard(rev.name, rev.text));
-    updateDots();
-};
-
-function openModal() { modal.style.display = 'flex'; }
-function closeModal() { modal.style.display = 'none'; }
-
-function addReview() {
-    const name = document.getElementById('bizName').value;
-    const text = document.getElementById('bizReview').value;
-
-    if(name && text) {
-        // Save to UI
-        createReviewCard(name, text);
-        
-        // Save to LocalStorage
-        const savedReviews = JSON.parse(localStorage.getItem('cc_reviews')) || [];
-        savedReviews.push({name, text});
-        localStorage.setItem('cc_reviews', JSON.stringify(savedReviews));
-
-        // Reset & Close
-        document.getElementById('bizName').value = '';
-        document.getElementById('bizReview').value = '';
-        closeModal();
+      // 1. Load reviews from LocalStorage on Startup
+      window.onload = () => {
+        const savedReviews =
+          JSON.parse(localStorage.getItem("cc_reviews")) || [];
+        savedReviews.forEach((rev) => createReviewCard(rev.name, rev.text));
         updateDots();
-    } else {
-        alert("Bhai, dono fields bharna lazmi hain!");
-    }
-}
+      };
 
-function createReviewCard(name, text) {
-    const card = document.createElement('div');
-    card.className = 'cr-card';
-    card.innerHTML = `<h4>${name}</h4><p>"${text}"</p>`;
-    grid.appendChild(card);
-}
+      function openModal() {
+        modal.style.display = "flex";
+      }
+      function closeModal() {
+        modal.style.display = "none";
+      }
 
-function updateDots() {
-    const dotsCount = grid.children.length;
-    const container = document.getElementById('dotsContainer');
-    container.innerHTML = '';
-    for(let i=0; i<dotsCount; i++) {
-        const dot = document.createElement('div');
-        dot.className = `cr-dot ${i === 0 ? 'active' : ''}`;
-        container.appendChild(dot);
-    }
-}
-</script>
- 
-<!--Pulse-->
+      function addReview() {
+        const name = document.getElementById("bizName").value;
+        const text = document.getElementById("bizReview").value;
 
+        if (name && text) {
+          // Save to UI
+          createReviewCard(name, text);
 
-<section class="pulse-section">
-    <canvas id="dotCanvas"></canvas>
-    
-    <div class="pulse-content">
-        <h2 class="reveal-text">WE CODE THE <br>FUTURE OF DIGITAL.</h2>
-    </div>
-</section>
-<script>
-const canvas = document.getElementById('dotCanvas');
-const ctx = canvas.getContext('2d');
-let dots = [];
-const spacing = 30; // Dots ke darmiyan gap
+          // Save to LocalStorage
+          const savedReviews =
+            JSON.parse(localStorage.getItem("cc_reviews")) || [];
+          savedReviews.push({ name, text });
+          localStorage.setItem("cc_reviews", JSON.stringify(savedReviews));
 
-function initCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    dots = [];
-    for (let x = 0; x < canvas.width; x += spacing) {
-        for (let y = 0; y < canvas.height; y += spacing) {
+          // Reset & Close
+          document.getElementById("bizName").value = "";
+          document.getElementById("bizReview").value = "";
+          closeModal();
+          updateDots();
+        } else {
+          alert("Bhai, dono fields bharna lazmi hain!");
+        }
+      }
+
+      function createReviewCard(name, text) {
+        const card = document.createElement("div");
+        card.className = "cr-card";
+        card.innerHTML = `<h4>${name}</h4><p>"${text}"</p>`;
+        grid.appendChild(card);
+      }
+
+      function updateDots() {
+        const dotsCount = grid.children.length;
+        const container = document.getElementById("dotsContainer");
+        container.innerHTML = "";
+        for (let i = 0; i < dotsCount; i++) {
+          const dot = document.createElement("div");
+          dot.className = `cr-dot ${i === 0 ? "active" : ""}`;
+          container.appendChild(dot);
+        }
+      }
+    </script>
+
+    <!--Pulse-->
+
+    <section class="pulse-section">
+      <canvas id="dotCanvas"></canvas>
+
+      <div class="pulse-content">
+        <h2 class="reveal-text">WE CODE THE <br />FUTURE OF DIGITAL.</h2>
+      </div>
+    </section>
+    <script>
+      const canvas = document.getElementById("dotCanvas");
+      const ctx = canvas.getContext("2d");
+      let dots = [];
+      const spacing = 30; // Dots ke darmiyan gap
+
+      function initCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        dots = [];
+        for (let x = 0; x < canvas.width; x += spacing) {
+          for (let y = 0; y < canvas.height; y += spacing) {
             dots.push({ x, y, baseSize: 1.5 });
+          }
         }
-    }
-}
+      }
 
-let count = 0;
-function animateDots() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    count += 0.05; // Wave ki speed
+      let count = 0;
+      function animateDots() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        count += 0.05; // Wave ki speed
 
-    dots.forEach(dot => {
-        // Wave math (Sine wave logic like 100 TVs working together)
-        const dist = Math.sqrt(dot.x * 0.005 + dot.y * 0.005);
-        const wave = Math.sin(dist + count) * 2;
-        
-        // Color transition: Black se White (TV static feel)
-        const brightness = Math.floor((wave + 1) * 127);
-        ctx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`;
-        
-        ctx.beginPath();
-        
-        // Yahan FIX kiya gaya hai: Dot ka size minus mein nahi jayega
-        const radius = Math.max(0, dot.baseSize + wave);
-        ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
-        
-        ctx.fill();
-    });
-    requestAnimationFrame(animateDots);
-}
+        dots.forEach((dot) => {
+          // Wave math (Sine wave logic like 100 TVs working together)
+          const dist = Math.sqrt(dot.x * 0.005 + dot.y * 0.005);
+          const wave = Math.sin(dist + count) * 2;
 
-// Scroll detection for Text Blur Reveal
-const revealText = document.querySelector('.reveal-text');
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            revealText.classList.add('active');
-        }
-    });
-}, { threshold: 0.5 });
+          // Color transition: Black se White (TV static feel)
+          const brightness = Math.floor((wave + 1) * 127);
+          ctx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`;
 
-observer.observe(document.querySelector('.pulse-section'));
+          ctx.beginPath();
 
-window.addEventListener('resize', initCanvas);
-initCanvas();
-animateDots();
+          // Yahan FIX kiya gaya hai: Dot ka size minus mein nahi jayega
+          const radius = Math.max(0, dot.baseSize + wave);
+          ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
 
-const textElement = document.querySelector('.reveal-text');
+          ctx.fill();
+        });
+        requestAnimationFrame(animateDots);
+      }
 
-// Mouse movement tracking
-document.addEventListener('mousemove', (e) => {
-    const rect = textElement.getBoundingClientRect();
-    
-    // Mouse ki position text ke hisab se nikalna
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+      // Scroll detection for Text Blur Reveal
+      const revealText = document.querySelector(".reveal-text");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              revealText.classList.add("active");
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
 
-    // CSS variables update karna
-    textElement.style.setProperty('--mouse-x', `${x}px`);
-    textElement.style.setProperty('--mouse-y', `${y}px`);
-});
+      observer.observe(document.querySelector(".pulse-section"));
 
-// Mobile/Touch Support (Kyunki mobile par mouse nahi hota)
-document.addEventListener('touchmove', (e) => {
-    const touch = e.touches[0];
-    const rect = textElement.getBoundingClientRect();
-    
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
+      window.addEventListener("resize", initCanvas);
+      initCanvas();
+      animateDots();
 
-    textElement.style.setProperty('--mouse-x', `${x}px`);
-    textElement.style.setProperty('--mouse-y', `${y}px`);
-});
-</script>
+      const textElement = document.querySelector(".reveal-text");
 
+      // Mouse movement tracking
+      document.addEventListener("mousemove", (e) => {
+        const rect = textElement.getBoundingClientRect();
 
+        // Mouse ki position text ke hisab se nikalna
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-<!--PROTFOLIOOO-->
-<section class="portfolio-section">
-    <div class="portfolio-container">
+        // CSS variables update karna
+        textElement.style.setProperty("--mouse-x", `${x}px`);
+        textElement.style.setProperty("--mouse-y", `${y}px`);
+      });
+
+      // Mobile/Touch Support (Kyunki mobile par mouse nahi hota)
+      document.addEventListener("touchmove", (e) => {
+        const touch = e.touches[0];
+        const rect = textElement.getBoundingClientRect();
+
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+
+        textElement.style.setProperty("--mouse-x", `${x}px`);
+        textElement.style.setProperty("--mouse-y", `${y}px`);
+      });
+    </script>
+
+    <!--PROTFOLIOOO-->
+    <section class="portfolio-section">
+      <div class="portfolio-container">
         <div class="services-intro center-text">
-            <span class="tag">PORTFOLIO</span>
-            <h2>Selected Works.</h2>
+          <span class="tag">PORTFOLIO</span>
+          <h2>Selected Works.</h2>
         </div>
 
-        <a href="./components/Portfolio.html">
-            <div class="video-wrapper" id="video-area">
-           <a href="./components/Portfolio.html"> <video autoplay muted loop playsinline controls class="showcase-video">
-                <source src="./images/portfolio/hska.mp4" type="video/webm" preload="none">
+        <a href="./components/Portfolio.html" aria-label="View Portfolio">
+          <div class="video-wrapper" id="video-area">
+            <a href="./components/Portfolio.html" aria-label="View Portfolio">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                controls
+                class="showcase-video"
+              >
+              <track
+               kind="captions" 
+               label="No audio" 
+               src="" default
+               >
+
+                <source
+                  src="./images/portfolio/hska.mp4"
+                  type="video/webm"
+                  preload="none"
+                />
                 Your browser does not support the video tag.
-            </video></a>
+              </video></a
+            >
 
             <div id="cursor-btn" class="magnetic-btn">
-                <span >CLICK TO VIEW<br>PROJECT</span>
+              <span>CLICK TO VIEW<br />PROJECT</span>
             </div>
-        </div>
+          </div>
         </a>
-        
+
         <div id="btn-target"></div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<script>
-const videoArea = document.getElementById('video-area');
-const cursorBtn = document.getElementById('cursor-btn');
+    <script>
+      const videoArea = document.getElementById("video-area");
+      const cursorBtn = document.getElementById("cursor-btn");
 
-let mouseX = 0, mouseY = 0; // Mouse ki position
-let btnX = 0, btnY = 0;     // Button ki position
+      let mouseX = 0,
+        mouseY = 0; // Mouse ki position
+      let btnX = 0,
+        btnY = 0; // Button ki position
 
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
 
-function moveButton() {
-    const rect = videoArea.getBoundingClientRect();
-    
-    // Check agar mouse video area ke andar hai
-    if (mouseX >= rect.left && mouseX <= rect.right && 
-        mouseY >= rect.top && mouseY <= rect.bottom) {
-        
-        // --- SMOOTHNESS LOGIC (Lerp) ---
-        // 0.1 ka matlab hai 10% movement har frame mein, jo lag paida karti hai (Premium feel)
-        btnX += (mouseX - btnX) * 0.1;
-        btnY += (mouseY - btnY) * 0.1;
-        
-        cursorBtn.style.opacity = '1';
-        cursorBtn.style.transform = 'scale(1)';
-    } else {
-        // Video se bahar nikalte hi gayab ya chota ho jaye
-        btnX += (mouseX - btnX) * 0.1;
-        btnY += (mouseY - btnY) * 0.1;
-        cursorBtn.style.transform = 'scale(0)';
-        cursorBtn.style.opacity = '0';
-    }
+      function moveButton() {
+        const rect = videoArea.getBoundingClientRect();
 
-    // Button ko center karne ke liye width/2 (50px) minus kiya
-    cursorBtn.style.left = `${btnX - 50}px`;
-    cursorBtn.style.top = `${btnY - 50}px`;
+        // Check agar mouse video area ke andar hai
+        if (
+          mouseX >= rect.left &&
+          mouseX <= rect.right &&
+          mouseY >= rect.top &&
+          mouseY <= rect.bottom
+        ) {
+          // --- SMOOTHNESS LOGIC (Lerp) ---
+          // 0.1 ka matlab hai 10% movement har frame mein, jo lag paida karti hai (Premium feel)
+          btnX += (mouseX - btnX) * 0.1;
+          btnY += (mouseY - btnY) * 0.1;
 
-    requestAnimationFrame(moveButton);
-}
+          cursorBtn.style.opacity = "1";
+          cursorBtn.style.transform = "scale(1)";
+        } else {
+          // Video se bahar nikalte hi gayab ya chota ho jaye
+          btnX += (mouseX - btnX) * 0.1;
+          btnY += (mouseY - btnY) * 0.1;
+          cursorBtn.style.transform = "scale(0)";
+          cursorBtn.style.opacity = "0";
+        }
 
-// Animation loop start karein
-moveButton();
+        // Button ko center karne ke liye width/2 (50px) minus kiya
+        cursorBtn.style.left = `${btnX - 50}px`;
+        cursorBtn.style.top = `${btnY - 50}px`;
 
-// Lucide icons render karne ke liye
-if(window.lucide) lucide.createIcons();
-</script>
+        requestAnimationFrame(moveButton);
+      }
 
+      // Animation loop start karein
+      moveButton();
 
+      // Lucide icons render karne ke liye
+      if (window.lucide) lucide.createIcons();
+    </script>
 
-<!--pricingggggggg-->
-<section class="pricing-3d-section" id="pricing-trigger">
-    <div class="pricing-header">
+    <!--pricingggggggg-->
+    <section class="pricing-3d-section" id="pricing-trigger">
+      <div class="pricing-header">
         <span class="mini-tag">OUR PLANS</span>
         <h2>Premium Services</h2>
         <p>Precision-crafted digital solutions for your brand</p>
-    </div>
+      </div>
 
-    <div class="scroll-toast" id="scroll-toast">
+      <div class="scroll-toast" id="scroll-toast">
         <i data-lucide="mouse-pointer-2"></i>
         <span>Scroll, Drag or Use Buttons</span>
-    </div>
+      </div>
 
-    <div class="carousel-nav">
+      <div class="carousel-nav">
         <button class="nav-btn prev" id="pricing-prev" aria-label="Previous">
-            <i data-lucide="chevron-left"></i>
+          <i data-lucide="chevron-left"></i>
         </button>
         <button class="nav-btn next" id="pricing-next" aria-label="Next">
-            <i data-lucide="chevron-right"></i>
+          <i data-lucide="chevron-right"></i>
         </button>
-    </div>
+      </div>
 
-    <div class="carousel-wrapper" id="scene">
+      <div class="carousel-wrapper" id="scene">
         <div class="track" id="track">
-            <div  class="card dark">
-                <div class="card-top"><i data-lucide="layout"></i><span class="type">WEB_APP</span></div>
-                <div class="card-mid">
-                    <div class="price-box"><span class="type">Starts</span><span class="amt">10,000</span></div>
-                    <h3>Single Page App</h3>
-                </div>
-                <div class="card-bottom">High-performance SPA with React/Next.js.</div>
+          <div class="card dark">
+            <div class="card-top">
+              <i data-lucide="layout"></i><span class="type">WEB_APP</span>
             </div>
+            <div class="card-mid">
+              <div class="price-box">
+                <span class="type">Starts</span><span class="amt">10,000</span>
+              </div>
+              <h3>Single Page App</h3>
+            </div>
+            <div class="card-bottom">
+              High-performance SPA with React/Next.js.
+            </div>
+          </div>
 
-            <div class="card light">
-                <div class="card-top"><i data-lucide="layers"></i><span class="type">META ADS</span></div>
-                <div class="card-mid">
-                    <div class="price-box"><span class="type">Monthly</span><span class="amt">15,000</span></div>
-                    <h3>Campaign Mgmt</h3>
-                </div>
-                <div class="card-bottom">Targeted ads to scale your ROAS.</div>
+          <div class="card light">
+            <div class="card-top">
+              <i data-lucide="layers"></i><span class="type">META ADS</span>
             </div>
+            <div class="card-mid">
+              <div class="price-box">
+                <span class="type">Monthly</span><span class="amt">15,000</span>
+              </div>
+              <h3>Campaign Mgmt</h3>
+            </div>
+            <div class="card-bottom">Targeted ads to scale your ROAS.</div>
+          </div>
 
-            <div class="card dark">
-                <div class="card-top"><i data-lucide="share-2"></i><span class="type">SMM</span></div>
-                <div class="card-mid">
-                    <div class="price-box"><span class="type">Package</span><span class="amt">20,000</span></div>
-                    <h3>Social Media</h3>
-                </div>
-                <div class="card-bottom">Full content strategy & growth.</div>
+          <div class="card dark">
+            <div class="card-top">
+              <i data-lucide="share-2"></i><span class="type">SMM</span>
             </div>
+            <div class="card-mid">
+              <div class="price-box">
+                <span class="type">Package</span><span class="amt">20,000</span>
+              </div>
+              <h3>Social Media</h3>
+            </div>
+            <div class="card-bottom">Full content strategy & growth.</div>
+          </div>
 
-            <div class="card light">
-                <div class="card-top"><i data-lucide="presentation"></i><span class="type">PPT SLIDES</span></div>
-                <div class="card-mid">
-                    <div class="price-box"><span class="type">Per Deck</span><span class="amt">5,000</span></div>
-                    <h3>Pitch Decks</h3>
-                </div>
-                <div class="card-bottom">Investor-ready professional designs.</div>
+          <div class="card light">
+            <div class="card-top">
+              <i data-lucide="presentation"></i
+              ><span class="type">PPT SLIDES</span>
             </div>
+            <div class="card-mid">
+              <div class="price-box">
+                <span class="type">Per Deck</span><span class="amt">5,000</span>
+              </div>
+              <h3>Pitch Decks</h3>
+            </div>
+            <div class="card-bottom">Investor-ready professional designs.</div>
+          </div>
 
-            <div class="card dark">
-                <div class="card-top"><i data-lucide="search"></i><span class="type">SEO</span></div>
-                <div class="card-mid">
-                    <div class="price-box"><span class="type">Rank</span><span class="amt">25,000</span></div>
-                    <h3>Search Engine</h3>
-                </div>
-                <div class="card-bottom">Top-tier keyword ranking solutions.</div>
+          <div class="card dark">
+            <div class="card-top">
+              <i data-lucide="search"></i><span class="type">SEO</span>
             </div>
+            <div class="card-mid">
+              <div class="price-box">
+                <span class="type">Rank</span><span class="amt">25,000</span>
+              </div>
+              <h3>Search Engine</h3>
+            </div>
+            <div class="card-bottom">Top-tier keyword ranking solutions.</div>
+          </div>
 
-            <div class="card light">
-                <div class="card-top"><i data-lucide="users"></i><span class="type">CRM</span></div>
-                <div class="card-mid">
-                    <div class="price-box"><span class="type">Setup</span><span class="amt">30,000</span></div>
-                    <h3>Customer Relation</h3>
-                </div>
-                <div class="card-bottom">Lead tracking & sales automation.</div>
+          <div class="card light">
+            <div class="card-top">
+              <i data-lucide="users"></i><span class="type">CRM</span>
             </div>
+            <div class="card-mid">
+              <div class="price-box">
+                <span class="type">Setup</span><span class="amt">30,000</span>
+              </div>
+              <h3>Customer Relation</h3>
+            </div>
+            <div class="card-bottom">Lead tracking & sales automation.</div>
+          </div>
 
-            <div class="card dark">
-                <div class="card-top"><i data-lucide="briefcase"></i><span class="type">PMS</span></div>
-                <div class="card-mid">
-                    <div class="price-box"><span class="type">License</span><span class="amt">35,000</span></div>
-                    <h3>Project Mgmt</h3>
-                </div>
-                <div class="card-bottom">Workflows to manage large teams.</div>
+          <div class="card dark">
+            <div class="card-top">
+              <i data-lucide="briefcase"></i><span class="type">PMS</span>
             </div>
+            <div class="card-mid">
+              <div class="price-box">
+                <span class="type">License</span><span class="amt">35,000</span>
+              </div>
+              <h3>Project Mgmt</h3>
+            </div>
+            <div class="card-bottom">Workflows to manage large teams.</div>
+          </div>
 
-            <div class="card light">
-                <div class="card-top"><i data-lucide="shopping-cart"></i><span class="type">E-COM WEBs</span></div>
-                <div class="card-mid">
-                    <div class="price-box"><span class="type">Full Web</span><span class="amt">40,000</span></div>
-                    <h3>E-com Stores</h3>
-                </div>
-                <div class="card-bottom">Shopify or Custom Multi-vendor.</div>
+          <div class="card light">
+            <div class="card-top">
+              <i data-lucide="shopping-cart"></i
+              ><span class="type">E-COM WEBs</span>
             </div>
+            <div class="card-mid">
+              <div class="price-box">
+                <span class="type">Full Web</span
+                ><span class="amt">40,000</span>
+              </div>
+              <h3>E-com Stores</h3>
+            </div>
+            <div class="card-bottom">Shopify or Custom Multi-vendor.</div>
+          </div>
         </div>
-    </div>
-</section>
- 
-<script>
-(function() {
-    const pTrack = document.getElementById('track');
-    const pCards = document.querySelectorAll('.card');
-    const pSection = document.getElementById('pricing-trigger');
-    const pToast = document.getElementById('scroll-toast');
-    const btnNext = document.getElementById('pricing-next');
-    const btnPrev = document.getElementById('pricing-prev');
-    
-    let pRotation = 0;
-    const pAngleStep = 360 / pCards.length;
-    let pRadius = window.innerWidth < 768 ? 220 : 450; 
+      </div>
+    </section>
 
-    // Initial Position
-    pCards.forEach((card, i) => {
-        const angle = i * pAngleStep;
-        card.style.transform = `rotateY(${angle}deg) translateZ(${pRadius}px)`;
-    });
+    <script>
+      (function () {
+        const pTrack = document.getElementById("track");
+        const pCards = document.querySelectorAll(".card");
+        const pSection = document.getElementById("pricing-trigger");
+        const pToast = document.getElementById("scroll-toast");
+        const btnNext = document.getElementById("pricing-next");
+        const btnPrev = document.getElementById("pricing-prev");
 
-    function rotateP(val) {
-        pRotation += val;
-        pTrack.style.transform = `rotateY(${pRotation}deg)`;
-    }
+        let pRotation = 0;
+        const pAngleStep = 360 / pCards.length;
+        let pRadius = window.innerWidth < 768 ? 220 : 450;
 
-    // Button Listeners
-    btnNext.addEventListener('click', () => rotateP(-pAngleStep));
-    btnPrev.addEventListener('click', () => rotateP(pAngleStep));
+        // Initial Position
+        pCards.forEach((card, i) => {
+          const angle = i * pAngleStep;
+          card.style.transform = `rotateY(${angle}deg) translateZ(${pRadius}px)`;
+        });
 
-    // Intersection Observer for Toast
-    const pObserver = new IntersectionObserver((entries) => {
-        if(entries[0].isIntersecting) {
-            pToast.classList.add('show');
-            setTimeout(() => pToast.classList.remove('show'), 4000);
-            pObserver.unobserve(pSection);
+        function rotateP(val) {
+          pRotation += val;
+          pTrack.style.transform = `rotateY(${pRotation}deg)`;
         }
-    }, { threshold: 0.5 });
-    pObserver.observe(pSection);
 
-    // Mouse Wheel
-    window.addEventListener('wheel', (e) => {
-        const rect = pSection.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            rotateP(e.deltaY * -0.05);
+        // Button Listeners
+        btnNext.addEventListener("click", () => rotateP(-pAngleStep));
+        btnPrev.addEventListener("click", () => rotateP(pAngleStep));
+
+        // Intersection Observer for Toast
+        const pObserver = new IntersectionObserver(
+          (entries) => {
+            if (entries[0].isIntersecting) {
+              pToast.classList.add("show");
+              setTimeout(() => pToast.classList.remove("show"), 4000);
+              pObserver.unobserve(pSection);
+            }
+          },
+          { threshold: 0.5 },
+        );
+        pObserver.observe(pSection);
+
+        // Mouse Wheel
+        window.addEventListener(
+          "wheel",
+          (e) => {
+            const rect = pSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              rotateP(e.deltaY * -0.05);
+            }
+          },
+          { passive: true },
+        );
+
+        // Touch Support
+        let pStartX = 0;
+        window.addEventListener(
+          "touchstart",
+          (e) => (pStartX = e.touches[0].pageX),
+          { passive: true },
+        );
+        window.addEventListener(
+          "touchmove",
+          (e) => {
+            const rect = pSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              let diff = (pStartX - e.touches[0].pageX) * 0.2;
+              rotateP(-diff);
+              pStartX = e.touches[0].pageX;
+            }
+          },
+          { passive: true },
+        );
+
+        // Slow Drift
+        function pDrift() {
+          rotateP(0.1);
+          requestAnimationFrame(pDrift);
         }
-    }, { passive: true });
+        pDrift();
+        lucide.createIcons();
+      })();
+    </script>
 
-    // Touch Support
-    let pStartX = 0;
-    window.addEventListener('touchstart', e => pStartX = e.touches[0].pageX, { passive: true });
-    window.addEventListener('touchmove', e => {
-        const rect = pSection.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            let diff = (pStartX - e.touches[0].pageX) * 0.2;
-            rotateP(-diff);
-            pStartX = e.touches[0].pageX;
+    <!--CONTACTTT-->
+
+    <style>
+      /* 1. Global Animation for Border */
+      @keyframes borderRotate {
+        100% {
+          transform: rotate(360deg);
         }
-    }, { passive: true });
+      }
 
-    // Slow Drift
-    function pDrift() {
-        rotateP(0.1);
-        requestAnimationFrame(pDrift);
-    }
-    pDrift();
-    lucide.createIcons();
-})();
-</script>
+      .direct-contact-section {
+        padding: 120px 5%;
+        background: #000; /* Deep Black for max shine */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
+      /* 2. The Container with Moving Border */
+      .contact-flex-container {
+        position: relative;
+        width: 100%;
+        max-width: 700px;
+        padding: 3px; /* Border ki thickness */
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 24px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-<!--CONTACTTT-->
-  
- <style>
-/* 1. Global Animation for Border */
-@keyframes borderRotate {
-    100% { transform: rotate(360deg); }
-}
+      /* Moving Border Background */
+      .contact-flex-container::before {
+        content: "";
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        background: conic-gradient(
+          transparent,
+          transparent,
+          transparent,
+          #0070f3
+        );
+        animation: borderRotate 4s linear infinite;
+      }
 
-.direct-contact-section {
-    padding: 120px 5%;
-    background: #000; /* Deep Black for max shine */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+      /* Inner Box (Black Card) */
+      .contact-content {
+        position: relative;
+        width: 100%;
+        background: #080808;
+        border-radius: 22px;
+        padding: 60px 40px;
+        z-index: 2;
+        text-align: center;
+      }
 
-/* 2. The Container with Moving Border */
-.contact-flex-container {
-    position: relative;
-    width: 100%;
-    max-width: 700px;
-    padding: 3px; /* Border ki thickness */
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 24px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+      /* 3. Shining Sweep Effect */
+      .contact-content::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.05),
+          transparent
+        );
+        animation: sweep 5s infinite;
+      }
 
-/* Moving Border Background */
-.contact-flex-container::before {
-    content: '';
-    position: absolute;
-    width: 150%;
-    height: 150%;
-    background: conic-gradient(transparent, transparent, transparent, #0070f3);
-    animation: borderRotate 4s linear infinite;
-}
+      @keyframes sweep {
+        0% {
+          left: -100%;
+        }
+        30% {
+          left: 100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
 
-/* Inner Box (Black Card) */
-.contact-content {
-    position: relative;
-    width: 100%;
-    background: #080808;
-    border-radius: 22px;
-    padding: 60px 40px;
-    z-index: 2;
-    text-align: center;
-}
+      /* Text Styles */
+      .section-title {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: -3px;
+        line-height: 1;
+        margin-bottom: 20px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
 
-/* 3. Shining Sweep Effect */
-.contact-content::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-    animation: sweep 5s infinite;
-}
+      .section-desc {
+        color: #555;
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        cursor: pointer;
+      }
 
-@keyframes sweep {
-    0% { left: -100%; }
-    30% { left: 100%; }
-    100% { left: 100%; }
-}
+      /* Interactive Buttons */
+      .primary-btn {
+        display: inline-block;
+        background: #fff;
+        color: #000;
+        padding: 18px 45px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 800;
+        transition: 0.3s;
+        border: 2px solid transparent;
+      }
 
-/* Text Styles */
-.section-title {
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: -3px;
-    line-height: 1;
-    margin-bottom: 20px;
-    cursor: pointer;
-    transition: 0.2s;
-}
+      .primary-btn:hover {
+        background: transparent;
+        color: #fff;
+        border-color: #fff;
+        transform: translateY(-3px);
+      }
 
-.section-desc {
-    color: #555;
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-    cursor: pointer;
-}
+      .secondary-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+      }
 
-/* Interactive Buttons */
-.primary-btn {
-    display: inline-block;
-    background: #fff;
-    color: #000;
-    padding: 18px 45px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 800;
-    transition: 0.3s;
-    border: 2px solid transparent;
-}
+      .text-link {
+        color: #444;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+      }
+    </style>
 
-.primary-btn:hover {
-    background: transparent;
-    color: #fff;
-    border-color: #fff;
-    transform: translateY(-3px);
-}
-
-.secondary-links {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.text-link {
-    color: #444;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    cursor: pointer;
-}
-</style>
-
-<section class="direct-contact-section">
-    <div class="contact-flex-container">
+    <section class="direct-contact-section">
+      <div class="contact-flex-container">
         <div class="contact-content">
-            <h2 class="section-title" onclick="popColor(this)">GET IN <br> TOUCH.</h2>
-            <p class="section-desc" onclick="popColor(this)">
-                Minimalism meets engineering. Click us to see the magic.
-            </p>
-            
-            <div class="action-buttons">
-                <a href="https://wa.me/923059462051" target="_blank" class="primary-btn">
-                    MESSAGE ON WHATSAPP
-                </a>
-                
-                <div class="secondary-links"> 
-  <a href="mailto:codecrafte07@gmail.com" class="text-link" onclick="popColor(this)">EMAIL</a> 
-  <a href="tel:03286658507" class="text-link" onclick="popColor(this)">BOOK CALL</a> 
-</div>
+          <h2 class="section-title" onclick="popColor(this)">
+            GET IN <br />
+            TOUCH.
+          </h2>
+          <p class="section-desc" onclick="popColor(this)">
+            Minimalism meets engineering. Click us to see the magic.
+          </p>
 
+          <div class="action-buttons">
+            <a
+              href="https://wa.me/923059462051"
+              target="_blank"
+              class="primary-btn"
+            >
+              MESSAGE ON WHATSAPP
+            </a>
+
+            <div class="secondary-links">
+              <a
+                href="mailto:codecrafte07@gmail.com"
+                class="text-link"
+                onclick="popColor(this)"
+                >EMAIL</a
+              >
+              <a
+                href="tel:03286658507"
+                class="text-link"
+                onclick="popColor(this)"
+                >BOOK CALL</a
+              >
             </div>
+          </div>
         </div>
-    </div>
-</section>
-<script>
-function popColor(el) {
-    // Har click par bilkul naya bright color
-    const hue = Math.floor(Math.random() * 360);
-    const newColor = `hsl(${hue}, 100%, 65%)`;
-    
-    el.style.color = newColor;
-    
-    // Halka sa scale effect bhi de dete hain click par
-    el.style.transform = "scale(1.05)";
-    setTimeout(() => {
-        el.style.transform = "scale(1)";
-    }, 150);
-}
-</script>
+      </div>
+    </section>
+    <script>
+      function popColor(el) {
+        // Har click par bilkul naya bright color
+        const hue = Math.floor(Math.random() * 360);
+        const newColor = `hsl(${hue}, 100%, 65%)`;
 
- <!--footerrr-->
+        el.style.color = newColor;
 
- <footer class="footer-section">
-    <div class="footer-bg-decoration">
+        // Halka sa scale effect bhi de dete hain click par
+        el.style.transform = "scale(1.05)";
+        setTimeout(() => {
+          el.style.transform = "scale(1)";
+        }, 150);
+      }
+    </script>
+
+    <!--footerrr-->
+
+    <footer class="footer-section">
+      <div class="footer-bg-decoration">
         <div class="marquee slanted-up">
-            <div class="marquee-inner">
-                <span>STRATEGY • DESIGN • DEVELOPMENT • MARKETING • STRATEGY • DESIGN • DEVELOPMENT • MARKETING •</span>
-            </div>
+          <div class="marquee-inner">
+            <span
+              >STRATEGY • DESIGN • DEVELOPMENT • MARKETING • STRATEGY • DESIGN •
+              DEVELOPMENT • MARKETING •</span
+            >
+          </div>
         </div>
         <div class="marquee slanted-down">
-            <div class="marquee-inner">
-                <span>CODECRAFTE • INNOVATION • FUTURE • CRMS • POS • PMS •</span>
-            </div>
+          <div class="marquee-inner">
+            <span>CODECRAFTE • INNOVATION • FUTURE • CRMS • POS • PMS •</span>
+          </div>
         </div>
-    </div>
-    
+      </div>
 
-    <div class="footer-container">
+      <div class="footer-container">
         <div class="footer-bento-grid">
-            <div class="bento-tile cta-box">
-                <span class="mini-tag">GET STARTED</span>
-                <h2>Let’s build something <br><span>Extraordinary.</span></h2>
-                <p>Digital solutions tailored to your brand's growth.</p>
-                <a href="./components/contact.html" class="footer-btn">Start Project <i data-lucide="arrow-up-right"></i></a>
+          <div class="bento-tile cta-box">
+            <span class="mini-tag">GET STARTED</span>
+            <h2>Let’s build something <br /><span>Extraordinary.</span></h2>
+            <p>Digital solutions tailored to your brand's growth.</p>
+            <a href="./components/contact.html" class="footer-btn"
+              >Start Project <i data-lucide="arrow-up-right"></i
+            ></a>
+          </div>
+
+          <div class="bento-tile social-box">
+            <span class="mini-tag">CONNECT</span>
+            <div class="social-links-grid">
+              <a
+                href="https://www.instagram.com/codecrafte.pk/"
+                aria-label="Instagram"
+                class="s-link"
+                ><i data-lucide="instagram"></i
+              ></a>
+              <a
+                href="www.linkedin.com/in/c-crafte-3941b43b3"
+                aria-label="LinkedIn"
+                class="s-link"
+                ><i data-lucide="linkedin"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61581311813987"
+                aria-label="Facebook"
+                class="s-link"
+                ><i data-lucide="facebook"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@codecrafte.pk"
+                aria-label="Tiktok"
+                class="s-link cr-tiktok-link"
+                target="_blank"
+              >
+                <svg
+                  class="lucide-custom cr-tiktok-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.4 121.4 0 0 0 67 20.14Z"
+                  ></path>
+                </svg>
+              </a>
+              <a href="#" aria-label="github" class="s-link"
+                ><i data-lucide="github"></i
+              ></a>
+              <a href="tel:03286658507" aria-label="number" class="s-link"
+                ><i data-lucide="phone"></i
+              ></a>
             </div>
+          </div>
 
-            <div class="bento-tile social-box">
-    <span class="mini-tag">CONNECT</span>
-    <div class="social-links-grid">
-        <a href="https://www.instagram.com/codecrafte.pk/" aria-label="Instagram" class="s-link"><i data-lucide="instagram"></i></a>
-        <a href="www.linkedin.com/in/c-crafte-3941b43b3" aria-label="LinkedIn" class="s-link"><i data-lucide="linkedin"></i></a>
-        <a href="https://www.facebook.com/profile.php?id=61581311813987" aria-label="Facebook" class="s-link"><i data-lucide="facebook"></i></a>
-        <a href="https://www.tiktok.com/@codecrafte.pk" aria-label="Tiktok" class="s-link cr-tiktok-link" target="_blank">
-            <svg class="lucide-custom cr-tiktok-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path fill="currentColor" d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.4 121.4 0 0 0 67 20.14Z"></path>
-            </svg>
-        </a>        <a href="#" aria-label="github" class="s-link"><i data-lucide="github"></i></a>
-        <a href="tel:03286658507" aria-label="number" class="s-link"><i data-lucide="phone"></i></a>
-    </div>
-</div>
-            
-<style>
-  /* Base Style for all icons (Lucide & Custom SVG) */
-  .social-links-grid .s-link [data-lucide],
-  .social-links-grid .s-link .lucide-custom {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    transition: all 0.3s ease;
-    stroke-width: 2; /* Unified stroke for Lucide */
-    fill: none; /* Default for Lucide */
-    color: inherit; /* Inherit link color */
-  }
+          <style>
+            /* Base Style for all icons (Lucide & Custom SVG) */
+            .social-links-grid .s-link [data-lucide],
+            .social-links-grid .s-link .lucide-custom {
+              width: 20px;
+              height: 20px;
+              display: inline-block;
+              transition: all 0.3s ease;
+              stroke-width: 2; /* Unified stroke for Lucide */
+              fill: none; /* Default for Lucide */
+              color: inherit; /* Inherit link color */
+            }
 
-  /* Custom Rule for TikTok SVG (Needs 'fill' instead of 'stroke') */
-  .social-links-grid .s-link .cr-tiktok-svg {
-    stroke-width: 0; /* No stroke for TikTok */
-    fill: currentColor; /* Inherit link color for 'fill' */
-    width: 18px; /* Slightly smaller width for standard visual balance */
-    height: 18px;
-    position: relative;
-    top: -1px; /* Precision alignment */
-  }
+            /* Custom Rule for TikTok SVG (Needs 'fill' instead of 'stroke') */
+            .social-links-grid .s-link .cr-tiktok-svg {
+              stroke-width: 0; /* No stroke for TikTok */
+              fill: currentColor; /* Inherit link color for 'fill' */
+              width: 18px; /* Slightly smaller width for standard visual balance */
+              height: 18px;
+              position: relative;
+              top: -1px; /* Precision alignment */
+            }
 
-  /* Unified Hover for all Icons */
-  .social-links-grid .s-link:hover {
-    color: #0a4dd4; /* CodeCrafte Yellow */
-    transform: scale(1.15) translateY(-2px);
-  }
-</style>
-            <div class="bento-tile links-box">
-                <span class="mini-tag">Legal</span>
-                <div class="link-columns">
-                    <a href="./components/Legal/T&C.html">Term & Condition</a>
-                    <a href="./components/Legal/pp.html"> privacy & policy </a>
-                    <a href="./components/Legal/re-f.html">Refund Policy</a>
-                    <a href=".//components/Legal/contract.html">Contract</a>
+            /* Unified Hover for all Icons */
+            .social-links-grid .s-link:hover {
+              color: #0a4dd4; /* CodeCrafte Yellow */
+              transform: scale(1.15) translateY(-2px);
+            }
+          </style>
+          <div class="bento-tile links-box">
+            <span class="mini-tag">Legal</span>
+            <div class="link-columns">
+              <a href="./components/Legal/T&C.html">Term & Condition</a>
+              <a href="./components/Legal/pp.html"> privacy & policy </a>
+              <a href="./components/Legal/re-f.html">Refund Policy</a>
+              <a href=".//components/Legal/contract.html">Contract</a>
+            </div>
+          </div>
+
+          <style>
+            .link-columns {
+              display: flex;
+              flex-direction: column;
+              gap: 12px; /* Links ke darmiyan barabar fasla */
+              margin-top: 10px;
+            }
+
+            .link-columns a {
+              color: #ffffff !important; /* Pure white taake dark background par chamke */
+              text-decoration: none;
+              font-size: 1.1rem;
+              font-weight: 500;
+              font-family: "Space Grotesk", sans-serif;
+              transition: all 0.3s ease;
+              display: flex;
+              align-items: center;
+              opacity: 0.8; /* Normal state mein thora halka */
+            }
+
+            /* Hover Animation: Text right move hoga aur chamkega */
+            .link-columns a:hover {
+              opacity: 1;
+              color: #0070f3 !important; /* Ya jo bhi aapka theme color hai */
+              transform: translateX(8px); /* Right side halka sa slide */
+            }
+
+            /* Optional: Har link ke agay chota sa arrow ya dot lane ke liye */
+            .link-columns a::before {
+              content: "→";
+              margin-right: 10px;
+              font-size: 0.8rem;
+              opacity: 0;
+              transition: 0.3s;
+              transform: translateX(-10px);
+            }
+
+            .link-columns a:hover::before {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          </style>
+
+          <div class="bento-tile contact-box">
+            <span class="mini-tag">REACH US</span>
+            <div class="contact-grid-inner">
+              <div class="contact-details-text">
+                <div class="c-item">
+                  <i data-lucide="mail"></i> <span>codecrafte07@gmail.com</span>
                 </div>
-                
-            </div>
-            
-            <style>
-                .link-columns {
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* Links ke darmiyan barabar fasla */
-    margin-top: 10px;
-}
-
-.link-columns a {
-    color: #ffffff !important; /* Pure white taake dark background par chamke */
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    font-family: 'Space Grotesk', sans-serif;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    opacity: 0.8; /* Normal state mein thora halka */
-}
-
-/* Hover Animation: Text right move hoga aur chamkega */
-.link-columns a:hover {
-    opacity: 1;
-    color: #0070f3 !important; /* Ya jo bhi aapka theme color hai */
-    transform: translateX(8px); /* Right side halka sa slide */
-}
-
-/* Optional: Har link ke agay chota sa arrow ya dot lane ke liye */
-.link-columns a::before {
-    content: '→';
-    margin-right: 10px;
-    font-size: 0.8rem;
-    opacity: 0;
-    transition: 0.3s;
-    transform: translateX(-10px);
-}
-
-.link-columns a:hover::before {
-    opacity: 1;
-    transform: translateX(0);
-}
-            </style>
-
-            <div class="bento-tile contact-box">
-    <span class="mini-tag">REACH US</span>
-    <div class="contact-grid-inner">
-        <div class="contact-details-text">
-            <div class="c-item"><i data-lucide="mail"></i> <span>codecrafte07@gmail.com</span></div>
-            <div class="c-item"><i data-lucide="phone"></i> <span>+92 3059462051</span></div>
-            <div class="c-item"><i data-lucide="map-pin"></i> <span>Lahore, Punjab</span></div>
-        </div>
-        
-        <div class="contact-map">
-            <iframe 
-                title="CodeCrafte Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13735.61765053272!2d73.2644265!3d29.9950785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3914f7762692257f%3A0x867332219b168972!2slahore%2C%20Punjab!5e0!3m2!1sen!2spk!4v1700000000000!5m2!1sen!2spk" 
-                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-            </iframe>
-        </div>
-    </div>
-</div>
-
-            <div class="bento-tile bottom-bar">
-                <div class="footer-flex">
-                    <p>© 2026 CODECRAFTE. All rights reserved.</p>
-                    <div class="legal">
-                        <a href="#">English</a>
-                        <a >&</a>
-                        <a href="#">PKR</a>
-                    </div>
+                <div class="c-item">
+                  <i data-lucide="phone"></i> <span>+92 3059462051</span>
                 </div>
+                <div class="c-item">
+                  <i data-lucide="map-pin"></i> <span>Lahore, Punjab</span>
+                </div>
+              </div>
+
+              <div class="contact-map">
+                <iframe
+                  title="CodeCrafte Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13735.61765053272!2d73.2644265!3d29.9950785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3914f7762692257f%3A0x867332219b168972!2slahore%2C%20Punjab!5e0!3m2!1sen!2spk!4v1700000000000!5m2!1sen!2spk"
+                  width="100%"
+                  height="100%"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                >
+                </iframe>
+              </div>
             </div>
-            <div class="footer-bg-decoration" style="margin-top: 300px;">
-        <div class="marquee slanted-up">
-            <div class="marquee-inner">
-                <span>STRATEGY • DESIGN • DEVELOPMENT • MARKETING • STRATEGY • DESIGN • DEVELOPMENT • MARKETING •</span>
+          </div>
+
+          <div class="bento-tile bottom-bar">
+            <div class="footer-flex">
+              <p>© 2026 CODECRAFTE. All rights reserved.</p>
+              <div class="legal">
+                <a href="#">English</a>
+                <a>&</a>
+                <a href="#">PKR</a>
+              </div>
             </div>
-        </div>
-        <div class="marquee slanted-down">
-            <div class="marquee-inner">
-                <span>CODECRAFTE • INNOVATION • FUTURE • CODECRAFTE • INNOVATION • FUTURE •</span>
+          </div>
+          <div class="footer-bg-decoration" style="margin-top: 300px">
+            <div class="marquee slanted-up">
+              <div class="marquee-inner">
+                <span
+                  >STRATEGY • DESIGN • DEVELOPMENT • MARKETING • STRATEGY •
+                  DESIGN • DEVELOPMENT • MARKETING •</span
+                >
+              </div>
             </div>
+            <div class="marquee slanted-down">
+              <div class="marquee-inner">
+                <span
+                  >CODECRAFTE • INNOVATION • FUTURE • CODECRAFTE • INNOVATION •
+                  FUTURE •</span
+                >
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-        </div>
-    </div>
-</footer>
-<script>
-    // Har social link par halka sa delay ke sath animation
-document.querySelectorAll('.s-link').forEach((link, index) => {
-    link.style.transitionDelay = `${index * 50}ms`;
-});
-lucide.createIcons();
-</script>
+      </div>
+    </footer>
+    <script>
+      // Har social link par halka sa delay ke sath animation
+      document.querySelectorAll(".s-link").forEach((link, index) => {
+        link.style.transitionDelay = `${index * 50}ms`;
+      });
+      lucide.createIcons();
+    </script>
 
-<script src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js" defer></script> 
-
-
-
-
-
- 
-
-
-
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js"
+      defer
+    ></script>
+  </body>
 </html>
