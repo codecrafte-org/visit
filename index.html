@@ -83,31 +83,31 @@
     <header class="top-header" id="topHeader">
         <img src="./images/fav-ion.webp" alt="">
         <nav class="desktop-links">
-        <a href="./components/Team.html">Our Team</a>
-        <a href="./components/Story.html">Our Story</a>
-        <a href="./components/Portfolio.html">Portfolio</a>
+        <a href="./components/Team.html" aria-label="team">Our Team</a>
+        <a href="./components/Story.html" aria-label="story">Our Story</a>
+        <a href="./components/Portfolio.html" aria-label="porftolio">Portfolio</a>
     </nav>
-    <a href="./components/contact.html" style="text-decoration: none;"><button class="nav-btn" style="width: 140px; height:40px;">Contact Us</button></a>
+    <a href="./components/contact.html" style="text-decoration: none;"><button class="nav-btn" style="width: 140px; height:40px;" aria-label="contact">Contact Us</button></a>
 </header>
 
 <nav class="bottom-nav" id="thumbNav">
-    <a href="./index.html" class="nav-item">
+    <a href="./index.html" aria-label="home" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="home"></i></div>
         <span>Home</span>
     </a>
-    <a href="./components/Team.html" class="nav-item">
+    <a href="./components/Team.html" aria-label="our team" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="users"></i></div>
         <span>Our Team</span>
     </a>
-    <a href="./components/Story.html" class="nav-item">
+    <a href="./components/Story.html" aria-label="our story" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="book-open"></i></div>
         <span>Our Story</span>
     </a>
-    <a href="./components/contact.html" class="nav-item">
+    <a href="./components/contact.html" aria-label="Contact Us" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="mail"></i></div>
         <span>Contact</span>
     </a>
-    <a href="./components/Portfolio.html" class="nav-item profile-nav">
+    <a href="./components/Portfolio.html" aria-label="portfolio" class="nav-item profile-nav">
         <div class="nav-icon-wrapper"><i data-lucide="user"></i></div>
         <span>portfolio</span>
     </a>
@@ -293,7 +293,7 @@ window.addEventListener('scroll', () => {
 
   <div class="cc-ultra-card cc-ultra-video-card">
     <div class="cc-ultra-video-container">
-      <video autoplay muted loop playsinline class="cc-ultra-video-bg">
+      <video autoplay muted loop playsinline class="cc-ultra-video-bg" aria-hidden="true" tabindex="-1">
         <source src="./images/logo.mp4" type="video/mp4" />
       </video>
       <div class="cc-ultra-video-overlay">
@@ -850,7 +850,7 @@ window.addEventListener('scroll', () => {
     <section class="cr-reviews-sec">
       <div class="cr-header">
         <div class="cr-title">
-          <p style="color: var(--cc-yellow); font-weight: 800">FEEDBACK</p>
+          <p style="color: rgb(28, 28, 201); font-weight: 800">FEEDBACK</p>
           <h2>Kind Words <br />From Partners.</h2>
         </div>
         <button class="cr-btn" onclick="openModal()">+ LEAVE REVIEW</button>
@@ -1071,7 +1071,7 @@ window.addEventListener('scroll', () => {
         </div>
 
         <a href="./components/Portfolio.html" aria-label="View Portfolio">
-          <div class="video-wrapper" id="video-area">
+          <div class="video-wrapper" id="video-area" >
             <a href="./components/Portfolio.html" aria-label="View Portfolio">
               <video
                 autoplay
@@ -1080,6 +1080,8 @@ window.addEventListener('scroll', () => {
                 playsinline
                 controls
                 class="showcase-video"
+                 aria-hidden="true" 
+                 tabindex="-1"
               >
               <track
                kind="captions" 
@@ -1802,9 +1804,6 @@ window.addEventListener('scroll', () => {
       lucide.createIcons();
     </script>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js"
-      defer
-    ></script>
+     
   </body>
 </html>
