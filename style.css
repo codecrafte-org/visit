@@ -305,6 +305,9 @@
             font-size: 10px;
             color: #0070f3;
         }
+        .bg-decor{
+            display: none;
+        }
       }
 
       /* Floating Glass Box */
@@ -917,14 +920,14 @@
 }
 
 .tape-yellow {
-    background: #ffdb00;
+    background: #0070f3;
     color: #000;
     transform: rotate(-12deg) translateY(-80px);
 }
 
 .tape-black {
     background: #000;
-    color: #ffdb00;
+    color: #0070f3;
     transform: rotate(8deg) translateY(40px);
 }
 
