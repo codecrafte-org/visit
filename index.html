@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CODECRAFTE | Build Your Digital Future</title>
  
-    <meta name="description" content="CodeCrafte is a premium digital agency specializing in Web & App Development, E-commerce, custom CRM/PMS/POS systems, AI Automation, Meta Ads, and SMM.">
+    <meta name="description" content="A premium digital agency specializing in Web & App Development, E-commerce, custom CRM/PMS/POS systems, AI Automation, Meta Ads, and SMM.">
     <meta name="keywords" content="Web Development, App Development, CRM, PMS, POS, E-commerce Websites, AI Automation, Meta Ads, Paid Ads, SMM, Social Media Marketing, Business Presentations, CodeCrafte">
     <meta name="author" content="CodeCrafte">
     <link rel="canonical" href="https://codecrafte.site">
@@ -48,6 +48,12 @@
     defer
   ></script>
 
+  <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+
   <script>
     function initializeIcons() {
       if (typeof lucide !== "undefined") {
@@ -66,75 +72,456 @@
   </script>
 
   <body>
-    <section class="hero">
-      <div id="grid-container"></div>
+   <!--hero sectionnnnnnnnnnnnnnnnnn-->
+ <body>
+    <div class="bg-decor">
+      <div class="dot-path"></div>
+      <div class="float-icon" style="top: 20%; right: 15%">🚀</div>
+      <div class="float-icon" style="top: 50%; left: 5%">🚁</div>
+    </div>
 
-      <div class="hero-content">
-        <h1>CODECRAFTE</h1>
-        <p>Build your digital future</p>
-        <a href="./components/Get_started.html">
-          <button class="cta-btn">Get Started</button></a
-        >
+    <header class="top-header" id="topHeader">
+        <img src="./images/fav-ion.webp" alt="">
+        <nav class="desktop-links">
+        <a href="./components/Legal/proflie 2.0.html">Our Team</a>
+        <a href="#">Our Story</a>
+        <a href="#">Portfolio</a>
+    </nav>
+    <button class="nav-btn" style="width: 140px; height:40px;">Contact Us</button>
+</header>
+
+<nav class="bottom-nav" id="thumbNav">
+    <a href="./index.html" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="home"></i></div>
+        <span>Home</span>
+    </a>
+    <a href="./components/Team.html" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="users"></i></div>
+        <span>Our Team</span>
+    </a>
+    <a href="./components/Story.html" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="book-open"></i></div>
+        <span>Our Story</span>
+    </a>
+    <a href="./components/contact.html" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="mail"></i></div>
+        <span>Contact</span>
+    </a>
+    <a href="./components/Profile.html" class="nav-item profile-nav">
+        <div class="nav-icon-wrapper"><i data-lucide="user"></i></div>
+        <span>Profile</span>
+    </a>
+     
+</nav>
+ <style>
+    /* --- TOP NAV STYLES --- */
+.top-header {
+    position: fixed;
+    top: 0; width: 100%;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    z-index: 2000;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s;
+}
+
+.top-header.hide {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+.top-header img {
+    height: 405x;
+    width: 80px;
+}
+
+.logo { font-weight: 900; font-size: 22px; letter-spacing: -1px; }
+.desktop-links { display: flex; gap: 30px; }
+.desktop-links a { text-decoration: none; color: #555; font-size: 14px; font-weight: 600; }
+.nav-btn { background: #000; color: #fff; border: none; padding: 10px 22px; border-radius: 50px; font-weight: 700; cursor: pointer; }
+
+/* --- THUMB NAV STYLES --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%) translateY(150px); /* Initially hidden below */
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 8px 12px;
+    border-radius: 100px;
+    display: flex;
+    gap: 8px;
+    z-index: 2001;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bottom-nav.show {
+    transform: translateX(-50%) translateY(0); /* Bounce up animation */
+}
+
+.nav-item {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 100px;
+    transition: 0.3s;
+    min-width: 65px;
+}
+
+.nav-icon-wrapper { color: #888; margin-bottom: 2px; transition: 0.3s; }
+.nav-item span { font-size: 10px; font-weight: 700; color: #888; }
+
+.nav-item:hover .nav-icon-wrapper, .nav-item:hover span {
+    color: #000;
+}
+
+.nav-item svg { width: 20px; height: 20px; }
+
+/* MOBILE RESPONSIVE FIX */
+@media (max-width: 768px) {
+    .desktop-links, .nav-btn { display: none; }
+    .top-header { justify-content: center; padding: 15px; }
+    
+    .bottom-nav {
+        width: 92%;
+        justify-content: space-around;
+        bottom: 15px;
+        padding: 8px 5px;
+    }
+    .nav-item { min-width: auto; padding: 8px 10px; }
+}
+ </style>
+
+ <script>
+    // Lucide icons initialize
+lucide.createIcons();
+
+const topHeader = document.getElementById('topHeader');
+const thumbNav = document.getElementById('thumbNav');
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+    // Agar user 100px se zyada niche scroll kare
+    if (window.scrollY > 100) {
+        topHeader.classList.add('hide');   // Top Nav Gayab
+        thumbNav.classList.add('show');    // Thumb Nav Bahar
+    } else {
+        topHeader.classList.remove('hide'); // Top Nav Wapas
+        thumbNav.classList.remove('show');  // Thumb Nav Chup jaye
+    }
+    
+    lastScrollY = window.scrollY;
+});
+ </script>
+ 
+
+    <section class="hero-section">
+      <div class="badge">FLY SMARTER WITH CODECRAFTE</div>
+      <h1 class="hero-h1">
+        Let's Build Your <br />
+        Digital Future.
+      </h1>
+
+      <p class="hero-desc">
+        Expertise in <a href="#" class="decs-item web">Web</a> &
+        <a href="#" class="decs-item app">App Development</a>,
+        <a href="#" class="decs-item crm">Custom CRM</a>,
+        <a href="#" class="decs-item ai">AI Automation</a>, and Modern Digital
+        Solutions for your Business.
+      </p>
+
+     <button 
+    class="btn-main" 
+    style="
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 28px;
+        background: #000000;
+        color: #ffffff;
+        border: none;
+        border-radius: 100px;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        outline: none;
+    "
+    onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)';"
+    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
+>
+    <span style="line-height: 1;">Get Started Now</span>
+    <i 
+        data-lucide="arrow-right" 
+        style="
+            width: 18px; 
+            height: 25px; 
+            margin-left: 10px; 
+            display: flex; 
+            align-items: center;
+        "
+    ></i>
+</button>
+
+      <!--bintoooooooooooooo-->
+      <div class="cc-ultra-visual-grid">
+  <div class="cc-ultra-card cc-ultra-business-premium">
+    <div class="cc-ultra-shiny-sweep"></div>
+    <div class="cc-ultra-card-inner">
+      <span class="cc-ultra-badge-white">Premium Service</span>
+      <h2 class="cc-ultra-card-h2">Architecting Digital Dominance.</h2>
+      <p class="cc-ultra-card-p">
+        Full-stack business ecosystems built for the elite. Start your journey
+        today.
+      </p>
+      <a href="#" class="cc-ultra-arrow-btn">
+        Start Project <span class="cc-ultra-circle-icon">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="cc-ultra-card cc-ultra-video-card">
+    <div class="cc-ultra-video-container">
+      <video autoplay muted loop playsinline class="cc-ultra-video-bg">
+        <source src="./images/portfolio/hska.mp4" type="video/mp4" />
+      </video>
+      <div class="cc-ultra-video-overlay">
+        <div class="cc-ultra-tag-glass">AI VISION</div>
+        <div class="cc-ultra-video-info">
+          <h3>Visual Stories</h3>
+          <p>Immersive AI experiences.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc-ultra-card cc-ultra-glass-offer">
+    <div class="cc-ultra-card-inner">
+      <span class="cc-ultra-label-blue">Our Offer</span>
+      <h3 class="cc-ultra-offer-h3">
+        Be Our First <br />
+        Active Client
+      </h3>
+      <p class="cc-ultra-offer-p">
+        Build Your Business Digitally With US. Claim your slot now.
+      </p>
+      <div class="cc-ultra-price-tag">Starts @ 14,999/-</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* --- UNIQUE CONTAINER LOGIC --- */
+  .cc-ultra-visual-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 0.8fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+  }
+
+  /* --- UNIQUE BASE CARD --- */
+  .cc-ultra-card {
+    position: relative;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(146, 146, 146, 0.393);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+  }
+
+  /* --- CARD 1: SHINE --- */
+  .cc-ultra-business-premium {
+    padding: 35px;
+    justify-content: flex-end;
+  }
+  .cc-ultra-shiny-sweep {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(111, 111, 111, 0.4),
+      transparent
+    );
+    transform: skewX(-25deg);
+    animation: cc-ultra-sweep-anim 10s infinite ease-in-out;
+  }
+  @keyframes cc-ultra-sweep-anim {
+    0% { left: -100%; }
+    20% { left: 150%; }
+    100% { left: 150%; }
+  }
+
+  .cc-ultra-badge-white {
+    background: #fff;
+    color: #000;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  .cc-ultra-card-h2 {
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    color: #000;
+  }
+  .cc-ultra-card-p {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+  .cc-ultra-arrow-btn {
+    text-decoration: none;
+    color: #000;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cc-ultra-circle-icon {
+    background: #000;
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  /* --- CARD 2: VIDEO --- */
+  .cc-ultra-video-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .cc-ultra-video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    background: #000;
+  }
+  .cc-ultra-video-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  }
+  .cc-ultra-tag-glass {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px 12px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 10px;
+    width: fit-content;
+  }
+  .cc-ultra-video-info h3 { color: #fff; font-size: 22px; margin: 0; }
+  .cc-ultra-video-info p { color: rgba(255, 255, 255, 0.8); font-size: 13px; margin: 5px 0 0; }
+
+  /* --- CARD 3: DEEP BLUR --- */
+  .cc-ultra-glass-offer {
+    padding: 35px;
+    justify-content: center;
+  }
+  .cc-ultra-label-blue {
+    color: #0a4dd4;
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .cc-ultra-offer-h3 {
+    font-size: 24px;
+    font-weight: 900;
+    margin: 10px 0;
+  }
+  .cc-ultra-offer-p {
+    font-size: 13px;
+    opacity: 0.7;
+    line-height: 1.4;
+  }
+  .cc-ultra-price-tag {
+    margin-top: 20px;
+    font-weight: 900;
+    color: #0a4dd4;
+    font-size: 18px;
+  }
+
+  /* --- MOBILE UNIQUE GRID --- */
+  @media (max-width: 850px) {
+    .cc-ultra-visual-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .cc-ultra-card {
+      min-height: 300px;
+      border-radius: 24px;
+    }
+    .cc-ultra-business-premium { grid-column: span 1; padding: 20px; }
+    .cc-ultra-video-card { grid-column: span 1; min-height: 300px; }
+    .cc-ultra-glass-offer {
+      grid-column: span 2;
+      padding: 30px;
+      text-align: center;
+      min-height: auto;
+    }
+    .cc-ultra-card-h2 { font-size: 20px; }
+    .cc-ultra-card-p { font-size: 12px; }
+    .cc-ultra-video-info h3 { font-size: 18px; }
+    .cc-ultra-offer-h3 { font-size: 20px; }
+  }
+</style>
+
+      <div class="floating-glass-box">
+        <div class="user-avatar">
+          <img
+            src="https://api.dicebear.com/9.x/bottts/svg?seed=Aneka"
+            alt="user"
+          />
+        </div>
+        <div class="user-info">
+          <h5>Need website in 3 days?</h5>
+          <p>Click to Start✨</p>
+        </div>
+        <div style="margin-left: auto; color: #22c55e">
+          <i data-lucide="check-circle-2" style="width: 18px"></i>
+        </div>
       </div>
     </section>
 
-    <nav class="bottom-nav">
-      <a href="./index.html" class="nav-item">
-        <div class="nav-icon-wrapper"><i data-lucide="home"></i></div>
-        <span>Home</span>
-      </a>
-      <a href="./components/Team.html" class="nav-item">
-        <div class="nav-icon-wrapper"><i data-lucide="users"></i></div>
-        <span>Our Team</span>
-      </a>
-      <a href="./components/Story.html" class="nav-item">
-        <div class="nav-icon-wrapper"><i data-lucide="book-open"></i></div>
-        <span>Our Story</span>
-      </a>
-      <a href="./components/contact.html" class="nav-item">
-        <div class="nav-icon-wrapper"><i data-lucide="mail"></i></div>
-        <span>Contact</span>
-      </a>
-      <a href="./components/Profile.html" class="nav-item profile-nav">
-        <div class="nav-icon-wrapper"><i data-lucide="user"></i></div>
-        <span>Profile</span>
-      </a>
-    </nav>
-
     <script>
-      // 1. Generate Grid Boxes
-      const gridContainer = document.getElementById("grid-container");
-      const totalBoxes = 300; // Adjusted for performance
-
-      for (let i = 0; i < totalBoxes; i++) {
-        const box = document.createElement("div");
-        box.classList.add("grid-box");
-
-        // Hover for Desktop, Touch for Mobile
-        box.addEventListener("mouseenter", () => activateBox(box));
-        box.addEventListener("touchstart", () => activateBox(box));
-
-        gridContainer.appendChild(box);
-      }
-
-      function activateBox(el) {
-        el.classList.add("active");
-        setTimeout(() => {
-          el.classList.remove("active");
-        }, 800);
-      }
-
-      // 2. Initialize Icons
       lucide.createIcons();
-
-      // 3. Optional: Parallax Effect on Hero Text
-      document.addEventListener("mousemove", (e) => {
-        const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-        const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-        document.querySelector(".hero-content").style.transform =
-          `translate(${moveX}px, ${moveY}px)`;
-      });
     </script>
+  </body>
 
     <!--TRUST-->
     <section class="trust-deep-section">

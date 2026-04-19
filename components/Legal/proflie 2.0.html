@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+  
+<body>
+     <section class="hero">
+      <div id="grid-container"></div>
+
+      <div class="hero-content">
+        <h1>CODECRAFTE</h1>
+        <p>Build your digital future</p>
+        <a href="./components/Get_started.html">
+          <button class="cta-btn">Get Started</button></a
+        >
+      </div>
+    </section>
+
+    
+
+    <script>
+      // 1. Generate Grid Boxes
+      const gridContainer = document.getElementById("grid-container");
+      const totalBoxes = 300; // Adjusted for performance
+
+      for (let i = 0; i < totalBoxes; i++) {
+        const box = document.createElement("div");
+        box.classList.add("grid-box");
+
+        // Hover for Desktop, Touch for Mobile
+        box.addEventListener("mouseenter", () => activateBox(box));
+        box.addEventListener("touchstart", () => activateBox(box));
+
+        gridContainer.appendChild(box);
+      }
+
+      function activateBox(el) {
+        el.classList.add("active");
+        setTimeout(() => {
+          el.classList.remove("active");
+        }, 800);
+      }
+
+      // 2. Initialize Icons
+      lucide.createIcons();
+
+      // 3. Optional: Parallax Effect on Hero Text
+      document.addEventListener("mousemove", (e) => {
+        const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+        const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+        document.querySelector(".hero-content").style.transform =
+          `translate(${moveX}px, ${moveY}px)`;
+      });
+    </script>
+
+</body>
+</html>
