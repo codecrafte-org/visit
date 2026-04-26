@@ -88,9 +88,9 @@
         <nav class="desktop-links">
         <a href="./components/Team.html" aria-label="team">Our Team</a>
         <a href="./components/Story.html" aria-label="story">Our Story</a>
-        <a href="./components/Portfolio.html" aria-label="porftolio">Portfolio</a>
+        <a href="https://apply.codecrafte.site/" aria-label="careers">Careers</a>
     </nav>
-    <a href="./components/Game.html" style="text-decoration: none;"><button class="nav-btn" style="width: 140px; height:40px;" aria-label="contact">Contact Us</button></a>
+    <a href="./components/contact.html" style="text-decoration: none;"><button class="nav-btn" style="width: 140px; height:40px;" aria-label="contact">Contact Us</button></a>
 </header>
 
 <nav class="bottom-nav" id="thumbNav">
@@ -100,22 +100,41 @@
     </a>
     <a href="./components/Team.html" aria-label="our team" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="users"></i></div>
-        <span> Team</span>
+        <span>Team</span>
     </a>
     <a href="./components/Story.html" aria-label="our story" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="book-open"></i></div>
-        <span>  Story</span>
+        <span>Story</span>
     </a>
     <a href="./components/contact.html" aria-label="Contact Us" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="mail"></i></div>
         <span>Contact</span>
     </a>
-    <a href="./components/Portfolio.html" aria-label="portfolio" class="nav-item profile-nav">
-        <div class="nav-icon-wrapper"><i data-lucide="user"></i></div>
-        <span>portfolio</span>
+    
+    <a href="https://apply.codecrafte.site/" aria-label="portfolio" class="nav-item profile-nav">
+        <div class="nav-icon-wrapper"><i data-lucide="briefcase"></i></div>
+        <span>Careers</span>
     </a>
-     
 </nav>
+
+<style>
+  /* --- HOVER FIX FOR ICONS --- */
+  
+  /* Hover par text ka color (Apni theme ke hisab se change kar lena) */
+  .nav-item:hover {
+      color: #ffffff !important; 
+  }
+
+  /* Hover par icon (SVG) ko lazmi show karwane aur color change karne ki force CSS */
+  .nav-item:hover .nav-icon-wrapper i,
+  .nav-item:hover .nav-icon-wrapper svg {
+      color: #ffffff !important;
+      stroke: #ffffff !important; /* Lucide icons mein main cheez stroke hoti hai */
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+  }
+</style>
  <style>
     /* --- TOP NAV STYLES --- */
 .top-header {
