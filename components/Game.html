@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>TOKYO RACER — Neon Streets</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cannon@0.6.2/build/cannon.min.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --neon-blue: #00f0ff;
+    --neon-pink: #ff2d78;
+    --neon-purple: #bf00ff;
+    --neon-yellow: #ffe100;
+    --dark: #05060f;
+    --card-bg: rgba(255,255,255,0.07);
+    --font: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: var(--dark);
+    font-family: var(--font);
+    touch-action: none;
+  }
+
+  #gameCanvas {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: block;
+  }
+
+  /* ── HUD ── */
+  #hud {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 12px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  #speedometer {
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(0,240,255,0.3);
+    border-radius: 12px;
+    padding: 6px 14px;
+    color: var(--neon-blue);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 8px var(--neon-blue);
+  }
+
+  #raceStatus {
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,45,120,0.3);
+    border-radius: 12px;
+    padding: 6px 14px;
+    color: #fff;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  #fullscreenBtn {
+    pointer-events: all;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 6px 12px;
+    color: #fff;
+    font-size: 12px; font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--font);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  #fullscreenBtn:hover { border-color: var(--neon-blue); background: rgba(0,240,255,0.08); }
+
+  /* ── Progress Bar ── */
+  #progressWrap {
+    position: fixed; bottom: 130px; left: 50%; transform: translateX(-50%);
+    width: min(340px, 70vw);
+    z-index: 10; pointer-events: none;
+  }
+  #progressLabel {
+    display: flex; justify-content: space-between;
+    color: rgba(255,255,255,0.6); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; margin-bottom: 5px; text-transform: uppercase;
+  }
+  #progressTrack {
+    height: 6px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden;
+    position: relative;
+  }
+  #playerBar {
+    height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 99px; transition: width 0.1s linear;
+    box-shadow: 0 0 8px var(--neon-blue);
+  }
+  #aiBar {
+    position: absolute; top: 0; height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--neon-pink), #ff7a00);
+    border-radius: 99px; opacity: 0.7;
+    box-shadow: 0 0 8px var(--neon-pink);
+  }
+
+  /* ── Mobile Controls ── */
+  #controls {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: 120px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 12px 16px;
+    z-index: 10;
+  }
+
+  .ctrl-group-left {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+
+  .ctrl-btn {
+    width: 70px; height: 48px;
+    border-radius: 12px;
+    border: none; outline: none;
+    font-family: var(--font);
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: transform 0.08s, box-shadow 0.08s;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .ctrl-btn:active, .ctrl-btn.active {
+    transform: scale(0.93);
+  }
+
+  .btn-accel {
+    background: linear-gradient(135deg, #003aff22, #00f0ff33);
+    border: 1.5px solid var(--neon-blue);
+    color: var(--neon-blue);
+    box-shadow: 0 0 16px rgba(0,240,255,0.25), inset 0 1px 0 rgba(0,240,255,0.15);
+    text-shadow: 0 0 6px var(--neon-blue);
+  }
+  .btn-accel:active, .btn-accel.active {
+    box-shadow: 0 0 28px rgba(0,240,255,0.6), inset 0 1px 0 rgba(0,240,255,0.3);
+  }
+
+  .btn-brake {
+    background: linear-gradient(135deg, #ff2d7822, #ff7a0033);
+    border: 1.5px solid var(--neon-pink);
+    color: var(--neon-pink);
+    box-shadow: 0 0 16px rgba(255,45,120,0.25), inset 0 1px 0 rgba(255,45,120,0.15);
+    text-shadow: 0 0 6px var(--neon-pink);
+  }
+  .btn-brake:active, .btn-brake.active {
+    box-shadow: 0 0 28px rgba(255,45,120,0.6), inset 0 1px 0 rgba(255,45,120,0.3);
+  }
+
+  .ctrl-group-right {
+    display: flex; flex-direction: row; gap: 10px;
+  }
+
+  .btn-steer {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    font-size: 22px;
+    background: linear-gradient(135deg, #bf00ff22, #ff2d7822);
+    border: 1.5px solid var(--neon-purple);
+    color: #fff;
+    box-shadow: 0 0 16px rgba(191,0,255,0.3), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .btn-steer:active, .btn-steer.active {
+    box-shadow: 0 0 28px rgba(191,0,255,0.7);
+  }
+
+  /* ── Countdown ── */
+  #countdown {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  #countdownText {
+    font-size: clamp(80px, 20vw, 160px);
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 40px var(--neon-blue), 0 0 80px var(--neon-blue);
+    opacity: 0;
+    transform: scale(1.5);
+    transition: opacity 0.2s, transform 0.2s;
+    letter-spacing: -0.03em;
+  }
+
+  #countdownText.show {
+    opacity: 1; transform: scale(1);
+  }
+
+  #countdownText.go {
+    color: var(--neon-blue);
+    text-shadow: 0 0 40px var(--neon-blue), 0 0 100px var(--neon-blue), 0 0 160px var(--neon-blue);
+  }
+
+  /* ── Finish Modal ── */
+  #modalOverlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  #modalOverlay.open {
+    opacity: 1; pointer-events: all;
+  }
+
+  #modal {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px;
+    padding: 36px 32px 32px;
+    max-width: 360px; width: calc(100% - 40px);
+    position: relative;
+    box-shadow: 0 0 80px rgba(0,240,255,0.15), 0 40px 80px rgba(0,0,0,0.5);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  #modalOverlay.open #modal {
+    transform: scale(1) translateY(0);
+  }
+
+  .modal-emoji {
+    font-size: 48px; text-align: center; display: block; margin-bottom: 12px;
+    animation: bounce 0.6s ease infinite alternate;
+  }
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-8px); }
+  }
+
+  .modal-title {
+    font-size: 28px; font-weight: 900;
+    text-align: center; color: #fff;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 20px var(--neon-blue);
+    margin-bottom: 4px;
+  }
+
+  .modal-subtitle {
+    text-align: center; color: rgba(255,255,255,0.5);
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .code-wrap {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,240,255,0.3);
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .code-label {
+    font-size: 10px; font-weight: 800;
+    color: rgba(255,255,255,0.4); letter-spacing: 0.15em;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+
+  .code-value {
+    font-size: 22px; font-weight: 900;
+    color: var(--neon-blue);
+    text-shadow: 0 0 12px var(--neon-blue);
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #copyBtn {
+    background: rgba(0,240,255,0.1);
+    border: 1px solid rgba(0,240,255,0.3);
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    color: var(--neon-blue);
+    transition: background 0.2s, transform 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #copyBtn:hover { background: rgba(0,240,255,0.2); transform: scale(1.05); }
+  #copyBtn:active { transform: scale(0.95); }
+
+  .modal-instruction {
+    text-align: center;
+    font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .modal-instruction span { color: var(--neon-pink); font-weight: 800; }
+
+  #playAgainBtn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: none; outline: none;
+    font-family: var(--font);
+    font-size: 14px; font-weight: 800;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 0 24px rgba(0,240,255,0.3);
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  #playAgainBtn:hover { opacity: 0.9; transform: translateY(-1px); }
+  #playAgainBtn:active { transform: scale(0.98); }
+
+  /* Loss modal variant */
+  .modal-loss .modal-title { text-shadow: 0 0 20px var(--neon-pink); }
+  .modal-loss .code-value { color: var(--neon-pink); text-shadow: 0 0 12px var(--neon-pink); }
+  .modal-loss .code-wrap { border-color: rgba(255,45,120,0.3); }
+  .modal-loss #copyBtn { color: var(--neon-pink); border-color: rgba(255,45,120,0.3); background: rgba(255,45,120,0.1); }
+  .modal-loss #playAgainBtn { background: linear-gradient(135deg, var(--neon-pink), #bf00ff); }
+
+  /* ── Toast ── */
+  #toast {
+    position: fixed; bottom: 140px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: rgba(0,240,255,0.15); border: 1px solid var(--neon-blue);
+    color: var(--neon-blue); font-weight: 700; font-size: 13px;
+    padding: 8px 20px; border-radius: 99px;
+    opacity: 0; transition: opacity 0.3s, transform 0.3s;
+    z-index: 200; pointer-events: none; letter-spacing: 0.05em;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<canvas id="gameCanvas"></canvas>
+
+<!-- HUD -->
+<div id="hud">
+  <div id="speedometer">⚡ 0 km/h</div>
+  <button id="fullscreenBtn" onclick="toggleFullscreen()">
+    <i data-lucide="maximize-2" width="14" height="14"></i> FULL SCREEN
+  </button>
+  <div id="raceStatus">🏁 GET READY</div>
+</div>
+
+<!-- Progress -->
+<div id="progressWrap">
+  <div id="progressLabel">
+    <span>🔵 YOU</span>
+    <span>🔴 AI</span>
+  </div>
+  <div id="progressTrack">
+    <div id="playerBar"></div>
+    <div id="aiBar"></div>
+  </div>
+</div>
+
+<!-- Countdown -->
+<div id="countdown"><div id="countdownText"></div></div>
+
+<!-- Mobile Controls -->
+<div id="controls">
+  <div class="ctrl-group-left">
+    <button class="ctrl-btn btn-accel" id="btnAccel" ontouchstart="startKey('accel')" ontouchend="stopKey('accel')" onmousedown="startKey('accel')" onmouseup="stopKey('accel')">
+      <span style="font-size:18px">▲</span>
+      <span>RACE</span>
+    </button>
+    <button class="ctrl-btn btn-brake" id="btnBrake" ontouchstart="startKey('brake')" ontouchend="stopKey('brake')" onmousedown="startKey('brake')" onmouseup="stopKey('brake')">
+      <span style="font-size:18px">▼</span>
+      <span>BRAKE</span>
+    </button>
+  </div>
+  <div class="ctrl-group-right">
+    <button class="ctrl-btn btn-steer" id="btnLeft" ontouchstart="startKey('left')" ontouchend="stopKey('left')" onmousedown="startKey('left')" onmouseup="stopKey('left')">◀</button>
+    <button class="ctrl-btn btn-steer" id="btnRight" ontouchstart="startKey('right')" ontouchend="stopKey('right')" onmousedown="startKey('right')" onmouseup="stopKey('right')">▶</button>
+  </div>
+</div>
+
+<!-- Win/Loss Modal -->
+<div id="modalOverlay">
+  <div id="modal">
+    <span class="modal-emoji" id="modalEmoji">🏆</span>
+    <div class="modal-title" id="modalTitle">VICTORY!</div>
+    <div class="modal-subtitle" id="modalSubtitle">You conquered Tokyo's neon streets!</div>
+    <div class="code-wrap">
+      <div>
+        <div class="code-label">Secret Code</div>
+        <div class="code-value" id="secretCode">TOKYO-WIN-77</div>
+      </div>
+      <button id="copyBtn" onclick="copyCode()">
+        <i data-lucide="copy" width="18" height="18"></i>
+      </button>
+    </div>
+    <div class="modal-instruction" id="modalInstruction">
+      📸 Take a screenshot and share with <span>CodeCrafte</span><br>to claim your reward!
+    </div>
+    <button id="playAgainBtn" onclick="restartGame()">🔄 RACE AGAIN</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast">✓ Code copied!</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+//  GLOBALS
+// ─────────────────────────────────────────────────────────────
+let scene, camera, renderer, world;
+let playerMesh, aiMesh, playerBody, aiBody;
+let playerSpeed = 0, aiSpeed = 0;
+let playerAngle = 0, aiAngle = 0;
+let raceStarted = false, raceFinished = false;
+let playerProgress = 0, aiProgress = 0;
+const RACE_LENGTH = 800;
+const AI_BASE_SPEED = 0.12 + Math.random() * 0.08; // randomized 0.12–0.20
+
+const keys = { accel: false, brake: false, left: false, right: false };
+const ACCEL = 0.018, BRAKE = 0.025, MAX_SPEED = 0.38, STEER = 0.035, FRICTION = 0.96;
+
+let buildings = [], neonSigns = [], streetLights = [];
+let finishLine, startLine;
+let clock;
+
+// ─────────────────────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────────────────────
+function init() {
+  // Scene
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x03040c);
+  scene.fog = new THREE.FogExp2(0x03040c, 0.0018);
+
+  // Camera
+  camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1200);
+  camera.position.set(0, 5, -10);
+
+  // Renderer
+  renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('gameCanvas'), antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.2;
+
+  // Physics world
+  world = new CANNON.World();
+  world.gravity.set(0, -20, 0);
+  world.broadphase = new CANNON.NaiveBroadphase();
+
+  clock = new THREE.Clock();
+
+  buildEnvironment();
+  buildCars();
+  buildLighting();
+  startCountdown();
+
+  window.addEventListener('resize', onResize);
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp' || e.key === 'w') keys.accel = true;
+    if (e.key === 'ArrowDown' || e.key === 's') keys.brake = true;
+    if (e.key === 'ArrowLeft' || e.key === 'a') keys.left = true;
+    if (e.key === 'ArrowRight' || e.key === 'd') keys.right = true;
+  });
+  window.addEventListener('keyup', e => {
+    if (e.key === 'ArrowUp' || e.key === 'w') keys.accel = false;
+    if (e.key === 'ArrowDown' || e.key === 's') keys.brake = false;
+    if (e.key === 'ArrowLeft' || e.key === 'a') keys.left = false;
+    if (e.key === 'ArrowRight' || e.key === 'd') keys.right = false;
+  });
+
+  lucide.createIcons();
+  animate();
+}
+
+// ─────────────────────────────────────────────────────────────
+//  ENVIRONMENT
+// ─────────────────────────────────────────────────────────────
+function buildEnvironment() {
+  // Road
+  const roadGeo = new THREE.PlaneGeometry(14, RACE_LENGTH + 80);
+  const roadMat = new THREE.MeshStandardMaterial({
+    color: 0x111118,
+    roughness: 0.85,
+    metalness: 0.1,
+  });
+  const road = new THREE.Mesh(roadGeo, roadMat);
+  road.rotation.x = -Math.PI / 2;
+  road.position.set(0, 0, RACE_LENGTH / 2);
+  road.receiveShadow = true;
+  scene.add(road);
+
+  // Road markings
+  for (let i = 0; i < 60; i++) {
+    const markGeo = new THREE.PlaneGeometry(0.3, 4);
+    const markMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.3 });
+    const mark = new THREE.Mesh(markGeo, markMat);
+    mark.rotation.x = -Math.PI / 2;
+    mark.position.set(0, 0.01, i * 14);
+    scene.add(mark);
+  }
+
+  // Side kerbs
+  [-7, 7].forEach(x => {
+    const kerbGeo = new THREE.BoxGeometry(0.5, 0.15, RACE_LENGTH + 80);
+    const kerbMat = new THREE.MeshStandardMaterial({ color: 0x222230 });
+    const kerb = new THREE.Mesh(kerbGeo, kerbMat);
+    kerb.position.set(x, 0.07, RACE_LENGTH / 2);
+    scene.add(kerb);
+  });
+
+  // Ground (wide)
+  const groundGeo = new THREE.PlaneGeometry(300, RACE_LENGTH + 200);
+  const groundMat = new THREE.MeshStandardMaterial({ color: 0x080810, roughness: 1 });
+  const ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI / 2;
+  ground.position.set(0, -0.01, RACE_LENGTH / 2);
+  scene.add(ground);
+
+  // Sidewalks
+  [-10, 10].forEach(x => {
+    const swGeo = new THREE.PlaneGeometry(6, RACE_LENGTH + 80);
+    const swMat = new THREE.MeshStandardMaterial({ color: 0x0d0d18, roughness: 0.95 });
+    const sw = new THREE.Mesh(swGeo, swMat);
+    sw.rotation.x = -Math.PI / 2;
+    sw.position.set(x, 0.005, RACE_LENGTH / 2);
+    sw.receiveShadow = true;
+    scene.add(sw);
+  });
+
+  buildBuildings();
+  buildStartFinishLines();
+  buildStars();
+}
+
+function buildBuildings() {
+  const neonColors = [0x00f0ff, 0xff2d78, 0xbf00ff, 0xffe100, 0x00ff88];
+  const buildingColors = [0x0a0a1a, 0x080818, 0x0c0c22, 0x060614];
+
+  for (let side of [-1, 1]) {
+    for (let i = 0; i < 55; i++) {
+      const w = 5 + Math.random() * 10;
+      const h = 12 + Math.random() * 50;
+      const d = 8 + Math.random() * 12;
+      const z = i * 16 - 10;
+
+      const bGeo = new THREE.BoxGeometry(w, h, d);
+      const bMat = new THREE.MeshStandardMaterial({
+        color: buildingColors[Math.floor(Math.random() * buildingColors.length)],
+        roughness: 0.7, metalness: 0.3
+      });
+      const building = new THREE.Mesh(bGeo, bMat);
+      building.position.set(side * (16 + Math.random() * 8), h / 2, z);
+      building.castShadow = true;
+      scene.add(building);
+
+      // Window grid glow
+      const winColor = neonColors[Math.floor(Math.random() * neonColors.length)];
+      const winCount = Math.floor(Math.random() * 4) + 2;
+      for (let wr = 0; wr < winCount; wr++) {
+        for (let wc = 0; wc < Math.floor(w / 1.8); wc++) {
+          if (Math.random() > 0.45) continue;
+          const winGeo = new THREE.PlaneGeometry(0.8, 1.2);
+          const winMat = new THREE.MeshStandardMaterial({
+            color: winColor, emissive: winColor, emissiveIntensity: 0.9 + Math.random() * 0.5,
+            transparent: true, opacity: 0.9
+          });
+          const win = new THREE.Mesh(winGeo, winMat);
+          win.position.set(
+            building.position.x - w / 2 + 0.9 + wc * 1.8,
+            (wr + 1) * (h / (winCount + 1)),
+            building.position.z + d / 2 + 0.01
+          );
+          win.rotation.y = side > 0 ? Math.PI : 0;
+          scene.add(win);
+        }
+      }
+
+      // Neon sign on facade
+      if (Math.random() > 0.5) {
+        const signW = 2 + Math.random() * 4;
+        const signH = 0.5 + Math.random() * 0.8;
+        const signGeo = new THREE.BoxGeometry(signW, signH, 0.15);
+        const signColor = neonColors[Math.floor(Math.random() * neonColors.length)];
+        const signMat = new THREE.MeshStandardMaterial({
+          color: signColor, emissive: signColor, emissiveIntensity: 2.5
+        });
+        const sign = new THREE.Mesh(signGeo, signMat);
+        sign.position.set(building.position.x, h * 0.6 + Math.random() * h * 0.2, z + d / 2 + 0.1);
+        scene.add(sign);
+
+        // Glow point light
+        const glow = new THREE.PointLight(signColor, 1.5, 18);
+        glow.position.copy(sign.position);
+        scene.add(glow);
+      }
+    }
+  }
+
+  // Street lights
+  for (let i = 0; i < 55; i++) {
+    [-7.5, 7.5].forEach(x => {
+      if (i % 2 !== (x > 0 ? 0 : 1)) return;
+      const poleGeo = new THREE.CylinderGeometry(0.06, 0.06, 6, 6);
+      const poleMat = new THREE.MeshStandardMaterial({ color: 0x333355, metalness: 0.9 });
+      const pole = new THREE.Mesh(poleGeo, poleMat);
+      pole.position.set(x, 3, i * 16);
+      scene.add(pole);
+
+      const headGeo = new THREE.BoxGeometry(0.3, 0.15, 1.5);
+      const headMat = new THREE.MeshStandardMaterial({ color: 0xaaaacc, emissive: 0xffeebb, emissiveIntensity: 1 });
+      const head = new THREE.Mesh(headGeo, headMat);
+      head.position.set(x, 6.08, i * 16);
+      scene.add(head);
+
+      const sl = new THREE.SpotLight(0xffeebb, 1.2, 22, Math.PI / 5, 0.3);
+      sl.position.set(x, 6, i * 16);
+      sl.target.position.set(0, 0, i * 16);
+      scene.add(sl); scene.add(sl.target);
+    });
+  }
+}
+
+function buildStartFinishLines() {
+  // Start line
+  const startGeo = new THREE.PlaneGeometry(12, 1.2);
+  const startMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0x00f0ff, emissiveIntensity: 1.5 });
+  startLine = new THREE.Mesh(startGeo, startMat);
+  startLine.rotation.x = -Math.PI / 2;
+  startLine.position.set(0, 0.02, 5);
+  scene.add(startLine);
+
+  // Finish line — checkered
+  const fMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xff2d78, emissiveIntensity: 2 });
+  const fGeo = new THREE.PlaneGeometry(12, 2);
+  finishLine = new THREE.Mesh(fGeo, fMat);
+  finishLine.rotation.x = -Math.PI / 2;
+  finishLine.position.set(0, 0.02, RACE_LENGTH - 5);
+  scene.add(finishLine);
+
+  // Finish arch
+  const archColor = 0xff2d78;
+  ['left', 'right'].forEach(s => {
+    const pillarGeo = new THREE.CylinderGeometry(0.3, 0.3, 10, 8);
+    const pillarMat = new THREE.MeshStandardMaterial({ color: archColor, emissive: archColor, emissiveIntensity: 1.5 });
+    const pillar = new THREE.Mesh(pillarGeo, pillarMat);
+    pillar.position.set(s === 'left' ? -6 : 6, 5, RACE_LENGTH - 5);
+    scene.add(pillar);
+  });
+  const beamGeo = new THREE.BoxGeometry(13, 0.5, 0.5);
+  const beamMat = new THREE.MeshStandardMaterial({ color: archColor, emissive: archColor, emissiveIntensity: 2 });
+  const beam = new THREE.Mesh(beamGeo, beamMat);
+  beam.position.set(0, 10, RACE_LENGTH - 5);
+  scene.add(beam);
+
+  const finishLight = new THREE.PointLight(0xff2d78, 3, 30);
+  finishLight.position.set(0, 10, RACE_LENGTH - 5);
+  scene.add(finishLight);
+}
+
+function buildStars() {
+  const starGeo = new THREE.BufferGeometry();
+  const starCount = 1200;
+  const positions = new Float32Array(starCount * 3);
+  for (let i = 0; i < starCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 600;
+    positions[i * 3 + 1] = 30 + Math.random() * 150;
+    positions[i * 3 + 2] = Math.random() * RACE_LENGTH;
+  }
+  starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const starMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.4, transparent: true, opacity: 0.8 });
+  scene.add(new THREE.Points(starGeo, starMat));
+}
+
+// ─────────────────────────────────────────────────────────────
+//  CARS
+// ─────────────────────────────────────────────────────────────
+function buildCarMesh(color, emissive) {
+  const group = new THREE.Group();
+
+  // Body
+  const bodyGeo = new THREE.BoxGeometry(2, 0.7, 4.2);
+  const bodyMat = new THREE.MeshStandardMaterial({ color, roughness: 0.2, metalness: 0.8 });
+  const body = new THREE.Mesh(bodyGeo, bodyMat);
+  body.position.y = 0.4;
+  body.castShadow = true;
+  group.add(body);
+
+  // Cabin
+  const cabinGeo = new THREE.BoxGeometry(1.5, 0.6, 2);
+  const cabinMat = new THREE.MeshStandardMaterial({ color: 0x112233, roughness: 0.1, metalness: 0.3, transparent: true, opacity: 0.85 });
+  const cabin = new THREE.Mesh(cabinGeo, cabinMat);
+  cabin.position.set(0, 0.95, -0.1);
+  group.add(cabin);
+
+  // Neon underglow
+  const underMat = new THREE.MeshStandardMaterial({ color: emissive, emissive: emissive, emissiveIntensity: 3 });
+  const underGeo = new THREE.BoxGeometry(1.8, 0.05, 3.8);
+  const under = new THREE.Mesh(underGeo, underMat);
+  under.position.y = 0.04;
+  group.add(under);
+
+  // Headlights
+  const hlMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 3 });
+  [[-0.6, 0], [0.6, 0]].forEach(([x]) => {
+    const hl = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.15, 0.1), hlMat);
+    hl.position.set(x, 0.55, 2.1);
+    group.add(hl);
+  });
+
+  // Taillights
+  const tlMat = new THREE.MeshStandardMaterial({ color: emissive, emissive: emissive, emissiveIntensity: 2.5 });
+  [[-0.6], [0.6]].forEach(([x]) => {
+    const tl = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.2, 0.1), tlMat);
+    tl.position.set(x, 0.5, -2.1);
+    group.add(tl);
+  });
+
+  // Wheels
+  const wheelPositions = [[-1.05, 0, 1.3], [1.05, 0, 1.3], [-1.05, 0, -1.3], [1.05, 0, -1.3]];
+  wheelPositions.forEach(([wx, wy, wz]) => {
+    const wGeo = new THREE.CylinderGeometry(0.38, 0.38, 0.28, 12);
+    const wMat = new THREE.MeshStandardMaterial({ color: 0x1a1a2a, roughness: 0.9 });
+    const wheel = new THREE.Mesh(wGeo, wMat);
+    wheel.rotation.z = Math.PI / 2;
+    wheel.position.set(wx, 0, wz);
+    group.add(wheel);
+
+    // Rim
+    const rimGeo = new THREE.CylinderGeometry(0.2, 0.2, 0.3, 8);
+    const rimMat = new THREE.MeshStandardMaterial({ color: 0x888899, metalness: 1, roughness: 0.2 });
+    const rim = new THREE.Mesh(rimGeo, rimMat);
+    rim.rotation.z = Math.PI / 2;
+    rim.position.set(wx, 0, wz);
+    group.add(rim);
+  });
+
+  // Car glow point light
+  const glow = new THREE.PointLight(emissive, 1.5, 8);
+  glow.position.set(0, 0.3, 0);
+  group.add(glow);
+
+  return group;
+}
+
+function buildCars() {
+  playerMesh = buildCarMesh(0x0033ff, 0x00f0ff);
+  playerMesh.position.set(-2, 0, 2);
+  scene.add(playerMesh);
+
+  aiMesh = buildCarMesh(0xcc0000, 0xff2d78);
+  aiMesh.position.set(2, 0, 2);
+  aiMesh.rotation.y = Math.PI; // face forward
+  scene.add(aiMesh);
+}
+
+// ─────────────────────────────────────────────────────────────
+//  LIGHTING
+// ─────────────────────────────────────────────────────────────
+function buildLighting() {
+  scene.add(new THREE.AmbientLight(0x111133, 0.8));
+
+  const moonLight = new THREE.DirectionalLight(0x334488, 0.4);
+  moonLight.position.set(30, 60, -50);
+  moonLight.castShadow = true;
+  scene.add(moonLight);
+
+  // Neon ambient fills
+  const fill1 = new THREE.PointLight(0x00f0ff, 0.6, 100);
+  fill1.position.set(-15, 8, RACE_LENGTH / 2);
+  scene.add(fill1);
+
+  const fill2 = new THREE.PointLight(0xff2d78, 0.6, 100);
+  fill2.position.set(15, 8, RACE_LENGTH / 2);
+  scene.add(fill2);
+}
+
+// ─────────────────────────────────────────────────────────────
+//  COUNTDOWN
+// ─────────────────────────────────────────────────────────────
+function startCountdown() {
+  const el = document.getElementById('countdownText');
+  const seq = ['3', '2', '1', 'GO!'];
+  let i = 0;
+  const show = () => {
+    el.textContent = seq[i];
+    el.className = 'show' + (seq[i] === 'GO!' ? ' go' : '');
+    setTimeout(() => {
+      el.className = '';
+      i++;
+      if (i < seq.length) setTimeout(show, 300);
+      else {
+        raceStarted = true;
+        document.getElementById('raceStatus').textContent = '🏁 RACING';
+        setTimeout(() => { document.getElementById('countdown').style.display = 'none'; }, 400);
+      }
+    }, seq[i] === 'GO!' ? 700 : 800);
+  };
+  setTimeout(show, 500);
+}
+
+// ─────────────────────────────────────────────────────────────
+//  GAME LOOP
+// ─────────────────────────────────────────────────────────────
+function animate() {
+  requestAnimationFrame(animate);
+  const dt = Math.min(clock.getDelta(), 0.05);
+
+  if (raceStarted && !raceFinished) {
+    updatePlayer(dt);
+    updateAI(dt);
+    updateCamera();
+    updateHUD();
+    checkFinish();
+  } else if (!raceStarted) {
+    // Idle camera
+    camera.position.set(
+      Math.sin(Date.now() * 0.0003) * 5,
+      4,
+      playerMesh.position.z - 10
+    );
+    camera.lookAt(playerMesh.position);
+  }
+
+  // Pulse neon finish line
+  if (finishLine) {
+    finishLine.material.emissiveIntensity = 1.5 + Math.sin(Date.now() * 0.006) * 0.5;
+  }
+
+  renderer.render(scene, camera);
+}
+
+function updatePlayer(dt) {
+  if (keys.accel) playerSpeed = Math.min(playerSpeed + ACCEL, MAX_SPEED);
+  else if (keys.brake) playerSpeed = Math.max(playerSpeed - BRAKE, -MAX_SPEED * 0.4);
+  else playerSpeed *= FRICTION;
+
+  if (Math.abs(playerSpeed) > 0.001) {
+    if (keys.left) playerAngle += STEER * (playerSpeed > 0 ? 1 : -1);
+    if (keys.right) playerAngle -= STEER * (playerSpeed > 0 ? 1 : -1);
+  }
+
+  playerMesh.position.x += Math.sin(playerAngle) * playerSpeed;
+  playerMesh.position.z += Math.cos(playerAngle) * playerSpeed;
+  playerMesh.rotation.y = playerAngle;
+
+  // Clamp to road
+  playerMesh.position.x = Math.max(-6, Math.min(6, playerMesh.position.x));
+  playerProgress = Math.max(0, Math.min(1, playerMesh.position.z / RACE_LENGTH));
+}
+
+function updateAI(dt) {
+  // AI drives straight with slight weaving
+  const weave = Math.sin(Date.now() * 0.001) * 0.008;
+  aiSpeed = AI_BASE_SPEED;
+  aiAngle += weave;
+
+  aiMesh.position.x += Math.sin(aiAngle) * aiSpeed;
+  aiMesh.position.z += Math.cos(aiAngle) * aiSpeed;
+  aiMesh.rotation.y = aiAngle;
+  aiMesh.position.x = Math.max(-5, Math.min(5, aiMesh.position.x));
+  aiProgress = Math.max(0, Math.min(1, aiMesh.position.z / RACE_LENGTH));
+}
+
+function updateCamera() {
+  const behind = new THREE.Vector3(
+    Math.sin(playerAngle) * -12,
+    5,
+    Math.cos(playerAngle) * -12
+  );
+  const target = playerMesh.position.clone().add(behind);
+  camera.position.lerp(target, 0.1);
+  const lookAt = playerMesh.position.clone();
+  lookAt.y += 1;
+  camera.lookAt(lookAt);
+}
+
+function updateHUD() {
+  const kmh = Math.round(Math.abs(playerSpeed) * 450);
+  document.getElementById('speedometer').textContent = `⚡ ${kmh} km/h`;
+  document.getElementById('playerBar').style.width = (playerProgress * 100).toFixed(1) + '%';
+  document.getElementById('aiBar').style.width = (aiProgress * 100).toFixed(1) + '%';
+}
+
+function checkFinish() {
+  if (playerMesh.position.z >= RACE_LENGTH - 6) {
+    raceFinished = true;
+    triggerFinish(true);
+  } else if (aiMesh.position.z >= RACE_LENGTH - 6) {
+    raceFinished = true;
+    triggerFinish(false);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+//  FINISH
+// ─────────────────────────────────────────────────────────────
+const WIN_CODES = ['TOKYO-WIN-77', 'NEON-ACE-88', 'DRIFT-KING-99', 'CYBER-RACER-42'];
+const LOSS_CODES = ['RETRY-RACER-01', 'KEEP-DRIFTING-55', 'NEON-TRY-22'];
+
+function triggerFinish(playerWon) {
+  raceStarted = false;
+  const code = playerWon
+    ? WIN_CODES[Math.floor(Math.random() * WIN_CODES.length)]
+    : LOSS_CODES[Math.floor(Math.random() * LOSS_CODES.length)];
+
+  document.getElementById('secretCode').textContent = code;
+  document.getElementById('raceStatus').textContent = playerWon ? '🏆 YOU WIN!' : '💀 AI WINS';
+
+  const overlay = document.getElementById('modalOverlay');
+  const modal = document.getElementById('modal');
+
+  if (playerWon) {
+    document.getElementById('modalEmoji').textContent = '🏆';
+    document.getElementById('modalTitle').textContent = 'VICTORY!';
+    document.getElementById('modalSubtitle').textContent = "You conquered Tokyo's neon streets!";
+    modal.classList.remove('modal-loss');
+    if (typeof onGameWin === 'function') onGameWin(code);
+  } else {
+    document.getElementById('modalEmoji').textContent = '💀';
+    document.getElementById('modalTitle').textContent = 'SO CLOSE!';
+    document.getElementById('modalSubtitle').textContent = 'The AI was just a bit faster this time!';
+    modal.classList.add('modal-loss');
+  }
+
+  setTimeout(() => overlay.classList.add('open'), 800);
+}
+
+// ─────────────────────────────────────────────────────────────
+//  UI UTILS
+// ─────────────────────────────────────────────────────────────
+function startKey(k) { keys[k] = true; document.getElementById('btn' + k.charAt(0).toUpperCase() + k.slice(1))?.classList.add('active'); }
+function stopKey(k) { keys[k] = false; document.getElementById('btn' + k.charAt(0).toUpperCase() + k.slice(1))?.classList.remove('active'); }
+
+function copyCode() {
+  const code = document.getElementById('secretCode').textContent;
+  navigator.clipboard.writeText(code).catch(() => {});
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+function restartGame() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  playerMesh.position.set(-2, 0, 2);
+  aiMesh.position.set(2, 0, 2);
+  playerSpeed = 0; aiSpeed = 0;
+  playerAngle = 0; aiAngle = 0;
+  playerProgress = 0; aiProgress = 0;
+  raceFinished = false; raceStarted = false;
+  document.getElementById('raceStatus').textContent = '🏁 GET READY';
+  document.getElementById('playerBar').style.width = '0%';
+  document.getElementById('aiBar').style.width = '0%';
+  document.getElementById('countdown').style.display = '';
+  startCountdown();
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+    document.getElementById('fullscreenBtn').innerHTML = '<i data-lucide="minimize-2" width="14" height="14"></i> EXIT FULL';
+  } else {
+    document.exitFullscreen();
+    document.getElementById('fullscreenBtn').innerHTML = '<i data-lucide="maximize-2" width="14" height="14"></i> FULL SCREEN';
+  }
+  setTimeout(() => lucide.createIcons(), 100);
+}
+
+function onResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+// EmailJS hook placeholder
+function onGameWin(code) {
+  console.log('[CodeCrafte] Player won! Code:', code);
+  // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', { code }) ...
+}
+
+// ─────────────────────────────────────────────────────────────
+//  BOOT
+// ─────────────────────────────────────────────────────────────
+window.addEventListener('load', init);
+</script>
+</body>
+</html>

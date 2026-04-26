@@ -272,19 +272,7 @@
         object-fit: cover;
       }
 
-      /* Floating Badge for Card */
-      .floating-pop {
-        position: absolute;
-        top: -20px;
-        right: -10px;
-        background: #fff;
-        padding: 8px 15px;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        font-size: 11px;
-        font-weight: 800;
-      }
-
+      
       /* Responsive */
       @media (max-width: 900px) {
         .visual-grid {
@@ -330,26 +318,7 @@
         animation: floatVertical 4s infinite ease-in-out;
       }
 
-      /* User Info Style inside box */
-      .user-avatar {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: linear-gradient(45deg, var(--primary), #7d33ff);
-        overflow: hidden;
-      }
-
-      .user-info h5 {
-        color: var(--black);
-        font-size: 14px;
-        font-weight: 800;
-      }
-
-      .user-info p {
-        color: #666;
-        font-size: 11px;
-        margin: 0;
-      }
+      
 
       /* Floating Animation */
       @keyframes floatVertical {
@@ -2232,3 +2201,118 @@
 
 }
 
+/*aiiiiiiiiiiiiiiii*/
+
+/* --- FLOATING ACTION MENU POSITIONING --- */
+.floating-action-menu {
+    position: fixed;
+    bottom: 30px; /* Laptop/Desktop mein bottom right */
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Dono buttons ke darmiyan fasla */
+    z-index: 9999;
+}
+
+/* Mobile par usko Thumb Nav se upar karna */
+@media (max-width: 768px) {
+    .floating-action-menu {
+        bottom: 110px; /* Tere bottom nav se theek upar */
+        right: 20px;
+    }
+}
+
+/* --- BUTTON CONTAINERS & TOOLTIPS --- */
+.fab-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Tooltip left, button right */
+}
+
+/* Tooltip (Popover) Styling */
+.fab-tooltip {
+    position: absolute;
+    right: 75px; /* Button ke left par show hoga */
+    background: rgba(15, 15, 15, 0.95);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: sans-serif;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(15px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Tooltip ka teer (Triangle) */
+.fab-tooltip::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(15, 15, 15, 0.95);
+}
+
+/* Hover effect - Mouse lane par tooltip dikhega */
+.fab-container:hover .fab-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* --- THE BUTTONS STYLING --- */
+.fab-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+     transition: transform 0.3s ease;
+}
+
+.fab-btn:hover {
+    transform: scale(1.1);
+}
+
+/* WhatsApp Button Vibe */
+.whatsapp-fab {
+    background-color: #25D366;
+    color: white;
+}
+
+/* AI Button (CC Logo Vibe) */
+.ai-fab {
+    background-color: #ffffff; /* CC logo black hai, is liye base white rakhi */
+    border: 0.5px solid #287ad1;
+    position: relative;
+}
+
+/* AI Logo Sizing */
+.ai-fab-logo {
+    width: 40px; 
+    height: 40px;
+    object-fit: contain;
+}
+
+/* AI Button Glow Animation (Acha lagta hai AI ke sath) */
+.ai-fab {
+    animation: blue-glow 3s infinite;
+}
+
+@keyframes blue-glow {
+    0% { box-shadow: 0 0 0 0 rgba(0, 112, 243, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 112, 243, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 112, 243, 0); }
+}

@@ -74,6 +74,8 @@
   <body>
    <!--hero sectionnnnnnnnnnnnnnnnnn-->
  <body>
+
+  
     <div class="bg-decor">
       <div class="dot-path"></div>
       <div class="float-icon" style="top: 20%; right: 15%">🚀</div>
@@ -88,7 +90,7 @@
         <a href="./components/Story.html" aria-label="story">Our Story</a>
         <a href="./components/Portfolio.html" aria-label="porftolio">Portfolio</a>
     </nav>
-    <a href="./components/contact.html" style="text-decoration: none;"><button class="nav-btn" style="width: 140px; height:40px;" aria-label="contact">Contact Us</button></a>
+    <a href="./components/Game.html" style="text-decoration: none;"><button class="nav-btn" style="width: 140px; height:40px;" aria-label="contact">Contact Us</button></a>
 </header>
 
 <nav class="bottom-nav" id="thumbNav">
@@ -276,8 +278,8 @@ window.addEventListener('scroll', () => {
      </a>
 
       <!--bintoooooooooooooo-->
-      <div class="cc-ultra-visual-grid">
-  <div class="cc-ultra-card cc-ultra-business-premium" >
+     <div class="cc-ultra-visual-grid">
+  <div class="cc-ultra-card cc-ultra-business-premium">
     <div class="cc-ultra-shiny-sweep"></div>
     <div class="cc-ultra-card-inner">
       <span class="cc-ultra-badge-white">Premium Service</span>
@@ -291,17 +293,20 @@ window.addEventListener('scroll', () => {
     </div>
   </div>
 
-  <div class="cc-ultra-card cc-ultra-video-card">
-    <div class="cc-ultra-video-container">
-      <video autoplay muted loop playsinline class="cc-ultra-video-bg" aria-hidden="true" tabindex="-1">
-        <source src="./images/logo.mp4" type="video/mp4" />
-      </video>
-      <div class="cc-ultra-video-overlay">
-        <div class="cc-ultra-tag-glass">AI VISION</div>
-        <div class="cc-ultra-video-info">
-          <h3>Visual Stories</h3>
-          <p>Immersive AI experiences.</p>
-        </div>
+  <div class="cc-ultra-card cc-ultra-stats-card">
+    <div class="cc-ultra-stats-inner">
+      <div class="cc-ultra-tag-glass">LIVE METRICS</div>
+      
+      <div class="cc-stats-visual">
+        <div class="cc-bar cc-bar-1"></div>
+        <div class="cc-bar cc-bar-2"></div>
+        <div class="cc-bar cc-bar-3"></div>
+        <div class="cc-bar cc-bar-4"></div>
+      </div>
+
+      <div class="cc-ultra-stats-info">
+        <h3>10x Scaling</h3>
+        <p>AI-driven performance.</p>
       </div>
     </div>
   </div>
@@ -325,7 +330,7 @@ window.addEventListener('scroll', () => {
   /* --- UNIQUE CONTAINER LOGIC --- */
   .cc-ultra-visual-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr 0.8fr;
+    grid-template-columns: 1.2fr 1fr 0.8fr; /* Desktop Grid */
     gap: 20px;
     max-width: 1200px;
     margin: 40px auto;
@@ -353,16 +358,9 @@ window.addEventListener('scroll', () => {
   }
   .cc-ultra-shiny-sweep {
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba(111, 111, 111, 0.4),
-      transparent
-    );
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, transparent, rgba(111, 111, 111, 0.4), transparent);
     transform: skewX(-25deg);
     animation: cc-ultra-sweep-anim 10s infinite ease-in-out;
   }
@@ -373,155 +371,123 @@ window.addEventListener('scroll', () => {
   }
 
   .cc-ultra-badge-white {
-    background: #fff;
-    color: #000;
-    padding: 4px 12px;
-    border-radius: 50px;
-    font-size: 11px;
-    font-weight: 800;
-    display: inline-block;
-    margin-bottom: 15px;
+    background: #fff; color: #000;
+    padding: 4px 12px; border-radius: 50px;
+    font-size: 11px; font-weight: 800;
+    display: inline-block; margin-bottom: 15px;
   }
   .cc-ultra-card-h2 {
-    font-size: 30px;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 10px;
-    color: #000;
+    font-size: 30px; font-weight: 900;
+    line-height: 1.1; margin-bottom: 10px; color: #000;
   }
   .cc-ultra-card-p {
-    font-size: 15px;
-    color: #444;
-    margin-bottom: 25px;
-    line-height: 1.5;
+    font-size: 15px; color: #444; margin-bottom: 25px; line-height: 1.5;
   }
   .cc-ultra-arrow-btn {
-    text-decoration: none;
-    color: #000;
-    font-weight: 900;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    text-decoration: none; color: #000; font-weight: 900;
+    display: flex; align-items: center; gap: 10px;
   }
   .cc-ultra-circle-icon {
-    background: #000;
-    color: #fff;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+    background: #000; color: #fff; width: 35px; height: 35px;
+    display: flex; align-items: center; justify-content: center; border-radius: 50%;
   }
 
-  /* --- CARD 2: VIDEO --- */
-  .cc-ultra-video-container {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+  /* --- CARD 2: NEW ANIMATED STATS CARD --- */
+  .cc-ultra-stats-card {
+    background: linear-gradient(135deg, rgba(0, 114, 255, 0.05), rgba(138, 43, 226, 0.05));
+    padding: 30px;
   }
-  .cc-ultra-video-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
-    background: none;
-  }
-  .cc-ultra-video-overlay {
-    position: absolute;
-    inset: 0;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 2;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0));
-    color: #000;
+  .cc-ultra-stats-inner {
+    display: flex; flex-direction: column; justify-content: space-between; height: 100%;
   }
   .cc-ultra-tag-glass {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 5px 12px;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 10px;
-    width: fit-content;
+    background: #000; color: #fff;
+    padding: 5px 12px; border-radius: 50px;
+    font-size: 10px; font-weight: bold; width: fit-content;
   }
-  .cc-ultra-video-info h3 { color: #fff; font-size: 22px; margin: 0; }
-  .cc-ultra-video-info p { color: rgba(255, 255, 255, 0.8); font-size: 13px; margin: 5px 0 0; }
+  /* Bouncing Bars Animation */
+  .cc-stats-visual {
+    display: flex; align-items: flex-end; gap: 8px; 
+    height: 120px; margin: 20px 0;
+  }
+  .cc-bar {
+    flex: 1; background: linear-gradient(to top, #0072FF, #8A2BE2);
+    border-radius: 6px 6px 0 0;
+    animation: bounce-bar 1.5s infinite alternate ease-in-out;
+  }
+  .cc-bar-1 { height: 40%; animation-delay: 0s; }
+  .cc-bar-2 { height: 70%; animation-delay: 0.2s; }
+  .cc-bar-3 { height: 50%; animation-delay: 0.4s; }
+  .cc-bar-4 { height: 90%; animation-delay: 0.6s; }
 
-  /* --- CARD 3: DEEP BLUR --- */
+  @keyframes bounce-bar {
+    0% { transform: scaleY(0.8); transform-origin: bottom; }
+    100% { transform: scaleY(1.05); transform-origin: bottom; }
+  }
+  .cc-ultra-stats-info h3 { font-size: 22px; margin: 0; color: #000; font-weight: 900;}
+  .cc-ultra-stats-info p { font-size: 13px; margin: 5px 0 0; color: #444; }
+
+  /* --- CARD 3: DEEP BLUR OFFER --- */
   .cc-ultra-glass-offer {
     padding: 35px;
     justify-content: center;
   }
   .cc-ultra-label-blue {
-    color: #0a4dd4;
-    font-weight: 800;
-    font-size: 11px;
-    text-transform: uppercase;
+    color: #0a4dd4; font-weight: 800; font-size: 11px; text-transform: uppercase;
   }
   .cc-ultra-offer-h3 {
-    font-size: 24px;
-    font-weight: 900;
-    margin: 10px 0;
+    font-size: 24px; font-weight: 900; margin: 10px 0; color: #000;
   }
   .cc-ultra-offer-p {
-    font-size: 13px;
-    opacity: 0.7;
-    line-height: 1.4;
+    font-size: 13px; opacity: 0.7; line-height: 1.4; color: #000;
   }
   .cc-ultra-price-tag {
-    margin-top: 20px;
-    font-weight: 900;
-    color: #0a4dd4;
-    font-size: 18px;
+    margin-top: 20px; font-weight: 900; color: #0a4dd4; font-size: 18px;
   }
 
-  /* --- MOBILE UNIQUE GRID --- */
+  /* --- MOBILE RESPONSIVE GRID --- */
   @media (max-width: 850px) {
     .cc-ultra-visual-grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr; /* True 2-Grid System */
       gap: 12px;
     }
     .cc-ultra-card {
-      min-height: 300px;
+      min-height: 250px; /* Reduced height for better mobile view */
       border-radius: 24px;
     }
-    .cc-ultra-business-premium {  grid-column: span 2;
-      padding: 30px;
-      text-align: center;
-      min-height: auto;}
-    .cc-ultra-video-card { grid-column: span 1; min-height: 300px; display: none; }
-    .cc-ultra-glass-offer {
+    /* Pehla card puri line cover karega */
+    .cc-ultra-business-premium { 
       grid-column: span 2;
       padding: 30px;
       text-align: center;
       min-height: auto;
+      align-items: center;
     }
-    .cc-ultra-card-h2 { font-size: 18px; color: #0070f3;}
+    /* Dusra aur Teesra card aamne-saamne honge */
+    .cc-ultra-stats-card { 
+      grid-column: span 1; 
+      padding: 20px;
+    }
+    .cc-ultra-glass-offer {
+      grid-column: span 1; 
+      padding: 20px;
+      text-align: left;
+      justify-content: space-between;
+    }
+    
+    /* Tere Custom Text Changes for Mobile */
+    .cc-ultra-card-h2 { font-size: 18px; color: #0070f3; }
     .cc-ultra-card-p { font-size: 12px; }
-    .cc-ultra-video-info h3 { font-size: 18px; }
-    .cc-ultra-offer-h3 { font-size: 20px; }
+    .cc-ultra-stats-info h3 { font-size: 16px; }
+    .cc-ultra-stats-info p { font-size: 11px; }
+    .cc-ultra-offer-h3 { font-size: 16px; }
+    .cc-ultra-offer-p { font-size: 11px; }
+    .cc-ultra-price-tag { font-size: 14px; }
+    .cc-stats-visual { height: 70px; margin: 10px 0; }
   }
 </style>
 
-      <div class="floating-glass-box">
-        <div class="user-avatar">
-          <img
-            src="https://api.dicebear.com/9.x/bottts/svg?seed=fliex"
-            alt="user"
-          />
-        </div>
-        <div class="user-info">
-          <h5>Crafte Together ?</h5>
-          <p></p>
-        </div>
-        <div style="margin-left: auto; color: #22c55e">
-          <i data-lucide="check-circle-2" style="width: 18px"></i>
-        </div>
-      </div>
+      
     </section>
 
     <script>
@@ -984,221 +950,236 @@ window.addEventListener('scroll', () => {
       createBoard(true);
     </script>
 
-    <!--PROCESS-->
-    <section class="cr-reviews-sec">
-      <div class="cr-header">
-        <div class="cr-title">
-          <p style="color: rgb(28, 28, 201); font-weight: 800">FEEDBACK</p>
-          <h2>Kind Words <br />From Partners.</h2>
-        </div>
-        <button class="cr-btn" onclick="openModal()">+ LEAVE REVIEW</button>
-      </div>
-
-      <div class="cr-review-grid" id="reviewGrid">
-        <div class="cr-card">
-          <h2>Global Tech Inc.</h2>
-          <p>
-            "The engineering standards at CodeCrafte are unmatched. They
-            delivered our V2 ahead of schedule."
-          </p>
-        </div>
-        <div class="cr-card">
-          <h2>Urban Design</h2>
-          <p>
-            "Pixels polished to perfection. Their minimalist approach changed
-            our brand identity."
-          </p>
-        </div>
-      </div>
-
-      <div class="cr-dots" id="dotsContainer">
-        <div class="cr-dot active"></div>
-        <div class="cr-dot"></div>
-      </div>
-
-      <div class="cr-modal" id="reviewModal">
-        <div class="cr-form-box">
-          <h3 style="margin-bottom: 20px; font-weight: 900">Drop a Review</h3>
-          <input type="text" id="bizName" placeholder="Business Name" />
-          <textarea
-            id="bizReview"
-            rows="4"
-            placeholder="Your Experience..."
-          ></textarea>
-          <div style="display: flex; gap: 10px">
-            <button class="cr-btn" style="flex: 1" onclick="addReview()">
-              SUBMIT
-            </button>
-            <button
-              class="cr-btn"
-              style="background: #eee; color: #000; flex: 1"
-              onclick="closeModal()"
-            >
-              CANCEL
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <script>
-      const modal = document.getElementById("reviewModal");
-      const grid = document.getElementById("reviewGrid");
-
-      // 1. Load reviews from LocalStorage on Startup
-      window.onload = () => {
-        const savedReviews =
-          JSON.parse(localStorage.getItem("cc_reviews")) || [];
-        savedReviews.forEach((rev) => createReviewCard(rev.name, rev.text));
-        updateDots();
-      };
-
-      function openModal() {
-        modal.style.display = "flex";
-      }
-      function closeModal() {
-        modal.style.display = "none";
-      }
-
-      function addReview() {
-        const name = document.getElementById("bizName").value;
-        const text = document.getElementById("bizReview").value;
-
-        if (name && text) {
-          // Save to UI
-          createReviewCard(name, text);
-
-          // Save to LocalStorage
-          const savedReviews =
-            JSON.parse(localStorage.getItem("cc_reviews")) || [];
-          savedReviews.push({ name, text });
-          localStorage.setItem("cc_reviews", JSON.stringify(savedReviews));
-
-          // Reset & Close
-          document.getElementById("bizName").value = "";
-          document.getElementById("bizReview").value = "";
-          closeModal();
-          updateDots();
-        } else {
-          alert("Bhai, dono fields bharna lazmi hain!");
-        }
-      }
-
-      function createReviewCard(name, text) {
-        const card = document.createElement("div");
-        card.className = "cr-card";
-        card.innerHTML = `<h4>${name}</h4><p>"${text}"</p>`;
-        grid.appendChild(card);
-      }
-
-      function updateDots() {
-        const dotsCount = grid.children.length;
-        const container = document.getElementById("dotsContainer");
-        container.innerHTML = "";
-        for (let i = 0; i < dotsCount; i++) {
-          const dot = document.createElement("div");
-          dot.className = `cr-dot ${i === 0 ? "active" : ""}`;
-          container.appendChild(dot);
-        }
-      }
-    </script>
+    
 
     <!--Pulse-->
 
-    <section class="pulse-section">
-      <canvas id="dotCanvas"></canvas>
+    <section class="ai-hero-section">
+  
+  <img src="./images/logo1.png" alt="AI Background" class="ai-bg-logo" />
 
-      <div class="pulse-content">
-        <h2 class="reveal-text">WE CODE THE <br />FUTURE OF DIGITAL.</h2>
-      </div>
-    </section>
-    <script>
-      const canvas = document.getElementById("dotCanvas");
-      const ctx = canvas.getContext("2d");
-      let dots = [];
-      const spacing = 30; // Dots ke darmiyan gap
+  <div class="ai-content">
+    
+    <h2 class="ai-animate-load ai-heading">
+      How can I assist you today? <br /> <span class="ai-text-gradient"> to Grow Your Business</span> ✨
+    </h2>
+    <p class="ai-subtext reveal-fade">
+</p>
 
-      function initCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        dots = [];
-        for (let x = 0; x < canvas.width; x += spacing) {
-          for (let y = 0; y < canvas.height; y += spacing) {
-            dots.push({ x, y, baseSize: 1.5 });
-          }
+    <a href="https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/04/25/18/20260425181341-XNV4JR7G.json" class="ai-search-bar reveal-fade">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <span class="search-placeholder">Ask AI "How to get more clients?"...</span>
+      <div class="search-btn-inner">Search</div>
+    </a>
+
+    <div class="ai-suggestions reveal-fade">
+      <span class="ai-chip">How much does a website cost?</span>
+      <span class="ai-chip">Help me rank on Google</span>
+      <span class="ai-chip">What services do you offer?</span>
+      <span class="ai-chip">I need more customers</span>
+    </div>
+
+    <a href="https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/04/25/18/20260425181341-XNV4JR7G.json" class="ai-gradient-btn reveal-fade">
+      Open Full AI Chat 
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+
+  </div>
+</section>
+
+<style>
+  /* --- SECTION STRUCTURE --- */
+  .ai-hero-section {
+    position: relative;
+    min-height: 85vh; /* Thora height adjust kiya hai taake clean lagay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #fafafa; /* Clean white background */
+    padding: 20px;
+  }
+
+  /* --- BLURRED LOGO BACKGROUND --- */
+  .ai-bg-logo {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    opacity: 0.15; /* Halka sa show hoga */
+    filter: blur(2px); /* Deep blur taake text clear rahay */
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* --- CONTENT STYLING --- */
+  .ai-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ai-heading {
+    font-size: 52px;
+    font-weight: 900;
+    color: #111;
+    line-height: 1.1;
+    margin-bottom: 15px;
+  }
+
+  .ai-text-gradient {
+    background: linear-gradient(135deg, #0072FF, #8A2BE2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .ai-subtext {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 40px;
+    max-width: 600px;
+  }
+
+  /* --- SEARCH BAR --- */
+  .ai-search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 650px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    padding: 8px 8px 8px 24px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 25px;
+  }
+
+  .ai-search-bar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 112, 243, 0.15);
+  }
+
+  .search-icon { color: #888; margin-right: 15px; }
+  
+  .search-placeholder {
+    flex: 1; color: #888; font-size: 16px;
+    text-align: left; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .search-btn-inner {
+    background: #111; color: #fff;
+    padding: 12px 24px; border-radius: 50px;
+    font-weight: 700; font-size: 14px;
+  }
+
+  /* --- COMMON QUESTIONS (CHIPS) --- */
+  .ai-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .ai-chip {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #333;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+    text-align: center;
+  }
+
+  .ai-chip:hover {
+    background: #f0f0f0; border-color: #ccc;
+    transform: translateY(-2px);
+  }
+
+  /* --- MAIN GRADIENT BUTTON --- */
+  .ai-gradient-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #0072FF, #8A2BE2);
+    color: #fff; text-decoration: none;
+    padding: 16px 32px; border-radius: 50px;
+    font-size: 18px; font-weight: 800;
+    box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+    transition: 0.3s;
+  }
+
+  .ai-gradient-btn:hover {
+    transform: scale(1.05); box-shadow: 0 15px 25px rgba(138, 43, 226, 0.5);
+  }
+
+  /* --- SCROLL ANIMATIONS --- */
+  .reveal-text, .reveal-fade {
+    opacity: 0; transform: translateY(20px);
+    transition: all 0.8s ease-out;
+  }
+  .ai-subtext.active { transition-delay: 0.1s; }
+  .ai-search-bar.active { transition-delay: 0.2s; }
+  .ai-suggestions.active { transition-delay: 0.3s; }
+  .ai-gradient-btn.active { transition-delay: 0.4s; }
+  
+  .reveal-text.active, .reveal-fade.active {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* --- MOBILE RESPONSIVE (THE 2-GRID MAGIC) --- */
+  @media (max-width: 768px) {
+    .ai-heading { font-size: 32px; }
+    .ai-subtext { font-size: 14px; padding: 0 10px; }
+    .ai-bg-logo { width: 350px; } /* Mobile par logo chota kiya */
+    
+    .ai-search-bar { padding: 6px 6px 6px 16px; margin-bottom: 20px;}
+    .search-placeholder { font-size: 13px; }
+    .search-btn-inner { padding: 10px 18px; font-size: 13px; }
+    
+    /* Yahan mobile ke liye perfect 2 Grid system banaya hai */
+    .ai-suggestions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Exactly 2 columns */
+      gap: 8px;
+    }
+    
+    .ai-chip {
+      font-size: 11px;
+      padding: 10px 8px;
+      border-radius: 12px; /* Mobile par chips chakor (rounded rect) zyada achay lagte hain */
+    }
+
+    .ai-gradient-btn { font-size: 15px; padding: 14px 24px; }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const revealElements = document.querySelectorAll('.reveal-text, .reveal-fade');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
         }
-      }
-
-      let count = 0;
-      function animateDots() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        count += 0.05; // Wave ki speed
-
-        dots.forEach((dot) => {
-          // Wave math (Sine wave logic like 100 TVs working together)
-          const dist = Math.sqrt(dot.x * 0.005 + dot.y * 0.005);
-          const wave = Math.sin(dist + count) * 2;
-
-          // Color transition: Black se White (TV static feel)
-          const brightness = Math.floor((wave + 1) * 127);
-          ctx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`;
-
-          ctx.beginPath();
-
-          // Yahan FIX kiya gaya hai: Dot ka size minus mein nahi jayega
-          const radius = Math.max(0, dot.baseSize + wave);
-          ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
-
-          ctx.fill();
-        });
-        requestAnimationFrame(animateDots);
-      }
-
-      // Scroll detection for Text Blur Reveal
-      const revealText = document.querySelector(".reveal-text");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              revealText.classList.add("active");
-            }
-          });
-        },
-        { threshold: 0.5 },
-      );
-
-      observer.observe(document.querySelector(".pulse-section"));
-
-      window.addEventListener("resize", initCanvas);
-      initCanvas();
-      animateDots();
-
-      const textElement = document.querySelector(".reveal-text");
-
-      // Mouse movement tracking
-      document.addEventListener("mousemove", (e) => {
-        const rect = textElement.getBoundingClientRect();
-
-        // Mouse ki position text ke hisab se nikalna
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // CSS variables update karna
-        textElement.style.setProperty("--mouse-x", `${x}px`);
-        textElement.style.setProperty("--mouse-y", `${y}px`);
       });
+    }, { threshold: 0.1 }); 
 
-      // Mobile/Touch Support (Kyunki mobile par mouse nahi hota)
-      document.addEventListener("touchmove", (e) => {
-        const touch = e.touches[0];
-        const rect = textElement.getBoundingClientRect();
-
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
-
-        textElement.style.setProperty("--mouse-x", `${x}px`);
-        textElement.style.setProperty("--mouse-y", `${y}px`);
-      });
-    </script>
+    revealElements.forEach(el => observer.observe(el));
+  });
+</script>
 
     <!--PROTFOLIOOO-->
     <section class="portfolio-section">
@@ -1942,5 +1923,45 @@ window.addEventListener('scroll', () => {
       lucide.createIcons();
     </script>
  
+    <!--AIII-->
+    <div class="floating-action-menu">
+    <div class="fab-container">
+        <div class="fab-tooltip" id="ai-intro-tooltip">Hi! I'm your AI Expert ✨<br>Ask me anything!</div>
+        <button id="bp-toggle-chat" class="fab-btn ai-fab" aria-label="Ask AI">
+            <img src="./images/logo1.png" alt="CodeCrafte AI" class="ai-fab-logo">
+        </button>
+    </div>
+    <div class="fab-container">
+        <div class="fab-tooltip">Chat on WhatsApp 💬</div>
+        <a href="https://wa.me/923059462051" target="_blank" class="fab-btn whatsapp-fab" aria-label="WhatsApp Us">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </a>
+    </div>
+
+    
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const aiTooltip = document.getElementById('ai-intro-tooltip');
+    
+    // Website khulte hi Tooltip show karein
+    if (aiTooltip) {
+        aiTooltip.style.opacity = '1';
+        aiTooltip.style.transform = 'translateX(0)';
+        
+        // 5 Second baad wapis hide kar dein (phir sirf hover par aayega)
+        setTimeout(() => {
+            aiTooltip.style.opacity = '';
+            aiTooltip.style.transform = '';
+        }, 5000);
+    }
+});
+</script>
+    
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/04/25/18/20260425181340-E2P8GJEL.js" defer></script>
+    
   </body>
 </html>
