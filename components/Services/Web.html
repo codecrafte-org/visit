@@ -223,191 +223,393 @@ body {
     </script>
 
     <!--carddddddddddddddd-->
-<style>
-    /* --- Cyber-Glass Pricing Section --- */
-    .pricing-container {
-        padding: 150px 5% 100px;
-        background: #fff;
-        position: relative;
-        min-height: 100vh;
-        z-index: 10;
-    }
+    <style>
+        /* --- Clean & Standard Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f9fbfd; color: #333; }
 
-    .pricing-header {
-        text-align: left;
-        margin-bottom: 80px;
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+        /* --- Section Container --- */
+        .pricing-section {
+            padding: 80px 20px;
+            max-width: 1250px;
+            margin: 0 auto;
+        }
 
-    .pricing-header h2 {
-        font-size: clamp(2.5rem, 6vw, 4.5rem);
-        font-weight: 900;
-        letter-spacing: -3px;
-        line-height: 1;
-    }
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
 
-    .pricing-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 25px;
-        justify-content: center;
-        max-width: 1300px;
-        margin: 0 auto;
-    }
+        .pricing-header h2 {
+            font-size: 2.8rem;
+            color: #111;
+            font-weight: 800;
+        }
 
-    .glass-card {
-        flex: 1;
-        min-width: 320px;
-        max-width: 400px;
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(0, 112, 243, 0.1);
-        border-radius: 40px;
-        padding: 50px 35px;
-        position: relative;
-        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
+        /* --- 3 Column Grid for Laptop --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Laptop mein 3 ka grid */
+            gap: 25px;
+            align-items: flex-start;
+        }
 
-    /* Floating Animation for Cards */
-    .glass-card:nth-child(odd) { animation: float 6s ease-in-out infinite; }
-    .glass-card:nth-child(even) { animation: float 6s ease-in-out infinite 1s; }
+        /* --- Card Styling (Clean, no AI glow) --- */
+        .price-card {
+            background: #ffffff;
+            border: 1px solid #e0e6ed;
+            border-radius: 12px;
+            padding: 40px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
-    }
+        .price-card:hover {
+            border-color: #0072FF;
+            box-shadow: 0 10px 25px rgba(0, 114, 255, 0.1);
+            transform: translateY(-5px);
+        }
 
-    .glass-card:hover {
-        transform: translateY(-20px) scale(1.02) !important;
-        border-color: var(--blue);
-        box-shadow: 0 40px 100px rgba(0, 112, 243, 0.1);
-    }
+        /* Active/Popular Card */
+        .card-popular {
+            border: 2px solid #0072FF;
+            position: relative;
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px; left: 50%;
+            transform: translateX(-50%);
+            background: #0072FF;
+            color: white;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
 
-    /* Easter Ribbon - Slim & Modern */
-    .easter-ribbon {
-        position: absolute;
-        top: 30px; right: 30px;
-        background: var(--blue);
-        color: white;
-        padding: 5px 15px;
-        border-radius: 100px;
-        font-size: 10px;
-        font-weight: 900;
-        letter-spacing: 1px;
-    }
+        /* Header Info */
+        .plan-name { font-size: 1.4rem; font-weight: 700; color: #111; margin-bottom: 10px; }
+        .plan-price { font-size: 2.5rem; font-weight: 800; color: #111; margin-bottom: 25px; }
+        .plan-price span { font-size: 1rem; color: #666; font-weight: normal; }
 
-    .card-title { font-size: 1.2rem; font-weight: 800; color: #888; text-transform: uppercase; letter-spacing: 2px; }
-    
-    .price-tag { margin: 30px 0; }
-    .price-tag .strike { font-size: 1.2rem; color: #ccc; text-decoration: line-through; display: block; }
-    .price-tag .val { font-size: 3.5rem; font-weight: 900; color: var(--black); letter-spacing: -2px; }
-    .price-tag .val span { font-size: 1.5rem; color: var(--blue); }
+        /* --- Features Comparison List --- */
+        .feature-list {
+            list-style: none;
+            margin-bottom: 30px;
+            flex: 1;
+        }
 
-    .features { list-style: none; margin-bottom: 40px; flex: 1; }
-    .features li {
-        padding: 15px 0;
-        font-size: 0.9rem;
-        color: #444;
-        font-weight: 600;
-        border-bottom: 1px solid rgba(0,0,0,0.03);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .feature-list li {
+            font-size: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #444;
+        }
+        .feature-list li:last-child { border-bottom: none; }
 
-    .features li span { color: var(--blue); font-size: 11px; font-weight: 900; }
+        /* Status Marks (Tick & Cross without heavy icons) */
+        .tick { color: #00b84c; font-weight: bold; margin-right: 8px; }
+        .cross { color: #ccc; font-weight: bold; margin-right: 8px; }
 
-    .glow-btn {
-        width: 100%;
-        padding: 20px;
-        border-radius: 20px;
-        border: none;
-        background: var(--black);
-        color: white;
-        font-weight: 900;
-        font-size: 14px;
-        letter-spacing: 2px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+        /* Strikethrough for disabled features */
+        .disabled-feature {
+            color: #aaa !important;
+            text-decoration: line-through; /* Cut lag gaya */
+        }
 
-    .glass-card:hover .glow-btn {
-        background: var(--blue);
-        box-shadow: 0 15px 30px rgba(0, 112, 243, 0.3);
-    }
+        /* Tags */
+        .tag-inc { font-size: 11px; background: #edf2f7; color: #4a5568; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+        .tag-free { font-size: 11px; background: #e6f8ec; color: #00b84c; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
 
-    /* Blue Glow behind the grid */
-    .section-glow {
-        position: absolute;
-        width: 600px; height: 600px;
-        background: var(--blue);
-        filter: blur(180px);
-        opacity: 0.05;
-        top: 20%; left: 10%;
-        pointer-events: none;
-    }
-</style>
+        /* --- Buttons (Side by Side) --- */
+        .btn-row {
+            display: flex;
+            gap: 10px; /* Aamne samne gap */
+            margin-top: auto;
+        }
 
-<section class="pricing-container">
-    <div class="section-glow"></div>
-    
+        .btn {
+            flex: 1; /* Dono buttons barabar jagah lenge */
+            text-align: center;
+            padding: 12px 5px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-buy { background: #111; color: #fff; border: 1px solid #111; }
+        .btn-buy:hover { background: #333; }
+
+        .btn-discount { background: #fff; color: #0072FF; border: 1px solid #0072FF; }
+        .btn-discount:hover { background: #f0f7ff; }
+
+        /* Active Blue Button */
+        .card-popular .btn-buy { background: #0072FF; border-color: #0072FF; }
+        .card-popular .btn-buy:hover { background: #005bb5; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 900px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+            .btn-row { flex-direction: column; } /* Mobile pe buttons upar neechay theek rehte hain */
+        }
+    </style>
+ 
+<section class="pricing-section">
     <div class="pricing-header">
-        <h2 style="color: var(--blue);">// THE COST</h2>
-        <h2>OF PRECISION.</h2>
+        <h2>Choose Your Plan</h2>
     </div>
 
     <div class="pricing-grid">
-        <div class="glass-card">
-            <div class="easter-ribbon">EASTER: -20%</div>
-            <span class="card-title">Discovery</span>
-            <div class="price-tag">
-                <span class="strike">Rs. 15,000</span>
-                <span class="val">12,000<span>/-</span></span>
-            </div>
-            <ul class="features">
-                <li>Single-Page Arch. <span>INCLUDED</span></li>
-                <li>1Y Hosting <span>FREE</span></li>
-                <li>1Y Domain <span>FREE</span></li>
-                <li>Speed Optimized <span>100%</span></li>
+        
+        <div class="price-card">
+            <div class="plan-name">Starter</div>
+            <div class="plan-price">14,999<span> PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> 5 Pages</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Social Media Integration</span> <span class="tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="tick">✓</span> 1 Year Hosting</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 1 Year Domain</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 1 Month Maintenance</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> WhatsApp Integration</span> <span class="tag-free">FREE</span></li>
+                
+                <li class="disabled-feature"><span><span class="cross">✕</span> AI Integration</span></li>
+                <li class="disabled-feature"><span><span class="cross">✕</span> Business Logo</span></li>
+                <li class="disabled-feature"><span><span class="cross">✕</span> Contact Form</span></li>
             </ul>
-            <button class="glow-btn">INITIALIZE PROJECT</button>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Buy Now</a>
+                <a href="#" class="btn btn-discount">5% Discount</a>
+            </div>
         </div>
 
-        <div class="glass-card" style="border-color: var(--blue);">
-            <span class="card-title" style="color: var(--blue);">Pro-Stack</span>
-            <div class="price-tag">
-                <span class="val">20,000<span>/-</span></span>
-            </div>
-            <ul class="features">
-                <li>Multi-Page (Up to 5) <span>INCLUDED</span></li>
-                <li>1Y High-Speed Hosting <span>FREE</span></li>
-                <li>1Y Domain (.com) <span>FREE</span></li>
-                <li>1M Maintenance <span>FREE</span></li>
+        <div class="price-card card-popular">
+            <div class="popular-badge">MOST POPULAR</div>
+            <div class="plan-name">Business</div>
+            <div class="plan-price">19,999<span> PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> 10 Pages</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Social Media Integration</span> <span class="tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="tick">✓</span> 5 Year Hosting</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 1 Year Domain</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 3 Month Maintenance</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> WhatsApp Integration</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> AI Integration (1 Year)</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Business Logo</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Contact Form (1 Year)</span> <span class="tag-free">FREE</span></li>
             </ul>
-            <button class="glow-btn" style="background: var(--blue);">MOST POPULAR</button>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Buy Now</a>
+                <a href="#" class="btn btn-discount">5% Discount</a>
+            </div>
         </div>
 
-        <div class="glass-card">
-            <span class="card-title">Enterprise</span>
-            <div class="price-tag">
-                <span class="val">30,000<span>/-</span></span>
-            </div>
-            <ul class="features">
-                <li>Full Scale System <span>INCLUDED</span></li>
-                <li>VIP Cloud Hosting <span>FREE</span></li>
-                <li>6M Live Support <span>FREE</span></li>
-                <li>Custom API Integration <span>YES</span></li>
+        <div class="price-card">
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-price">29,999<span> PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> 10+ Pages</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Social Media Integration</span> <span class="tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="tick">✓</span> Lifetime Hosting</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 1 Year Domain</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 9 Month Maintenance</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> WhatsApp Integration</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> AI Integration (5 Year)</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Business Logo</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Contact Form (5+ Year)</span> <span class="tag-free">FREE</span></li>
             </ul>
-            <button class="glow-btn">GO ENTERPRISE</button>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Buy Now</a>
+                <a href="#" class="btn btn-discount">5% Discount</a>
+            </div>
         </div>
+
     </div>
 </section>
 
+ <!--possiblee cardss-->
+
+ <section class="cc-services-section">
+    <div class="cc-services-header">
+        <h2>What Else You Might Need?</h2>
+        <p>Complete your digital presence with our expert solutions.</p>
+    </div>
+
+    <div class="cc-services-grid">
+        
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="bar-chart-2"></i>
+            </div>
+            <h3>UI/UX</h3>
+            <p>Get Your website's UI first. then start  development.</p>
+        </a>
+
+        <a href="./smm.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="megaphone"></i>
+            </div>
+            <h3>Social Media Marketing</h3>
+            <p>Run targeted ads and manage your social profiles to get more sales.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="pen-tool"></i>
+            </div>
+            <h3>Logo & Branding</h3>
+            <p>Stand out with a professional logo, business cards, and brand identity.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="layout"></i>
+            </div>
+            <h3>Custom Web Apps</h3>
+            <p>Upgrade to complex E-commerce stores or custom management portals.</p>
+        </a>
+
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+
+<style>
+    /* --- SECTION STYLING --- */
+    .cc-services-section {
+        padding: 80px 20px;
+        background-color: #ffffff; /* White Background */
+        color: #000000; /* Black Text */
+        max-width: 1200px;
+        margin: 0 auto;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .cc-services-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .cc-services-header h2 {
+        font-size: 36px;
+        font-weight: 900;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
+
+    .cc-services-header p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    /* --- GRID STYLING --- */
+    .cc-services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Desktop par 4 cards ki line */
+        gap:1px;
+    }
+
+    /* --- CARD STYLING (BLACK & WHITE THEME) --- */
+    .cc-service-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 20px;
+        background-color: #fff;
+        border: 1px solid #000; /* Black Border */
+        border-radius: 2px;
+        text-decoration: none; /* Link underline hatane ke liye */
+        color: #000;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    /* Hover Effect: Inverts to Black background with White text */
+    .cc-service-card:hover {
+        background-color: #000;
+        color: #fff;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Icon Setup */
+    .icon-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .icon-wrapper svg {
+        width: 35px;
+        height: 35px;
+        stroke-width: 2px;
+        transition: stroke 0.3s ease;
+    }
+
+    /* Hover par icon ka color bhi white ho jaye */
+    .cc-service-card:hover .icon-wrapper svg {
+        stroke: #ffffff;
+    }
+
+    .cc-service-card h3 {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .cc-service-card p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: inherit; /* Apne parent ka color uthayega hover par */
+        opacity: 0.8;
+    }
+
+    /* --- MOBILE RESPONSIVE (2x2 Grid) --- */
+    @media (max-width: 768px) {
+        .cc-services-grid {
+            /* Mobile par 2 columns banayega (2 cards per row) */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px;
+        }
+
+        .cc-services-header h2 {
+            font-size: 28px;
+        }
+
+        .cc-service-card {
+            padding: 20px 15px;
+        }
+
+        .cc-service-card h3 {
+            font-size: 16px;
+        }
+
+        .cc-service-card p {
+            font-size: 12px;
+        }
+
+        .icon-wrapper svg {
+            width: 25px;
+            height: 25px;
+        }
+    }
+</style>
 
 <!--processsssssssssssssssssssssss-->
 

@@ -259,7 +259,7 @@ window.addEventListener('scroll', () => {
         Solutions for your Business.
       </p>
 
-     <a href="./components/Get_started.html" style="text-decoration: none;">
+     <a href="./sample.html" style="text-decoration: none;">
       <button 
     class="btn-main" 
     style="
@@ -1520,199 +1520,193 @@ window.addEventListener('scroll', () => {
 
     <!--CONTACTTT-->
 
-    <style>
-      /* 1. Global Animation for Border */
-      @keyframes borderRotate {
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      .direct-contact-section {
-        padding: 120px 5%;
-        background: #000; /* Deep Black for max shine */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      /* 2. The Container with Moving Border */
-      .contact-flex-container {
-        position: relative;
-        width: 100%;
-        max-width: 700px;
-        padding: 3px; /* Border ki thickness */
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 24px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      /* Moving Border Background */
-      .contact-flex-container::before {
-        content: "";
-        position: absolute;
-        width: 150%;
-        height: 150%;
-        background: conic-gradient(
-          transparent,
-          transparent,
-          transparent,
-          #0070f3
-        );
-        animation: borderRotate 4s linear infinite;
-      }
-
-      /* Inner Box (Black Card) */
-      .contact-content {
-        position: relative;
-        width: 100%;
-        background: #080808;
-        border-radius: 22px;
-        padding: 60px 40px;
-        z-index: 2;
-        text-align: center;
-      }
-
-      /* 3. Shining Sweep Effect */
-      .contact-content::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.05),
-          transparent
-        );
-        animation: sweep 5s infinite;
-      }
-
-      @keyframes sweep {
-        0% {
-          left: -100%;
-        }
-        30% {
-          left: 100%;
-        }
-        100% {
-          left: 100%;
-        }
-      }
-
-      /* Text Styles */
-      .section-title {
-        font-size: clamp(2.5rem, 8vw, 5rem);
-        font-weight: 900;
-        color: #fff;
-        letter-spacing: -3px;
-        line-height: 1;
-        margin-bottom: 20px;
-        cursor: pointer;
-        transition: 0.2s;
-      }
-
-      .section-desc {
-        color: #555;
-        font-size: 1.2rem;
-        margin-bottom: 40px;
-        cursor: pointer;
-      }
-
-      /* Interactive Buttons */
-      .primary-btn {
-        display: inline-block;
-        background: #fff;
-        color: #000;
-        padding: 18px 45px;
-        border-radius: 12px;
-        text-decoration: none;
-        font-weight: 800;
-        transition: 0.3s;
-        border: 2px solid transparent;
-      }
-
-      .primary-btn:hover {
-        background: transparent;
-        color: #fff;
-        border-color: #fff;
-        transform: translateY(-3px);
-      }
-
-      .secondary-links {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin-top: 30px;
-      }
-
-      .text-link {
-        color: #444;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 15px;
-        cursor: pointer;
-      }
-    </style>
-
-    <section class="direct-contact-section">
-      <div class="contact-flex-container">
-        <div class="contact-content">
-          <h2 class="section-title" onclick="popColor(this)">
-            GET IN <br />
-            TOUCH.
-          </h2>
-          <p class="section-desc" onclick="popColor(this)">
-            Minimalism meets engineering. Click us to see the magic.
-          </p>
-
-          <div class="action-buttons">
-            <a
-              href="https://wa.me/923059462051"
-              target="_blank"
-              class="primary-btn"
-            >
-              MESSAGE ON WHATSAPP
-            </a>
-
-            <div class="secondary-links">
-              <a
-                href="mailto:hello@codecrafte.site"
-                class="text-link"
-                onclick="popColor(this)"
-                >EMAIL</a
-              >
-              <a
-                href="tel:03286658507"
-                class="text-link"
-                onclick="popColor(this)"
-                >BOOK CALL</a
-              >
-            </div>
-          </div>
+    <section class="cc-cta-wrapper">
+    <div class="cc-cta-box">
+        
+        <div class="cc-cta-image-col">
+            <img src="./tel.png" alt="Call Us" class="cc-floating-phone">
         </div>
-      </div>
-    </section>
-    <script>
-      function popColor(el) {
-        // Har click par bilkul naya bright color
-        const hue = Math.floor(Math.random() * 360);
-        const newColor = `hsl(${hue}, 100%, 65%)`;
 
-        el.style.color = newColor;
+        <div class="cc-cta-text-col">
+            <h2 class="cc-cta-h2">Contact Us Now.</h2>
+            <p class="cc-cta-p">Have a project in mind? Let's discuss how we can help you scale your business.</p>
+            
+            <div class="cc-cta-btns-row">
+                <a href="https://wa.me/923286658507" target="_blank" class="cc-cta-btn cc-btn-whatsapp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    WhatsApp
+                </a>
+                
+                <a href="mailto:hello@codecrafte.site" class="cc-cta-btn cc-btn-email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    Email Us
+                </a>
+            </div>
+        </div>
 
-        // Halka sa scale effect bhi de dete hain click par
-        el.style.transform = "scale(1.05)";
-        setTimeout(() => {
-          el.style.transform = "scale(1)";
-        }, 150);
-      }
-    </script>
+    </div>
+</section>
+
+<style>
+    /* --- WRAPPER (Creates space for the overlapping image) --- */
+    .cc-cta-wrapper {
+        width: 100%;
+        padding: 120px 20px; /* Upar neechay space taake image bahar nikal sakay */
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* --- THE WHITE BOX (Reduced Height) --- */
+    .cc-cta-box {
+        background-color: #ffffff;
+        max-width: 1000px;
+        width: 100%;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        padding: 40px 60px;
+        box-shadow: 0 15px 40px rgba(126, 132, 167, 0.08); /* Soft shadow */
+    }
+
+    /* --- LEFT SIDE: IMAGE COLUMN --- */
+    .cc-cta-image-col {
+        flex: 1;
+        position: relative;
+    }
+
+    /* The Image - Made bigger and pushed outside the box */
+    .cc-floating-phone {
+        width: 130%; /* Box se thori bari */
+        max-width: 400px;
+        margin-top: -100px; /* Upar se bahar nikal rahi hai */
+        margin-bottom: -100px; /* Neechay se bahar nikal rahi hai */
+        margin-left: -40px; /* Thora left par push kiya */
+        filter: drop-shadow(0 25px 30px rgba(0,0,0,0.2)); /* 3D Shadow */
+        
+        /* Slow & Gentle Floating */
+        animation: cc-gentle-float 6s ease-in-out infinite; 
+    }
+
+    /* --- RIGHT SIDE: TEXT COLUMN --- */
+    .cc-cta-text-col {
+        flex: 1.2;
+        padding-left: 20px;
+    }
+
+    .cc-cta-h2 {
+        font-size: 48px;
+        font-weight: 900;
+        color: #000;
+        margin-bottom: 10px;
+        letter-spacing: -1px;
+        line-height: 1.1;
+    }
+
+    .cc-cta-p {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 30px;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+
+    /* --- BUTTONS --- */
+    .cc-cta-btns-row {
+        display: flex;
+        gap: 15px;
+    }
+
+    .cc-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    /* WhatsApp Button */
+    .cc-btn-whatsapp {
+        background-color: #25D366;
+        color: #fff;
+        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    }
+    .cc-btn-whatsapp:hover {
+        background-color: #1ebe57;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Email Button */
+    .cc-btn-email {
+        background-color: #111;
+        color: #fff;
+    }
+    .cc-btn-email:hover {
+        background-color: #333;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* --- SLOW FLOATING ANIMATION --- */
+    @keyframes cc-gentle-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); } /* Sirf thora sa upar jayega */
+    }
+
+    /* --- MOBILE RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .cc-cta-wrapper {
+            padding: 80px 15px; /* Mobile par overlap space kam kar di */
+        }
+
+        .cc-cta-box {
+            padding: 25px 15px;
+            gap: 10px;
+        }
+
+        /* Left Image Scale down for mobile but keep overlap */
+        .cc-cta-image-col {
+            flex: 0 0 35%; 
+        }
+
+        .cc-floating-phone {
+            width: 140%; /* Mobile par space cover karne ke liye */
+            max-width: 200px;
+            margin-top: -60px; /* Mobile popup adjustment */
+            margin-bottom: -60px;
+            margin-left: -20px; 
+        }
+
+        /* Right Text adjustments */
+        .cc-cta-text-col {
+            padding-left: 5px;
+        }
+
+        .cc-cta-h2 {
+            font-size: 26px;
+        }
+
+        .cc-cta-p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .cc-cta-btns-row {
+            flex-direction: column; /* Mobile par buttons upar neechay */
+            gap: 10px;
+        }
+
+        .cc-cta-btn {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+</style>
 
     <!--footerrr-->
 

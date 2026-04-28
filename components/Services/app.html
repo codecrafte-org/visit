@@ -206,180 +206,391 @@
 
 <!--pricingggggggggggggggggggggggggg-->
 
+<section class="cc-pricing-section">
+    <div class="cc-pricing-header">
+        <h2>Select Your Plan</h2>
+        <p>Get premium features with high-value free services.</p>
+    </div>
+
+    <div class="cc-pricing-grid">
+        
+        <div class="cc-price-card">
+            <div class="cc-plan-name">Starter</div>
+            <div class="cc-plan-price">19,000<span> PKR</span></div>
+            
+            <ul class="cc-feature-list">
+                <li><span><span class="cc-tick">✓</span> 5 Pages Design</span> <span class="cc-tag-inc">INCLUDED</span></li>
+                <li><span><span class="cc-tick">✓</span> Social Media Links</span> <span class="cc-tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="cc-tick">✓</span> SSL Security Setup</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> WhatsApp Integration</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> 1 Month Maintenance</span> <span class="cc-tag-free">FREE</span></li>
+                
+                
+                <li class="cc-disabled"><span><span class="cc-cross">✕</span> Business Email Setup</span></li>
+                 <li class="cc-disabled"><span><span class="cc-cross">✕</span> Google Search Console Setup</span></li>
+                <li class="cc-disabled"><span><span class="cc-cross">✕</span> Google Analytics</span></li>
+                <li class="cc-disabled"><span><span class="cc-cross">✕</span> AI Integration</span></li>
+            </ul>
+
+            <div class="cc-btn-row">
+                <a href="#" class="cc-btn cc-btn-dark">Buy Now</a>
+                <a href="#" class="cc-btn cc-btn-outline">5% Discount</a>
+            </div>
+        </div>
+
+        <div class="cc-price-card cc-popular-card">
+            <div class="cc-badge">RECOMMENDED</div>
+            <div class="cc-plan-name">Professional</div>
+            <div class="cc-plan-price">24,999<span> PKR</span></div>
+            
+            <ul class="cc-feature-list">
+                <li><span><span class="cc-tick">✓</span> 10 Pages Design</span> <span class="cc-tag-inc">INCLUDED</span></li>
+                <li><span><span class="cc-tick">✓</span> Social Media Links</span> <span class="cc-tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="cc-tick">✓</span> SSL Security Setup</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> WhatsApp Integration</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> Professional Email</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> Google Analytics Setup</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> 3 Months Maintenance</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span>  Google Search Console Setup</span> <span class="cc-tag-free">FREE</span></li>
+                
+                <li class="cc-disabled"><span><span class="cc-cross">✕</span> AI Integration (5 Year)</span></li>
+            </ul>
+
+            <div class="cc-btn-row">
+                <a href="#" class="cc-btn cc-btn-blue">Buy Now</a>
+                <a href="#" class="cc-btn cc-btn-outline">5% Discount</a>
+            </div>
+        </div>
+
+        <div class="cc-price-card">
+            <div class="cc-plan-name">Enterprise</div>
+            <div class="cc-plan-price">44,999<span> PKR</span></div>
+            
+            <ul class="cc-feature-list">
+                <li><span><span class="cc-tick">✓</span> 15+ Pages Design</span> <span class="cc-tag-inc">INCLUDED</span></li>
+                <li><span><span class="cc-tick">✓</span> Social Media Links</span> <span class="cc-tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="cc-tick">✓</span> Premium SSL Security</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> WhatsApp Integration</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> 3 Professional Emails</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> Advanced Google Analytics</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> AI Integration (5 Years)</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span> 1 Year Maintenance</span> <span class="cc-tag-free">FREE</span></li>
+                <li><span><span class="cc-tick">✓</span>  Google Search Console Setup</span> <span class="cc-tag-free">FREE</span></li>
+            </ul>
+
+            <div class="cc-btn-row">
+                <a href="#" class="cc-btn cc-btn-dark">Buy Now</a>
+                <a href="#" class="cc-btn cc-btn-outline">5% Discount</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <style>
-    .app-pricing-clean {
-        padding: 80px 0%;
-        background: #fdfdfd;
-        width: 100%;
-        position: relative;
-        clear: both; /* Taake upar wala section niche na ghuse */
+    /* --- SECTION STYLING --- */
+    .cc-pricing-section {
+        padding: 80px 20px;
+        background-color: #f8fafc;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    .pricing-title {
+    .cc-pricing-header {
         text-align: center;
-        margin-bottom: 5px;
+        margin-bottom: 50px;
     }
 
-    .pricing-title h2 {
-        font-size: clamp(2rem, 5vw, 3rem);
+    .cc-pricing-header h2 {
+        font-size: 38px;
         font-weight: 900;
-        letter-spacing: -2px;
-        color: #000;
+        color: #0f172a;
+        margin-bottom: 10px;
     }
 
-    .pricing-grid-clean {
-        display: flex;
-        flex-wrap: wrap; /* Mobile pe khud ba khud niche move karega */
-        justify-content: center;
+    .cc-pricing-header p {
+        font-size: 16px;
+        color: #64748b;
+    }
+
+    /* --- GRID --- */
+    .cc-pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 30px;
         max-width: 1200px;
         margin: 0 auto;
     }
 
-    .pricing-card-clean {
-        flex: 1;
-        min-width: 300px; /* Mobile compatibility */
-        max-width: 380px;
-        background: #fff;
-        border: 1px solid #eee;
-        border-radius: 30px;
-        padding: 40px;
+    /* --- CARDS --- */
+    .cc-price-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 40px 30px;
         display: flex;
         flex-direction: column;
-        transition: transform 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .pricing-card-clean:hover {
-        transform: translateY(-10px);
-        border-color: #0070f3;
+    .cc-price-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        border-color: #cbd5e1;
     }
 
-    .card-label {
-        font-size: 11px;
-        font-weight: 900;
-        color: #888;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 15px;
-        display: block;
+    .cc-popular-card {
+        border: 2px solid #0072FF;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 114, 255, 0.1);
     }
 
-    .card-price-clean {
-        font-size: 3.5rem;
-        font-weight: 900;
-        color: #000;
-        letter-spacing: -3px;
-        margin-bottom: 25px;
+    .cc-popular-card:hover {
+        border-color: #0072FF;
     }
 
-    .card-price-clean span {
-        font-size: 1.2rem;
-        color: #0070f3;
+    .cc-badge {
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #0072FF;
+        color: white;
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
     }
 
-    .feature-list-clean {
+    /* --- HEADER INFO --- */
+    .cc-plan-name { font-size: 22px; font-weight: 700; color: #334155; margin-bottom: 15px; }
+    .cc-plan-price { font-size: 42px; font-weight: 900; color: #0f172a; margin-bottom: 30px; line-height: 1; }
+    .cc-plan-price span { font-size: 16px; color: #64748b; font-weight: 600; }
+
+    /* --- FEATURES LIST --- */
+    .cc-feature-list {
         list-style: none;
-        margin-bottom: 35px;
-        flex-grow: 1;
+        padding: 0;
+        margin: 0 0 35px 0;
+        flex: 1;
     }
 
-    .feature-list-clean li {
+    .cc-feature-list li {
+        font-size: 14px;
+        color: #475569;
         padding: 12px 0;
-        border-bottom: 1px solid #f9f9f9;
-        font-size: 14px;
-        color: #444;
-        font-weight: 600;
+        border-bottom: 1px solid #f1f5f9;
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 10px;
+        font-weight: 500;
     }
 
-    .feature-list-clean li::before {
-        content: '✓';
-        color: #0070f3;
-        font-weight: 900;
+    .cc-feature-list li:last-child { border-bottom: none; }
+
+    .cc-tick { color: #10b981; font-weight: bold; margin-right: 8px; font-size: 16px; }
+    .cc-cross { color: #94a3b8; font-weight: bold; margin-right: 8px; font-size: 16px; }
+    
+    .cc-disabled { color: #94a3b8 !important; text-decoration: line-through; }
+
+    .cc-tag-inc { font-size: 10px; background: #f1f5f9; color: #475569; padding: 4px 8px; border-radius: 6px; font-weight: 800; }
+    .cc-tag-free { font-size: 10px; background: #ecfdf5; color: #10b981; padding: 4px 8px; border-radius: 6px; font-weight: 800; }
+
+    /* --- BUTTONS --- */
+    .cc-btn-row {
+        display: flex;
+        gap: 12px;
     }
 
-    .cta-button-clean {
-        width: 100%;
-        padding: 20px;
-        background: #000;
-        color: #fff;
-        border: none;
-        border-radius: 15px;
-        font-weight: 800;
+    .cc-btn {
+        flex: 1;
+        text-align: center;
+        padding: 14px 10px;
+        border-radius: 8px;
         font-size: 14px;
-        cursor: pointer;
+        font-weight: 700;
+        text-decoration: none;
         transition: 0.3s;
     }
 
-    .pricing-card-clean:hover .cta-button-clean {
-        background: #0070f3;
-    }
+    .cc-btn-dark { background: #0f172a; color: #fff; border: 1px solid #0f172a; }
+    .cc-btn-dark:hover { background: #334155; }
 
-    /* Easter Badge - Simple */
-    .sale-badge {
-        background: #0070f3;
-        color: #fff;
-        padding: 4px 12px;
-        border-radius: 50px;
-        font-size: 10px;
-        margin-left: 10px;
-        vertical-align: middle;
-    }
+    .cc-btn-blue { background: #0072FF; color: #fff; border: 1px solid #0072FF; }
+    .cc-btn-blue:hover { background: #005bb5; }
 
-    /* Mobile Responsive Logic */
-    @media (max-width: 768px) {
-        .app-pricing-clean { padding: 50px 5%; }
-        .pricing-card-clean { max-width: 100%; }
+    .cc-btn-outline { background: transparent; color: #0072FF; border: 1px solid #0072FF; }
+    .cc-btn-outline:hover { background: #eff6ff; }
+
+    /* --- MOBILE RESPONSIVE --- */
+    @media (max-width: 900px) {
+        .cc-pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
     }
 </style>
 
-<section class="app-pricing-clean">
-    <div class="pricing-title">
-        <h2>// PRICING MODELS</h2>
+<!--possible serviceeeeeeeeee-->
+
+<section class="cc-services-section">
+    <div class="cc-services-header">
+        <h2>What Else You Might Need?</h2>
+        <p>Complete your digital presence with our expert solutions.</p>
     </div>
 
-    <div class="pricing-grid-clean">
-        <div class="pricing-card-clean">
-            <span class="card-label">MVP STAGE <span class="sale-badge">EASTER -20%</span></span>
-            <div class="card-price-clean">17,000<span>/-</span></div>
-            <ul class="feature-list-clean">
-                <li>Android or iOS Platform</li>
-                <li>Firebase Core Setup</li>
-                <li>Custom UI/UX Design</li>
-                <li>Standard Support</li>
-            </ul>
-            <button class="cta-button-clean">GET STARTED</button>
-        </div>
+    <div class="cc-services-grid">
+        
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="bar-chart-2"></i>
+            </div>
+            <h3>SEO & Ranking</h3>
+            <p>Get on Google's 1st page and bring organic traffic to your new website.</p>
+        </a>
 
-        <div class="pricing-card-clean" style="border-color: #0070f3; box-shadow: 0 20px 40px rgba(0,112,243,0.05);">
-            <span class="card-label" style="color: #0070f3;">PROFESSIONAL</span>
-            <div class="card-price-clean">25,000<span>/-</span></div>
-            <ul class="feature-list-clean">
-                <li>Android + iOS (Flutter)</li>
-                <li>Admin Dashboard Access</li>
-                <li>Push Notifications</li>
-                <li>API & Payments</li>
-            </ul>
-            <button class="cta-button-clean" style="background: #0070f3;">MOST POPULAR</button>
-        </div>
+        <a href="./smm.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="megaphone"></i>
+            </div>
+            <h3>Social Media Marketing</h3>
+            <p>Run targeted ads and manage your social profiles to get more sales.</p>
+        </a>
 
-        <div class="pricing-card-clean">
-            <span class="card-label">ENTERPRISE</span>
-            <div class="card-price-clean">45,000<span>/-</span></div>
-            <ul class="feature-list-clean">
-                <li>Full Scale Ecosystem</li>
-                <li>Cloud Infrastructure</li>
-                <li>Chat & Real-time Tracking</li>
-                <li>1 Year VIP Support</li>
-            </ul>
-            <button class="cta-button-clean">GO ENTERPRISE</button>
-        </div>
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="pen-tool"></i>
+            </div>
+            <h3>Logo & Branding</h3>
+            <p>Stand out with a professional logo, business cards, and brand identity.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="layout"></i>
+            </div>
+            <h3>Custom Web Apps</h3>
+            <p>Upgrade to complex E-commerce stores or custom management portals.</p>
+        </a>
+
     </div>
 </section>
 
+<style>
+    /* --- SECTION STYLING --- */
+    .cc-services-section {
+        padding: 80px 20px;
+        background-color: #ffffff; /* White Background */
+        color: #000000; /* Black Text */
+        max-width: 1200px;
+        margin: 0 auto;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .cc-services-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .cc-services-header h2 {
+        font-size: 36px;
+        font-weight: 900;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
+
+    .cc-services-header p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    /* --- GRID STYLING --- */
+    .cc-services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Desktop par 4 cards */
+        gap: 1px; /* Jaisa tune manga, sirf 1px ka gap */
+    }
+
+    /* --- CARD STYLING (Boxy & Sharp) --- */
+    .cc-service-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 20px;
+        background-color: #fff;
+        border: 1px solid #000; /* Thin Black Border */
+        border-radius: 2px; /* Sharp corners */
+        text-decoration: none; 
+        color: #000;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    /* Hover Effect: Inverts to Black background */
+    .cc-service-card:hover {
+        background-color: #000;
+        color: #fff;
+    }
+
+    /* Icon Setup */
+    .icon-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .icon-wrapper svg {
+        width: 35px;
+        height: 35px;
+        stroke-width: 2px;
+        transition: stroke 0.3s ease;
+    }
+
+    /* Hover par icon ka color white */
+    .cc-service-card:hover .icon-wrapper svg {
+        stroke: #ffffff;
+    }
+
+    .cc-service-card h3 {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .cc-service-card p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: inherit; 
+        opacity: 0.8;
+    }
+
+    /* --- MOBILE RESPONSIVE (2x2 Grid) --- */
+    @media (max-width: 768px) {
+        .cc-services-grid {
+            grid-template-columns: repeat(2, 1fr); /* Mobile par 2/2 grid */
+        }
+
+        .cc-services-header h2 {
+            font-size: 28px;
+        }
+
+        .cc-service-card {
+            padding: 20px 15px;
+        }
+
+        .cc-service-card h3 {
+            font-size: 16px;
+        }
+
+        .cc-service-card p {
+            font-size: 12px;
+        }
+
+        .icon-wrapper svg {
+            width: 25px;
+            height: 25px;
+        }
+    }
+</style>
 
 <!--Get starteddddddddddddddddddddddd-->
 
