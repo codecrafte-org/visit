@@ -7,8 +7,30 @@
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="../images/fav-ion.webp">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
+    <script src="https://unpkg.com/lucide@latest"></script> 
+
+  <script>
+    function initializeIcons() {
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+        console.log("Icons Initialized!");
+      } else {
+        console.error("Lib. Not Found! :(");
+      }
+    }
+
+    // 2. Method 1: Jab DOM ready ho
+    document.addEventListener("DOMContentLoaded", initializeIcons);
+
+    // 3. Method 2: Backup delay (taki confirm show hon)
+    setTimeout(initializeIcons, 500);
+  </script>
+<script
+    src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js"
+    defer
+  ></script>
+
+     <style>
         :root {
             --black: #000000;
             --white: #ffffff;
@@ -774,15 +796,7 @@
         <div class="tier-header"><span class="tier-tag intern-tag">Rising Stars</span></div>
         <div class="tier-grid grid-2">
             
-            <div class="member-card intern-style" data-tilt>
-                <div class="card-inner">
-                    <div class="intern-badge">🌟 INTERN</div>
-                    <span class="dept-tag">SALES_FORCE</span>
-                    <h3>Yashfeen Eman</h3>
-                    <p>Sales Intern</p>
-                    <a href="https://www.linkedin.com/in/yashfeen-eman-amir-00284b3b8/" target="_blank" class="linkedin-btn">in Connect</a>
-                </div>
-            </div>
+             
 
              
             <div class="member-card intern-style" data-tilt >
@@ -1204,7 +1218,542 @@
 
 
 <!--FOOTER-->
+ <!--footerrr-->
 
+    <footer class="footer-section">
+      <div class="footer-bg-decoration">
+        <div class="marquee slanted-up">
+          <div class="marquee-inner">
+            <span
+              >STRATEGY • DESIGN • DEVELOPMENT • MARKETING • STRATEGY • DESIGN •
+              DEVELOPMENT • MARKETING •</span
+            >
+          </div>
+        </div>
+        <div class="marquee slanted-down">
+          <div class="marquee-inner">
+            <span>CODECRAFTE • INNOVATION • FUTURE • CRMS • POS • PMS •</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-container">
+        <div class="footer-bento-grid">
+          <div class="bento-tile cta-box">
+            <span class="mini-tag">GET STARTED</span>
+            <h2>Let’s build something <br /><span>Extraordinary.</span></h2>
+            <p>Digital solutions tailored to your brand's growth.</p>
+            <a href="../components/contact.html" class="footer-btn"
+              >Start Project <i data-lucide="arrow-up-right"></i
+            ></a>
+          </div>
+
+          <div class="bento-tile social-box">
+            <span class="mini-tag">CONNECT</span>
+            <div class="social-links-grid">
+              <a
+                href="https://www.instagram.com/codecrafte.pk/"
+                aria-label="Instagram"
+                class="s-link"
+                ><i data-lucide="instagram"></i
+              ></a>
+              <a
+                href="www.linkedin.com/in/c-crafte-3941b43b3"
+                aria-label="LinkedIn"
+                class="s-link"
+                ><i data-lucide="linkedin"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61581311813987"
+                aria-label="Facebook"
+                class="s-link"
+                ><i data-lucide="facebook"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@codecrafte.pk"
+                aria-label="Tiktok"
+                class="s-link cr-tiktok-link"
+                target="_blank"
+              >
+                <svg
+                  class="lucide-custom cr-tiktok-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.4 121.4 0 0 0 67 20.14Z"
+                  ></path>
+                </svg>
+              </a>
+              <a href="#" aria-label="github" class="s-link"
+                ><i data-lucide="github"></i
+              ></a>
+              <a href="tel:03286658507" aria-label="number" class="s-link"
+                ><i data-lucide="phone"></i
+              ></a>
+            </div>
+          </div>
+
+          <style>
+            /* Base Style for all icons (Lucide & Custom SVG) */
+            .social-links-grid .s-link [data-lucide],
+            .social-links-grid .s-link .lucide-custom {
+              width: 20px;
+              height: 20px;
+              display: inline-block;
+              transition: all 0.3s ease;
+              stroke-width: 2; /* Unified stroke for Lucide */
+              fill: none; /* Default for Lucide */
+              color: inherit; /* Inherit link color */
+            }
+
+            /* Custom Rule for TikTok SVG (Needs 'fill' instead of 'stroke') */
+            .social-links-grid .s-link .cr-tiktok-svg {
+              stroke-width: 0; /* No stroke for TikTok */
+              fill: currentColor; /* Inherit link color for 'fill' */
+              width: 18px; /* Slightly smaller width for standard visual balance */
+              height: 18px;
+              position: relative;
+              top: -1px; /* Precision alignment */
+            }
+
+            /* Unified Hover for all Icons */
+            .social-links-grid .s-link:hover {
+              color: #0a4dd4; /* CodeCrafte Yellow */
+              transform: scale(1.15) translateY(-2px);
+            }
+          </style>
+          <div class="bento-tile links-box">
+            <span class="mini-tag">Legal</span>
+            <div class="link-columns">
+              <a href="../components/Legal/T&C.html">Term & Condition</a>
+              <a href="../components/Legal/pp.html"> privacy & policy </a>
+              <a href="../components/Legal/re-f.html">Refund Policy</a>
+              <a href="../components/Legal/contract.html">Contract</a>
+            </div>
+          </div>
+
+          <style>
+            .link-columns {
+              display: flex;
+              flex-direction: column;
+              gap: 12px; /* Links ke darmiyan barabar fasla */
+              margin-top: 10px;
+            }
+
+            .link-columns a {
+              color: #ffffff !important; /* Pure white taake dark background par chamke */
+              text-decoration: none;
+              font-size: 1.1rem;
+              font-weight: 500;
+              font-family: "Space Grotesk", sans-serif;
+              transition: all 0.3s ease;
+              display: flex;
+              align-items: center;
+              opacity: 0.8; /* Normal state mein thora halka */
+            }
+
+            /* Hover Animation: Text right move hoga aur chamkega */
+            .link-columns a:hover {
+              opacity: 1;
+              color: #0070f3 !important; /* Ya jo bhi aapka theme color hai */
+              transform: translateX(8px); /* Right side halka sa slide */
+            }
+
+            /* Optional: Har link ke agay chota sa arrow ya dot lane ke liye */
+            .link-columns a::before {
+              content: "→";
+              margin-right: 10px;
+              font-size: 0.8rem;
+              opacity: 0;
+              transition: 0.3s;
+              transform: translateX(-10px);
+            }
+
+            .link-columns a:hover::before {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          </style>
+
+          <div class="bento-tile contact-box">
+            <span class="mini-tag">REACH US</span>
+            <div class="contact-grid-inner">
+              <div class="contact-details-text">
+                <div class="c-item">
+                  <i data-lucide="mail"></i> <span>hello@codecrafte.site</span>
+                </div>
+                <div class="c-item">
+                  <i data-lucide="phone"></i> <span>+92 3059462051</span>
+                </div>
+                <div class="c-item">
+                  <i data-lucide="map-pin"></i> <span>Lahore, Punjab</span>
+                </div>
+              </div>
+
+              <div class="contact-map">
+                <iframe
+                  title="CodeCrafte Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13735.61765053272!2d73.2644265!3d29.9950785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3914f7762692257f%3A0x867332219b168972!2slahore%2C%20Punjab!5e0!3m2!1sen!2spk!4v1700000000000!5m2!1sen!2spk"
+                  width="100%"
+                  height="100%"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                >
+                </iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-tile bottom-bar">
+            <div class="footer-flex">
+              <p>© 2026 CODECRAFTE. All rights reserved.</p>
+              <div class="legal">
+                <a href="#">English</a>
+                <a>&</a>
+                <a href="#">PKR</a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bg-decoration" style="margin-top: 300px">
+            <div class="marquee slanted-up">
+              <div class="marquee-inner">
+                <span
+                  >STRATEGY • DESIGN • DEVELOPMENT • MARKETING • STRATEGY •
+                  DESIGN • DEVELOPMENT • MARKETING •</span
+                >
+              </div>
+            </div>
+            <div class="marquee slanted-down">
+              <div class="marquee-inner">
+                <span
+                  >CODECRAFTE • INNOVATION • FUTURE • CODECRAFTE • INNOVATION •
+                  FUTURE •</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Har social link par halka sa delay ke sath animation
+      document.querySelectorAll(".s-link").forEach((link, index) => {
+        link.style.transitionDelay = `${index * 50}ms`;
+      });
+      lucide.createIcons();
+    </script>
+ 
+ <style>
+    
+
+/*footerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr*/
+/* --- Desktop & Base Styles (Jo tumne di thi) --- */
+.footer-section {
+    background: #000;
+    color: #fff;
+    padding: 80px 0; /* Padding thori kam ki hai */
+    position: relative;
+    overflow: hidden; 
+    width: 100%;
+    margin-bottom: -100px;
+}
+
+.footer-bg-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.marquee {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+}
+
+.slanted-up { transform: rotate(-6deg) translateY(20px) scale(1.1); }
+.slanted-down { transform: rotate(4deg) translateY(100px) scale(1.1); }
+
+.marquee-inner span {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 10vw, 6rem); /* Mobile par chota ho jayega auto */
+    font-weight: 900;
+    padding-right: 40px;
+    text-transform: uppercase;
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* --- BENTO GRID STYLING --- */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+    box-sizing: border-box; /* Zaroori taake padding layout na toray */
+}
+
+.footer-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.bento-tile {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px; /* Slightly smaller for mobile vibe */
+    padding: 30px;
+    transition: 0.4s ease;
+    overflow: hidden; /* Content bahar na jaye */
+}
+.bento-tile:hover{
+    border: 1px solid white;
+}
+/* Tile Layouts */
+.cta-box { grid-column: span 2; }
+.social-box { grid-column: span 1; }
+.links-box { grid-column: span 1; }
+.contact-box { grid-column: span 2; }
+.bottom-bar { grid-column: span 3; padding: 20px 30px; }
+
+
+/* Contact Box Grid Setup */
+.contact-grid-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Text thora bara, map side par */
+    gap: 20px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.contact-details-text {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.c-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.c-item i {
+    color: #0070f3;
+    width: 20px;
+    flex-shrink: 0;
+}
+
+/* Map Styling */
+.contact-map {
+    height: 150px; /* Map ki height set ki hai */
+    border-radius: 15px;
+    overflow: hidden;
+    filter: grayscale(1) invert(1) contrast(0.8); /* Dark mode map look */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s ease;
+}
+
+.contact-map:hover {
+    filter: grayscale(0) invert(0); /* Hover par asli colors */
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .contact-grid-inner {
+        grid-template-columns: 1fr; /* Mobile par ek ke niche ek */
+    }
+    .contact-map {
+        height: 120px;
+    }
+}
+/* Content Details */
+.mini-tag { font-size: 0.65rem; letter-spacing: 2px; color: #666; font-weight: 700; margin-bottom: 15px; display: block; }
+.cta-box h2 { font-family: 'Space Grotesk'; font-size: clamp(1.8rem, 5vw, 3rem); margin: 10px 0; line-height: 1.2; }
+.cta-box h2 span { color: #0070f3; }
+
+.footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: #000;
+    padding: 10px 25px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+.footer-btn:hover{
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+.social-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+ 
+
+.s-link {
+    background: rgba(255,255,255,0.05);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #fff;
+    /* transition ko behtar kiya hai smooth animation ke liye */
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s, color 0.3s;
+}
+
+.s-link:hover {
+    background-color: white;
+    color: black;
+    /* Size wahi rahega, bs 10px upar move hoga */
+    transform: translateY(-10px); 
+    /* Halka sa glow effect */
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.s-link i { 
+    width: 20px; 
+    height: 20px; 
+}
+
+.contact-details .c-item { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 12px; 
+    margin-bottom: 12px; 
+    color: #ccc; 
+    font-size: 0.9rem; 
+}
+.contact-details i { color: #0070f3; width: 18px; flex-shrink: 0; }
+
+.footer-flex { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    color: #444; 
+    font-size: 0.75rem; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+}
+.legal a{
+    color: #ccc;
+    text-decoration: none;
+}
+.legal a:hover{
+    color: #0070f3;
+}
+
+/* --- MOBILE SPECIFIC FIXES --- */
+@media (max-width: 900px) {
+    .footer-section { padding: 60px 0; }
+    
+    .footer-bento-grid { 
+        grid-template-columns: 1fr; /* Sab ek line mein */
+    }
+    
+    .cta-box, .social-box, .links-box, .contact-box, .bottom-bar { 
+        grid-column: span 1; 
+        padding: 25px; /* Mobile par thori kam padding */
+    }
+
+    .social-links-grid {
+        grid-template-columns: repeat(6, 1fr); /* Mobile par 6 icons ek row mein achay lagenge */
+    }
+
+    .footer-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .legal { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+    .social-links-grid {
+        grid-template-columns: repeat(3, 1fr); /* Chote mobile par wapis 3x2 */
+    }
+}
+
+
+.marquee {
+
+    display: flex;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    padding: 20px 0;
+
+}
+
+
+
+.slanted-up { transform: rotate(-6deg) translateY(50px) scale(1.2); }
+
+.slanted-down { transform: rotate(4deg) translateY(150px) scale(1.2); }
+
+
+
+.marquee-inner {
+
+    display: flex;
+
+    animation: marquee-scroll 30s linear infinite;
+
+}
+
+
+
+.marquee-inner span {
+
+    font-family: 'Space Grotesk', sans-serif;
+
+    font-size: 6rem;
+
+    font-weight: 900;
+
+    padding-right: 60px;
+
+    text-transform: uppercase;
+
+}
+
+
+
+@keyframes marquee-scroll {
+
+    from { transform: translateX(0); }
+
+    to { transform: translateX(-50%); }
+
+}
+
+ </style>
 
 </body>
 

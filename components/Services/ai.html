@@ -143,48 +143,7 @@
         </div>
     </section>
 
-    <section class="pricing-section">
-        <div style="text-align: center; margin-bottom: 70px;">
-            <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -3px;">AI AUTOMATION PLANS</h2>
-        </div>
-
-        <div class="pricing-grid">
-            <div class="price-card">
-                <p style="font-size:12px; font-weight:800; color:#aaa; letter-spacing:3px;">ASSISTANT</p>
-                <div style="font-size:3rem; font-weight:900; margin:20px 0;">50K<span>/-</span></div>
-                <ul style="list-style:none; color:#555; font-size:14px; font-weight:600;">
-                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ AI Chatbot (Basic)</li>
-                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Zapier Integration</li>
-                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Email Automation</li>
-                </ul>
-                <button class="price-btn btn-dark">GET STARTED</button>
-            </div>
-
-            <div class="price-card featured">
-                <div class="featured-tag">MOST EFFICIENT</div>
-                <p style="font-size:12px; font-weight:800; color:var(--primary); letter-spacing:3px;">AI AGENT</p>
-                <div style="font-size:3rem; font-weight:900; margin:20px 0;">120K<span>/-</span></div>
-                <ul style="list-style:none; color:#555; font-size:14px; font-weight:600;">
-                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Custom AI Agent (GPT-4)</li>
-                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ CRM Auto-Pilot</li>
-                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Voice AI Integration</li>
-                </ul>
-                <button class="price-btn btn-primary">SCALE NOW</button>
-            </div>
-
-            <div class="price-card">
-                <p style="font-size:12px; font-weight:800; color:#aaa; letter-spacing:3px;">ENTERPRISE</p>
-                <div style="font-size:3rem; font-weight:900; margin:20px 0;">250K<span>+</span></div>
-                <ul style="list-style:none; color:#555; font-size:14px; font-weight:600;">
-                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Full Business Ecosystem</li>
-                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ Private LLM Setup</li>
-                    <li style="padding:10px 0; border-bottom:1px solid #f9f9f9;">✓ 24/7 AI Maintenance</li>
-                </ul>
-                <button class="price-btn btn-dark">CONTACT US</button>
-            </div>
-        </div>
-    </section>
-
+    
     <script>
         // AI Core Reaction
         document.addEventListener('mousemove', (e) => {
@@ -198,6 +157,221 @@
         // Node Glow Pulse
         gsap.to(".node", { opacity: 0.3, duration: 1, repeat: -1, yoyo: true, stagger: 0.3 });
     </script>
+
+ <!--carddddddddddddddd-->
+    <style>
+        /* --- Clean & Standard Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f9fbfd; color: #333; }
+
+        /* --- Section Container --- */
+        .pricing-section {
+            padding: 80px 20px;
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .pricing-header h2 {
+            font-size: 2.8rem;
+            color: #111;
+            font-weight: 800;
+        }
+
+        /* --- 3 Column Grid for Laptop --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Laptop mein 3 ka grid */
+            gap: 25px;
+            align-items: flex-start;
+        }
+
+        /* --- Card Styling (Clean, no AI glow) --- */
+        .price-card {
+            background: #ffffff;
+            border: 1px solid #e0e6ed;
+            border-radius: 12px;
+            padding: 40px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-card:hover {
+            border-color: #1aff00;
+            box-shadow: 0 10px 25px rgba(11, 194, 42, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* Active/Popular Card */
+        .card-popular {
+            border: 2px solid #1aff00;
+            position: relative;
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px; left: 50%;
+            transform: translateX(-50%);
+            background: #1aff00;
+            color: white;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Header Info */
+        .plan-name { font-size: 1.4rem; font-weight: 700; color: #111; margin-bottom: 10px; }
+        .plan-price { font-size: 2.5rem; font-weight: 800; color: #111; margin-bottom: 25px; }
+        .plan-price span { font-size: 1rem; color: #666; font-weight: normal; }
+
+        /* --- Features Comparison List --- */
+        .feature-list {
+            list-style: none;
+            margin-bottom: 30px;
+            flex: 1;
+        }
+
+        .feature-list li {
+            font-size: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #444;
+        }
+        .feature-list li:last-child { border-bottom: none; }
+
+        /* Status Marks (Tick & Cross without heavy icons) */
+        .tick { color: #00b84c; font-weight: bold; margin-right: 8px; }
+        .cross { color: #ccc; font-weight: bold; margin-right: 8px; }
+
+        /* Strikethrough for disabled features */
+        .disabled-feature {
+            color: #aaa !important;
+            text-decoration: line-through; /* Cut lag gaya */
+        }
+
+        /* Tags */
+        .tag-inc { font-size: 11px; background: #edf2f7; color: #4a5568; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+        .tag-free { font-size: 11px; background: #e6f8ec; color: #00b84c; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+
+        /* --- Buttons (Side by Side) --- */
+        .btn-row {
+            display: flex;
+            gap: 10px; /* Aamne samne gap */
+            margin-top: auto;
+        }
+
+        .btn {
+            flex: 1; /* Dono buttons barabar jagah lenge */
+            text-align: center;
+            padding: 12px 5px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-buy { background: #111; color: #fff; border: 1px solid #111; }
+        .btn-buy:hover { background: #333; }
+
+        .btn-discount { background: #fff; color: #1aff00; border: 1px solid #1aff00; }
+        .btn-discount:hover { background: #f0f7ff; }
+
+        /* Active Blue Button */
+        .card-popular .btn-buy { background: #1aff00; border-color: #1aff00; }
+        .card-popular .btn-buy:hover { background: #005bb5; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 900px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+            .btn-row { flex-direction: column; } /* Mobile pe buttons upar neechay theek rehte hain */
+        }
+    </style>
+ <section class="pricing-section">
+    <div class="pricing-header">
+        <h2>AI Automation Plans</h2>
+        <p>Save hundreds of hours every month with our custom AI workflows.</p>
+    </div>
+
+    <div class="pricing-grid">
+        
+        <div class="price-card">
+            <div class="plan-name">Basic Automate</div>
+            <div class="plan-price">29,999<span> PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> 5 Automated Workflows</span> <span class="tag-inc">INC</span></li>
+                <li><span><span class="tick">✓</span> Zapier/Make Integration</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Auto Email Responder</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 1 Month Maintenance</span> <span class="tag-inc">INC</span></li>
+                <li><span><span class="tick">✓</span> Basic Data Scraping</span> <span class="tag-free">FREE</span></li>
+                
+                <li class="disabled-feature"><span><span class="cross">✕</span> Custom AI Chatbot</span></li>
+                <li class="disabled-feature"><span><span class="cross">✕</span> AI Voice Agents</span></li>
+            </ul>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Start Saving Time</a>
+                <a href="#" class="btn btn-discount">Beta Offer</a>
+            </div>
+        </div>
+
+        <div class="price-card card-popular">
+            <div class="popular-badge">BEST ROI</div>
+            <div class="plan-name">Business AI</div>
+            <div class="plan-price">54,999<span> PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> 15 Automated Workflows</span> <span class="tag-inc">INC</span></li>
+                <li><span><span class="tick">✓</span> Custom ChatGPT Bot</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> CRM & Lead Automation</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 3 Months Maintenance</span> <span class="tag-inc">INC</span></li>
+                <li><span><span class="tick">✓</span> AI Content Generator</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Social Media Auto-Post</span> <span class="tag-free">FREE</span></li>
+                
+                <li class="disabled-feature"><span><span class="cross">✕</span> Advanced AI Agents</span></li>
+            </ul>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Go Pro AI</a>
+                <a href="#" class="btn btn-discount">Most Popular</a>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="plan-name">Enterprise AI</div>
+            <div class="plan-price">99,999<span>+ PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> Unlimited Automations</span> <span class="tag-inc">INC</span></li>
+                <li><span><span class="tick">✓</span> Autonomous AI Agents</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Custom LLM Training</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> AI Voice Call Agents</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 6 Months Maintenance</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> API Integration (Any App)</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 24/7 VIP Support</span> <span class="tag-free">FREE</span></li>
+            </ul>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Scale Today</a>
+                <a href="#" class="btn btn-discount">Elite Only</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+ 
+
 
 
 <!--Get starteddddddddddddddddddddddd-->
@@ -234,7 +408,7 @@
     .cta-final:hover .cta-heading span {
         color: var(--blue);
         -webkit-text-stroke: 1.5px var(--blue);
-        filter: drop-shadow(0 0 30px rgba(0, 112, 243, 0.3));
+        filter: drop-shadow(0 0 30px rgba(0, 243, 8, 0.3));
     }
 
     /* Ultra Animated Button */
@@ -269,7 +443,7 @@
 
     .ultra-btn:hover {
         transform: scale(1.1);
-        box-shadow: 0 20px 40px rgba(0, 112, 243, 0.4);
+        box-shadow: 0 20px 40px rgba(8, 243, 0, 0.4);
     }
 
     .ultra-btn:hover::before {

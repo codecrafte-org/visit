@@ -1139,11 +1139,26 @@
     color:  #ff0000;
  }
 
+      #s-pos:hover .s-icon,
+#s-pos:hover h3 {
+    color:  #c2315c;
+ }
+
+      #s-video:hover .s-icon,
+#s-video:hover h3 {
+    color: #b27007;
+ }
 
 
  #s-meta:hover .s-icon,
 #s-meta:hover h3 {
     color: #e1306c;
+ }
+
+ 
+ #s-gd:hover .s-icon,
+#s-gd:hover h3 {
+    color: #FF9A00;
  }
 
  #s-ecom:hover .s-icon,

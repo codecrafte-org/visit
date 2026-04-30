@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | CodeCrafte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #0070f3;
+            --black: #000;
+            --white: #fff;
+            --gray: #666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .error-container {
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* AI Image Styling */
+        .error-img {
+            width: 100%;
+            max-width: 350px;
+            height: 270px;
+            margin-bottom: 20px; 
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Text Styling */
+        .error-code {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(5rem, 15vw, 8rem);
+            line-height: 0.8;
+            margin-bottom: 10px;
+            -webkit-text-stroke: 2px var(--black);
+            color: transparent;
+        }
+
+        .error-msg {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .instructions {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        /* Action Buttons */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 25px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            border: 2px solid var(--black);
+        }
+
+        .btn-home {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-home:hover {
+            background: var(--blue);
+            border-color: var(--blue);
+            box-shadow: 8px 8px 0px var(--black);
+            transform: translate(-4px, -4px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            .btn-group { flex-direction: column; }
+            .error-img { max-width: 250px; }
+            .error-code { font-size: 5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <img src="../images/404.png" alt="Error Illustration" class="error-img">
+        
+        <div class="error-code">404</div>
+        <h2 class="error-msg">Lost in Cyberspace?</h2>
+        
+        <p class="instructions">
+            Oops! The page you're looking for doesn't exist or has been moved.<br>
+            <span class="highlight">Quick Check:</span> Verify your internet connection or check the URL for typos.
+        </p>
+ 
+    </div>
+
+</body>
+</html>

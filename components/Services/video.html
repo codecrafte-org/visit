@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Editor Header</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --blue: #322003; --black: #000; --white: #fff; --gray: #1a1a1a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); overflow-x: hidden; }
+
+        .editor-hero {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        /* --- Text Content --- */
+        .editor-text { z-index: 10; }
+        
+        .editor-tag {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 11px;
+            letter-spacing: 5px;
+            color: var(--blue);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .editor-title {
+            font-size: clamp(2.5rem, 7vw, 6rem);
+            line-height: 0.9;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            color: var(--black);
+        }
+
+        .outline { -webkit-text-stroke: 1.5px var(--blue); color: transparent; }
+
+        .editor-p { margin-top: 30px; font-size: 1.1rem; color: #555; max-width: 450px; line-height: 1.6; }
+
+        /* --- Video Timeline Animation --- */
+        .editor-visual {
+            position: relative;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Player Window */
+        .player-window {
+            width: 400px;
+            height: 250px;
+            background: #000;
+            border: 3px solid var(--black);
+            box-shadow: 20px 20px 0px var(--black);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .play-btn { color: var(--blue); width: 60px; height: 60px; z-index: 5; }
+
+        /* Timeline Bar */
+        .timeline-container {
+            position: absolute;
+            bottom: -40px;
+            width: 110%;
+            height: 60px;
+            background: #fff;
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            gap: 5px;
+            overflow: hidden;
+        }
+
+        .clip { height: 100%; background: var(--blue); border-radius: 4px; flex-shrink: 0; }
+        .clip-1 { width: 80px; opacity: 0.3; }
+        .clip-2 { width: 120px; }
+        .clip-3 { width: 60px; opacity: 0.6; }
+        .clip-4 { width: 150px; }
+
+        .playhead {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: red;
+            z-index: 10;
+        }
+
+        @media (max-width: 1024px) {
+            .editor-hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+            .editor-p { margin: 20px auto; }
+            .player-window { width: 320px; height: 200px; margin-top: 50px; }
+            .timeline-container { width: 100%; bottom: -30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="editor-hero">
+        <div class="editor-text">
+            <span class="editor-tag">POST-PRODUCTION // EDITING</span>
+            <h1 class="editor-title">WE TELL <br> <span class="outline">STORIES</span> <br> IN MOTION.</h1>
+            <p class="editor-p">
+                Professional video editing for YouTube, Ads, and Cinema. We bring your raw footage to life with seamless transitions and stunning effects.
+            </p>
+        </div>
+
+        <div class="editor-visual">
+            <div class="player-window">
+                <i data-lucide="play" class="play-btn"></i>
+                <div style="position:absolute; inset:0; background: linear-gradient(45deg, #111, #000); opacity: 0.5;"></div>
+                
+                <div class="timeline-container">
+                    <div class="playhead"></div>
+                    <div class="clip clip-1"></div>
+                    <div class="clip clip-2"></div>
+                    <div class="clip clip-3"></div>
+                    <div class="clip clip-4"></div>
+                    <div class="clip clip-1"></div>
+                    <div class="clip clip-2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        lucide.createIcons();
+
+        // Timeline scrolling animation
+        gsap.to(".clip", {
+            x: -200,
+            duration: 3,
+            repeat: -1,
+            ease: "none"
+        });
+
+        // Play button pulse
+        gsap.to(".play-btn", {
+            scale: 1.2,
+            duration: 0.8,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+        // Floating Player
+        gsap.to(".player-window", {
+            y: -15,
+            duration: 2.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        // Title Entrance
+        gsap.from(".editor-title", {
+            opacity: 0,
+            x: -60,
+            duration: 1.2,
+            ease: "power4.out"
+        });
+    </script>
+
+
+<!--carddddddddddddddd-->
+    <style>
+        /* --- Clean & Standard Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f9fbfd; color: #333; }
+
+        /* --- Section Container --- */
+        .pricing-section {
+            padding: 80px 20px;
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .pricing-header h2 {
+            font-size: 2.8rem;
+            color: #111;
+            font-weight: 800;
+        }
+
+        /* --- 3 Column Grid for Laptop --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Laptop mein 3 ka grid */
+            gap: 25px;
+            align-items: flex-start;
+        }
+
+        /* --- Card Styling (Clean, no AI glow) --- */
+        .price-card {
+            background: #ffffff;
+            border: 1px solid #e0e6ed;
+            border-radius: 12px;
+            padding: 40px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-card:hover {
+            border-color: #322003;
+            box-shadow: 0 10px 25px  #32200337;
+            transform: translateY(-5px);
+        }
+
+        /* Active/Popular Card */
+        .card-popular {
+            border: 2px solid #322003;
+            position: relative;
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px; left: 50%;
+            transform: translateX(-50%);
+            background: #322003;
+            color: white;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Header Info */
+        .plan-name { font-size: 1.4rem; font-weight: 700; color: #111; margin-bottom: 10px; }
+        .plan-price { font-size: 2.5rem; font-weight: 800; color: #111; margin-bottom: 25px; }
+        .plan-price span { font-size: 1rem; color: #666; font-weight: normal; }
+
+        /* --- Features Comparison List --- */
+        .feature-list {
+            list-style: none;
+            margin-bottom: 30px;
+            flex: 1;
+        }
+
+        .feature-list li {
+            font-size: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #444;
+        }
+        .feature-list li:last-child { border-bottom: none; }
+
+        /* Status Marks (Tick & Cross without heavy icons) */
+        .tick { color: #00b84c; font-weight: bold; margin-right: 8px; }
+        .cross { color: #ccc; font-weight: bold; margin-right: 8px; }
+
+        /* Strikethrough for disabled features */
+        .disabled-feature {
+            color: #aaa !important;
+            text-decoration: line-through; /* Cut lag gaya */
+        }
+
+        /* Tags */
+        .tag-inc { font-size: 11px; background: #edf2f7; color: #4a5568; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+        .tag-free { font-size: 11px; background: #e6f8ec; color: #00b84c; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+
+        /* --- Buttons (Side by Side) --- */
+        .btn-row {
+            display: flex;
+            gap: 10px; /* Aamne samne gap */
+            margin-top: auto;
+        }
+
+        .btn {
+            flex: 1; /* Dono buttons barabar jagah lenge */
+            text-align: center;
+            padding: 12px 5px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-buy { background: #111; color: #fff; border: 1px solid #111; }
+        .btn-buy:hover { background: #333; }
+
+        .btn-discount { background: #fff; color: #322003; border: 1px solid #322003; }
+        .btn-discount:hover { background: #f0f7ff; }
+
+        /* Active Blue Button */
+        .card-popular .btn-buy { background: #322003; border-color: #322003; }
+        .card-popular .btn-buy:hover { background: #005bb5; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 900px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+            .btn-row { flex-direction: column; } /* Mobile pe buttons upar neechay theek rehte hain */
+        }
+    </style>
+
+    <section class="pricing-section">
+    <div class="pricing-header">
+        <h2>Editing Packages</h2>
+        <p>Professional post-production plans for creators and brands.</p>
+    </div>
+
+    <div class="pricing-grid">
+        
+        <div class="price-card">
+            <div class="plan-name">Social Starter</div>
+            <div class="plan-price">9,999<span> PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> Up to 1 Minute Video</span> <span class="tag-inc">INC</span></li>
+                <li><span><span class="tick">✓</span> Basic Color Correction</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Royalty Free Music</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 1 Revision Round</span> <span class="tag-inc">INC</span></li>
+                <li><span><span class="tick">✓</span> Subtitles (Manual)</span> <span class="tag-free">FREE</span></li>
+                
+                <li class="disabled-feature"><span><span class="cross">✕</span> Motion Graphics</span></li>
+                <li class="disabled-feature"><span><span class="cross">✕</span> 4K Export</span></li>
+            </ul>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Order Now</a>
+                <a href="#" class="btn btn-discount">Shorts/Reels</a>
+            </div>
+        </div>
+
+        <div class="price-card card-popular">
+            <div class="popular-badge">BEST SELLER</div>
+            <div class="plan-name">Content Pro</div>
+            <div class="plan-price">19,999<span> PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> Up to 10 Minute Video</span> <span class="tag-inc">INC</span></li>
+                <li><span><span class="tick">✓</span> Advanced Color Grading</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Sound Design & Mixing</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Dynamic Motion Text</span> <span class="tag-inc">INC</span></li>
+                <li><span><span class="tick">✓</span> 3 Revision Rounds</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 4K High-Bitrate Export</span> <span class="tag-free">FREE</span></li>
+                
+                <li class="disabled-feature"><span><span class="cross">✕</span> Cinematic VFX</span></li>
+            </ul>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Get Pro Edit</a>
+                <a href="#" class="btn btn-discount">YouTube Ready</a>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="plan-name">Cinematic Elite</div>
+            <div class="plan-price">44,999<span>+ PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> Unlimited Duration</span> <span class="tag-inc">INC</span></li>
+                <li><span><span class="tick">✓</span> Full Cinematic VFX</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Multi-Cam Editing</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Premium Transitions</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Unlimited Revisions</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Source File Included</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 24h Express Delivery</span> <span class="tag-free">FREE</span></li>
+            </ul>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Elite Project</a>
+                <a href="#" class="btn btn-discount">Ads & Films</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+ <!--possiblee cardss-->
+
+ 
+<style>
+    /* --- SECTION STYLING --- */
+    .cc-services-section {
+        padding: 80px 20px;
+        background-color: #ffffff; /* White Background */
+        color: #000000; /* Black Text */
+        max-width: 1200px;
+        margin: 0 auto;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .cc-services-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .cc-services-header h2 {
+        font-size: 36px;
+        font-weight: 900;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
+
+    .cc-services-header p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    /* --- GRID STYLING --- */
+    .cc-services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Desktop par 4 cards ki line */
+        gap:1px;
+    }
+
+    /* --- CARD STYLING (BLACK & WHITE THEME) --- */
+    .cc-service-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 20px;
+        background-color: #fff;
+        border: 1px solid #000; /* Black Border */
+        border-radius: 2px;
+        text-decoration: none; /* Link underline hatane ke liye */
+        color: #000;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    /* Hover Effect: Inverts to Black background with White text */
+    .cc-service-card:hover {
+        background-color: #322003;
+        color: #fff;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Icon Setup */
+    .icon-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .icon-wrapper svg {
+        width: 35px;
+        height: 35px;
+        stroke-width: 2px;
+        transition: stroke 0.3s ease;
+    }
+
+    /* Hover par icon ka color bhi white ho jaye */
+    .cc-service-card:hover .icon-wrapper svg {
+        stroke: #ffffff;
+    }
+
+    .cc-service-card h3 {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .cc-service-card p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: inherit; /* Apne parent ka color uthayega hover par */
+        opacity: 0.8;
+    }
+
+    /* --- MOBILE RESPONSIVE (2x2 Grid) --- */
+    @media (max-width: 768px) {
+        .cc-services-grid {
+            /* Mobile par 2 columns banayega (2 cards per row) */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px;
+        }
+
+        .cc-services-header h2 {
+            font-size: 28px;
+        }
+
+        .cc-service-card {
+            padding: 20px 15px;
+        }
+
+        .cc-service-card h3 {
+            font-size: 16px;
+        }
+
+        .cc-service-card p {
+            font-size: 12px;
+        }
+
+        .icon-wrapper svg {
+            width: 25px;
+            height: 25px;
+        }
+    }
+</style>
+<section class="cc-services-section">
+    <div class="cc-services-header">
+        <h2>Add-on Services</h2>
+        <p>Boost your video's performance with our specialized marketing and design solutions.</p>
+    </div>
+
+    <div class="cc-services-grid">
+        
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="palette"></i>
+            </div>
+            <h3>Graphic Design</h3>
+            <p>Click-worthy thumbnails, channel art, and custom overlays to make your videos pop.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="megaphone"></i>
+            </div>
+            <h3>Meta Ads</h3>
+            <p>Promote your video content on FB & Instagram to reach thousands of targeted viewers.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="layout"></i>
+            </div>
+            <h3>Portfolio Design</h3>
+            <p>A professional website to showcase your best video projects and attract high-paying clients.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="share-2"></i>
+            </div>
+            <h3>Social Media Marketing</h3>
+            <p>Complete management of your social profiles to grow your personal brand and engagement.</p>
+        </a>
+
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+
+<!--Get startddddddddddddddddddddddddddddd-->
+
+<style>
+    /* --- The Grand Finale CTA --- */
+    .cta-final {
+        padding: 150px 5%;
+        background: var(--white);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    /* Animated Heading: Text that breathes */
+    .cta-heading {
+        font-size: clamp(3rem, 12vw, 8rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -6px;
+        margin-bottom: 50px;
+        color: var(--black);
+        text-transform: uppercase;
+    }
+
+    .cta-heading span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--black);
+        transition: 0.5s;
+    }
+
+    .cta-final:hover .cta-heading span {
+        color: var(--blue);
+        -webkit-text-stroke: 1.5px var(--blue);
+        filter: drop-shadow(0 0 30px rgba(0, 112, 243, 0.3));
+    }
+
+    /* Ultra Animated Button */
+    .ultra-btn {
+        position: relative;
+        padding: 25px 60px;
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--white);
+        background: var(--black);
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 0.4s;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        z-index: 1;
+    }
+
+    .ultra-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 0; height: 0;
+        background: var(--blue);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+        z-index: -1;
+    }
+
+    .ultra-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 20px 40px rgba(0, 112, 243, 0.4);
+    }
+
+    .ultra-btn:hover::before {
+        width: 400px;
+        height: 400px;
+    }
+
+    /* Floating Particles for that "Manzar" */
+    .particle {
+        position: absolute;
+        background: var(--blue);
+        border-radius: 50%;
+        opacity: 0.1;
+        pointer-events: none;
+    }
+
+    /* Mobile Responsive Logic */
+    @media (max-width: 768px) {
+        .cta-heading { letter-spacing: -3px; margin-bottom: 30px; }
+        .cta-final { padding: 100px 5%; }
+        .ultra-btn { padding: 20px 40px; font-size: 14px; }
+    }
+</style>
+
+<section class="cta-final">
+    <div id="particle-container"></div>
+
+    <h2 class="cta-heading">
+        READY TO <br>
+        <span>INITIALIZE?</span>
+    </h2>
+
+    <p style="color: #666; font-weight: 500; margin-bottom: 40px; font-size: 1.1rem;">
+        Let's build the future of your business, one pixel at a time.
+    </p>
+
+   <a href="../contact.html">
+     <button class="ultra-btn" onclick="location.href='get-started.html'">
+        Start Your Project &rarr;
+    </button>
+   </a>
+
+    <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #aaa;">
+        <span>© 2026 CODECRAFTE STUDIO</span>
+        <div style="display: flex; gap: 20px;">
+            <a href="https://www.instagram.com/codecrafte.pk/" style="color: inherit; text-decoration: none;">INSTAGRAM</a>
+            <a href="www.linkedin.com/in/c-crafte-3941b43b3" style="color: inherit; text-decoration: none;">LINKEDIN</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Creating some random floating particles
+    const container = document.getElementById('particle-container');
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 50 + 10;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.left = Math.random() * 100 + '%';
+        container.appendChild(p);
+        
+        gsap.to(p, {
+            y: -100,
+            x: Math.random() * 50,
+            duration: Math.random() * 5 + 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+
+    // Scroll trigger for heading
+    gsap.from(".cta-heading", {
+        scrollTrigger: ".cta-final",
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    });
+</script>
+
+</body>
+</html>
