@@ -99,6 +99,15 @@
             .phone-mockup { margin: 0 auto; }
         }
     </style>
+     <script src="network-check.js"></script>
+    <script>
+      // network-check.js
+window.addEventListener('offline', function() {
+    // Current page ka URL save kar lo
+    sessionStorage.setItem('last_page', window.location.href);
+    window.location.href = "error404.html";
+});
+    </script>
 </head>
 <body>
 
