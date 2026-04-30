@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WP Stack | CodeCrafte</title>
+    <link rel="icon" type="image/png" href="../../images/fav-ion.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <style>
+        :root { --blue: #0821c4; --black: #000; --white: #fff; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background: var(--white); 
+            color: var(--black); 
+            overflow-x: hidden; 
+            overflow-y: auto; 
+            font-family: 'Inter', sans-serif;
+        }
+
+        .bg-text {
+            position: absolute;
+            font-size: 20vw;
+            font-weight: 900;
+            color: rgba(0,0,0,0.03);
+            white-space: nowrap;
+            top: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        /* --- LEFT SIDE --- */
+        .content { position: relative; z-index: 10; }
+
+        .ultra-heading {
+            font-size: clamp(3.5rem, 9vw, 8.5rem);
+            line-height: 0.85;
+            letter-spacing: -6px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .blue-stroke {
+            -webkit-text-stroke: 2px var(--blue);
+            color: transparent;
+            display: block;
+        }
+
+        .sub-heading {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 13px;
+            letter-spacing: 8px;
+            color: var(--blue);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hero-p {
+            margin-top: 40px;
+            font-size: 1rem;
+            max-width: 420px;
+            color: #555;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* --- RIGHT SIDE: WP BLOCK STACK --- */
+        .visual-box {
+            perspective: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+
+        .wp-stack {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            transform-style: preserve-3d;
+        }
+
+        /* Floating Blocks representing WP CMS */
+        .block {
+            position: absolute;
+            width: 220px;
+            height: 140px;
+            border: 2px solid var(--blue);
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 18px;
+            color: var(--blue);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 20px 50px rgba(0, 112, 243, 0.1);
+            transition: 0.3s;
+        }
+
+        .b1 { transform: translateZ(100px); border-color: #000; color: #000; }
+        .b2 { transform: translateZ(0px) translateY(40px) translateX(30px); opacity: 0.8; }
+        .b3 { transform: translateZ(-100px) translateY(80px) translateX(-30px); opacity: 0.5; }
+
+        .wp-logo-inner {
+            position: absolute;
+            font-size: 80px;
+            font-weight: 900;
+            color: var(--blue);
+            opacity: 0.1;
+            transform: translateZ(-150px);
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: var(--blue);
+            filter: blur(150px);
+            opacity: 0.08;
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        /* --- RESPONSIVE FIXES --- */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 120px; padding-bottom: 50px; }
+            .visual-box { height: 400px; margin-top: 30px; }
+            .hero-p { margin: 30px auto; }
+            .ultra-heading { letter-spacing: -3px; line-height: 0.9; }
+            .bg-text { top: 150px; font-size: 25vw; }
+        }
+
+        @media (max-width: 480px) {
+            .ultra-heading { font-size: 3.5rem; }
+            .block { width: 180px; height: 110px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-text">WP.ENGINE</div>
+    <div class="glow-orb" style="top: 20%; left: 50%;"></div>
+
+    <section class="hero">
+        <div class="content">
+            <span class="sub-heading">02 // CMS ARCHITECTURE</span>
+            <h1 class="ultra-heading">
+                BLOCK <br>
+                <span class="blue-stroke">WP</span> <br>
+                STACK.
+            </h1>
+            <p class="hero-p">
+                Beyond basic themes. We build high-performance, scalable WordPress ecosystems using custom block logic and headless CMS patterns.
+            </p>
+        </div>
+
+        <div class="visual-box">
+            <div class="wp-stack" id="wp-stack">
+                <div class="wp-logo-inner">W</div>
+                <div class="block b3">PLUGINS</div>
+                <div class="block b2">THEMES</div>
+                <div class="block b1">CUSTOM BLOCKS</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Entrance Animation
+        gsap.from(".ultra-heading", { x: -100, opacity: 0, duration: 1.5, ease: "expo.out" });
+        gsap.from(".sub-heading", { opacity: 0, y: -20, duration: 1, delay: 0.5 });
+        gsap.from(".block", { 
+            opacity: 0, 
+            scale: 0.8, 
+            z: -200, 
+            stagger: 0.2, 
+            duration: 1.5, 
+            ease: "back.out(1.7)" 
+        });
+
+        // Interactive Mouse Movement for WP Stack
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 25;
+            const y = (window.innerHeight / 2 - e.pageY) / 25;
+            
+            gsap.to("#wp-stack", {
+                rotationY: x,
+                rotationX: -y,
+                duration: 2,
+                ease: "power2.out"
+            });
+
+            // Slight parallax for background text
+            gsap.to(".bg-text", {
+                x: x * 2,
+                duration: 1
+            });
+        });
+
+        // Floating Animation for blocks
+        gsap.to(".block", {
+            y: "random(-10, 10)",
+            x: "random(-5, 5)",
+            repeat: -1,
+            yoyo: true,
+            duration: 2,
+            stagger: 0.3,
+            ease: "sine.inOut"
+        });
+    </script>
+
+
+
+<!--pricinggg-->
+
+
+<section class="wp-pricing-section">
+    <div class="wp-pricing-header">
+        <h2>WordPress Packages</h2>
+        <p>From simple blogs to powerful WooCommerce stores, pick the right plan for your business.</p>
+    </div>
+
+    <div class="wp-pricing-grid">
+        
+        <div class="wp-price-card">
+            <div class="wp-plan-name">Landing Page</div>
+            <div class="wp-plan-price">29,999<span> PKR</span></div>
+            
+            <ul class="wp-feature-list">
+                <li><span><span class="wp-tick">✓</span> Up to 3 Pages Design</span> <span class="wp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="wp-tick">✓</span> Mobile Responsive UI</span> <span class="wp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="wp-tick">✓</span> Contact Form & WhatsApp</span> <span class="wp-tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="wp-tick">✓</span> 1 Year Free Domain</span> <span class="wp-tag-free">FREE</span></li>
+                <li><span><span class="wp-tick">✓</span> 2 Months Free Hosting</span> <span class="wp-tag-free">FREE</span></li>
+                <li><span><span class="wp-tick">✓</span> Basic Speed Optimization</span> <span class="wp-tag-free">FREE</span></li>
+                
+                <li class="wp-disabled"><span><span class="wp-cross">✕</span> WooCommerce / E-com</span></li>
+                <li class="wp-disabled"><span><span class="wp-cross">✕</span> Custom Post Types</span></li>
+            </ul>
+
+            <div class="wp-btn-row">
+                <a href="../contact.html" class="wp-btn wp-btn-dark">Buy Now</a>
+                <a href="../contact.html" class="wp-btn wp-btn-outline">5% Discount</a>
+            </div>
+        </div>
+
+        <div class="wp-price-card wp-popular-card">
+            <div class="wp-badge">MOST POPULAR</div>
+            <div class="wp-plan-name">Business Pro</div>
+            <div class="wp-plan-price">49,999<span> PKR</span></div>
+            
+            <ul class="wp-feature-list">
+                <li><span><span class="wp-tick">✓</span> Up to 10 Pages Custom Design</span> <span class="wp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="wp-tick">✓</span> Premium Theme Setup</span> <span class="wp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="wp-tick">✓</span> Advanced Animations</span> <span class="wp-tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="wp-tick">✓</span> 1 Year Free Domain</span> <span class="wp-tag-free">FREE</span></li>
+                <li><span><span class="wp-tick">✓</span> 6 Months Free Hosting</span> <span class="wp-tag-free">FREE</span></li>
+                <li><span><span class="wp-tick">✓</span> On-Page SEO Setup</span> <span class="wp-tag-free">FREE</span></li>
+                <li><span><span class="wp-tick">✓</span> Live Chat Integration</span> <span class="wp-tag-free">FREE</span></li>
+                
+                <li class="wp-disabled"><span><span class="wp-cross">✕</span> Payment Gateway Setup</span></li>
+            </ul>
+
+            <div class="wp-btn-row">
+                <a href="../contact.html" class="wp-btn wp-btn-blue">Buy Now</a>
+                <a href="../contact.html" class="wp-btn wp-btn-outline">5% Discount</a>
+            </div>
+        </div>
+
+        <div class="wp-price-card">
+            <div class="wp-plan-name">WooCommerce Elite</div>
+            <div class="wp-plan-price">89,999<span> PKR</span></div>
+            
+            <ul class="wp-feature-list">
+                <li><span><span class="wp-tick">✓</span> Full E-Commerce Setup</span> <span class="wp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="wp-tick">✓</span> Unlimited Products Logic</span> <span class="wp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="wp-tick">✓</span> Payment Gateway (Stripe/PayFast)</span> <span class="wp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="wp-tick">✓</span> Custom Cart & Checkout</span> <span class="wp-tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="wp-tick">✓</span> 1 Year Premium Hosting</span> <span class="wp-tag-free">FREE</span></li>
+                <li><span><span class="wp-tick">✓</span> Advanced Security Setup</span> <span class="wp-tag-free">FREE</span></li>
+                <li><span><span class="wp-tick">✓</span> Abandoned Cart Recovery</span> <span class="wp-tag-free">FREE</span></li>
+                <li><span><span class="wp-tick">✓</span> 6 Months Free Maintenance</span> <span class="wp-tag-free">FREE</span></li>
+            </ul>
+
+            <div class="wp-btn-row">
+                <a href="../contact.html" class="wp-btn wp-btn-dark">Buy Now</a>
+                <a href="../contact.html" class="wp-btn wp-btn-outline">5% Discount</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="wp-extra-services">
+    <div class="wp-extra-header">
+        <h2>Supercharge Your WP Site</h2>
+        <p>A website is just the beginning. Add these services to turn it into a lead machine.</p>
+    </div>
+
+    <div class="wp-extra-grid">
+        
+        <a href="../contact.html" class="wp-srv-card">
+            <div class="wp-icon-wrap">
+                <i data-lucide="search"></i>
+            </div>
+            <h3>SEO Services</h3>
+            <p>Rank your new WordPress site on the first page of Google to get organic traffic.</p>
+        </a>
+
+        <a href="./Web.html" class="wp-srv-card">
+            <div class="wp-icon-wrap">
+                <i data-lucide="file-text"></i>
+            </div>
+            <h3>Web Development</h3>
+            <p>We develop websites for your Busniess, also form and Blogs</p>
+        </a>
+
+        <a href="./gd.html" class="wp-srv-card">
+            <div class="wp-icon-wrap">
+                <i data-lucide="pen-tool"></i>
+            </div>
+            <h3>Graphic Design</h3>
+            <p>Custom logos, banners, and vector illustrations that make your website pop.</p>
+        </a>
+
+        <a href="./app.html" class="wp-srv-card">
+            <div class="wp-icon-wrap">
+                <i data-lucide="smartphone"></i>
+            </div>
+            <h3>App Development</h3>
+            <p>Convert your WordPress or WooCommerce site into a fully native mobile app.</p>
+        </a>
+
+        <a href="./CRM.html" class="wp-srv-card">
+            <div class="wp-icon-wrap">
+                <i data-lucide="server"></i>
+            </div>
+            <h3>CRM</h3>
+            <p>Monthly backups, plugin updates, security checks, and speed optimization.</p>
+        </a>
+
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+
+<style>
+    /* --- CSS FOR WP PRICING SECTION --- */
+    .wp-pricing-section {
+        padding: 100px 20px;
+        background-color: #fafafa;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .wp-pricing-header { text-align: center; margin-bottom: 60px; }
+    .wp-pricing-header h2 { font-size: 38px; font-weight: 900; color: #000; margin-bottom: 10px; letter-spacing: -1px; }
+    .wp-pricing-header p { font-size: 16px; color: #555; }
+
+    .wp-pricing-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        max-width: 1250px; margin: 0 auto; align-items: stretch;
+    }
+
+    .wp-price-card {
+        background: #ffffff; border: 1px solid #eaeaea; border-radius: 12px;
+        padding: 40px 30px; display: flex; flex-direction: column;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .wp-price-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+
+    .wp-popular-card { border: 2px solid #0070f3; position: relative; box-shadow: 0 10px 30px rgba(0, 112, 243, 0.08); }
+
+    .wp-badge {
+        position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+        background: #0070f3; color: white; padding: 6px 16px; border-radius: 30px;
+        font-size: 11px; font-weight: 800; letter-spacing: 1px;
+    }
+
+    .wp-plan-name { font-size: 22px; font-weight: 800; color: #111; margin-bottom: 10px; }
+    .wp-plan-price { font-size: 42px; font-weight: 900; color: #000; margin-bottom: 30px; line-height: 1; letter-spacing: -1px; }
+    .wp-plan-price span { font-size: 16px; color: #666; font-weight: 600; letter-spacing: 0; }
+
+    .wp-feature-list { list-style: none; padding: 0; margin: 0 0 35px 0; flex: 1; }
+    .wp-feature-list li {
+        font-size: 13.5px; color: #333; padding: 12px 0; border-bottom: 1px solid #f5f5f5;
+        display: flex; justify-content: space-between; align-items: center; font-weight: 500;
+    }
+    .wp-feature-list li:last-child { border-bottom: none; }
+
+    .wp-tick { color: #0070f3; font-weight: bold; margin-right: 8px; font-size: 16px; }
+    .wp-cross { color: #aaa; font-weight: bold; margin-right: 8px; font-size: 16px; }
+    .wp-disabled { color: #aaa !important; text-decoration: line-through; }
+
+    .wp-tag-inc { font-size: 10px; background: #f0f4f8; color: #0070f3; padding: 4px 8px; border-radius: 4px; font-weight: 800; }
+    .wp-tag-free { font-size: 10px; background: #e6f8ec; color: #10b981; padding: 4px 8px; border-radius: 4px; font-weight: 800; }
+
+    .wp-btn-row { display: flex; gap: 12px; width: 100%; }
+    .wp-btn {
+        flex: 1; text-align: center; padding: 14px 5px; border-radius: 6px;
+        font-size: 13px; font-weight: 800; text-decoration: none; transition: 0.3s;
+    }
+    .wp-btn-dark { background: #000; color: #fff; border: 1px solid #000; }
+    .wp-btn-dark:hover { background: #333; }
+    .wp-btn-blue { background: #0070f3; color: #fff; border: 1px solid #0070f3; }
+    .wp-btn-blue:hover { background: #005bb5; }
+    .wp-btn-outline { background: transparent; color: #0070f3; border: 1px solid #0070f3; }
+    .wp-btn-outline:hover { background: #eff6ff; }
+
+    /* --- CSS FOR WP EXTRA SERVICES (SHARP/BOXY/B&W) --- */
+    .wp-extra-services {
+        padding: 80px 20px 120px 20px; background-color: #ffffff; 
+        color: #000; max-width: 1300px; margin: 0 auto; font-family: 'Inter', sans-serif;
+    }
+
+    .wp-extra-header { text-align: center; margin-bottom: 50px; }
+    .wp-extra-header h2 { font-size: 34px; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; letter-spacing: -1px; }
+    .wp-extra-header p { font-size: 16px; color: #555; }
+
+    .wp-extra-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; }
+
+    .wp-srv-card {
+        display: flex; flex-direction: column; align-items: flex-start;
+        padding: 35px 20px; background-color: #fff; border: 1px solid #000;
+        border-radius: 2px; text-decoration: none; color: #000;
+        transition: all 0.3s ease; cursor: pointer;
+    }
+
+    .wp-srv-card:hover { background-color: #000; color: #fff; }
+
+    .wp-icon-wrap { margin-bottom: 20px; }
+    .wp-icon-wrap svg { width: 32px; height: 32px; stroke-width: 2px; transition: stroke 0.3s ease; stroke: #0070f3; }
+    .wp-srv-card:hover .wp-icon-wrap svg { stroke: #ffffff; }
+
+    .wp-srv-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
+    .wp-srv-card p { font-size: 13px; line-height: 1.5; color: inherit; opacity: 0.8; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1024px) {
+        .wp-pricing-grid { grid-template-columns: 1fr; max-width: 450px; }
+        .wp-extra-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+        .wp-extra-grid { grid-template-columns: repeat(2, 1fr); }
+        .wp-extra-header h2 { font-size: 26px; }
+        .wp-srv-card { padding: 25px 15px; }
+        .wp-srv-card h3 { font-size: 15px; }
+        .wp-icon-wrap svg { width: 28px; height: 28px; }
+    }
+</style>
+
+
+
+<!--Get startddddddddddddddddddddddddddddd-->
+
+<style>
+    /* --- The Grand Finale CTA --- */
+    .cta-final {
+        padding: 150px 5%;
+        background: var(--white);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    /* Animated Heading: Text that breathes */
+    .cta-heading {
+        font-size: clamp(3rem, 12vw, 8rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -6px;
+        margin-bottom: 50px;
+        color: var(--black);
+        text-transform: uppercase;
+    }
+
+    .cta-heading span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--black);
+        transition: 0.5s;
+    }
+
+    .cta-final:hover .cta-heading span {
+        color: var(--blue);
+        -webkit-text-stroke: 1.5px var(--blue);
+        filter: drop-shadow(0 0 30px rgba(0, 112, 243, 0.3));
+    }
+
+    /* Ultra Animated Button */
+    .ultra-btn {
+        position: relative;
+        padding: 25px 60px;
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--white);
+        background: var(--black);
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 0.4s;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        z-index: 1;
+    }
+
+    .ultra-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 0; height: 0;
+        background: var(--blue);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+        z-index: -1;
+    }
+
+    .ultra-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 20px 40px rgba(0, 112, 243, 0.4);
+    }
+
+    .ultra-btn:hover::before {
+        width: 400px;
+        height: 400px;
+    }
+
+    /* Floating Particles for that "Manzar" */
+    .particle {
+        position: absolute;
+        background: var(--blue);
+        border-radius: 50%;
+        opacity: 0.1;
+        pointer-events: none;
+    }
+
+    /* Mobile Responsive Logic */
+    @media (max-width: 768px) {
+        .cta-heading { letter-spacing: -3px; margin-bottom: 30px; }
+        .cta-final { padding: 100px 5%; }
+        .ultra-btn { padding: 20px 40px; font-size: 14px; }
+    }
+</style>
+
+<section class="cta-final">
+    <div id="particle-container"></div>
+
+    <h2 class="cta-heading">
+        READY TO <br>
+        <span>INITIALIZE?</span>
+    </h2>
+
+    <p style="color: #666; font-weight: 500; margin-bottom: 40px; font-size: 1.1rem;">
+        Let's build the future of your business, one pixel at a time.
+    </p>
+
+   <a href="../contact.html">
+     <button class="ultra-btn" onclick="location.href='get-started.html'">
+        Start Your Project &rarr;
+    </button>
+   </a>
+
+    <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #aaa;">
+        <span>© 2026 CODECRAFTE STUDIO</span>
+        <div style="display: flex; gap: 20px;">
+            <a href="https://www.instagram.com/codecrafte.pk/" style="color: inherit; text-decoration: none;">INSTAGRAM</a>
+            <a href="www.linkedin.com/in/c-crafte-3941b43b3" style="color: inherit; text-decoration: none;">LINKEDIN</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Creating some random floating particles
+    const container = document.getElementById('particle-container');
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 50 + 10;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.left = Math.random() * 100 + '%';
+        container.appendChild(p);
+        
+        gsap.to(p, {
+            y: -100,
+            x: Math.random() * 50,
+            duration: Math.random() * 5 + 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+
+    // Scroll trigger for heading
+    gsap.from(".cta-heading", {
+        scrollTrigger: ".cta-final",
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    });
+</script>
+</body>
+</html>

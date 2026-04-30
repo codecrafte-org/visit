@@ -245,6 +245,244 @@
     </style>
 </head>
 <body>
+<!--loadinggg-->
+<div id="contact-skeleton-overlay">
+    
+    <main class="cs-content">
+        <div class="cs-heading">
+            <div class="cs-h-line cs-h1 cs-shimmer"></div>
+            <div class="cs-h-line cs-h2 cs-shimmer"></div>
+        </div>
+
+        <div class="cs-para">
+            <div class="cs-p-line cs-p1 cs-shimmer"></div>
+            <div class="cs-p-line cs-p2 cs-shimmer"></div>
+        </div>
+
+        <div class="cs-grid">
+            
+            <div class="cs-left-col">
+                <div class="cs-info-card">
+                    <div class="cs-icon-box cs-shimmer"></div>
+                    <div class="cs-info-text">
+                        <div class="cs-text-line cs-t1 cs-shimmer"></div>
+                        <div class="cs-text-line cs-t2 cs-shimmer"></div>
+                    </div>
+                </div>
+                <div class="cs-info-card">
+                    <div class="cs-icon-box cs-shimmer"></div>
+                    <div class="cs-info-text">
+                        <div class="cs-text-line cs-t1 cs-shimmer"></div>
+                        <div class="cs-text-line cs-t2 cs-shimmer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cs-right-col">
+                <div class="cs-form-box">
+                    <div class="cs-form-label cs-shimmer"></div>
+                    <div class="cs-form-input cs-shimmer"></div>
+                    
+                    <div class="cs-form-label cs-shimmer"></div>
+                    <div class="cs-form-input cs-shimmer"></div>
+
+                    <div class="cs-form-btn cs-shimmer"></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="cs-bottom-nav">
+        <div class="cs-nav-item">
+            <div class="cs-nav-icon cs-shimmer"></div>
+            <div class="cs-nav-text cs-shimmer"></div>
+        </div>
+        <div class="cs-nav-item">
+            <div class="cs-nav-icon cs-shimmer"></div>
+            <div class="cs-nav-text cs-shimmer"></div>
+        </div>
+        <div class="cs-nav-item">
+            <div class="cs-nav-icon cs-shimmer"></div>
+            <div class="cs-nav-text cs-shimmer"></div>
+        </div>
+        <div class="cs-nav-item">
+            <div class="cs-nav-icon cs-shimmer"></div>
+            <div class="cs-nav-text cs-shimmer"></div>
+        </div>
+        <div class="cs-nav-item">
+            <div class="cs-nav-icon cs-shimmer"></div>
+            <div class="cs-nav-text cs-shimmer"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* CONTACT SKELETON OVERLAY */
+#contact-skeleton-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #fafafa; /* Light background matching your image */
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Aligned to top to match layout */
+    padding-top: 80px;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+    overflow: hidden;
+}
+
+/* SHIMMER ANIMATION */
+@keyframes shimmerWaveContact {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.cs-shimmer {
+    background: #e5e7eb;
+    background-image: linear-gradient(to right, #e5e7eb 0%, #f3f4f6 20%, #e5e7eb 40%, #e5e7eb 100%);
+    background-repeat: no-repeat;
+    background-size: 1000px 100%;
+    animation: shimmerWaveContact 1.8s infinite linear forwards;
+    border-radius: 8px;
+}
+
+/* CENTER CONTENT WRAPPER */
+.cs-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 20px;
+}
+
+/* MAIN HEADING */
+.cs-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.cs-h1 { width: 60%; height: 80px; border-radius: 12px; }
+.cs-h2 { width: 40%; height: 80px; border-radius: 12px; }
+
+/* SUBHEADING PARAGRAPH */
+.cs-para {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 60px;
+}
+.cs-p1 { width: 50%; height: 16px; }
+.cs-p2 { width: 40%; height: 16px; }
+
+/* CONTACT GRID (2 Columns) */
+.cs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Right side form is slightly wider */
+    gap: 30px;
+    width: 100%;
+}
+
+/* LEFT COLUMN: INFO CARDS */
+.cs-left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cs-info-card {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.04);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+.cs-icon-box { width: 40px; height: 40px; border-radius: 10px; }
+.cs-info-text { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.cs-t1 { width: 40%; height: 14px; }
+.cs-t2 { width: 70%; height: 12px; }
+
+/* RIGHT COLUMN: FORM BOX */
+.cs-form-box {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.04);
+    border-radius: 30px; /* Large radius matching your design */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+.cs-form-label { width: 100px; height: 12px; border-radius: 4px; margin-bottom: -10px; }
+.cs-form-input { width: 100%; height: 45px; border-radius: 10px; margin-bottom: 10px; }
+.cs-form-btn { width: 150px; height: 50px; border-radius: 25px; margin-top: 10px; align-self: flex-start; }
+
+/* BOTTOM FLOATING NAVIGATION */
+.cs-bottom-nav {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    padding: 15px 40px;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    display: flex;
+    gap: 40px;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+.cs-nav-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.cs-nav-icon { width: 24px; height: 24px; border-radius: 5px; }
+.cs-nav-text { width: 40px; height: 8px; border-radius: 4px; }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+    .cs-grid { grid-template-columns: 1fr; } /* Stack columns on smaller screens */
+    .cs-h1 { width: 80%; height: 50px; }
+    .cs-h2 { width: 60%; height: 50px; }
+    .cs-p1 { width: 90%; }
+    .cs-p2 { width: 80%; }
+}
+
+@media (max-width: 768px) {
+    #contact-skeleton-overlay { padding-top: 40px; }
+    .cs-form-box, .cs-info-card { padding: 20px; border-radius: 20px; }
+    
+    .cs-bottom-nav {
+        width: 90%;
+        padding: 15px 20px;
+        gap: 15px;
+        justify-content: space-between;
+        bottom: 20px;
+    }
+}
+</style>
+<script>
+    // Exact wahi 1-second delay wala logic
+    window.addEventListener("load", function() {
+        const contactSkeleton = document.getElementById("contact-skeleton-overlay");
+        
+        setTimeout(() => {
+            contactSkeleton.style.opacity = "0";
+            contactSkeleton.style.visibility = "hidden";
+            
+            setTimeout(() => {
+                contactSkeleton.style.display = "none";
+            }, 500); 
+        }, 10); // 1000ms = 1 second
+    });
+</script>
+
 
     <header class="hero-section">
         <h1 class="animated-heading">Let’s build the future.</h1>

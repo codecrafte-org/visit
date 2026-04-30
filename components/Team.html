@@ -135,6 +135,189 @@
 </head>
 <body>
 
+    <!--loadnig-->
+
+    <div id="team-skeleton-overlay">
+    <div class="ts-bg-grid"></div>
+
+    <div class="ts-float-icon ts-icon-1 ts-shimmer"></div>
+    <div class="ts-float-icon ts-icon-2 ts-shimmer"></div>
+    <div class="ts-float-icon ts-icon-3 ts-shimmer"></div>
+
+    <main class="ts-content">
+        <div class="ts-small-tag ts-shimmer"></div>
+        
+        <div class="ts-massive-text">
+            <div class="ts-line ts-line-1 ts-shimmer"></div>
+            <div class="ts-line ts-line-2 ts-shimmer"></div>
+            <div class="ts-line ts-line-3 ts-shimmer"></div>
+        </div>
+
+        <div class="ts-para">
+            <div class="ts-p-line ts-shimmer"></div>
+            <div class="ts-p-line ts-short ts-shimmer"></div>
+        </div>
+    </main>
+
+    <div class="ts-bottom-nav">
+        <div class="ts-nav-item">
+            <div class="ts-nav-icon ts-shimmer"></div>
+            <div class="ts-nav-text ts-shimmer"></div>
+        </div>
+        <div class="ts-nav-item">
+            <div class="ts-nav-icon ts-shimmer"></div>
+            <div class="ts-nav-text ts-shimmer"></div>
+        </div>
+        <div class="ts-nav-item">
+            <div class="ts-nav-icon ts-shimmer"></div>
+            <div class="ts-nav-text ts-shimmer"></div>
+        </div>
+        <div class="ts-nav-item">
+            <div class="ts-nav-icon ts-shimmer"></div>
+            <div class="ts-nav-text ts-shimmer"></div>
+        </div>
+        <div class="ts-nav-item">
+            <div class="ts-nav-icon ts-shimmer"></div>
+            <div class="ts-nav-text ts-shimmer"></div>
+        </div>
+    </div>
+</div>
+<style>
+    /* TEAM SKELETON OVERLAY */
+#team-skeleton-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #fafafa;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+    overflow: hidden;
+}
+
+/* Background Grid Pattern */
+.ts-bg-grid {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: -1;
+}
+
+/* SHIMMER ANIMATION */
+@keyframes shimmerWaveTeam {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.ts-shimmer {
+    background: #e5e7eb;
+    background-image: linear-gradient(to right, #e5e7eb 0%, #f3f4f6 20%, #e5e7eb 40%, #e5e7eb 100%);
+    background-repeat: no-repeat;
+    background-size: 1000px 100%;
+    animation: shimmerWaveTeam 1.8s infinite linear forwards;
+    border-radius: 6px;
+}
+
+/* FLOATING ICONS SKELETON */
+.ts-float-icon { position: absolute; width: 30px; height: 30px; border-radius: 8px; opacity: 0.6; }
+.ts-icon-1 { top: 20%; left: 15%; }
+.ts-icon-2 { bottom: 25%; right: 10%; }
+.ts-icon-3 { bottom: 30%; left: 10%; }
+
+/* CENTER CONTENT */
+.ts-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 20px;
+    margin-top: -50px; /* Slight adjustment for the bottom nav */
+}
+
+.ts-small-tag { width: 150px; height: 14px; margin-bottom: 40px; border-radius: 20px; }
+
+/* Massive Typography Skeletons */
+.ts-massive-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+.ts-line-1 { width: 25%; height: 90px; }
+.ts-line-2 { width: 85%; height: 110px; }
+.ts-line-3 { width: 65%; height: 100px; }
+
+/* Paragraph */
+.ts-para { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 10px; }
+.ts-p-line { width: 50%; height: 14px; }
+.ts-short { width: 35%; }
+
+/* BOTTOM FLOATING NAVIGATION */
+.ts-bottom-nav {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    padding: 15px 40px;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    display: flex;
+    gap: 40px;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.ts-nav-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ts-nav-icon { width: 24px; height: 24px; border-radius: 5px; }
+.ts-nav-text { width: 40px; height: 8px; border-radius: 4px; }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .ts-line-1 { width: 40%; height: 50px; }
+    .ts-line-2 { width: 95%; height: 60px; }
+    .ts-line-3 { width: 80%; height: 55px; }
+    
+    .ts-p-line { width: 80%; }
+    .ts-short { width: 60%; }
+    
+    .ts-bottom-nav {
+        width: 90%;
+        padding: 15px 20px;
+        gap: 15px;
+        justify-content: space-between;
+        bottom: 20px;
+    }
+    
+    .ts-float-icon { display: none; }
+}
+</style>
+<script>
+    window.addEventListener("load", function() {
+        const teamSkeleton = document.getElementById("team-skeleton-overlay");
+        
+        // Timeout taki 1 second tak skeleton user ko dikhay, phir real website aaye
+        setTimeout(() => {
+            // Smooth fade out
+            teamSkeleton.style.opacity = "0";
+            teamSkeleton.style.visibility = "hidden";
+            
+            // Remove from DOM to avoid unclickable areas
+            setTimeout(() => {
+                teamSkeleton.style.display = "none";
+            }, 500); 
+        }, 10); // Agar fast load dikhana hai toh 1000 ko kam kar dena (e.g. 500)
+    });
+</script>
+
     <div class="bg-grid"></div>
 
     <i data-lucide="code-2" class="float-icon" style="top: 20%; left: 15%;"></i>

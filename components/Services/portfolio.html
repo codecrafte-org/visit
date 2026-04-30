@@ -3,224 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Architecture | CodeCrafte</title>
-        <link rel="icon" type="image/png" href="../../images/fav.webp">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-            <link rel="icon" type="image/png" href="../../images/fav-ion.webp">
-
+    <title>Professional Portfolio Header</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --blue: #0070f3; --black: #000; --white: #fff; }
-
+        :root { --blue: #0a775a; --black: #000; --white: #fff; --gray: #f4f4f4; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); overflow-x: hidden; }
+
+        .port-header {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            padding: 0 8%;
+            position: relative;
+        }
+
+        /* --- Left Side: English Content --- */
+        .port-info { z-index: 10; }
         
-      /* --- Global Fix --- */
-body { 
-    background: var(--white); 
-    color: var(--black); 
-    overflow-x: hidden; /* Sirf horizontal scroll ko roko */
-    overflow-y: auto;   /* Vertical scroll allow karo */
-    font-family: 'Inter', sans-serif;
-}
-     
-
-/* --- Hero Section Fix --- */
-.hero {
-    min-height: 100vh; /* height: 100vh ki jagah min-height use karein */
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    align-items: center;
-    padding: 0 5%;
-    position: relative; /* Taake background text sahi rahay */
-}
-
-/* --- Background Text Fix --- */
-.bg-text {
-    position: absolute;
-    font-size: 20vw;
-    font-weight: 900;
-    color: rgba(0,0,0,0.03);
-    white-space: nowrap;
-    top: 300px; /* Isay fixed height ya center mein adjust karein */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: -1;
-    pointer-events: none;
-}
-        /* --- LEFT SIDE: AGGRESSIVE TYPOGRAPHY --- */
-        .content { position: relative; }
-
-        .ultra-heading {
-            font-size: clamp(4rem, 10vw, 9rem);
-            line-height: 0.8;
-            letter-spacing: -8px;
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-
-        .blue-stroke {
-            -webkit-text-stroke: 2px var(--blue);
-            color: transparent;
-            display: block;
-        }
-
-        .sub-heading {
+        .port-label {
             font-family: 'Syncopate', sans-serif;
-            font-size: 14px;
-            letter-spacing: 10px;
+            font-size: 12px;
+            letter-spacing: 5px;
             color: var(--blue);
             margin-bottom: 20px;
             display: block;
         }
 
-        .hero-p {
-            margin-top: 40px;
-            font-size: 1.1rem;
-            max-width: 400px;
-            color: #444;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* --- RIGHT SIDE: THE 3D INTERACTIVE CUBE --- */
-        .visual-box {
-            perspective: 1000px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .cube {
-            width: 250px;
-            height: 250px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotateCube 15s infinite linear;
-        }
-
-        .cube-face {
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            border: 2px solid var(--blue);
-            background: rgba(255, 255, 255, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .port-main-title {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            line-height: 0.9;
             font-weight: 900;
-            font-size: 20px;
-            color: var(--blue);
-            backdrop-filter: blur(5px);
-            box-shadow: inset 0 0 30px rgba(0, 112, 243, 0.1);
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            color: var(--black);
         }
 
-        /* Cube Positioning */
-        .front  { transform: translateZ(125px); }
-        .back   { transform: rotateY(180deg) translateZ(125px); }
-        .right  { transform: rotateY(90deg) translateZ(125px); }
-        .left   { transform: rotateY(-90deg) translateZ(125px); }
-        .top    { transform: rotateX(90deg) translateZ(125px); }
-        .bottom { transform: rotateX(-90deg) translateZ(125px); }
-
-        @keyframes rotateCube {
-            0% { transform: rotateX(0deg) rotateY(0deg); }
-            100% { transform: rotateX(360deg) rotateY(360deg); }
+        .blue-outline {
+            -webkit-text-stroke: 1.5px var(--blue);
+            color: transparent;
         }
 
-        /* Floating Blue Glows */
-        .glow-orb {
+        .port-subtext {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 480px;
+            line-height: 1.6;
+        }
+
+        /* --- Right Side: Portfolio Showcase Animation --- */
+        .port-display {
+            position: relative;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Desktop Mockup */
+        .mock-desktop {
+            width: 400px;
+            height: 260px;
+            background: #fff;
+            border: 3px solid var(--black);
+            box-shadow: 20px 20px 0px var(--black);
+            padding: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mock-nav { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .mock-logo { width: 30px; height: 10px; background: var(--black); }
+        .mock-hero { width: 100%; height: 60px; background: var(--gray); margin-bottom: 15px; }
+        .mock-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .mock-item { height: 40px; border: 1px dashed var(--blue); }
+
+        /* Mobile Mockup (The Portfolio Feel) */
+        .mock-mobile {
+            width: 100px;
+            height: 200px;
+            background: #fff;
+            border: 3px solid var(--black);
+            box-shadow: 10px 10px 0px var(--blue);
             position: absolute;
-            width: 300px; height: 300px;
-            background: var(--blue);
-            filter: blur(120px);
-            opacity: 0.1;
-            z-index: -1;
-            border-radius: 50%;
+            bottom: -20px;
+            right: -20px;
+            z-index: 5;
+            border-radius: 12px;
+            padding: 10px;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; text-align: center; }
-            .visual-box { margin-top: 50px; }
-            .hero-p { margin: 40px auto; }
-            .ultra-heading { letter-spacing: -4px; }
+        .mock-m-hero { width: 100%; height: 40px; background: var(--blue); margin-bottom: 10px; }
+        .mock-m-line { width: 100%; height: 6px; background: #eee; margin-bottom: 5px; }
+
+        /* --- Responsive --- */
+        @media (max-width: 1024px) {
+            .port-header { grid-template-columns: 1fr; text-align: center; padding-top: 80px; }
+            .port-subtext { margin: 20px auto; }
+            .mock-desktop { width: 300px; height: 200px; }
+            .mock-mobile { width: 80px; height: 160px; }
         }
     </style>
 </head>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-<script>
-    // Register the plugin
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Pricing Cards Animation on Scroll
-    gsap.from(".price-card", {
-        scrollTrigger: {
-            trigger: ".pricing-grid",
-            start: "top 80%", // Jab grid ka top 80% screen par aaye
-            toggleActions: "play none none reverse"
-        },
-        y: 100,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "expo.out"
-    });
-</script>
 <body>
 
-    <div class="bg-text">CODECRAFTE</div>
-    <div class="glow-orb" style="top: 10%; right: 10%;"></div>
-
-    <section class="hero">
-        <div class="content">
-            <span class="sub-heading">01 // WEB ARCHITECTURE</span>
-            <h1 class="ultra-heading">
-                CORE <br>
-                <span class="blue-stroke">WEB</span> <br>
-                LOGIC.
+    <section class="port-header">
+        <div class="port-info">
+            <span class="port-label">SELECTED WORKS // 2026</span>
+            <h1 class="port-main-title">
+                MAKING <br>
+                <span class="blue-outline">BRANDS</span> <br>
+                VISIBLE.
             </h1>
-            <p class="hero-p">
-                We don't do boring. We architect high-velocity web experiences that push the boundaries of modern engineering.
+            <p class="port-subtext">
+                We design and build high-end portfolios that reflect your professional excellence. Beautiful interfaces, seamless performance.
             </p>
         </div>
 
-        <div class="visual-box">
-            <div class="cube" id="cube">
-                <div class="cube-face front">NEXT.JS</div>
-                <div class="cube-face back">GSAP</div>
-                <div class="cube-face right">REACT</div>
-                <div class="cube-face left">NODE</div>
-                <div class="cube-face top">API</div>
-                <div class="cube-face bottom">UI/UX</div>
+        <div class="port-display">
+            <div class="mock-desktop">
+                <div class="mock-nav"><div class="mock-logo"></div></div>
+                <div class="mock-hero"></div>
+                <div class="mock-grid">
+                    <div class="mock-item"></div><div class="mock-item"></div>
+                </div>
+            </div>
+
+            <div class="mock-mobile">
+                <div style="width:20px; height:3px; background:#000; margin: 0 auto 10px;"></div>
+                <div class="mock-m-hero"></div>
+                <div class="mock-m-line"></div>
+                <div class="mock-m-line"></div>
+                <div class="mock-m-line" style="width:60%;"></div>
             </div>
         </div>
     </section>
 
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
-        // Interactive Cube on Mouse Move
-        document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth / 2 - e.pageX) / 20;
-            const y = (window.innerHeight / 2 - e.pageY) / 20;
-            
-            gsap.to("#cube", {
-                rotationY: x,
-                rotationX: y,
-                duration: 2,
-                ease: "power2.out"
-            });
+        // Desktop Float
+        gsap.to(".mock-desktop", {
+            y: -20,
+            duration: 2.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
         });
 
-        // Entrance Animation
-        gsap.from(".ultra-heading", { x: -100, opacity: 0, duration: 1.5, ease: "expo.out" });
-        gsap.from(".sub-heading", { opacity: 0, y: -20, duration: 1, delay: 0.5 });
+        // Mobile Float
+        gsap.to(".mock-mobile", {
+            y: 20,
+            duration: 3,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: 0.4
+        });
+
+        // Entrance
+        gsap.from(".port-main-title", { opacity: 0, x: -60, duration: 1.2, ease: "power4.out" });
     </script>
 
-    <!--carddddddddddddddd-->
-    <style>
+
+
+<!--pricingg-->
+
+ <style>
         /* --- Clean & Standard Reset --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background-color: #f9fbfd; color: #333; }
@@ -264,21 +215,21 @@ body {
         }
 
         .price-card:hover {
-            border-color: #0072FF;
-            box-shadow: 0 10px 25px rgba(0, 114, 255, 0.1);
+            border-color: #0a775a;
+            box-shadow: 0 10px 25px #0a775a35;
             transform: translateY(-5px);
         }
 
         /* Active/Popular Card */
         .card-popular {
-            border: 2px solid #0072FF;
+            border: 2px solid #0a775a;
             position: relative;
         }
         .popular-badge {
             position: absolute;
             top: -12px; left: 50%;
             transform: translateX(-50%);
-            background: #0072FF;
+            background: #0a775a;
             color: white;
             padding: 4px 15px;
             border-radius: 20px;
@@ -345,11 +296,11 @@ body {
         .btn-buy { background: #111; color: #fff; border: 1px solid #111; }
         .btn-buy:hover { background: #333; }
 
-        .btn-discount { background: #fff; color: #0072FF; border: 1px solid #0072FF; }
+        .btn-discount { background: #fff; color: #0a775a; border: 1px solid #0a775a; }
         .btn-discount:hover { background: #f0f7ff; }
 
         /* Active Blue Button */
-        .card-popular .btn-buy { background: #0072FF; border-color: #0072FF; }
+        .card-popular .btn-buy { background: #0a775a; border-color: #0a775a; }
         .card-popular .btn-buy:hover { background: #005bb5; }
 
         /* --- Mobile Responsive --- */
@@ -358,7 +309,7 @@ body {
             .btn-row { flex-direction: column; } /* Mobile pe buttons upar neechay theek rehte hain */
         }
     </style>
- 
+
 <section class="pricing-section">
     <div class="pricing-header">
         <h2>Choose Your Plan</h2>
@@ -371,12 +322,10 @@ body {
             <div class="plan-price">14,999<span> PKR</span></div>
             
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> 5 Pages</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Social Media Integration</span> <span class="tag-inc">INCLUDED</span></li>
-                
+                <li><span><span class="tick">✓</span> 5 Pages Design</span> <span class="tag-inc">INCLUDED</span></li>
                 <li><span><span class="tick">✓</span> 1 Year Hosting</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> 1 Year Domain</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> 1 Month Maintenance</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 3 Month Maintenance</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Social Media Integration</span> <span class="tag-free">FREE</span></li>
                 <li><span><span class="tick">✓</span> WhatsApp Integration</span> <span class="tag-free">FREE</span></li>
                 
                 <li class="disabled-feature"><span><span class="cross">✕</span> AI Integration</span></li>
@@ -396,16 +345,15 @@ body {
             <div class="plan-price">19,999<span> PKR</span></div>
             
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> 10 Pages</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Social Media Integration</span> <span class="tag-inc">INCLUDED</span></li>
-                
-                <li><span><span class="tick">✓</span> 5 Year Hosting</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> 1 Year Domain</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> 3 Month Maintenance</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Up to 5 Pages</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> 2 Year Hosting</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 6 Month Maintenance</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Social Media Integration</span> <span class="tag-free">FREE</span></li>
                 <li><span><span class="tick">✓</span> WhatsApp Integration</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> AI Integration (1 Year)</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Contact Form</span> <span class="tag-free">FREE</span></li>
                 <li><span><span class="tick">✓</span> Business Logo</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Contact Form (1 Year)</span> <span class="tag-free">FREE</span></li>
+                
+                <li class="disabled-feature"><span><span class="cross">✕</span> AI Integration</span></li>
             </ul>
 
             <div class="btn-row">
@@ -419,16 +367,14 @@ body {
             <div class="plan-price">29,999<span> PKR</span></div>
             
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> 10+ Pages</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Social Media Integration</span> <span class="tag-inc">INCLUDED</span></li>
-                
-                <li><span><span class="tick">✓</span> Lifetime Hosting</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> 1 Year Domain</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Up to 10 Pages</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> 5 Year Hosting</span> <span class="tag-free">FREE</span></li>
                 <li><span><span class="tick">✓</span> 9 Month Maintenance</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> WhatsApp Integration</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> AI Integration (5 Year)</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> AI Integration</span> <span class="tag-free">FREE</span></li>
                 <li><span><span class="tick">✓</span> Business Logo</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Contact Form (5+ Year)</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> WhatsApp Integration</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Social Media Integration</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Contact Form</span> <span class="tag-free">FREE</span></li>
             </ul>
 
             <div class="btn-row">
@@ -440,48 +386,137 @@ body {
     </div>
 </section>
 
- <!--possiblee cardss-->
 
- <section class="cc-services-section">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+
+<!--whi we servcee-->
+
+<style>
+    /* Niche Section Styling */
+.niche-section {
+    padding: 80px 10%;
+    background: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.cc-services-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.cc-services-header h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+/* Grid Logic */
+.niche-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Desktop: 4 Columns */
+    gap: 20px;
+}
+
+.niche-card {
+    border: 2px solid #000;
+    padding: 30px 20px;
+    background: #fff;
+    transition: 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.niche-card:hover {
+    box-shadow: 10px 10px 0px #0a775a;
+    transform: translate(-5px, -5px);
+}
+
+.niche-icon {
+    color: #0a775a;
+    margin-bottom: 15px;
+}
+
+.niche-card h3 {
+    font-size: 1.1rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.niche-card p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* --- Responsive (Mobile 2 per row) --- */
+@media (max-width: 768px) {
+    .niche-grid {
+        grid-template-columns: repeat(2, 1fr); /* Exact 2 per row */
+        gap: 15px;
+        padding: 0 5px;
+    }
+    
+    .niche-section {
+        padding: 50px 5%;
+    }
+
+    .niche-card {
+        padding: 20px 15px;
+    }
+
+    .niche-card h3 {
+        font-size: 0.9rem; /* Thoda chota for mobile space */
+    }
+}
+</style>
+<section class="niche-section">
     <div class="cc-services-header">
-        <h2>What Else You Might Need?</h2>
-        <p>Complete your digital presence with our expert solutions.</p>
+        <h2>Who Is This For?</h2>
+        <p>Perfectly crafted portfolios for creative minds.</p>
     </div>
 
-    <div class="cc-services-grid">
-        
-        <a href="../contact.html" class="cc-service-card">
-            <div class="icon-wrapper">
-                <i data-lucide="bar-chart-2"></i>
+    <div class="niche-grid">
+        <div class="niche-card">
+            <div class="niche-icon">
+                <i data-lucide="palette"></i>
             </div>
-            <h3>UI/UX</h3>
-            <p>Get Your website's UI first. then start  development.</p>
-        </a>
+            <h3>Graphic Designers</h3>
+            <p>Showcase your brand identities and social media designs.</p>
+        </div>
 
-        <a href="./smm.html" class="cc-service-card">
-            <div class="icon-wrapper">
-                <i data-lucide="megaphone"></i>
+        <div class="niche-card">
+            <div class="niche-icon">
+                <i data-lucide="play-circle"></i>
             </div>
-            <h3>Social Media Marketing</h3>
-            <p>Run targeted ads and manage your social profiles to get more sales.</p>
-        </a>
+            <h3>Video Editors</h3>
+            <p>Display your reels and cinematic projects in one place.</p>
+        </div>
 
-        <a href="../contact.html" class="cc-service-card">
-            <div class="icon-wrapper">
-                <i data-lucide="pen-tool"></i>
+        <div class="niche-card">
+            <div class="niche-icon">
+                <i data-lucide="home"></i>
             </div>
-            <h3>Logo & Branding</h3>
-            <p>Stand out with a professional logo, business cards, and brand identity.</p>
-        </a>
+            <h3>Architects</h3>
+            <p>High-quality galleries for your 3D models and site plans.</p>
+        </div>
 
-        <a href="../contact.html" class="cc-service-card">
-            <div class="icon-wrapper">
+        <div class="niche-card">
+            <div class="niche-icon">
                 <i data-lucide="layout"></i>
             </div>
-            <h3>Custom Web Apps</h3>
-            <p>Upgrade to complex E-commerce stores or custom management portals.</p>
-        </a>
-
+            <h3>Interior Designers</h3>
+            <p>Let clients walk through your decor and space designs.</p>
+        </div>
+         <div class="niche-card">
+            <div class="niche-icon">
+                <i data-lucide="layout"></i>
+            </div>
+            <h3>Many More</h3>
+            <p>Customize Portfolio accourding to your Need.</p>
+        </div>
     </div>
 </section>
 
@@ -608,151 +643,49 @@ body {
     }
 </style>
 
-<!--processsssssssssssssssssssssss-->
 
-<style>
-    /* --- Results & Clients Section --- */
-    .results-section {
-        padding: 80px 8%;
-        background: #fff;
-        border-top: 1px solid #f0f0f0;
-    }
-
-    .results-grid {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto 100px;
-        gap: 40px;
-    }
-
-    .stat-box { text-align: left; }
-
-    /* Text Polish: Not too thick, just clean */
-    .stat-number {
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        font-weight: 700; /* Balanced weight */
-        color: var(--black);
-        display: block;
-        letter-spacing: -2px;
-    }
-
-    .stat-label {
-        font-size: 14px;
-        color: var(--blue);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    /* --- Logo Slider (The Manzar) --- */
-    .client-footer {
-        text-align: center;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .client-footer p {
-        font-size: 12px;
-        font-weight: 700;
-        color: #aaa;
-        letter-spacing: 3px;
-        margin-bottom: 40px;
-    }
-
-    .logo-track {
-        display: flex;
-        width: calc(250px * 10); /* Dynamic width for loop */
-        animation: scrollLogos 20s linear infinite;
-        align-items: center;
-        gap: 80px;
-    }
-
-    .logo-item {
-        width: 180px;
-        height: 60px;
-        filter: grayscale(1); /* B&W for premium look */
-        opacity: 0.4;
-        transition: 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .logo-item:hover { filter: grayscale(0); opacity: 1; }
-
-    /* Mobile Responsive Logic */
-    @media (max-width: 768px) {
-        .results-grid { flex-direction: column; text-align: center; gap: 50px; }
-        .stat-box { text-align: center; }
-        .logo-track { gap: 40px; }
-        .logo-item { width: 120px; }
-    }
-
-    @keyframes scrollLogos {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-250px * 5)); }
-    }
-</style>
-
-<section class="results-section">
-    <div class="results-grid">
-        <div class="stat-box">
-            <span class="stat-label">Production</span>
-            <span class="stat-number" id="count1">14+</span>
-            <p style="color:#888; font-size:14px;">Successful Deployments</p>
-        </div>
-        <div class="stat-box" style="border-left: 1px solid #eee; padding-left: 40px;">
-            <span class="stat-label">Global Reach</span>
-            <span class="stat-number" id="count2">3+</span>
-            <p style="color:#888; font-size:14px;">Countries Served</p>
-        </div>
-        <div class="stat-box" style="border-left: 1px solid #eee; padding-left: 40px;">
-            <span class="stat-label">Satisfaction</span>
-            <span class="stat-number">100%</span>
-            <p style="color:#888; font-size:14px;">Client Retention</p>
-        </div>
+<section class="cc-services-section">
+    <div class="cc-services-header">
+        <h2>What Else You Might Need?</h2>
+        <p>Enhance your personal brand with these essential add-ons.</p>
     </div>
 
-    <div class="client-footer">
-        <p>TRUSTED BY INDUSTRY GIANTS</p>
-        <div class="logo-track">
-            <div class="logo-item">
-                <span style="font-size: 20px; font-weight: 900; letter-spacing: -1px;"> <span style="color:var(--blue)"> </span></span>
+    <div class="cc-services-grid">
+        
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="palette"></i>
             </div>
-            <div class="logo-item">
-                <span style="font-size: 20px; font-weight: 900; letter-spacing: -1px;"> <span style="color:var(--blue)"> </span></span>
+            <h3>Custom UI/UX Design</h3>
+            <p>Get a unique, high-end look for your portfolio before we start coding.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="pen-tool"></i>
             </div>
-            <div class="logo-item">
-                <span style="font-size: 18px; font-weight: 700; color:#555;">HAM SB KA ATTA</span>
+            <h3>Content Writing</h3>
+            <p>Professional bio and project descriptions that sell your skills effectively.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="user-check"></i>
             </div>
-            <div class="logo-item">
-                <span style="font-size: 18px; font-weight: 700; color:#555;"> </span>
+            <h3>Personal Branding</h3>
+            <p>Custom logo, matching resume design, and professional social media kit.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="search"></i>
             </div>
-            <div class="logo-item">
-                <span style="font-size: 20px; font-weight: 900; letter-spacing: -1px;">PRO<span style="color:var(--blue)"> </span></span>
-            </div>
-            <div class="logo-item">
-                <span style="font-size: 20px; font-weight: 900; letter-spacing: -1px;"> <span style="color:var(--blue)">REHAB</span></span>
-            </div>
-        </div>
+            <h3>Portfolio SEO</h3>
+            <p>Rank your name on Google so recruiters can find you easily.</p>
+        </a>
+
     </div>
 </section>
-
-<script>
-    // Counter Animation Logic
-    gsap.from("#count1", {
-        scrollTrigger: "#count1",
-        textContent: 0,
-        duration: 2,
-        snap: { textContent: 1 },
-        stagger: 1
-    });
-</script>
-    
-
-
 <!--Get startddddddddddddddddddddddddddddd-->
 
 <style>

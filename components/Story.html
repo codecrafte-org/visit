@@ -121,6 +121,312 @@
     </style>
 </head>
 <body>
+<!--loadingg-->
+<div id="story-skeleton-overlay">
+    
+    <div class="ss-nodes-container">
+        <div class="ss-node ss-n1 ss-shimmer"></div>
+        <div class="ss-node ss-n2 ss-shimmer"></div>
+        <div class="ss-node ss-n3 ss-shimmer"></div>
+        <div class="ss-node ss-n4 ss-shimmer"></div>
+    </div>
+
+    <main class="ss-content">
+        <div class="ss-small-tag ss-shimmer"></div>
+        
+        <div class="ss-heading">
+            <div class="ss-h-line ss-h1 ss-shimmer"></div>
+            <div class="ss-h-line ss-h2 ss-shimmer"></div>
+        </div>
+
+        <div class="ss-para">
+            <div class="ss-p-line ss-p1 ss-shimmer"></div>
+            <div class="ss-p-line ss-p2 ss-shimmer"></div>
+            <div class="ss-p-line ss-p3 ss-shimmer"></div>
+        </div>
+    </main>
+
+    <div class="ss-bottom-nav">
+        <div class="ss-nav-item">
+            <div class="ss-nav-icon ss-shimmer"></div>
+            <div class="ss-nav-text ss-shimmer"></div>
+        </div>
+        <div class="ss-nav-item">
+            <div class="ss-nav-icon ss-shimmer"></div>
+            <div class="ss-nav-text ss-shimmer"></div>
+        </div>
+        <div class="ss-nav-item">
+            <div class="ss-nav-icon ss-shimmer"></div>
+            <div class="ss-nav-text ss-shimmer"></div>
+        </div>
+        <div class="ss-nav-item">
+            <div class="ss-nav-icon ss-shimmer"></div>
+            <div class="ss-nav-text ss-shimmer"></div>
+        </div>
+        <div class="ss-nav-item">
+            <div class="ss-nav-icon ss-shimmer"></div>
+            <div class="ss-nav-text ss-shimmer"></div>
+        </div>
+    </div>
+</div>
+<style>
+    /* STORY SKELETON OVERLAY */
+#story-skeleton-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #ffffff; /* Pure white to match the image */
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+    overflow: hidden;
+}
+
+/* SHIMMER ANIMATION */
+@keyframes shimmerWaveStory {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.ss-shimmer {
+    background: #f0f2f5;
+    background-image: linear-gradient(to right, #f0f2f5 0%, #ffffff 20%, #f0f2f5 40%, #f0f2f5 100%);
+    background-repeat: no-repeat;
+    background-size: 1000px 100%;
+    animation: shimmerWaveStory 1.8s infinite linear forwards;
+    border-radius: 6px;
+}
+
+/* BACKGROUND NODES SKELETON */
+.ss-nodes-container {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+.ss-node { position: absolute; width: 60px; height: 60px; border-radius: 50%; opacity: 0.3; }
+.ss-n1 { top: 15%; left: 10%; }
+.ss-n2 { bottom: 30%; left: 15%; }
+.ss-n3 { top: 20%; right: 15%; }
+.ss-n4 { bottom: 40%; right: 10%; }
+
+/* CENTER CONTENT */
+.ss-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+    margin-top: -60px; /* Offset for the bottom nav */
+}
+
+/* Top Tagline */
+.ss-small-tag { width: 120px; height: 12px; margin-bottom: 30px; border-radius: 20px; }
+
+/* Main Heading Skeletons */
+.ss-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+.ss-h1 { width: 65%; height: 70px; border-radius: 12px; }
+.ss-h2 { width: 45%; height: 80px; border-radius: 12px; } /* Slightly taller for the "What If?" part */
+
+/* Paragraph Skeletons */
+.ss-para {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+.ss-p1 { width: 85%; height: 14px; }
+.ss-p2 { width: 90%; height: 14px; }
+.ss-p3 { width: 60%; height: 14px; }
+
+/* BOTTOM FLOATING NAVIGATION */
+.ss-bottom-nav {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    padding: 15px 40px;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    display: flex;
+    gap: 40px;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.ss-nav-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ss-nav-icon { width: 24px; height: 24px; border-radius: 5px; }
+.ss-nav-text { width: 40px; height: 8px; border-radius: 4px; }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .ss-h1 { width: 85%; height: 45px; }
+    .ss-h2 { width: 65%; height: 50px; }
+    
+    .ss-p1 { width: 95%; }
+    .ss-p2 { width: 90%; }
+    .ss-p3 { width: 75%; }
+    
+    .ss-node { display: none; } /* Clean up mobile view */
+    
+    .ss-bottom-nav {
+        width: 90%;
+        padding: 15px 20px;
+        gap: 15px;
+        justify-content: space-between;
+        bottom: 20px;
+    }
+}/* STORY SKELETON OVERLAY */
+#story-skeleton-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #ffffff; /* Pure white to match the image */
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+    overflow: hidden;
+}
+
+/* SHIMMER ANIMATION */
+@keyframes shimmerWaveStory {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.ss-shimmer {
+    background: #f0f2f5;
+    background-image: linear-gradient(to right, #f0f2f5 0%, #ffffff 20%, #f0f2f5 40%, #f0f2f5 100%);
+    background-repeat: no-repeat;
+    background-size: 1000px 100%;
+    animation: shimmerWaveStory 1.8s infinite linear forwards;
+    border-radius: 6px;
+}
+
+/* BACKGROUND NODES SKELETON */
+.ss-nodes-container {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+.ss-node { position: absolute; width: 60px; height: 60px; border-radius: 50%; opacity: 0.3; }
+.ss-n1 { top: 15%; left: 10%; }
+.ss-n2 { bottom: 30%; left: 15%; }
+.ss-n3 { top: 20%; right: 15%; }
+.ss-n4 { bottom: 40%; right: 10%; }
+
+/* CENTER CONTENT */
+.ss-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+    margin-top: -60px; /* Offset for the bottom nav */
+}
+
+/* Top Tagline */
+.ss-small-tag { width: 120px; height: 12px; margin-bottom: 30px; border-radius: 20px; }
+
+/* Main Heading Skeletons */
+.ss-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+.ss-h1 { width: 65%; height: 70px; border-radius: 12px; }
+.ss-h2 { width: 45%; height: 80px; border-radius: 12px; } /* Slightly taller for the "What If?" part */
+
+/* Paragraph Skeletons */
+.ss-para {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+.ss-p1 { width: 85%; height: 14px; }
+.ss-p2 { width: 90%; height: 14px; }
+.ss-p3 { width: 60%; height: 14px; }
+
+/* BOTTOM FLOATING NAVIGATION */
+.ss-bottom-nav {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    padding: 15px 40px;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    display: flex;
+    gap: 40px;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.ss-nav-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ss-nav-icon { width: 24px; height: 24px; border-radius: 5px; }
+.ss-nav-text { width: 40px; height: 8px; border-radius: 4px; }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .ss-h1 { width: 85%; height: 45px; }
+    .ss-h2 { width: 65%; height: 50px; }
+    
+    .ss-p1 { width: 95%; }
+    .ss-p2 { width: 90%; }
+    .ss-p3 { width: 75%; }
+    
+    .ss-node { display: none; } /* Clean up mobile view */
+    
+    .ss-bottom-nav {
+        width: 90%;
+        padding: 15px 20px;
+        gap: 15px;
+        justify-content: space-between;
+        bottom: 20px;
+    }
+}
+</style>
+
+<script>
+    window.addEventListener("load", function() {
+        const storySkeleton = document.getElementById("story-skeleton-overlay");
+        
+        // Timeout for skeleton display
+        setTimeout(() => {
+            storySkeleton.style.opacity = "0";
+            storySkeleton.style.visibility = "hidden";
+            
+            setTimeout(() => {
+                storySkeleton.style.display = "none";
+            }, 500); 
+        }, 10); // 1 sec delay
+    });
+</script>
+
 
     <section class="story-hero">
         <div id="particle-canvas"></div>

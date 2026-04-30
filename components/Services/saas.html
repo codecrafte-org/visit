@@ -3,149 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta Ads Expert | CodeCrafte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-            <link rel="icon" type="image/png" href="../../images/fav-ion.webp">
-
+    <title>SaaS Magic Header</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --meta-blue: #0081fb; --instagram-pink: #e1306c; --black: #000; --white: #fff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--white); overflow-x: hidden; }
+        :root { --blue: #36c31a; --black: #000; --white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #fff; overflow-x: hidden; }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
+        .saas-hero {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
             align-items: center;
-            padding: 80px 8%;
-            flex-wrap: wrap;
-            gap: 60px;
+            padding: 0 8%;
+            background: radial-gradient(circle at 90% 10%, #f0f7ff 0%, #fff 50%);
         }
 
-        .hero-content { flex: 1; min-width: 350px; }
-        .sub-heading { font-family: 'Syncopate', sans-serif; font-size: 11px; letter-spacing: 6px; color: var(--meta-blue); margin-bottom: 20px; display: block; }
-        .ultra-heading { font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.85; letter-spacing: -5px; font-weight: 900; text-transform: uppercase; }
-        .gradient-text { background: linear-gradient(90deg, #0081fb, #e1306c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* --- Left Side --- */
+        .saas-content { z-index: 10; }
+        
+        .saas-tag {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 12px;
+            letter-spacing: 5px;
+            color: var(--blue);
+            margin-bottom: 20px;
+            display: block;
+        }
 
-        /* --- AD VISUAL (RIGHT SIDE) --- */
-        .hero-visual {
-            flex: 1.2;
+        .saas-title {
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 0.9;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+        }
+
+        .blue-outline {
+            -webkit-text-stroke: 1.5px var(--blue);
+            color: transparent;
+        }
+
+        .saas-desc {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 450px;
+            line-height: 1.6;
+        }
+
+        /* --- SaaS Cloud Animation --- */
+        .saas-visual {
+            position: relative;
+            height: 500px;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            min-height: 500px;
+            perspective: 1000px;
         }
 
-        /* The Ad Mockup Card */
-        .ad-mockup {
-            width: 300px;
-            height: 400px;
+        /* Main Dashboard Frame */
+        .dashboard-frame {
+            width: 400px;
+            height: 280px;
+            background: white;
+            border: 2px solid var(--black);
+            box-shadow: 15px 15px 0px var(--black);
+            padding: 20px;
+            position: relative;
+            transform: rotateY(-10deg) rotateX(5deg);
+        }
+
+        .db-header { display: flex; gap: 5px; margin-bottom: 20px; }
+        .db-dot { width: 8px; height: 8px; border-radius: 50%; background: #eee; }
+        .db-dot.blue { background: var(--blue); }
+
+        /* Floating Components (SaaS Modules) */
+        .saas-chip {
+            position: absolute;
             background: var(--white);
-            border-radius: 25px;
-            border: 1px solid #eee;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            transform: rotate(-5deg);
-            z-index: 5;
+            border: 2px solid var(--black);
+            padding: 10px 15px;
+            font-size: 12px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 5px 5px 0px var(--blue);
         }
 
-        .ad-header { padding: 15px; display: flex; align-items: center; gap: 10px; }
-        .ad-profile { width: 30px; height: 30px; background: #eee; border-radius: 50%; }
-        .ad-image { width: 100%; height: 200px; background: linear-gradient(45deg, #0081fb, #e1306c); }
-        .ad-body { padding: 15px; }
-        .ad-btn { width: 100%; padding: 10px; background: #0081fb; color: #fff; border-radius: 8px; text-align: center; font-size: 12px; font-weight: 900; }
+        .chip-1 { top: 10%; right: 0%; z-index: 12; } /* Subscriptions */
+        .chip-2 { bottom: 15%; left: -5%; z-index: 12; } /* Analytics */
+        .chip-3 { top: 40%; left: -15%; z-index: 11; background: var(--black); color: #fff; } /* Cloud Sync */
 
-        /* Floating Targeting Rings */
-        .targeting-ring {
+        /* Pulsing Sync Circle */
+        .sync-pulse {
             position: absolute;
-            border: 2px dashed rgba(0, 129, 251, 0.2);
+            width: 100px;
+            height: 100px;
+            border: 1px dashed var(--blue);
             border-radius: 50%;
-            animation: rotate 20s linear infinite;
+            z-index: 1;
         }
-        .ring-1 { width: 450px; height: 450px; }
-        .ring-2 { width: 350px; height: 350px; }
 
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* Floating Tags */
-        .ad-tag {
-            position: absolute;
-            background: var(--black);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 800;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            z-index: 10;
-        }
-        .tag-1 { top: 10%; right: 0; background: var(--meta-blue); }
-        .tag-2 { bottom: 10%; left: 0; background: var(--instagram-pink); }
-
-        @media (max-width: 900px) {
-            .hero { text-align: center; padding-top: 100px; }
-            .hero-visual { transform: scale(0.8); min-height: 400px; }
-            .ad-mockup { margin: 0 auto; transform: rotate(0); }
+        /* --- Mobile --- */
+        @media (max-width: 1024px) {
+            .saas-hero { grid-template-columns: 1fr; text-align: center; padding-top: 80px; }
+            .saas-desc { margin: 20px auto; }
+            .dashboard-frame { width: 300px; height: 220px; margin-top: 50px; }
+            .chip-3 { left: 5%; }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="hero-content">
-            <span class="sub-heading">PAID MEDIA // PERFORMANCE</span>
-            <h1 class="ultra-heading">
-                PRECISION <br> <span class="gradient-text">META</span> <br> ADS.
+    <section class="saas-hero">
+        <div class="saas-content">
+            <span class="saas-tag">NEXT-GEN SAAS</span>
+            <h1 class="saas-title">
+                CLOUD <br>
+                <span class="blue-outline">BASED</span> <br>
+                MAGIC.
             </h1>
-            <p style="margin-top:35px; color:#666; max-width:450px; line-height:1.6; font-weight:500;">
-We don’t just run ads—we build sales engines. The right audience, the right creatives, and maximum ROI—that’s our formula.              </p>
+            <p class="saas-desc">
+                Hum banate hain aisi SaaS applications jo fast chalti hain aur hazaron users ko handle karti hain. Aapka software, har jagah, har waqt.
+            </p>
         </div>
 
-        <div class="hero-visual">
-            <div class="targeting-ring ring-1"></div>
-            <div class="targeting-ring ring-2"></div>
-            
-            <div class="ad-mockup" id="adCard">
-                <div class="ad-header">
-                    <div class="ad-profile"></div>
-                    <div>
-                        <div style="width:80px; height:8px; background:#eee; margin-bottom:5px;"></div>
-                        <div style="width:40px; height:5px; background:#f5f5f5;"></div>
-                    </div>
+        <div class="saas-visual">
+            <div class="sync-pulse"></div>
+
+            <div class="dashboard-frame">
+                <div class="db-header">
+                    <div class="db-dot blue"></div><div class="db-dot"></div><div class="db-dot"></div>
                 </div>
-                <div class="ad-image"></div>
-                <div class="ad-body">
-                    <div style="width:100%; height:8px; background:#eee; margin-bottom:8px;"></div>
-                    <div style="width:80%; height:8px; background:#eee; margin-bottom:20px;"></div>
-                    <div class="ad-btn">SHOP NOW</div>
+                <div style="height: 15px; width: 60%; background: #f4f4f4; margin-bottom: 10px;"></div>
+                <div style="height: 100px; width: 100%; border: 1px solid #f4f4f4; display: flex; align-items: flex-end; gap: 5px; padding: 10px;">
+                    <div class="bar" style="flex:1; background: #eee; height: 40%;"></div>
+                    <div class="bar" style="flex:1; background: var(--blue); height: 70%;"></div>
+                    <div class="bar" style="flex:1; background: #eee; height: 50%;"></div>
+                    <div class="bar" style="flex:1; background: var(--blue); height: 90%;"></div>
                 </div>
             </div>
 
-            <div class="ad-tag tag-1">🚀 5.2x ROAS</div>
-            <div class="ad-tag tag-2">🎯 TARGETED REACH</div>
+            <div class="saas-chip chip-1">
+                <span style="color: var(--blue);">●</span> SUBSCRIPTIONS: LIVE
+            </div>
+            <div class="saas-chip chip-2">
+                REVENUE: +145%
+            </div>
+            <div class="saas-chip chip-3">
+                ☁️ CLOUD SYNCING...
+            </div>
         </div>
     </section>
 
-  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
-        // 3D Tilt
-        document.addEventListener('mousemove', (e) => {
-            if (window.innerWidth > 900) {
-                const x = (window.innerWidth / 2 - e.pageX) / 40;
-                const y = (window.innerHeight / 2 - e.pageY) / 40;
-                gsap.to("#adCard", { rotationY: x, rotationX: -y, duration: 0.8 });
-            }
+        // Dashboard Tilt & Float
+        gsap.to(".dashboard-frame", {
+            y: -20,
+            rotationY: 5,
+            duration: 3,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
         });
 
-        // Tag Floating
-        gsap.to(".ad-tag", { y: -20, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut", stagger: 0.5 });
+        // Pulse Circle Rotation
+        gsap.to(".sync-pulse", { rotation: 360, duration: 15, repeat: -1, ease: "linear" });
+        gsap.to(".sync-pulse", { scale: 1.5, opacity: 0, duration: 2, repeat: -1 });
+
+        // Chips Floating (Different speeds)
+        gsap.to(".chip-1", { y: 15, duration: 2, repeat: -1, yoyo: true, ease: "power1.inOut" });
+        gsap.to(".chip-2", { y: -15, duration: 2.5, repeat: -1, yoyo: true, ease: "power1.inOut", delay: 0.5 });
+        gsap.to(".chip-3", { x: 10, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut" });
+
+        // Bar Animation
+        gsap.to(".bar", { 
+            scaleY: 1.2, 
+            duration: 1, 
+            repeat: -1, 
+            yoyo: true, 
+            stagger: 0.2, 
+            transformOrigin: "bottom" 
+        });
     </script>
 
-<!--pricing-->
-<!--carddddddddddddddd-->
+
+
+  <!--carddddddddddddddd-->
     <style>
         /* --- Clean & Standard Reset --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
@@ -190,21 +238,21 @@ We don’t just run ads—we build sales engines. The right audience, the right 
         }
 
         .price-card:hover {
-            border-color: #e1306c;
-            box-shadow: 0 10px 25px rgba(0, 114, 255, 0.1);
+            border-color: #36c31a;
+            box-shadow: 0 10px 25px #36c31a21;
             transform: translateY(-5px);
         }
 
         /* Active/Popular Card */
         .card-popular {
-            border: 2px solid #e1306c;
+            border: 2px solid #36c31a;
             position: relative;
         }
         .popular-badge {
             position: absolute;
             top: -12px; left: 50%;
             transform: translateX(-50%);
-            background: #e1306c;
+            background: #36c31a;
             color: white;
             padding: 4px 15px;
             border-radius: 20px;
@@ -271,11 +319,11 @@ We don’t just run ads—we build sales engines. The right audience, the right 
         .btn-buy { background: #111; color: #fff; border: 1px solid #111; }
         .btn-buy:hover { background: #333; }
 
-        .btn-discount { background: #fff; color: #e1306c; border: 1px solid #e1306c; }
+        .btn-discount { background: #fff; color: #36c31a; border: 1px solid #36c31a; }
         .btn-discount:hover { background: #f0f7ff; }
 
         /* Active Blue Button */
-        .card-popular .btn-buy { background: #e1306c; border-color: #e1306c; }
+        .card-popular .btn-buy { background: #36c31a; border-color: #36c31a; }
         .card-popular .btn-buy:hover { background: #005bb5; }
 
         /* --- Mobile Responsive --- */
@@ -284,85 +332,63 @@ We don’t just run ads—we build sales engines. The right audience, the right 
             .btn-row { flex-direction: column; } /* Mobile pe buttons upar neechay theek rehte hain */
         }
     </style>
-
-
-<section class="pricing-section">
+ 
+ <section class="pricing-section">
     <div class="pricing-header">
-        <h2>Meta Ads Packages</h2>
-        <p>Choose a plan that fits your business goals and budget.</p>
+        <h2>SaaS Pricing Plans</h2>
     </div>
 
     <div class="pricing-grid">
-        
         <div class="price-card">
-            <div class="plan-name">Starter Growth</div>
-            <div class="plan-price">14,999<span> PKR/mo</span></div>
-            
+            <div class="plan-name">MVP Launch</div>
+            <div class="plan-price">74,999<span> PKR</span></div>
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> 10-15 active Ad Campaigns</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Basic Audience Research</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Ad Copywriting</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Weekly Performance Report</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Pixel Setup</span> <span class="tag-free">FREE</span></li>
-                
-                <li class="disabled-feature"><span><span class="cross">✕</span> Competitor Analysis</span></li>
-                <li class="disabled-feature"><span><span class="cross">✕</span> Sales Funnel Strategy</span></li>
+                <li><span>✓ Single Tenant Arch.</span> <span class="tag-inc">INC</span></li>
+                <li><span>✓ User Auth System</span> <span class="tag-free">FREE</span></li>
+                <li><span>✓ Cloud Deployment</span> <span class="tag-free">FREE</span></li>
+                <li><span>✓ 1 Business Email</span> <span class="tag-free">FREE</span></li>
             </ul>
-
             <div class="btn-row">
-                <a href="#" class="btn btn-buy">Start Campaign</a>
-                <a href="#" class="btn btn-discount">Get 5% Off</a>
+                <a href="#" class="btn btn-buy">Start Now</a>
+                <a href="#" class="btn btn-discount">5% Off</a>
             </div>
         </div>
 
         <div class="price-card card-popular">
-            <div class="popular-badge">BEST ROI</div>
-            <div class="plan-name">Business Scale</div>
-            <div class="plan-price">24,999<span> PKR/mo</span></div>
-            
+            <div class="popular-badge">MOST POPULAR</div>
+            <div class="plan-name">SaaS Pro</div>
+            <div class="plan-price">144,999<span> PKR</span></div>
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> 15-20 Active Ad Campaigns</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Advanced Retargeting (LAL)</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Instagram Setup</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Competitor Ad Tracking</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Facebook Account Setup</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Monthly Strategy Call</span> <span class="tag-free">FREE</span></li>
-                
-                <li class="disabled-feature"><span><span class="cross">✕</span> Custom Video Production</span></li>
+                <li><span>✓ Multi-Tenant System</span> <span class="tag-inc">INC</span></li>
+                <li><span>✓ Stripe Integration</span> <span class="tag-inc">INC</span></li>
+                <li><span>✓ Admin Dashboard</span> <span class="tag-free">FREE</span></li>
+                <li><span>✓ Subscription Logic</span> <span class="tag-free">FREE</span></li>
+                <li><span>✓ 3 Months Support</span> <span class="tag-free">FREE</span></li>
             </ul>
-
             <div class="btn-row">
-                <a href="#" class="btn btn-buy">Scale Now</a>
-                <a href="#" class="btn btn-discount">Get 5% Off</a>
+                <a href="#" class="btn btn-buy">Get Started</a>
+                <a href="#" class="btn btn-discount">10% Off</a>
             </div>
         </div>
 
         <div class="price-card">
-            <div class="plan-name">Agency Elite</div>
-            <div class="plan-price">34,999<span> PKR/mo</span></div>
-            
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-price">249,999<span>+</span></div>
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> Unlimited Campaigns</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Complete Sales Funnel</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Influencer Whitelisting</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> High-ROAS Optimization</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Dedicated Account Manager</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> 24/7 Priority Support</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> CRM Integration</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Facebook setup</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Instagram setup</span> <span class="tag-free">FREE</span></li>
+                <li><span>✓ Microservices Setup</span> <span class="tag-inc">INC</span></li>
+                <li><span>✓ Unlimited Users</span> <span class="tag-inc">INC</span></li>
+                <li><span>✓ Dedicated Server</span> <span class="tag-free">FREE</span></li>
+                <li><span>✓ Full Source Code</span> <span class="tag-free">FREE</span></li>
             </ul>
-
             <div class="btn-row">
-                <a href="#" class="btn btn-buy">Contact Agency</a>
-                <a href="#" class="btn btn-discount">Get 5% Off</a>
+                <a href="#" class="btn btn-buy">Contact Us</a>
+                <a href="#" class="btn btn-discount">Custom Quote</a>
             </div>
         </div>
-
     </div>
 </section>
 
-<!--possible-->
+
 
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>lucide.createIcons();</script>
@@ -489,34 +515,42 @@ We don’t just run ads—we build sales engines. The right audience, the right 
 
 <section class="cc-services-section">
     <div class="cc-services-header">
-        <h2>Ads Management Services</h2>
-        <p>Boost your business reach with highly targeted Meta advertising solutions.</p>
+        <h2>SaaS Ecosystem Add-ons</h2>
     </div>
 
     <div class="cc-services-grid">
-        
-        <a href="../contact.html" class="cc-service-card">
-            <div class="icon-wrapper">
-                <i data-lucide="crosshair"></i>
-            </div>
-            <h3>Video Editor</h3>
-            <p>GEt More Reels, and be Viral on social media.</p>
+        <a href="#" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="cloud-cog"></i></div>
+            <h3>Cloud DevOps</h3>
+            <p>AWS aur Azure par auto-scaling infrastructure setup karein.</p>
         </a>
 
-        <a href="../contact.html" class="cc-service-card">
-            <div class="icon-wrapper">
-                <i data-lucide="image"></i>
-            </div>
-            <h3>Web Development</h3>
-            <p>High-End Webiste. Get more clients</p>
+        <a href="#" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="shield-check"></i></div>
+            <h3>SaaS Security</h3>
+            <p>Data encryption aur advanced security layers aapke users ke liye.</p>
         </a>
 
-         
-        
+        <a href="#" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="api"></i></div>
+            <h3>API Integration</h3>
+            <p>Apne SaaS ko 3rd party tools ke sath connect karein.</p>
+        </a>
 
+        <a href="#" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="sparkles"></i></div>
+            <h3>AI Features</h3>
+            <p>Smart automation aur AI modules apne software mein add karein.</p>
+        </a>
     </div>
 </section>
-<!--Get starteddddddddddddddddddddddd-->
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+
+
+
+<!--Get startddddddddddddddddddddddddddddd-->
 
 <style>
     /* --- The Grand Finale CTA --- */
@@ -621,10 +655,12 @@ We don’t just run ads—we build sales engines. The right audience, the right 
     <p style="color: #666; font-weight: 500; margin-bottom: 40px; font-size: 1.1rem;">
         Let's build the future of your business, one pixel at a time.
     </p>
-<a href="../contact.html"> <button class="ultra-btn" onclick="location.href='get-started.html'">
+
+   <a href="../contact.html">
+     <button class="ultra-btn" onclick="location.href='get-started.html'">
         Start Your Project &rarr;
-    </button></a>
-   
+    </button>
+   </a>
 
     <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #aaa;">
         <span>© 2026 CODECRAFTE STUDIO</span>
@@ -668,6 +704,4 @@ We don’t just run ads—we build sales engines. The right audience, the right 
     });
 </script>
 </body>
-
-
 </html>

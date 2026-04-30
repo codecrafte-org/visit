@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP Architecture | CodeCrafte</title>
+    <link rel="icon" type="image/png" href="../../images/fav-ion.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <style>
+        :root { --blue: #09cb53; --black: #000; --white: #fff; --gray: #f5f5f5; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background: var(--white); 
+            color: var(--black); 
+            overflow-x: hidden; 
+            overflow-y: auto; 
+            font-family: 'Inter', sans-serif;
+        }
+
+        .bg-text {
+            position: absolute;
+            font-size: 16vw;
+            font-weight: 900;
+            color: rgba(0,0,0,0.03);
+            white-space: nowrap;
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            pointer-events: none;
+            letter-spacing: -5px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        /* --- LEFT SIDE: TYPOGRAPHY --- */
+        .content { position: relative; z-index: 10; }
+
+        .ultra-heading {
+            font-size: clamp(3.5rem, 7vw, 7.5rem);
+            line-height: 0.85;
+            letter-spacing: -5px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .blue-stroke {
+            -webkit-text-stroke: 2px var(--blue);
+            color: transparent;
+            display: block;
+        }
+
+        .sub-heading {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 13px;
+            letter-spacing: 8px;
+            color: var(--blue);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hero-p {
+            margin-top: 40px;
+            font-size: 1.05rem;
+            max-width: 450px;
+            color: #444;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* --- RIGHT SIDE: 3D ISOMETRIC STACK --- */
+        .visual-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 600px;
+            perspective: 1500px;
+        }
+
+        .iso-parent {
+            position: relative;
+            width: 320px;
+            height: 240px;
+            transform-style: preserve-3d;
+            /* Creates the isometric angle */
+            transform: rotateX(55deg) rotateZ(-45deg); 
+        }
+
+        /* The Layers */
+        .layer {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            backdrop-filter: blur(8px);
+            box-shadow: -15px 15px 30px rgba(0,0,0,0.05);
+            padding: 15px;
+            display: grid;
+            gap: 10px;
+            transform-style: preserve-3d;
+        }
+
+        /* Top Layer: Dashboard UI */
+        .layer-top {
+            border-color: var(--blue);
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 2fr;
+            /* Initial Z will be set by GSAP, but defining target here for reference */
+            /* transform: translateZ(120px); */ 
+        }
+        .ui-box { background: rgba(0, 112, 243, 0.1); border: 1px solid var(--blue); border-radius: 4px; }
+        .ui-chart { grid-column: span 2; background: rgba(0,0,0,0.03); border: 1px dashed #ccc; display: flex; align-items: flex-end; padding: 10px; gap: 5px;}
+        .bar { flex: 1; background: var(--blue); opacity: 0.8; }
+
+        /* Middle Layer: Workflow/Logic */
+        .layer-middle {
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+            justify-items: center;
+            background: rgba(245, 245, 245, 0.9);
+        }
+        .node { width: 40px; height: 40px; background: #fff; border: 2px solid #000; border-radius: 50%; }
+        .line { position: absolute; height: 2px; width: 60%; background: #000; top: 50%; left: 20%; z-index: -1; }
+
+        /* Bottom Layer: Database */
+        .layer-bottom {
+            background: #fff;
+            background-image: radial-gradient(#ccc 1px, transparent 1px);
+            background-size: 20px 20px;
+            border-style: dashed;
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: var(--blue);
+            filter: blur(150px);
+            opacity: 0.08;
+            z-index: -1;
+            border-radius: 50%;
+            top: 20%; right: 10%;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; padding-bottom: 50px; }
+            .visual-box { height: 500px; margin-top: 0px; }
+            .hero-p { margin: 30px auto; }
+            .ultra-heading { letter-spacing: -3px; }
+            .bg-text { top: 120px; font-size: 20vw; }
+        }
+
+        @media (max-width: 480px) {
+            .ultra-heading { font-size: 3rem; }
+            .iso-parent { width: 260px; height: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-text">INTEGRATE</div>
+    <div class="glow-orb"></div>
+
+    <section class="hero">
+        <div class="content">
+            <span class="sub-heading">03 // ENTERPRISE LOGIC</span>
+            <h1 class="ultra-heading">
+                UNIFY <br>
+                <span class="blue-stroke">YOUR</span> <br>
+                DATA.
+            </h1>
+            <p class="hero-p">
+                Stop running your business on scattered spreadsheets. We engineer centralized ERP solutions that stack your operations into one intelligent, scalable dashboard.
+            </p>
+        </div>
+
+        <div class="visual-box">
+            <div class="iso-parent" id="iso-parent">
+                
+                <div class="layer layer-bottom" id="l-bottom"></div>
+
+                <div class="layer layer-middle" id="l-middle">
+                    <div class="node"></div>
+                    <div class="node"></div>
+                    <div class="node"></div>
+                    <div class="line"></div>
+                </div>
+
+                <div class="layer layer-top" id="l-top">
+                    <div class="ui-box"></div>
+                    <div class="ui-box"></div>
+                    <div class="ui-chart">
+                        <div class="bar" style="height: 40%"></div>
+                        <div class="bar" style="height: 70%"></div>
+                        <div class="bar" style="height: 50%"></div>
+                        <div class="bar" style="height: 90%; background: #000;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Set initial Z positions for the isometric stack
+        gsap.set("#l-bottom", { z: 0 });
+        gsap.set("#l-middle", { z: 60 });
+        gsap.set("#l-top", { z: 120 });
+
+        // Entrance Text Animation
+        gsap.from(".ultra-heading", { x: -100, opacity: 0, duration: 1.5, ease: "expo.out" });
+        gsap.from(".sub-heading", { opacity: 0, y: -20, duration: 1, delay: 0.5 });
+        
+        // Stack Assembly Animation (Drops in from the top)
+        const tl = gsap.timeline({ delay: 0.5 });
+        
+        tl.from("#l-bottom", { z: 400, opacity: 0, duration: 1, ease: "back.out(1.2)" })
+          .from("#l-middle", { z: 500, opacity: 0, duration: 1, ease: "back.out(1.2)" }, "-=0.6")
+          .from("#l-top", { z: 600, opacity: 0, duration: 1, ease: "back.out(1.2)" }, "-=0.6");
+
+        // Continuous Floating Effect (Breathing)
+        tl.to("#l-top", { z: 140, repeat: -1, yoyo: true, duration: 2, ease: "sine.inOut" }, "+=0.5")
+          .to("#l-middle", { z: 75, repeat: -1, yoyo: true, duration: 2, ease: "sine.inOut" }, "<");
+
+        // Interactive Mouse Parallax
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 40;
+            const y = (window.innerHeight / 2 - e.pageY) / 40;
+            
+            gsap.to("#iso-parent", {
+                // Adjusting the core rotation based on mouse
+                rotationY: x,
+                rotationX: 55 - y, // Keep base 55deg angle
+                duration: 1.5,
+                ease: "power2.out"
+            });
+        });
+    </script>
+
+    <!--pricing-->
+<section class="erp-pricing-section">
+    <div class="erp-pricing-header">
+        <h2>ERP System Packages</h2>
+        <p>Scalable, secure, and centralized software solutions for businesses of all sizes.</p>
+    </div>
+
+    <div class="erp-pricing-grid">
+        
+        <div class="erp-price-card">
+            <div class="erp-plan-name">Core Engine</div>
+            <div class="erp-plan-price">99,999<span> PKR</span></div>
+            
+            <ul class="erp-feature-list">
+                <li><span><span class="erp-tick">✓</span> 2 Core Modules (e.g. CRM & Inv)</span> <span class="erp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="erp-tick">✓</span> Standard Admin Dashboard</span> <span class="erp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="erp-tick">✓</span> Up to 10 Employee Accounts</span> <span class="erp-tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="erp-tick">✓</span> Basic Cloud Setup</span> <span class="erp-tag-free">FREE</span></li>
+                <li><span><span class="erp-tick">✓</span> 1 Month Tech Support</span> <span class="erp-tag-free">FREE</span></li>
+                <li><span><span class="erp-tick">✓</span> Staff Training Session</span> <span class="erp-tag-free">FREE</span></li>
+                
+                <li class="erp-disabled"><span><span class="erp-cross">✕</span> Custom API Integrations</span></li>
+                <li class="erp-disabled"><span><span class="erp-cross">✕</span> Payroll & Finance Logic</span></li>
+            </ul>
+
+            <div class="erp-btn-row">
+                <a href="../contact.html" class="erp-btn erp-btn-dark">Buy Now</a>
+                <a href="../contact.html" class="erp-btn erp-btn-outline">5% Discount</a>
+            </div>
+        </div>
+
+        <div class="erp-price-card erp-popular-card">
+            <div class="erp-badge">MOST POPULAR</div>
+            <div class="erp-plan-name">Corporate Suite</div>
+            <div class="erp-plan-price">249,999<span> PKR</span></div>
+            
+            <ul class="erp-feature-list">
+                <li><span><span class="erp-tick">✓</span> 4 Core Modules (HR, CRM, Inv, Fin)</span> <span class="erp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="erp-tick">✓</span> Custom Role-Based Access</span> <span class="erp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="erp-tick">✓</span> Advanced Reporting & Charts</span> <span class="erp-tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="erp-tick">✓</span> Automated Backup System</span> <span class="erp-tag-free">FREE</span></li>
+                <li><span><span class="erp-tick">✓</span> 3 Months VIP Support</span> <span class="erp-tag-free">FREE</span></li>
+                <li><span><span class="erp-tick">✓</span> Payment Gateway Integration</span> <span class="erp-tag-free">FREE</span></li>
+                <li><span><span class="erp-tick">✓</span> Email/SMS Alerts Setup</span> <span class="erp-tag-free">FREE</span></li>
+                
+                <li class="erp-disabled"><span><span class="erp-cross">✕</span> Dedicated Mobile App</span></li>
+            </ul>
+
+            <div class="erp-btn-row">
+                <a href="../contact.html" class="erp-btn erp-btn-blue">Buy Now</a>
+                <a href="../contact.html" class="erp-btn erp-btn-outline">5% Discount</a>
+            </div>
+        </div>
+
+        <div class="erp-price-card">
+            <div class="erp-plan-name">Enterprise Custom</div>
+            <div class="erp-plan-price">499,999<span> PKR</span></div>
+            
+            <ul class="erp-feature-list">
+                <li><span><span class="erp-tick">✓</span> Unlimited Custom Modules</span> <span class="erp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="erp-tick">✓</span> Complex Workflow Automation</span> <span class="erp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="erp-tick">✓</span> Third-Party API Sync</span> <span class="erp-tag-inc">INCLUDED</span></li>
+                <li><span><span class="erp-tick">✓</span> Unlimited User Accounts</span> <span class="erp-tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="erp-tick">✓</span> AWS/VPS Architecture Setup</span> <span class="erp-tag-free">FREE</span></li>
+                <li><span><span class="erp-tick">✓</span> 6 Months Enterprise Support</span> <span class="erp-tag-free">FREE</span></li>
+                <li><span><span class="erp-tick">✓</span> Free White-labeling</span> <span class="erp-tag-free">FREE</span></li>
+                <li><span><span class="erp-tick">✓</span> Priority Development Queue</span> <span class="erp-tag-free">FREE</span></li>
+            </ul>
+
+            <div class="erp-btn-row">
+                <a href="../contact.html" class="erp-btn erp-btn-dark">Buy Now</a>
+                <a href="../contact.html" class="erp-btn erp-btn-outline">5% Discount</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="erp-extra-services">
+    <div class="erp-extra-header">
+        <h2>Complete Your Ecosystem</h2>
+        <p>Enhance your ERP software with our premium agency add-ons.</p>
+    </div>
+
+    <div class="erp-extra-grid">
+        
+        <a href="./CSD.html" class="erp-srv-card">
+            <div class="erp-icon-wrap">
+                <i data-lucide="cloud"></i>
+            </div>
+            <h3>Custom Software Development</h3>
+            <p>Deploy your ERP on fast, secure, and scalable AWS or DigitalOcean cloud servers.</p>
+        </a>
+
+        <a href="./uiux.html" class="erp-srv-card">
+            <div class="erp-icon-wrap">
+                <i data-lucide="layout"></i>
+            </div>
+            <h3>UI/UX Design</h3>
+            <p>Custom, intuitive dashboard designs that your employees will actually love using.</p>
+        </a>
+
+        <a href="./app.html" class="erp-srv-card">
+            <div class="erp-icon-wrap">
+                <i data-lucide="smartphone"></i>
+            </div>
+            <h3>App Development</h3>
+            <p>Give your team on-the-go access with a dedicated mobile app connected to your ERP.</p>
+        </a>
+
+        <a href="./Web.html" class="erp-srv-card">
+            <div class="erp-icon-wrap">
+                <i data-lucide="globe"></i>
+            </div>
+            <h3>Web Development</h3>
+            <p>Connect your internal inventory and CRM directly to your public-facing website.</p>
+        </a>
+
+        <a href="./CRM.html" class="erp-srv-card">
+            <div class="erp-icon-wrap">
+                <i data-lucide="shield-check"></i>
+            </div>
+            <h3>CRM</h3>
+            <p>Monthly retainers for bug fixes, database optimizations, and ongoing feature updates.</p>
+        </a>
+
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+
+<style>
+    /* --- CSS FOR ERP PRICING SECTION --- */
+    .erp-pricing-section {
+        padding: 100px 20px;
+        background-color: #fafafa;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .erp-pricing-header { text-align: center; margin-bottom: 60px; }
+    .erp-pricing-header h2 { font-size: 38px; font-weight: 900; color: #000; margin-bottom: 10px; letter-spacing: -1px; }
+    .erp-pricing-header p { font-size: 16px; color: #555; }
+
+    .erp-pricing-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        max-width: 1250px; margin: 0 auto; align-items: stretch;
+    }
+
+    .erp-price-card {
+        background: #ffffff; border: 1px solid #eaeaea; border-radius: 12px;
+        padding: 40px 30px; display: flex; flex-direction: column;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .erp-price-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+
+    .erp-popular-card { border: 2px solid  #09cb53; position: relative; box-shadow: 0 10px 30px  #04532245; }
+
+    .erp-badge {
+        position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+        background: #09cb53; color: white; padding: 6px 16px; border-radius: 30px;
+        font-size: 11px; font-weight: 800; letter-spacing: 1px;
+    }
+
+    .erp-plan-name { font-size: 22px; font-weight: 800; color: #111; margin-bottom: 10px; }
+    .erp-plan-price { font-size: 42px; font-weight: 900; color: #000; margin-bottom: 30px; line-height: 1; letter-spacing: -1px; }
+    .erp-plan-price span { font-size: 16px; color: #666; font-weight: 600; letter-spacing: 0; }
+
+    .erp-feature-list { list-style: none; padding: 0; margin: 0 0 35px 0; flex: 1; }
+    .erp-feature-list li {
+        font-size: 13.5px; color: #333; padding: 12px 0; border-bottom: 1px solid #f5f5f5;
+        display: flex; justify-content: space-between; align-items: center; font-weight: 500;
+    }
+    .erp-feature-list li:last-child { border-bottom: none; }
+
+    .erp-tick { color: #09cb53; font-weight: bold; margin-right: 8px; font-size: 16px; }
+    .erp-cross { color: #aaa; font-weight: bold; margin-right: 8px; font-size: 16px; }
+    .erp-disabled { color: #aaa !important; text-decoration: line-through; }
+
+    .erp-tag-inc { font-size: 10px; background: #f0f4f8; color: #09cb53; padding: 4px 8px; border-radius: 4px; font-weight: 800; }
+    .erp-tag-free { font-size: 10px; background: #e6f8ec; color: #10b981; padding: 4px 8px; border-radius: 4px; font-weight: 800; }
+
+    .erp-btn-row { display: flex; gap: 12px; width: 100%; }
+    .erp-btn {
+        flex: 1; text-align: center; padding: 14px 5px; border-radius: 6px;
+        font-size: 13px; font-weight: 800; text-decoration: none; transition: 0.3s;
+    }
+    .erp-btn-dark { background: #000; color: #fff; border: 1px solid #000; }
+    .erp-btn-dark:hover { background: #333; }
+    .erp-btn-blue { background: #09cb53; color: #fff; border: 1px solid #09cb53; }
+    .erp-btn-blue:hover { background: #005bb5; }
+    .erp-btn-outline { background: transparent; color: #09cb53; border: 1px solid #09cb53; }
+    .erp-btn-outline:hover { background: #eff6ff; }
+
+    /* --- CSS FOR ERP EXTRA SERVICES (SHARP/BOXY/B&W) --- */
+    .erp-extra-services {
+        padding: 80px 20px 120px 20px; background-color: #ffffff; 
+        color: #000; max-width: 1300px; margin: 0 auto; font-family: 'Inter', sans-serif;
+    }
+
+    .erp-extra-header { text-align: center; margin-bottom: 50px; }
+    .erp-extra-header h2 { font-size: 34px; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; letter-spacing: -1px; }
+    .erp-extra-header p { font-size: 16px; color: #555; }
+
+    .erp-extra-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; }
+
+    .erp-srv-card {
+        display: flex; flex-direction: column; align-items: flex-start;
+        padding: 35px 20px; background-color: #fff; border: 1px solid #000;
+        border-radius: 2px; text-decoration: none; color: #000;
+        transition: all 0.3s ease; cursor: pointer;
+    }
+
+    .erp-srv-card:hover { background-color: #000; color: #fff; }
+
+    .erp-icon-wrap { margin-bottom: 20px; }
+    .erp-icon-wrap svg { width: 32px; height: 32px; stroke-width: 2px; transition: stroke 0.3s ease; stroke: #09cb53; }
+    .erp-srv-card:hover .erp-icon-wrap svg { stroke: #ffffff; }
+
+    .erp-srv-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
+    .erp-srv-card p { font-size: 13px; line-height: 1.5; color: inherit; opacity: 0.8; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1024px) {
+        .erp-pricing-grid { grid-template-columns: 1fr; max-width: 450px; }
+        .erp-extra-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+        .erp-extra-grid { grid-template-columns: repeat(2, 1fr); }
+        .erp-extra-header h2 { font-size: 26px; }
+        .erp-srv-card { padding: 25px 15px; }
+        .erp-srv-card h3 { font-size: 15px; }
+        .erp-icon-wrap svg { width: 28px; height: 28px; }
+    }
+</style>
+
+<!--Get startddddddddddddddddddddddddddddd-->
+
+<style>
+    /* --- The Grand Finale CTA --- */
+    .cta-final {
+        padding: 150px 5%;
+        background: var(--white);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    /* Animated Heading: Text that breathes */
+    .cta-heading {
+        font-size: clamp(3rem, 12vw, 8rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -6px;
+        margin-bottom: 50px;
+        color: var(--black);
+        text-transform: uppercase;
+    }
+
+    .cta-heading span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--black);
+        transition: 0.5s;
+    }
+
+    .cta-final:hover .cta-heading span {
+        color: var(--blue);
+        -webkit-text-stroke: 1.5px var(--blue);
+        filter: drop-shadow(0 0 30px rgba(0, 112, 243, 0.3));
+    }
+
+    /* Ultra Animated Button */
+    .ultra-btn {
+        position: relative;
+        padding: 25px 60px;
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--white);
+        background: var(--black);
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 0.4s;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        z-index: 1;
+    }
+
+    .ultra-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 0; height: 0;
+        background: var(--blue);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+        z-index: -1;
+    }
+
+    .ultra-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 20px 40px rgba(0, 112, 243, 0.4);
+    }
+
+    .ultra-btn:hover::before {
+        width: 400px;
+        height: 400px;
+    }
+
+    /* Floating Particles for that "Manzar" */
+    .particle {
+        position: absolute;
+        background: var(--blue);
+        border-radius: 50%;
+        opacity: 0.1;
+        pointer-events: none;
+    }
+
+    /* Mobile Responsive Logic */
+    @media (max-width: 768px) {
+        .cta-heading { letter-spacing: -3px; margin-bottom: 30px; }
+        .cta-final { padding: 100px 5%; }
+        .ultra-btn { padding: 20px 40px; font-size: 14px; }
+    }
+</style>
+
+<section class="cta-final">
+    <div id="particle-container"></div>
+
+    <h2 class="cta-heading">
+        READY TO <br>
+        <span>INITIALIZE?</span>
+    </h2>
+
+    <p style="color: #666; font-weight: 500; margin-bottom: 40px; font-size: 1.1rem;">
+        Let's build the future of your business, one pixel at a time.
+    </p>
+
+   <a href="../contact.html">
+     <button class="ultra-btn" onclick="location.href='get-started.html'">
+        Start Your Project &rarr;
+    </button>
+   </a>
+
+    <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #aaa;">
+        <span>© 2026 CODECRAFTE STUDIO</span>
+        <div style="display: flex; gap: 20px;">
+            <a href="https://www.instagram.com/codecrafte.pk/" style="color: inherit; text-decoration: none;">INSTAGRAM</a>
+            <a href="www.linkedin.com/in/c-crafte-3941b43b3" style="color: inherit; text-decoration: none;">LINKEDIN</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Creating some random floating particles
+    const container = document.getElementById('particle-container');
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 50 + 10;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.left = Math.random() * 100 + '%';
+        container.appendChild(p);
+        
+        gsap.to(p, {
+            y: -100,
+            x: Math.random() * 50,
+            duration: Math.random() * 5 + 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+
+    // Scroll trigger for heading
+    gsap.from(".cta-heading", {
+        scrollTrigger: ".cta-final",
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    });
+</script>
+
+</body>
+</html>

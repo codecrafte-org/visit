@@ -3,149 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta Ads Expert | CodeCrafte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-            <link rel="icon" type="image/png" href="../../images/fav-ion.webp">
-
+    <title>UI/UX Design Header</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --meta-blue: #0081fb; --instagram-pink: #e1306c; --black: #000; --white: #fff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--white); overflow-x: hidden; }
+        :root { --blue: #ff0000; --black: #000; --white: #fff; --gray: #f4f4f4; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); overflow-x: hidden; }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
+        .uiux-hero {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
-            padding: 80px 8%;
-            flex-wrap: wrap;
-            gap: 60px;
+            padding: 0 10%;
+            position: relative;
         }
 
-        .hero-content { flex: 1; min-width: 350px; }
-        .sub-heading { font-family: 'Syncopate', sans-serif; font-size: 11px; letter-spacing: 6px; color: var(--meta-blue); margin-bottom: 20px; display: block; }
-        .ultra-heading { font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.85; letter-spacing: -5px; font-weight: 900; text-transform: uppercase; }
-        .gradient-text { background: linear-gradient(90deg, #0081fb, #e1306c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* --- Text Content --- */
+        .uiux-text { z-index: 10; }
+        
+        .uiux-tag {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 12px;
+            letter-spacing: 5px;
+            color: var(--blue);
+            margin-bottom: 20px;
+            display: block;
+        }
 
-        /* --- AD VISUAL (RIGHT SIDE) --- */
-        .hero-visual {
-            flex: 1.2;
+        .uiux-title {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            line-height: 0.9;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+        }
+
+        .outline {
+            -webkit-text-stroke: 1.5px var(--blue);
+            color: transparent;
+        }
+
+        .uiux-p {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 480px;
+            line-height: 1.6;
+        }
+
+        /* --- UI/UX Transformation Animation --- */
+        .uiux-visual {
+            position: relative;
+            height: 450px;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            min-height: 500px;
         }
 
-        /* The Ad Mockup Card */
-        .ad-mockup {
-            width: 300px;
-            height: 400px;
-            background: var(--white);
-            border-radius: 25px;
-            border: 1px solid #eee;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+        /* The Canvas / Frame */
+        .canvas-frame {
+            width: 380px;
+            height: 280px;
+            background: #fff;
+            border: 3px solid var(--black);
+            box-shadow: 20px 20px 0px var(--black);
+            padding: 20px;
             position: relative;
             overflow: hidden;
-            transform: rotate(-5deg);
-            z-index: 5;
         }
 
-        .ad-header { padding: 15px; display: flex; align-items: center; gap: 10px; }
-        .ad-profile { width: 30px; height: 30px; background: #eee; border-radius: 50%; }
-        .ad-image { width: 100%; height: 200px; background: linear-gradient(45deg, #0081fb, #e1306c); }
-        .ad-body { padding: 15px; }
-        .ad-btn { width: 100%; padding: 10px; background: #0081fb; color: #fff; border-radius: 8px; text-align: center; font-size: 12px; font-weight: 900; }
+        /* Wireframe Elements (Initial state) */
+        .element {
+            background: #eee;
+            border: 1px dashed #ccc;
+            margin-bottom: 10px;
+        }
 
-        /* Floating Targeting Rings */
-        .targeting-ring {
+        .el-header { width: 40%; height: 15px; }
+        .el-hero { width: 100%; height: 80px; }
+        .el-row { display: flex; gap: 10px; }
+        .el-box { flex: 1; height: 50px; }
+
+        /* Floating Pen Tool Icon (Magic Wand vibe) */
+        .pen-tool {
             position: absolute;
-            border: 2px dashed rgba(0, 129, 251, 0.2);
+            top: -20px;
+            right: -20px;
+            background: var(--blue);
+            color: white;
+            padding: 10px;
             border-radius: 50%;
-            animation: rotate 20s linear infinite;
+            z-index: 5;
+            box-shadow: 0 10px 20px rgba(243, 0, 0, 0.3);
         }
-        .ring-1 { width: 450px; height: 450px; }
-        .ring-2 { width: 350px; height: 350px; }
 
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* Floating Tags */
-        .ad-tag {
+        /* Color Bubbles */
+        .color-dot {
             position: absolute;
-            background: var(--black);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 800;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            z-index: 10;
+            width: 15px; height: 15px;
+            border-radius: 50%;
+            background: var(--blue);
+            bottom: 20px; right: 20px;
+            opacity: 0.5;
         }
-        .tag-1 { top: 10%; right: 0; background: var(--meta-blue); }
-        .tag-2 { bottom: 10%; left: 0; background: var(--instagram-pink); }
 
-        @media (max-width: 900px) {
-            .hero { text-align: center; padding-top: 100px; }
-            .hero-visual { transform: scale(0.8); min-height: 400px; }
-            .ad-mockup { margin: 0 auto; transform: rotate(0); }
+        @media (max-width: 1024px) {
+            .uiux-hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+            .uiux-p { margin: 20px auto; }
+            .canvas-frame { width: 300px; height: 220px; margin-top: 50px; }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="hero-content">
-            <span class="sub-heading">PAID MEDIA // PERFORMANCE</span>
-            <h1 class="ultra-heading">
-                PRECISION <br> <span class="gradient-text">META</span> <br> ADS.
+    <section class="uiux-hero">
+        <div class="uiux-text">
+            <span class="uiux-tag">DESIGN FIRST // UI/UX</span>
+            <h1 class="uiux-title">
+                USER <br>
+                <span class="outline">CENTERED</span> <br>
+                MAGIC.
             </h1>
-            <p style="margin-top:35px; color:#666; max-width:450px; line-height:1.6; font-weight:500;">
-We don’t just run ads—we build sales engines. The right audience, the right creatives, and maximum ROI—that’s our formula.              </p>
+            <p class="uiux-p">
+                We turn complex ideas into simple, clean, and beautiful user interfaces. Good design is not just what it looks like, it's how it works.
+            </p>
         </div>
 
-        <div class="hero-visual">
-            <div class="targeting-ring ring-1"></div>
-            <div class="targeting-ring ring-2"></div>
-            
-            <div class="ad-mockup" id="adCard">
-                <div class="ad-header">
-                    <div class="ad-profile"></div>
-                    <div>
-                        <div style="width:80px; height:8px; background:#eee; margin-bottom:5px;"></div>
-                        <div style="width:40px; height:5px; background:#f5f5f5;"></div>
-                    </div>
-                </div>
-                <div class="ad-image"></div>
-                <div class="ad-body">
-                    <div style="width:100%; height:8px; background:#eee; margin-bottom:8px;"></div>
-                    <div style="width:80%; height:8px; background:#eee; margin-bottom:20px;"></div>
-                    <div class="ad-btn">SHOP NOW</div>
-                </div>
-            </div>
+        <div class="uiux-visual">
+            <div class="canvas-frame">
+                <div class="pen-tool"><i data-lucide="pen-tool"></i></div>
 
-            <div class="ad-tag tag-1">🚀 5.2x ROAS</div>
-            <div class="ad-tag tag-2">🎯 TARGETED REACH</div>
+                <div class="element el-header"></div>
+                <div class="element el-hero" id="target-hero"></div>
+                <div class="el-row">
+                    <div class="element el-box" id="box-1"></div>
+                    <div class="element el-box" id="box-2"></div>
+                </div>
+
+                <div class="color-dot"></div>
+            </div>
         </div>
     </section>
 
-  
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
-        // 3D Tilt
-        document.addEventListener('mousemove', (e) => {
-            if (window.innerWidth > 900) {
-                const x = (window.innerWidth / 2 - e.pageX) / 40;
-                const y = (window.innerHeight / 2 - e.pageY) / 40;
-                gsap.to("#adCard", { rotationY: x, rotationX: -y, duration: 0.8 });
-            }
-        });
+        lucide.createIcons();
 
-        // Tag Floating
-        gsap.to(".ad-tag", { y: -20, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut", stagger: 0.5 });
+        // Animation: Transformation from Wireframe to UI
+        const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+
+        tl.to(".pen-tool", { x: -100, y: 100, duration: 2, ease: "power2.inOut" })
+          .to("#target-hero", { backgroundColor: "#ff0000", borderStyle: "solid", duration: 0.5 }, "-=0.5")
+          .to(".pen-tool", { x: -50, y: 200, duration: 1.5, ease: "power2.inOut" })
+          .to("#box-1", { backgroundColor: "#000", borderStyle: "solid", duration: 0.5 }, "-=0.5")
+          .to("#box-2", { backgroundColor: "#ff0000", borderStyle: "solid", duration: 0.5 }, "-=0.3")
+          .to(".canvas-frame", { boxShadow: "20px 20px 0px #ff0000", duration: 1 })
+          .to({}, { duration: 2 }); // Pause at the end
+
+        // Entrance
+        gsap.from(".uiux-title", { opacity: 0, x: -50, duration: 1 });
     </script>
 
-<!--pricing-->
-<!--carddddddddddddddd-->
+
+
+ <!--carddddddddddddddd-->
     <style>
         /* --- Clean & Standard Reset --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
@@ -190,21 +214,21 @@ We don’t just run ads—we build sales engines. The right audience, the right 
         }
 
         .price-card:hover {
-            border-color: #e1306c;
-            box-shadow: 0 10px 25px rgba(0, 114, 255, 0.1);
+            border-color: #ff0000;
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.1);
             transform: translateY(-5px);
         }
 
         /* Active/Popular Card */
         .card-popular {
-            border: 2px solid #e1306c;
+            border: 2px solid #ff0000;
             position: relative;
         }
         .popular-badge {
             position: absolute;
             top: -12px; left: 50%;
             transform: translateX(-50%);
-            background: #e1306c;
+            background: #ff0000;
             color: white;
             padding: 4px 15px;
             border-radius: 20px;
@@ -271,11 +295,11 @@ We don’t just run ads—we build sales engines. The right audience, the right 
         .btn-buy { background: #111; color: #fff; border: 1px solid #111; }
         .btn-buy:hover { background: #333; }
 
-        .btn-discount { background: #fff; color: #e1306c; border: 1px solid #e1306c; }
+        .btn-discount { background: #fff; color: #ff0000; border: 1px solid #ff0000; }
         .btn-discount:hover { background: #f0f7ff; }
 
         /* Active Blue Button */
-        .card-popular .btn-buy { background: #e1306c; border-color: #e1306c; }
+        .card-popular .btn-buy { background: #ff0000; border-color: #ff0000; }
         .card-popular .btn-buy:hover { background: #005bb5; }
 
         /* --- Mobile Responsive --- */
@@ -284,85 +308,82 @@ We don’t just run ads—we build sales engines. The right audience, the right 
             .btn-row { flex-direction: column; } /* Mobile pe buttons upar neechay theek rehte hain */
         }
     </style>
-
-
-<section class="pricing-section">
+ <section class="pricing-section">
     <div class="pricing-header">
-        <h2>Meta Ads Packages</h2>
-        <p>Choose a plan that fits your business goals and budget.</p>
+        <h2>UI/UX Design Plans</h2>
     </div>
 
     <div class="pricing-grid">
         
         <div class="price-card">
-            <div class="plan-name">Starter Growth</div>
-            <div class="plan-price">14,999<span> PKR/mo</span></div>
+            <div class="plan-name">Basic UI</div>
+            <div class="plan-price">9,999<span> PKR</span></div>
             
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> 10-15 active Ad Campaigns</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Basic Audience Research</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Ad Copywriting</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Weekly Performance Report</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Pixel Setup</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 5 Pages UI Design</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Basic Wireframes</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Clickable Prototype</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Mobile Responsive</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> 2 Revision Rounds</span> <span class="tag-free">FREE</span></li>
                 
-                <li class="disabled-feature"><span><span class="cross">✕</span> Competitor Analysis</span></li>
-                <li class="disabled-feature"><span><span class="cross">✕</span> Sales Funnel Strategy</span></li>
+                <li class="disabled-feature"><span><span class="cross">✕</span> Complete Design System</span></li>
+                <li class="disabled-feature"><span><span class="cross">✕</span> Brand Identity Kit</span></li>
             </ul>
 
             <div class="btn-row">
-                <a href="#" class="btn btn-buy">Start Campaign</a>
-                <a href="#" class="btn btn-discount">Get 5% Off</a>
+                <a href="#" class="btn btn-buy">Order Design</a>
+                <a href="#" class="btn btn-discount">Limited Offer</a>
             </div>
         </div>
 
         <div class="price-card card-popular">
-            <div class="popular-badge">BEST ROI</div>
-            <div class="plan-name">Business Scale</div>
-            <div class="plan-price">24,999<span> PKR/mo</span></div>
+            <div class="popular-badge">BEST VALUE</div>
+            <div class="plan-name">Standard UX</div>
+            <div class="plan-price">19,999<span> PKR</span></div>
             
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> 15-20 Active Ad Campaigns</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Advanced Retargeting (LAL)</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Instagram Setup</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Competitor Ad Tracking</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Facebook Account Setup</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Monthly Strategy Call</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 10 Pages UI Design</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> User Flow & Wireframes</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Advanced Prototyping</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Design System (Basic)</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Source File (Figma)</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 5 Revision Rounds</span> <span class="tag-free">FREE</span></li>
                 
-                <li class="disabled-feature"><span><span class="cross">✕</span> Custom Video Production</span></li>
+                <li class="disabled-feature"><span><span class="cross">✕</span> Complete Branding</span></li>
             </ul>
 
             <div class="btn-row">
-                <a href="#" class="btn btn-buy">Scale Now</a>
-                <a href="#" class="btn btn-discount">Get 5% Off</a>
+                <a href="#" class="btn btn-buy">Get Started</a>
+                <a href="#" class="btn btn-discount">Popular Choice</a>
             </div>
         </div>
 
         <div class="price-card">
-            <div class="plan-name">Agency Elite</div>
-            <div class="plan-price">34,999<span> PKR/mo</span></div>
+            <div class="plan-name">Premium Brand</div>
+            <div class="plan-price">34,999<span> PKR</span></div>
             
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> Unlimited Campaigns</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Complete Sales Funnel</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Influencer Whitelisting</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> High-ROAS Optimization</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Dedicated Account Manager</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> 24/7 Priority Support</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> CRM Integration</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Facebook setup</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Instagram setup</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 20+ Pages UI/UX</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Complete Design System</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Full Brand Identity</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Logo & Iconography</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> High-Fidelity Prototype</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Unlimited Revisions</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Developer Handoff</span> <span class="tag-free">FREE</span></li>
             </ul>
 
             <div class="btn-row">
-                <a href="#" class="btn btn-buy">Contact Agency</a>
-                <a href="#" class="btn btn-discount">Get 5% Off</a>
+                <a href="#" class="btn btn-buy">Full Package</a>
+                <a href="#" class="btn btn-discount">Elite Plan</a>
             </div>
         </div>
 
     </div>
 </section>
 
-<!--possible-->
+
+
+<!--possible sercicee-->
 
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>lucide.createIcons();</script>
@@ -486,37 +507,56 @@ We don’t just run ads—we build sales engines. The right audience, the right 
         }
     }
 </style>
-
 <section class="cc-services-section">
     <div class="cc-services-header">
-        <h2>Ads Management Services</h2>
-        <p>Boost your business reach with highly targeted Meta advertising solutions.</p>
+        <h2>Extra Design Services</h2>
+        <p>Take your product design to the next level with our specialized UI/UX solutions.</p>
     </div>
 
     <div class="cc-services-grid">
         
         <a href="../contact.html" class="cc-service-card">
             <div class="icon-wrapper">
-                <i data-lucide="crosshair"></i>
+                <i data-lucide="search"></i>
             </div>
-            <h3>Video Editor</h3>
-            <p>GEt More Reels, and be Viral on social media.</p>
+            <h3>User Research</h3>
+            <p>We analyze your target audience to build a product that actually solves their problems.</p>
         </a>
 
         <a href="../contact.html" class="cc-service-card">
             <div class="icon-wrapper">
-                <i data-lucide="image"></i>
+                <i data-lucide="mouse-pointer-2"></i>
             </div>
-            <h3>Web Development</h3>
-            <p>High-End Webiste. Get more clients</p>
+            <h3>Clickable Prototypes</h3>
+            <p>Experience your app's flow with high-fidelity interactive prototypes before coding.</p>
         </a>
 
-         
-        
+        <div class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="layers"></i>
+            </div>
+            <h3>Design Systems</h3>
+            <p>Scalable components, typography, and color libraries for consistent branding.</p>
+        </div>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper">
+                <i data-lucide="check-circle-2"></i>
+            </div>
+            <h3>Usability Testing</h3>
+            <p>We test the designs with real users to identify and fix any experience bottlenecks.</p>
+        </a>
 
     </div>
 </section>
-<!--Get starteddddddddddddddddddddddd-->
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+
+
+
+
+<!--Get startddddddddddddddddddddddddddddd-->
 
 <style>
     /* --- The Grand Finale CTA --- */
@@ -621,10 +661,12 @@ We don’t just run ads—we build sales engines. The right audience, the right 
     <p style="color: #666; font-weight: 500; margin-bottom: 40px; font-size: 1.1rem;">
         Let's build the future of your business, one pixel at a time.
     </p>
-<a href="../contact.html"> <button class="ultra-btn" onclick="location.href='get-started.html'">
+
+   <a href="../contact.html">
+     <button class="ultra-btn" onclick="location.href='get-started.html'">
         Start Your Project &rarr;
-    </button></a>
-   
+    </button>
+   </a>
 
     <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #aaa;">
         <span>© 2026 CODECRAFTE STUDIO</span>
@@ -668,6 +710,4 @@ We don’t just run ads—we build sales engines. The right audience, the right 
     });
 </script>
 </body>
-
-
 </html>

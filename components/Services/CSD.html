@@ -3,149 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta Ads Expert | CodeCrafte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-            <link rel="icon" type="image/png" href="../../images/fav-ion.webp">
-
-    <style>
-        :root { --meta-blue: #0081fb; --instagram-pink: #e1306c; --black: #000; --white: #fff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--white); overflow-x: hidden; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 80px 8%;
-            flex-wrap: wrap;
-            gap: 60px;
-        }
-
-        .hero-content { flex: 1; min-width: 350px; }
-        .sub-heading { font-family: 'Syncopate', sans-serif; font-size: 11px; letter-spacing: 6px; color: var(--meta-blue); margin-bottom: 20px; display: block; }
-        .ultra-heading { font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.85; letter-spacing: -5px; font-weight: 900; text-transform: uppercase; }
-        .gradient-text { background: linear-gradient(90deg, #0081fb, #e1306c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        /* --- AD VISUAL (RIGHT SIDE) --- */
-        .hero-visual {
-            flex: 1.2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            min-height: 500px;
-        }
-
-        /* The Ad Mockup Card */
-        .ad-mockup {
-            width: 300px;
-            height: 400px;
-            background: var(--white);
-            border-radius: 25px;
-            border: 1px solid #eee;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            transform: rotate(-5deg);
-            z-index: 5;
-        }
-
-        .ad-header { padding: 15px; display: flex; align-items: center; gap: 10px; }
-        .ad-profile { width: 30px; height: 30px; background: #eee; border-radius: 50%; }
-        .ad-image { width: 100%; height: 200px; background: linear-gradient(45deg, #0081fb, #e1306c); }
-        .ad-body { padding: 15px; }
-        .ad-btn { width: 100%; padding: 10px; background: #0081fb; color: #fff; border-radius: 8px; text-align: center; font-size: 12px; font-weight: 900; }
-
-        /* Floating Targeting Rings */
-        .targeting-ring {
-            position: absolute;
-            border: 2px dashed rgba(0, 129, 251, 0.2);
-            border-radius: 50%;
-            animation: rotate 20s linear infinite;
-        }
-        .ring-1 { width: 450px; height: 450px; }
-        .ring-2 { width: 350px; height: 350px; }
-
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* Floating Tags */
-        .ad-tag {
-            position: absolute;
-            background: var(--black);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 800;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            z-index: 10;
-        }
-        .tag-1 { top: 10%; right: 0; background: var(--meta-blue); }
-        .tag-2 { bottom: 10%; left: 0; background: var(--instagram-pink); }
-
-        @media (max-width: 900px) {
-            .hero { text-align: center; padding-top: 100px; }
-            .hero-visual { transform: scale(0.8); min-height: 400px; }
-            .ad-mockup { margin: 0 auto; transform: rotate(0); }
-        }
-    </style>
+    <title>Custom Software Development | Codecrafte</title>
 </head>
 <body>
+    
+<style>
+    :root { --blue: #abd814; --black: #000; --white: #fff; }
 
-    <section class="hero">
-        <div class="hero-content">
-            <span class="sub-heading">PAID MEDIA // PERFORMANCE</span>
-            <h1 class="ultra-heading">
-                PRECISION <br> <span class="gradient-text">META</span> <br> ADS.
-            </h1>
-            <p style="margin-top:35px; color:#666; max-width:450px; line-height:1.6; font-weight:500;">
-We don’t just run ads—we build sales engines. The right audience, the right creatives, and maximum ROI—that’s our formula.              </p>
+    /* --- General Fix --- */
+    .software-section {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        align-items: center;
+        padding: 0 5%;
+        background: var(--white);
+        position: relative;
+        overflow: hidden;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* --- Background Text --- */
+    .bg-text-soft {
+        position: absolute;
+        font-size: 20vw;
+        font-weight: 900;
+        color: rgba(0,0,0,0.03);
+        white-space: nowrap;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        pointer-events: none;
+        text-transform: uppercase;
+    }
+
+    /* --- Left Content --- */
+    .soft-content { position: relative; z-index: 10; }
+
+    .sub-heading {
+        font-family: 'Syncopate', sans-serif;
+        font-size: 14px;
+        letter-spacing: 10px;
+        color: var(--blue);
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .ultra-heading {
+        font-size: clamp(3.5rem, 9vw, 8.5rem);
+        line-height: 0.8;
+        letter-spacing: -6px;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+
+    .blue-stroke {
+        -webkit-text-stroke: 2px var(--blue);
+        color: transparent;
+        display: block;
+    }
+
+    .hero-p {
+        margin-top: 40px;
+        font-size: 1.1rem;
+        max-width: 400px;
+        color: #444;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+
+    /* --- Right Visual: Floating Layers --- */
+    .visual-box {
+        position: relative;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 1200px;
+        z-index: 5;
+    }
+
+    .soft-layer {
+        position: absolute;
+        width: 280px;
+        height: 180px;
+        border: 2px solid var(--blue);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        box-shadow: 10px 10px 0px #63800623;
+        display: flex;
+        flex-direction: column;
+        /* Default Initial Position */
+        transform: rotateX(25deg) rotateY(-15deg);
+    }
+
+    .layer-top { display: flex; gap: 5px; margin-bottom: 15px; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+    .line { height: 6px; background: #eee; border-radius: 3px; margin-bottom: 8px; }
+
+    /* Stack Layers */
+    .layer-1 { z-index: 3; }
+    .layer-2 { z-index: 2; margin-top: -60px; margin-left: 40px; opacity: 0.7; }
+    .layer-3 { z-index: 1; margin-top: -120px; margin-left: 80px; opacity: 0.4; }
+
+    /* --- Mobile Responsive Fix --- */
+    @media (max-width: 900px) {
+        .software-section { 
+            grid-template-columns: 1fr; 
+            text-align: center; 
+            padding: 100px 5% 50px; 
+        }
+        .visual-box { 
+            margin-top: 80px; 
+            height: 300px;
+        }
+        .soft-layer {
+            width: 200px;
+            height: 130px;
+        }
+        .hero-p { margin: 30px auto; }
+        .ultra-heading { letter-spacing: -3px; }
+        .layer-2 { margin-left: 20px; }
+        .layer-3 { margin-left: 40px; }
+    }
+</style>
+
+<section class="software-section">
+    <div class="bg-text-soft">CODECRAFTE</div>
+
+    <div class="soft-content">
+        <span class="sub-heading">02 // CUSTOM SOFTWARE</span>
+        <h1 class="ultra-heading">
+            SCALABLE <br>
+            <span class="blue-stroke">SYSTEM</span> <br>
+            LOGIC.
+        </h1>
+        <p class="hero-p">
+            Tailored digital solutions built for speed, security, and absolute scale. We turn your business logic into powerful custom software.
+        </p>
+    </div>
+
+    <div class="visual-box">
+        <div class="soft-layer layer-3"></div>
+        <div class="soft-layer layer-2"></div>
+        <div class="soft-layer layer-1">
+            <div class="layer-top"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+            <div class="line" style="width: 80%;"></div>
+            <div class="line" style="width: 40%; background: var(--blue);"></div>
+            <div class="line" style="width: 60%;"></div>
         </div>
+    </div>
+</section>
 
-        <div class="hero-visual">
-            <div class="targeting-ring ring-1"></div>
-            <div class="targeting-ring ring-2"></div>
-            
-            <div class="ad-mockup" id="adCard">
-                <div class="ad-header">
-                    <div class="ad-profile"></div>
-                    <div>
-                        <div style="width:80px; height:8px; background:#eee; margin-bottom:5px;"></div>
-                        <div style="width:40px; height:5px; background:#f5f5f5;"></div>
-                    </div>
-                </div>
-                <div class="ad-image"></div>
-                <div class="ad-body">
-                    <div style="width:100%; height:8px; background:#eee; margin-bottom:8px;"></div>
-                    <div style="width:80%; height:8px; background:#eee; margin-bottom:20px;"></div>
-                    <div class="ad-btn">SHOP NOW</div>
-                </div>
-            </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+    // 1. Automatic Floating Animation (Continuous)
+    gsap.to(".layer-1", { y: -20, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to(".layer-2", { y: 15, duration: 2.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to(".layer-3", { y: -10, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
-            <div class="ad-tag tag-1">🚀 5.2x ROAS</div>
-            <div class="ad-tag tag-2">🎯 TARGETED REACH</div>
-        </div>
-    </section>
-
-  
-    <script>
-        // 3D Tilt
-        document.addEventListener('mousemove', (e) => {
-            if (window.innerWidth > 900) {
-                const x = (window.innerWidth / 2 - e.pageX) / 40;
-                const y = (window.innerHeight / 2 - e.pageY) / 40;
-                gsap.to("#adCard", { rotationY: x, rotationX: -y, duration: 0.8 });
-            }
+    // 2. Interactive Mouse Movement
+    document.addEventListener('mousemove', (e) => {
+        const x = (window.innerWidth / 2 - e.pageX) / 40;
+        const y = (window.innerHeight / 2 - e.pageY) / 40;
+        
+        gsap.to(".visual-box", {
+            rotationY: x,
+            rotationX: -y,
+            duration: 2,
+            ease: "power2.out"
         });
+    });
 
-        // Tag Floating
-        gsap.to(".ad-tag", { y: -20, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut", stagger: 0.5 });
-    </script>
+    // 3. Entrance Animation
+    gsap.from(".ultra-heading", { x: -100, opacity: 0, duration: 1.5, ease: "expo.out" });
+    gsap.from(".soft-layer", { 
+        opacity: 0, 
+        z: -500, 
+        stagger: 0.2, 
+        duration: 1.5, 
+        ease: "back.out(1.7)" 
+    });
+</script>
 
-<!--pricing-->
-<!--carddddddddddddddd-->
+
+  <!--carddddddddddddddd-->
     <style>
         /* --- Clean & Standard Reset --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
@@ -190,21 +234,21 @@ We don’t just run ads—we build sales engines. The right audience, the right 
         }
 
         .price-card:hover {
-            border-color: #e1306c;
-            box-shadow: 0 10px 25px rgba(0, 114, 255, 0.1);
+            border-color: #abd814;
+            box-shadow: 0 10px 25px #465a046a;
             transform: translateY(-5px);
         }
 
         /* Active/Popular Card */
         .card-popular {
-            border: 2px solid #e1306c;
+            border: 2px solid #abd814;
             position: relative;
         }
         .popular-badge {
             position: absolute;
             top: -12px; left: 50%;
             transform: translateX(-50%);
-            background: #e1306c;
+            background: #abd814;
             color: white;
             padding: 4px 15px;
             border-radius: 20px;
@@ -271,12 +315,12 @@ We don’t just run ads—we build sales engines. The right audience, the right 
         .btn-buy { background: #111; color: #fff; border: 1px solid #111; }
         .btn-buy:hover { background: #333; }
 
-        .btn-discount { background: #fff; color: #e1306c; border: 1px solid #e1306c; }
+        .btn-discount { background: #fff; color: #abd814; border: 1px solid #abd814; }
         .btn-discount:hover { background: #f0f7ff; }
 
         /* Active Blue Button */
-        .card-popular .btn-buy { background: #e1306c; border-color: #e1306c; }
-        .card-popular .btn-buy:hover { background: #005bb5; }
+        .card-popular .btn-buy { background: #abd814; border-color: #abd814; }
+        .card-popular .btn-buy:hover { background: #abd814; }
 
         /* --- Mobile Responsive --- */
         @media (max-width: 900px) {
@@ -285,84 +329,133 @@ We don’t just run ads—we build sales engines. The right audience, the right 
         }
     </style>
 
-
 <section class="pricing-section">
     <div class="pricing-header">
-        <h2>Meta Ads Packages</h2>
-        <p>Choose a plan that fits your business goals and budget.</p>
+        <h2>Software Development Plans</h2>
+        <p style="color: #666; margin-top: 10px;">Scalable solutions for every stage of your business.</p>
     </div>
 
     <div class="pricing-grid">
         
         <div class="price-card">
-            <div class="plan-name">Starter Growth</div>
-            <div class="plan-price">14,999<span> PKR/mo</span></div>
+            <div class="plan-name">MVP / SaaS</div>
+            <div class="plan-price">44,999<span> PKR</span></div>
             
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> 10-15 active Ad Campaigns</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Basic Audience Research</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Ad Copywriting</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Weekly Performance Report</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Pixel Setup</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Custom Dashboard</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> User Authentication</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Database Setup (SQL/NoSQL)</span> <span class="tag-inc">INCLUDED</span></li>
                 
-                <li class="disabled-feature"><span><span class="cross">✕</span> Competitor Analysis</span></li>
-                <li class="disabled-feature"><span><span class="cross">✕</span> Sales Funnel Strategy</span></li>
+                <li><span><span class="tick">✓</span> Professional Business Email</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 1 Year Cloud Server</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> API Security Layer</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Basic SEO Setup</span> <span class="tag-free">FREE</span></li>
+                
+                <li class="disabled-feature"><span><span class="cross">✕</span> Mobile App Version</span></li>
+                <li class="disabled-feature"><span><span class="cross">✕</span> Multiple Integrations</span></li>
             </ul>
 
             <div class="btn-row">
-                <a href="#" class="btn btn-buy">Start Campaign</a>
-                <a href="#" class="btn btn-discount">Get 5% Off</a>
+                <a href="../contact.html" class="btn btn-buy">Get Started</a>
+                <a href="../contact.html" class="btn btn-discount">Limited Offer</a>
             </div>
         </div>
 
         <div class="price-card card-popular">
-            <div class="popular-badge">BEST ROI</div>
-            <div class="plan-name">Business Scale</div>
-            <div class="plan-price">24,999<span> PKR/mo</span></div>
+            <div class="popular-badge">BEST FOR BUSINESS</div>
+            <div class="plan-name">Business Pro</div>
+            <div class="plan-price">89,999<span> PKR</span></div>
             
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> 15-20 Active Ad Campaigns</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Advanced Retargeting (LAL)</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Instagram Setup</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Competitor Ad Tracking</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Facebook Account Setup</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Monthly Strategy Call</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Advanced Logic & Workflows</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Payment Gateway Integration</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Admin Panel & Analytics</span> <span class="tag-inc">INCLUDED</span></li>
                 
-                <li class="disabled-feature"><span><span class="cross">✕</span> Custom Video Production</span></li>
+                <li><span><span class="tick">✓</span> 5 Business Emails</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> High-Performance Hosting</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Third-Party API Sync</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 6 Months Tech Support</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Automated Backups</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Performance Audit</span> <span class="tag-free">FREE</span></li>
             </ul>
 
             <div class="btn-row">
-                <a href="#" class="btn btn-buy">Scale Now</a>
-                <a href="#" class="btn btn-discount">Get 5% Off</a>
+                <a href="../contact.html" class="btn btn-buy">Select Plan</a>
+                <a href="../contact.html" class="btn btn-discount">10% Off Today</a>
             </div>
         </div>
 
         <div class="price-card">
-            <div class="plan-name">Agency Elite</div>
-            <div class="plan-price">34,999<span> PKR/mo</span></div>
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-price">149,999<span>+</span></div>
             
             <ul class="feature-list">
-                <li><span><span class="tick">✓</span> Unlimited Campaigns</span> <span class="tag-inc">INCLUDED</span></li>
-                <li><span><span class="tick">✓</span> Complete Sales Funnel</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Influencer Whitelisting</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> High-ROAS Optimization</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Dedicated Account Manager</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> 24/7 Priority Support</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> CRM Integration</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Facebook setup</span> <span class="tag-free">FREE</span></li>
-                <li><span><span class="tick">✓</span> Instagram setup</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Complete Digital Ecosystem</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Microservices Architecture</span> <span class="tag-inc">INCLUDED</span></li>
+                
+                <li><span><span class="tick">✓</span> Unlimited Business Emails</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Lifetime Server Migration</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Multi-Platform Support</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Dedicated Project Manager</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 1 Year Maintenance</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Source Code Ownership</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> White-Label Branding</span> <span class="tag-free">FREE</span></li>
             </ul>
 
             <div class="btn-row">
-                <a href="#" class="btn btn-buy">Contact Agency</a>
-                <a href="#" class="btn btn-discount">Get 5% Off</a>
+                <a href="../contact.html" class="btn btn-buy">Consult Now</a>
+                <a href="../contact.html" class="btn btn-discount">Get Proposal</a>
             </div>
         </div>
 
     </div>
 </section>
 
-<!--possible-->
+
+
+
+<section class="cc-services-section">
+    <div class="cc-services-header">
+        <h2>What Else You Might Need?</h2>
+        <p>Complete your digital presence with our expert solutions.</p>
+    </div>
+
+    <div class="cc-services-grid">
+        
+    
+
+         
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="layout-template"></i></div>
+            <h3>Management Systems</h3>
+            <p>Custom portals to manage your internal business data.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="database"></i></div>
+            <h3>CRM & ERP</h3>
+            <p>Scalable solutions for customer & resource management.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="shopping-cart"></i></div>
+            <h3>POS Systems</h3>
+            <p>Advanced Point of Sale software for retail & inventory.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="layers"></i></div>
+            <h3>SaaS Apps</h3>
+            <p>Build and scale your own Software as a Service platform.</p>
+        </a>
+
+         
+
+      
+ 
+    </div>
+</section>
 
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>lucide.createIcons();</script>
@@ -487,36 +580,8 @@ We don’t just run ads—we build sales engines. The right audience, the right 
     }
 </style>
 
-<section class="cc-services-section">
-    <div class="cc-services-header">
-        <h2>Ads Management Services</h2>
-        <p>Boost your business reach with highly targeted Meta advertising solutions.</p>
-    </div>
 
-    <div class="cc-services-grid">
-        
-        <a href="../contact.html" class="cc-service-card">
-            <div class="icon-wrapper">
-                <i data-lucide="crosshair"></i>
-            </div>
-            <h3>Video Editor</h3>
-            <p>GEt More Reels, and be Viral on social media.</p>
-        </a>
-
-        <a href="../contact.html" class="cc-service-card">
-            <div class="icon-wrapper">
-                <i data-lucide="image"></i>
-            </div>
-            <h3>Web Development</h3>
-            <p>High-End Webiste. Get more clients</p>
-        </a>
-
-         
-        
-
-    </div>
-</section>
-<!--Get starteddddddddddddddddddddddd-->
+<!--Get startddddddddddddddddddddddddddddd-->
 
 <style>
     /* --- The Grand Finale CTA --- */
@@ -621,10 +686,12 @@ We don’t just run ads—we build sales engines. The right audience, the right 
     <p style="color: #666; font-weight: 500; margin-bottom: 40px; font-size: 1.1rem;">
         Let's build the future of your business, one pixel at a time.
     </p>
-<a href="../contact.html"> <button class="ultra-btn" onclick="location.href='get-started.html'">
+
+   <a href="../contact.html">
+     <button class="ultra-btn" onclick="location.href='get-started.html'">
         Start Your Project &rarr;
-    </button></a>
-   
+    </button>
+   </a>
 
     <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #aaa;">
         <span>© 2026 CODECRAFTE STUDIO</span>
@@ -667,7 +734,6 @@ We don’t just run ads—we build sales engines. The right audience, the right 
         ease: "power3.out"
     });
 </script>
+
 </body>
-
-
 </html>

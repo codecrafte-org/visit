@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Application Header</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --blue: #818181; --black: #000; --white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { background: var(--white); overflow-x: hidden; font-family: 'Inter', sans-serif; }
+
+        /* --- Header Section --- */
+        .biz-header {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            padding: 0 8%;
+            position: relative;
+            background: #fff;
+        }
+
+        /* Background Text */
+        .bg-text {
+            position: absolute;
+            font-size: 18vw;
+            font-weight: 900;
+            color: rgba(0,0,0,0.02);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            user-select: none;
+        }
+
+        /* Left Content */
+        .content-box { position: relative; z-index: 2; }
+        
+        .sub-tag {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 13px;
+            letter-spacing: 8px;
+            color: var(--blue);
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-size: clamp(3rem, 8vw, 7.5rem);
+            line-height: 0.85;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -5px;
+            color: var(--black);
+        }
+
+        .outline-txt {
+            -webkit-text-stroke: 1.5px var(--blue);
+            color: transparent;
+        }
+
+        .desc {
+            margin-top: 35px;
+            font-size: 1.1rem;
+            max-width: 450px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* --- Right Side: Business App Animation --- */
+        .animation-container {
+            position: relative;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        /* Abstract Business Modules */
+        .biz-module {
+            position: absolute;
+            background: var(--white);
+            border: 2px solid var(--black);
+            box-shadow: 8px 8px 0px var(--blue);
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        /* Module 1: Stats/Chart */
+        .mod-stats {
+            width: 260px;
+            top: 10%; left: 10%;
+            z-index: 3;
+        }
+
+        /* Module 2: Tasks/List */
+        .mod-tasks {
+            width: 220px;
+            bottom: 15%; right: 5%;
+            z-index: 2;
+        }
+
+        /* Module 3: User/Identity */
+        .mod-user {
+            width: 180px;
+            top: 40%; right: 15%;
+            z-index: 1;
+        }
+
+        /* Internal Elements */
+        .bar-row { display: flex; gap: 5px; align-items: flex-end; height: 60px; margin-top: 15px; }
+        .bar { width: 15px; background: #eee; border-radius: 2px; }
+        .bar.active { background: var(--blue); }
+
+        .line-item { height: 8px; background: #f0f0f0; margin-bottom: 10px; border-radius: 4px; }
+        .dot-title { width: 40px; height: 10px; background: var(--black); margin-bottom: 15px; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 1024px) {
+            .biz-header { grid-template-columns: 1fr; padding-top: 100px; text-align: center; }
+            .desc { margin: 30px auto; }
+            .animation-container { height: 400px; margin-top: 50px; }
+            .mod-stats { width: 200px; left: 5%; }
+            .mod-tasks { width: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="biz-header">
+        <div class="bg-text">SYSTEM</div>
+
+        <div class="content-box">
+            <span class="sub-tag">04 // BUSINESS APPS</span>
+            <h1 class="main-title">
+                ENTERPRISE <br>
+                <span class="outline-txt">CONTROL</span> <br>
+                LEVEL.
+            </h1>
+            <p class="desc">
+                We build high-end business applications, CRM, and ERP systems that give you total control over your data and operations.
+            </p>
+        </div>
+
+        <div class="animation-container">
+            <div class="biz-module mod-stats">
+                <div class="dot-title"></div>
+                <div class="bar-row">
+                    <div class="bar" style="height: 40%;"></div>
+                    <div class="bar active" style="height: 80%;"></div>
+                    <div class="bar" style="height: 60%;"></div>
+                    <div class="bar active" style="height: 90%;"></div>
+                    <div class="bar" style="height: 50%;"></div>
+                </div>
+            </div>
+
+            <div class="biz-module mod-tasks">
+                <div class="dot-title" style="background: var(--blue); width: 60px;"></div>
+                <div class="line-item" style="width: 100%;"></div>
+                <div class="line-item" style="width: 80%;"></div>
+                <div class="line-item" style="width: 60%;"></div>
+            </div>
+
+            <div class="biz-module mod-user">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #eee; margin-bottom: 10px;"></div>
+                <div class="line-item" style="width: 70%;"></div>
+                <div class="line-item" style="width: 40%;"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // Entrance
+        gsap.from(".main-title", { opacity: 0, x: -50, duration: 1, ease: "power4.out" });
+        
+        // Modules Floating Animation (Business Logic Feel)
+        gsap.to(".mod-stats", { y: -20, x: 10, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.to(".mod-tasks", { y: 25, x: -5, duration: 4, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.5 });
+        gsap.to(".mod-user", { y: -15, x: -10, duration: 3.5, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 1 });
+
+        // Chart Bars Animation
+        gsap.to(".bar.active", { 
+            height: "100%", 
+            duration: 1.5, 
+            repeat: -1, 
+            yoyo: true, 
+            stagger: 0.3,
+            ease: "power1.inOut" 
+        });
+    </script>
+
+
+<!-- proicnddddddgggggggggggg-->
+
+<style>
+    /* --- Wahi Style jo Tumne Diya Tha --- */
+    .pricing-section {
+        padding: 80px 20px;
+        max-width: 1250px;
+        margin: 0 auto;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .pricing-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .pricing-header h2 {
+        font-size: 2.8rem;
+        color: #111;
+        font-weight: 800;
+    }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        align-items: flex-start;
+    }
+
+    .price-card {
+        background: #ffffff;
+        border: 1px solid #e0e6ed;
+        border-radius: 12px;
+        padding: 40px 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .price-card:hover {
+        border-color: #000000;
+        box-shadow: 0 10px 25px #81818131;
+        transform: translateY(-5px);
+    }
+
+    .card-popular {
+        border: 2px solid #818181;
+        position: relative;
+    }
+
+    .popular-badge {
+        position: absolute;
+        top: -12px; left: 50%;
+        transform: translateX(-50%);
+        background: #818181;
+        color: white;
+        padding: 4px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .plan-name { font-size: 1.4rem; font-weight: 700; color: #111; margin-bottom: 10px; }
+    .plan-price { font-size: 2.5rem; font-weight: 800; color: #111; margin-bottom: 25px; }
+    .plan-price span { font-size: 1rem; color: #666; font-weight: normal; }
+
+    .feature-list { list-style: none; margin-bottom: 30px; flex: 1; }
+    .feature-list li {
+        font-size: 14px;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f1f1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #444;
+    }
+
+    .tick { color: #00b84c; font-weight: bold; margin-right: 8px; }
+    .cross { color: #ccc; font-weight: bold; margin-right: 8px; }
+
+    .tag-inc { font-size: 11px; background: #edf2f7; color: #4a5568; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+    .tag-free { font-size: 11px; background: #e6f8ec; color: #00b84c; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+
+    .btn-row { display: flex; gap: 10px; margin-top: auto; }
+    .btn {
+        flex: 1;
+        text-align: center;
+        padding: 12px 5px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: 0.2s;
+    }
+
+    .btn-buy { background: #111; color: #fff; border: 1px solid #111; }
+    .btn-buy:hover { background: #333; }
+    .btn-discount { background: #fff; color: #818181; border: 1px solid #818181; }
+
+    .card-popular .btn-buy { background: #818181; border-color: #818181; }
+
+    @media (max-width: 900px) {
+        .pricing-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+        .btn-row { flex-direction: column; }
+    }
+</style>
+
+<section class="pricing-section">
+    <div class="pricing-header">
+        <h2>Business App Pricing</h2>
+    </div>
+
+    <div class="pricing-grid">
+        
+        <div class="price-card">
+            <div class="plan-name">Starter App</div>
+            <div class="plan-price">34,999<span> PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> Inventory Management</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Sales Reports</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Professional Business Email</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 1 Year Hosting</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> WhatsApp Alerts</span> <span class="tag-free">FREE</span></li>
+                <li style="color:#aaa; text-decoration:line-through;"><span><span class="cross">✕</span> Multi-User Login</span></li>
+                <li style="color:#aaa; text-decoration:line-through;"><span><span class="cross">✕</span> Mobile App Sync</span></li>
+            </ul>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Buy Now</a>
+                <a href="#" class="btn btn-discount">5% Discount</a>
+            </div>
+        </div>
+
+        <div class="price-card card-popular">
+            <div class="popular-badge">BEST SELLER</div>
+            <div class="plan-name">Business Pro</div>
+            <div class="plan-price">64,999<span> PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> Full CRM System</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Multi-User Roles</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> 5 Business Emails</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> High-Speed Hosting</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Automated Invoicing</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> AI Data Insights</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 3 Months Support</span> <span class="tag-free">FREE</span></li>
+            </ul>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Buy Now</a>
+                <a href="#" class="btn btn-discount">5% Discount</a>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-price">99,999<span>+ PKR</span></div>
+            
+            <ul class="feature-list">
+                <li><span><span class="tick">✓</span> Custom Workflow</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> ERP Integration</span> <span class="tag-inc">INCLUDED</span></li>
+                <li><span><span class="tick">✓</span> Unlimited Emails</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Dedicated Server</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> 1 Year Maintenance</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Source Code Access</span> <span class="tag-free">FREE</span></li>
+                <li><span><span class="tick">✓</span> Mobile App (Android)</span> <span class="tag-free">FREE</span></li>
+            </ul>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-buy">Contact Us</a>
+                <a href="#" class="btn btn-discount">Custom Quote</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!--possilbe serveeeeeeeeeee-->
+
+<style>
+    /* --- SECTION STYLING --- */
+    .cc-services-section {
+        padding: 80px 20px;
+        background-color: #ffffff; /* White Background */
+        color: #000000; /* Black Text */
+        max-width: 1200px;
+        margin: 0 auto;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .cc-services-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .cc-services-header h2 {
+        font-size: 36px;
+        font-weight: 900;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
+
+    .cc-services-header p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    /* --- GRID STYLING --- */
+    .cc-services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Desktop par 4 cards ki line */
+        gap:1px;
+    }
+
+    /* --- CARD STYLING (BLACK & WHITE THEME) --- */
+    .cc-service-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 20px;
+        background-color: #fff;
+        border: 1px solid #000; /* Black Border */
+        border-radius: 2px;
+        text-decoration: none; /* Link underline hatane ke liye */
+        color: #000;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    /* Hover Effect: Inverts to Black background with White text */
+    .cc-service-card:hover {
+        background-color: #000;
+        color: #fff;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Icon Setup */
+    .icon-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .icon-wrapper svg {
+        width: 35px;
+        height: 35px;
+        stroke-width: 2px;
+        transition: stroke 0.3s ease;
+    }
+
+    /* Hover par icon ka color bhi white ho jaye */
+    .cc-service-card:hover .icon-wrapper svg {
+        stroke: #ffffff;
+    }
+
+    .cc-service-card h3 {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .cc-service-card p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: inherit; /* Apne parent ka color uthayega hover par */
+        opacity: 0.8;
+    }
+
+    /* --- MOBILE RESPONSIVE (2x2 Grid) --- */
+    @media (max-width: 768px) {
+        .cc-services-grid {
+            /* Mobile par 2 columns banayega (2 cards per row) */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px;
+        }
+
+        .cc-services-header h2 {
+            font-size: 28px;
+        }
+
+        .cc-service-card {
+            padding: 20px 15px;
+        }
+
+        .cc-service-card h3 {
+            font-size: 16px;
+        }
+
+        .cc-service-card p {
+            font-size: 12px;
+        }
+
+        .icon-wrapper svg {
+            width: 25px;
+            height: 25px;
+        }
+    }
+</style>
+
+<section class="cc-services-section">
+    <div class="cc-services-header">
+        <h2>Grow Your Business</h2>
+        <p>Essential tools for your software ecosystem.</p>
+    </div>
+
+    <div class="cc-services-grid">
+        
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="users"></i></div>
+            <h3>CRM Systems</h3>
+            <p>Customer data aur sales pipelines ko manage karne ke liye.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="package"></i></div>
+            <h3>Inventory & POS</h3>
+            <p>Stock tracking aur billing solutions business scale karne ke liye.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="brain-circuit"></i></div>
+            <h3>AI Automation</h3>
+            <p>Faltu kamo ko auto par lagayein aur smart insights payein.</p>
+        </a>
+
+        <a href="../contact.html" class="cc-service-card">
+            <div class="icon-wrapper"><i data-lucide="smartphone"></i></div>
+            <h3>Mobile App Sync</h3>
+            <p>Apne business dashboard ko mobile par kahin bhi access karein.</p>
+        </a>
+
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+
+
+<!--Get startddddddddddddddddddddddddddddd-->
+
+<style>
+    /* --- The Grand Finale CTA --- */
+    .cta-final {
+        padding: 150px 5%;
+        background: var(--white);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    /* Animated Heading: Text that breathes */
+    .cta-heading {
+        font-size: clamp(3rem, 12vw, 8rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -6px;
+        margin-bottom: 50px;
+        color: var(--black);
+        text-transform: uppercase;
+    }
+
+    .cta-heading span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--black);
+        transition: 0.5s;
+    }
+
+    .cta-final:hover .cta-heading span {
+        color: var(--blue);
+        -webkit-text-stroke: 1.5px var(--blue);
+        filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.3));
+    }
+
+    /* Ultra Animated Button */
+    .ultra-btn {
+        position: relative;
+        padding: 25px 60px;
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--white);
+        background: var(--black);
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 0.4s;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        z-index: 1;
+    }
+
+    .ultra-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 0; height: 0;
+        background: var(--blue);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+        z-index: -1;
+    }
+
+    .ultra-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 20px 40px rgba(54, 54, 54, 0.4);
+    }
+
+    .ultra-btn:hover::before {
+        width: 400px;
+        height: 400px;
+    }
+
+    /* Floating Particles for that "Manzar" */
+    .particle {
+        position: absolute;
+        background: var(--blue);
+        border-radius: 50%;
+        opacity: 0.1;
+        pointer-events: none;
+    }
+
+    /* Mobile Responsive Logic */
+    @media (max-width: 768px) {
+        .cta-heading { letter-spacing: -3px; margin-bottom: 30px; }
+        .cta-final { padding: 100px 5%; }
+        .ultra-btn { padding: 20px 40px; font-size: 14px; }
+    }
+</style>
+
+<section class="cta-final">
+    <div id="particle-container"></div>
+
+    <h2 class="cta-heading">
+        READY TO <br>
+        <span>INITIALIZE?</span>
+    </h2>
+
+    <p style="color: #666; font-weight: 500; margin-bottom: 40px; font-size: 1.1rem;">
+        Let's build the future of your business, one pixel at a time.
+    </p>
+
+   <a href="../contact.html">
+     <button class="ultra-btn" onclick="location.href='get-started.html'">
+        Start Your Project &rarr;
+    </button>
+   </a>
+
+    <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #aaa;">
+        <span>© 2026 CODECRAFTE STUDIO</span>
+        <div style="display: flex; gap: 20px;">
+            <a href="https://www.instagram.com/codecrafte.pk/" style="color: inherit; text-decoration: none;">INSTAGRAM</a>
+            <a href="www.linkedin.com/in/c-crafte-3941b43b3" style="color: inherit; text-decoration: none;">LINKEDIN</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Creating some random floating particles
+    const container = document.getElementById('particle-container');
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 50 + 10;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.left = Math.random() * 100 + '%';
+        container.appendChild(p);
+        
+        gsap.to(p, {
+            y: -100,
+            x: Math.random() * 50,
+            duration: Math.random() * 5 + 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+
+    // Scroll trigger for heading
+    gsap.from(".cta-heading", {
+        scrollTrigger: ".cta-final",
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    });
+</script>
+</body>
+</html>

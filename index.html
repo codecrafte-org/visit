@@ -72,6 +72,154 @@
   </script>
 
   <body>
+
+    <!--loadingg-->
+
+<div id="skeleton-overlay">
+    <header class="sk-navbar">
+        <div class="sk-logo sk-shimmer"></div>
+        <div class="sk-nav-links">
+            <div class="sk-link sk-shimmer"></div>
+            <div class="sk-link sk-shimmer"></div>
+            <div class="sk-link sk-shimmer"></div>
+        </div>
+        <div class="sk-contact-btn sk-shimmer"></div>
+    </header>
+
+    <main class="sk-hero-section">
+        <div class="sk-float sk-cloud sk-shimmer"></div>
+        <div class="sk-float sk-rocket sk-shimmer"></div>
+
+        <div class="sk-badge sk-shimmer"></div>
+        <div class="sk-heading-1 sk-shimmer"></div>
+        <div class="sk-heading-2 sk-shimmer"></div>
+        
+        <div class="sk-para sk-para-1 sk-shimmer"></div>
+        <div class="sk-para sk-para-2 sk-shimmer"></div>
+        
+        <div class="sk-cta-btn sk-shimmer"></div>
+    </main>
+
+    <div class="sk-fab-container">
+        <div class="sk-chat-box sk-shimmer"></div>
+        <div class="sk-fab sk-fab-1 sk-shimmer"></div>
+        <div class="sk-fab sk-fab-2 sk-shimmer"></div>
+    </div>
+</div>
+
+<style>
+  /* SKELETON OVERLAY - Covers the whole screen */
+#skeleton-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #f8f9fa; /* Matches your background */
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+    overflow: hidden;
+}
+
+/* SHIMMER ANIMATION (The moving gradient) */
+@keyframes shimmerWave {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.sk-shimmer {
+    background: #e2e5e7;
+    background-image: linear-gradient(to right, #e2e5e7 0%, #f0f2f4 20%, #e2e5e7 40%, #e2e5e7 100%);
+    background-repeat: no-repeat;
+    background-size: 1000px 100%;
+    animation: shimmerWave 1.8s infinite linear forwards;
+    border-radius: 8px; /* Default border radius */
+}
+
+/* NAVBAR SKELETON */
+.sk-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 5%;
+    width: 100%;
+}
+
+.sk-logo { width: 80px; height: 40px; border-radius: 40px; }
+
+.sk-nav-links { display: flex; gap: 30px; }
+.sk-link { width: 60px; height: 15px; }
+
+.sk-contact-btn { width: 120px; height: 45px; border-radius: 30px; }
+
+/* HERO SKELETON */
+.sk-hero-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 20px;
+}
+
+.sk-badge { width: 250px; height: 30px; border-radius: 20px; margin-bottom: 40px; }
+
+.sk-heading-1 { width: 60%; height: 80px; margin-bottom: 15px; border-radius: 12px; }
+.sk-heading-2 { width: 80%; height: 80px; margin-bottom: 40px; border-radius: 12px; }
+
+.sk-para { width: 50%; height: 16px; margin-bottom: 10px; }
+.sk-para-2 { width: 40%; margin-bottom: 50px; }
+
+.sk-cta-btn { width: 180px; height: 55px; border-radius: 30px; }
+
+/* FLOATING ELEMENTS SKELETON */
+.sk-float { position: absolute; border-radius: 50%; }
+.sk-cloud { width: 120px; height: 90px; border-radius: 60px; bottom: 20%; left: 10%; }
+.sk-rocket { width: 100px; height: 100px; top: 10%; right: 15%; transform: rotate(45deg); border-radius: 30px; }
+
+/* FLOATING ACTION BUTTONS (FAB) */
+.sk-fab-container {
+    position: absolute;
+    bottom: 30px; right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+.sk-chat-box { width: 200px; height: 50px; border-radius: 12px; margin-bottom: -5px; }
+.sk-fab { width: 60px; height: 60px; border-radius: 50%; }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .sk-nav-links, .sk-contact-btn, .sk-cloud, .sk-rocket { display: none; } /* Hide on mobile like typical mobile navs */
+    .sk-heading-1, .sk-heading-2 { width: 90%; height: 50px; }
+    .sk-para { width: 90%; }
+    .sk-chat-box { display: none; }
+    .sk-fab-container { bottom: 20px; right: 20px; }
+}
+</style>
+<script>
+    // Jab poori website (images, fonts, scripts) load ho jayegi, tab ye chalega
+    window.addEventListener("load", function() {
+        const skeletonOverlay = document.getElementById("skeleton-overlay");
+        
+        // Timeout maine isliye lagaya hai taake 1 second tak skeleton nazar aaye. 
+        // Agar real-time rakhna hai toh setTimout hata dena aur direct fade out kar dena.
+        setTimeout(() => {
+            // Fade out effect
+            skeletonOverlay.style.opacity = "0";
+            skeletonOverlay.style.visibility = "hidden";
+            
+            // DOM se remove kar do taake peeche click issues na hon
+            setTimeout(() => {
+                skeletonOverlay.style.display = "none";
+            }, 500); 
+        }, 10); // 1000ms = 1 second
+    });
+</script>
+
+
    <!--hero sectionnnnnnnnnnnnnnnnnn-->
  <body>
 
@@ -582,10 +730,10 @@ window.addEventListener('scroll', () => {
             </div>
           </a>
           
-          <a href="./components/contact.html">
+          <a href="./components/Services/wp.html">
             <div class="service-card">
               <div class="card-bg"></div>
-              <div class="card-content" id="s-app">
+              <div class="card-content" id="s-wp">
                 <i data-lucide="layout-template" class="s-icon"></i>
                 <h3>wordpress</h3>
               </div>
@@ -613,12 +761,12 @@ window.addEventListener('scroll', () => {
             </div>
           </a>
           
-          <a href="./components/contact.html">
+          <a href="./components/Services/ERP.html">
             <div class="service-card">
               <div class="card-bg"></div>
-              <div class="card-content" id="s-crm">
+              <div class="card-content" id="s-erp">
                 <i data-lucide="factory" class="s-icon"></i>
-                <h3>erp</h3>
+                <h3>ERP</h3>
               </div>
             </div>
           </a>
@@ -634,40 +782,40 @@ window.addEventListener('scroll', () => {
           </a>
           
           
-          <a href="./components/contact.html">
+          <a href="./components/Services/CSD.html">
             <div class="service-card">
               <div class="card-bg"></div>
-              <div class="card-content" id="s-meta">
+              <div class="card-content" id="s-csd">
                 <i data-lucide="braces" class="s-icon"></i>
                 <h3>Custom Software Development</h3>
               </div>
             </div>
           </a>
 
-          <a href="./components/contact.html">
+          <a href="./components/Services/Buniess.html">
             <div class="service-card">
               <div class="card-bg"></div>
-              <div class="card-content" id="s-meta">
+              <div class="card-content" id="s-bus">
                 <i data-lucide="building-2" class="s-icon"></i>
                 <h3>busniess application</h3>
               </div>
             </div>
           </a>
           
-          <a href="./components/contact.html">
+          <a href="./components/Services/saas.html">
             <div class="service-card">
               <div class="card-bg"></div>
-              <div class="card-content" id="s-meta">
+              <div class="card-content" id="s-saas">
                 <i data-lucide="app-window" class="s-icon"></i>
                 <h3>saas application</h3>
               </div>
             </div>
           </a>
           
-          <a href="./components/contact.html">
+          <a href="./components/Services/portfolio.html">
             <div class="service-card">
               <div class="card-bg"></div>
-              <div class="card-content" id="s-meta">
+              <div class="card-content" id="s-port">
                 <i data-lucide="image" class="s-icon"></i>
                 <h3>portfolio</h3>
               </div>
@@ -675,10 +823,10 @@ window.addEventListener('scroll', () => {
           </a>
 
 
-          <a href="./components/contact.html">
+          <a href="./components/Services/uiux.html">
             <div class="service-card">
               <div class="card-bg"></div>
-              <div class="card-content" id="s-meta">
+              <div class="card-content" id="s-ui">
                 <i data-lucide="mouse-pointer-click" class="s-icon"></i>
                 <h3>ui/ux</h3>
               </div>
@@ -705,15 +853,7 @@ window.addEventListener('scroll', () => {
             </div>
           </a>
           
-          <a href="./components/contact.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-meta">
-                <i data-lucide="building-2" class="s-icon"></i>
-                <h3>busniess application</h3>
-              </div>
-            </div>
-          </a>
+           
 
           
           <a href="./components/Services/Meta.html">
@@ -1976,5 +2116,199 @@ window.addEventListener('scroll', () => {
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2026/04/25/18/20260425181340-E2P8GJEL.js" defer></script>
     
+
+
+<!--error 404-->
+<div id="offline-screen" class="offline-hidden">
+    <div class="offline-content">
+        <img src="./images/404.png" alt="No Internet" class="offline-img">
+        
+        <h2 class="offline-heading">Connection Lost</h2>
+        <p class="offline-para">It seems you have lost your internet connection. Please check your Wi-Fi or mobile data network to continue exploring.</p>
+        
+        <a href="car-game.html" class="offline-game-btn" style="visibility: hidden;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Play Game While You Wait
+        </a>
+    </div>
+</div>
+
+<div id="online-toast" class="toast-hidden">
+    <div class="toast-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    </div>
+    <div class="toast-text">
+        <strong>Welcome back!</strong>
+        <span>Your internet connection was restored.</span>
+    </div>
+</div>
+<style>
+  /* --- OFFLINE SCREEN STYLES --- */
+#offline-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #ffffff; /* White background matching your site */
+    z-index: 9999999; /* Highest priority */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.offline-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.offline-content {
+    max-width: 500px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.offline-img {
+    width: 250px; /* Adjust based on your image size */
+    max-width: 100%;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
+}
+
+.offline-heading {
+    font-size: 32px;
+    font-weight: 900;
+    color: #111;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+}
+
+.offline-para {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* PLAY GAME BUTTON */
+.offline-game-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #000;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.offline-game-btn:hover {
+    background-color: #0070f3; /* CodeCrafte Blue */
+    transform: translateY(-3px);
+}
+
+/* --- ONLINE TOAST NOTIFICATION STYLES --- */
+#online-toast {
+    position: fixed;
+    top: 30px; /* Top notification */
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px); /* Start hidden above screen */
+    background: #2b4ae7; /* Success Green */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 15px 40px rgba(16, 98, 185, 0.3);
+    z-index: 9999999;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+    opacity: 0;
+}
+
+.toast-visible {
+    transform: translateX(-50%) translateY(0) !important;
+    opacity: 1 !important;
+}
+
+.toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toast-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.toast-text strong {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.toast-text span {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .offline-heading { font-size: 26px; }
+    .offline-para { font-size: 15px; padding: 0 10px; }
+    .offline-img { width: 200px; }
+    
+    /* HIDE THE GAME BUTTON ON MOBILE */
+    .offline-game-btn { 
+        display: none !important; 
+    }
+    
+    #online-toast {
+        width: 90%;
+        padding: 12px 20px;
+    }
+}
+</style>
+
+<script>
+    // Variables for elements
+    const offlineScreen = document.getElementById("offline-screen");
+    const onlineToast = document.getElementById("online-toast");
+
+    // FUNCTION: Jab internet chala jaye
+    window.addEventListener('offline', () => {
+        // Offline screen dikhao
+        offlineScreen.classList.remove("offline-hidden");
+        // Agar pehle se toast show ho raha tha, usko hatao
+        onlineToast.classList.remove("toast-visible");
+    });
+
+    // FUNCTION: Jab internet wapas aa jaye
+    window.addEventListener('online', () => {
+        // Offline screen hatao
+        offlineScreen.classList.add("offline-hidden");
+        
+        // Welcome Back ka notification (toast) show karo
+        onlineToast.classList.add("toast-visible");
+        
+        // 4 seconds baad notification khud gayab ho jayega
+        setTimeout(() => {
+            onlineToast.classList.remove("toast-visible");
+        }, 4000);
+    });
+
+    // OPTIONAL: Jab page load ho, ek dafa check kar le ke pehle se hi offline toh nahi?
+    if (!navigator.onLine) {
+        offlineScreen.classList.remove("offline-hidden");
+    }
+</script>
   </body>
 </html>

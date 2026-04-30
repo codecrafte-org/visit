@@ -1094,6 +1094,11 @@
     color: #e7ff33;
  }
 
+ #s-wp:hover .s-icon,
+#s-wp:hover h3 {
+    color: #0821c4;
+ }
+
  #s-pms:hover .s-icon,
 #s-pms:hover h3 {
     color: #2e5bff;
@@ -1103,6 +1108,38 @@
 #s-crm:hover h3 {
     color: #00ff9d;
  }
+
+  #s-erp:hover .s-icon,
+#s-erp:hover h3 {
+    color: #09cb53;
+ }
+
+   #s-csd:hover .s-icon,
+#s-csd:hover h3 {
+    color: #abd814;
+ }
+
+    #s-bus:hover .s-icon,
+#s-bus:hover h3 {
+    color: #818181;
+ }
+ 
+    #s-saas:hover .s-icon,
+#s-saas:hover h3 {
+    color: #36c31a;
+ }
+ 
+    #s-port:hover .s-icon,
+#s-port:hover h3 {
+    color:  #0a775a;
+ }
+
+     #s-ui:hover .s-icon,
+#s-ui:hover h3 {
+    color:  #ff0000;
+ }
+
+
 
  #s-meta:hover .s-icon,
 #s-meta:hover h3 {
