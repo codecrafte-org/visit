@@ -3,130 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found | CodeCrafte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <title>error 404</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <style>
-        :root {
-            --blue: #0070f3;
-            --black: #000;
-            --white: #fff;
-            --gray: #666;
-        }
-
+        :root { --blue: #0070f3; --black: #000; --white: #fff; --gray: #888; --bg: #fdfdfd; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--white);
+            background-color: var(--bg);
             color: var(--black);
             height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            flex-direction: column;
             overflow: hidden;
         }
 
+        /* --- Custom Navbar (As per your image) --- */
+        nav {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img { height: 40px; }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--black); 
+            font-size: 14px; 
+            font-weight: 500; 
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { opacity: 1; }
+
+        .btn-contact {
+            background: var(--black);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        /* --- 404 Content (Scaled Down for Premium Look) --- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+        }
+
         .error-container {
+            max-width: 450px; /* Chota size for premium feel */
+            text-align: center;
             padding: 20px;
-            max-width: 600px;
-            width: 100%;
         }
 
-        /* AI Image Styling */
         .error-img {
-            width: 100%;
-            max-width: 350px;
-            height: 270px;
-            margin-bottom: 20px; 
+            width: 180px; /* Reduced size */
+            height: auto;
+            margin-bottom: 20px;
+            opacity: 0.9;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Text Styling */
         .error-code {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(5rem, 15vw, 8rem);
-            line-height: 0.8;
+            font-family:  sans-serif;
+            font-size: 4rem; /* Realistic size */
+            line-height: 1;
             margin-bottom: 10px;
-            -webkit-text-stroke: 2px var(--black);
-            color: transparent;
+            letter-spacing: -2px;
         }
 
         .error-msg {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            margin-bottom: 15px;
-            color: var(--black);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .instructions {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 30px;
+            line-height: 1.5;
         }
 
-        .highlight {
-            color: var(--blue);
-            font-weight: 600;
-        }
-
-        /* Action Buttons */
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .btn {
-            text-decoration: none;
-            padding: 12px 25px;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            transition: 0.3s;
-            border: 2px solid var(--black);
-        }
-
-        .btn-home {
+        /* --- Toast Notification (Black & Professional) --- */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
             background: var(--black);
             color: var(--white);
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
         }
 
-        .btn-home:hover {
-            background: var(--blue);
-            border-color: var(--blue);
-            box-shadow: 8px 8px 0px var(--black);
-            transform: translate(-4px, -4px);
-        }
+        #toast.show { transform: translateX(-50%) translateY(0); }
+        .toast-icon { display: flex; align-items: center; }
 
-        /* Mobile Responsive */
-        @media (max-width: 480px) {
-            .btn-group { flex-direction: column; }
-            .error-img { max-width: 250px; }
-            .error-code { font-size: 5rem; }
+        /* --- Mobile View Adjustments --- */
+        @media (max-width: 768px) {
+            nav { justify-content: center; padding: 15px; }
+            .nav-links, .btn-contact { display: none; } /* Sirf logo rahay ga */
+            .error-code { font-size: 3.5rem; }
+            .error-img { width: 150px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="error-container">
-        <img src="../images/404.png" alt="Error Illustration" class="error-img">
-        
-        <div class="error-code">404</div>
-        <h2 class="error-msg">Lost in Cyberspace?</h2>
-        
-        <p class="instructions">
-            Oops! The page you're looking for doesn't exist or has been moved.<br>
-            <span class="highlight">Quick Check:</span> Verify your internet connection or check the URL for typos.
-        </p>
- 
+    <nav>
+        <div class="logo">
+            <img src="./images/fav-ion.webp" alt="CodeCrafte">
+        </div>
+        <div class="nav-links">
+            <a href="#">Our Team</a>
+            <a href="#">Our Story</a>
+            <a href="#">Careers</a>
+        </div>
+        <a href="#" class="btn-contact">Contact Us</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="error-container">
+            <img src="../images/404.png" alt="Lost" class="error-img">
+            <div class="error-code">404</div>
+            <h2 class="error-msg">Offline Mode</h2>
+            <p class="instructions">
+                It looks like your connection has been interrupted. <br>
+                Please check your internet settings.
+            </p>
+        </div>
     </div>
 
+    <div id="toast">
+        <div class="toast-icon" id="t-icon"></div>
+        <span id="t-msg">Notification Message</span>
+    </div>
+
+     <script>
+    lucide.createIcons();
+    const toast = document.getElementById('toast');
+    const tMsg = document.getElementById('t-msg');
+    const tIcon = document.getElementById('t-icon');
+
+    // Function to show/hide toast
+    function showToast(status) {
+        if (status === 'offline') {
+            tMsg.innerText = "Connection lost. Checking your network...";
+            tIcon.innerHTML = '<i data-lucide="wifi-off" style="color:#ff4b4b; width:18px;"></i>';
+            toast.classList.add('show');
+        } else {
+            tMsg.innerText = "Connection restored. Redirecting...";
+            tIcon.innerHTML = '<i data-lucide="wifi" style="color:#00ff88; width:18px;"></i>';
+            toast.classList.add('show');
+            
+            // Net wapis aane par hi redirect hoga
+            setTimeout(() => {
+                window.location.href = "index.html"; 
+            }, 2000);
+        }
+        lucide.createIcons();
+    }
+
+    // --- EVENTS ---
+
+    // 1. Jab net jaye
+    window.addEventListener('offline', () => {
+        showToast('offline');
+    });
+
+    // 2. Jab net wapis aaye
+    window.addEventListener('online', () => {
+        showToast('online');
+    });
+
+    // 3. Mobile par "Self-Redirect" wala ganda logic nikaal diya hai.
+    // Ab ye tab tak wahin rahay ga jab tak net wapis nahi aata ya aap manually back nahi jatay.
+</script>
 </body>
 </html>
+
