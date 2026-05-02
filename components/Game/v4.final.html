@@ -1,0 +1,442 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <title>Codecrafte Tokyo Survival - Fast & Furious Edition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <style>
+    /* Full Screen Responsive & Retro Light UI */
+    body { background-color: #f0f0f0; color: #333; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; touch-action: none; /* Prevents mobile swipe-to-refresh */ }
+    
+    #game { position: relative; width: 100vw; height: 100vh; max-width: 1024px; max-height: 768px; background: black; border: 4px solid #333; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+    canvas { display: block; width: 100%; height: 100%; object-fit: contain; }
+    
+    /* HUD & Timer Styles */
+    #hud { position: absolute; top: 15px; left: 15px; right: 15px; z-index: 10; display: flex; justify-content: space-between; font-size: 24px; font-weight: bold; text-shadow: 1px 1px 0 #fff; color: #000; pointer-events: none; }
+    .hud-box { background: rgba(255, 255, 255, 0.7); padding: 8px 15px; border: 2px solid #000; border-radius: 5px; pointer-events: auto; }
+    #timer_value { color: #d32f2f; font-size: 30px; }
+    
+    /* Fullscreen Button Mobile Only */
+    #fs-btn { display: none; cursor: pointer; background: #000; color: #fff; border: 2px solid #fff; padding: 5px 10px; font-size: 16px; border-radius: 5px; }
+
+    /* Win / Lose Screen Overlay */
+    #overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; background: rgba(255,255,255,0.95); display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-radius: 5px; }
+    #overlay h1 { font-size: 60px; margin: 0; text-transform: uppercase; text-shadow: 2px 2px 0 #fff; color: #000; }
+    #overlay p { font-size: 30px; color: #333; margin-top: 15px; font-weight: bold; }
+    .code-box { background: #333; color: #fff; padding: 10px 20px; font-size: 28px; margin: 15px 0; border-radius: 5px; letter-spacing: 2px; }
+    .btn { margin-top: 25px; padding: 12px 25px; font-size: 20px; cursor: pointer; background: #000; color: #fff; border: none; border-radius: 3px; font-weight: bold; }
+    
+    /* Hidden Elements */
+    #hidden-elements { display: none; }
+
+    /* Mobile On-Screen Controls */
+    #mobile-controls { display: none; position: absolute; bottom: 20px; left: 20px; right: 20px; z-index: 50; justify-content: space-between; align-items: flex-end; }
+    .ctrl-group { display: flex; gap: 15px; }
+    .ctrl-btn { width: 70px; height: 70px; background: rgba(0, 0, 0, 0.5); border: 3px solid rgba(255, 255, 255, 0.8); border-radius: 50%; color: white; font-size: 30px; display: flex; justify-content: center; align-items: center; user-select: none; -webkit-user-select: none; }
+    .ctrl-btn:active, .ctrl-btn.active { background: rgba(255, 255, 255, 0.8); color: black; }
+
+    /* Force Landscape Warning */
+    #landscape-warning { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:black; color:white; z-index: 9999; flex-direction: column; justify-content: center; align-items: center; text-align: center; font-size: 24px; font-weight: bold; }
+
+    /* MOBILE SPECIFIC CSS */
+    @media (pointer: coarse) {
+        /* Touch screens par mobile controls dikhao */
+        #mobile-controls { display: flex; }
+        #fs-btn { display: inline-block; }
+        #hud { font-size: 16px; top: 5px; left: 5px; right: 5px; }
+        .hud-box { padding: 5px 10px; }
+        #timer_value { font-size: 20px; }
+    }
+
+    /* Screen Rotation Logic */
+    @media screen and (orientation: portrait) and (max-width: 768px) {
+        #landscape-warning { display: flex; }
+    }
+  </style>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+     (function(){ emailjs.init("TUMHARI_PUBLIC_KEY_YAHAN_AAYEGI"); })();
+  </script>
+</head> 
+<body> 
+
+<div id="landscape-warning">
+    <div style="font-size: 60px;">🔄</div>
+    <p>Bhai Jan!<br>Game khelne ke liye Mobile ko Landscape (Tera) karo.</p>
+</div>
+
+<div id="game">
+  <div id="hud">
+    <div class="hud-box">SPEED: <span id="speed_value">0</span> mph</div>
+    <button id="fs-btn" onclick="goFullscreen()">🔲 FULLSCREEN</button>
+    <div class="hud-box">SURVIVE: <span id="timer_value">120</span>s</div>
+  </div>
+  
+  <div id="mobile-controls">
+      <div class="ctrl-group">
+          <div class="ctrl-btn" id="btn-left">◀</div>
+          <div class="ctrl-btn" id="btn-right">▶</div>
+      </div>
+      <div class="ctrl-group">
+          <div class="ctrl-btn" id="btn-brake">🛑</div>
+          <div class="ctrl-btn" id="btn-gas">⛽</div>
+      </div>
+  </div>
+
+  <div id="overlay">
+    <h1 id="message_title"></h1>
+    <p id="message_desc"></p>
+    <div class="code-box" id="winning_code_display"></div>
+    <button class="btn" onclick="location.reload()">TRY AGAIN</button>
+  </div>
+
+  <canvas id="canvas" width="1024" height="768"></canvas>
+</div>
+
+<div id="hidden-elements">
+  <audio id="music" loop preload="auto"></audio>
+  <span id="mute"></span>
+  <div id="fps"></div>
+</div>
+
+<script src="common.js"></script>
+
+<script>
+  // Fullscreen Logic
+  function goFullscreen() {
+      var elem = document.documentElement;
+      if (elem.requestFullscreen) { elem.requestFullscreen(); }
+      else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); } // Safari
+      else if (elem.msRequestFullscreen) { elem.msRequestFullscreen(); } // IE11
+      document.getElementById('fs-btn').style.display = 'none'; 
+  }
+
+  //=========================================================================
+  // RACING GAME CONSTANTS & CONFIG
+  //=========================================================================
+  var fps            = 60;                      
+  var step           = 1/fps;                   
+  var width          = 1024;                    
+  var height         = 768;                     
+  var centrifugal    = 0.3;                     
+  var skySpeed       = 0.001;                   
+  var hillSpeed      = 0.002;                   
+  var treeSpeed      = 0.003;                   
+  var skyOffset      = 0;                       
+  var hillOffset     = 0;                       
+  var treeOffset     = 0;                       
+  var segments       = [];                      
+  var cars           = [];                      
+  var canvas         = document.getElementById('canvas');       
+  var ctx            = canvas.getContext('2d'); 
+  var background     = null;                    
+  var sprites        = null;                    
+  var resolution     = null;                    
+  var roadWidth      = 2000;                    
+  var segmentLength  = 200;                     
+  var rumbleLength   = 3;                       
+  var trackLength    = null;                    
+  var lanes          = 3;                       
+  var fieldOfView    = 100;                     
+  var cameraHeight   = 1000;                    
+  var cameraDepth    = null;                    
+  var drawDistance   = 300;                     
+  var playerX        = 0;                       
+  var playerZ        = null;                    
+  var fogDensity     = 5;                       
+  var position       = 0;                       
+  var speed          = 0;   
+  
+  // ================= SPEED UPGRADE =====================
+  // FAST & FURIOUS UPGRADE: Max speed doubled! (Now 200mph)
+  var maxSpeed       = 20000;      
+  var accel          = maxSpeed/5;             
+  var breaking       = -maxSpeed;               
+  var decel          = -maxSpeed/5;             
+  var offRoadDecel   = -maxSpeed/2;             
+  var offRoadLimit   = maxSpeed/4;             
+  var totalCars      = 100; 
+  // =====================================================
+  
+  var keyLeft        = false;
+  var keyRight       = false;
+  var keyFaster      = false;
+  var keySlower      = false;
+
+  var gameState      = "PLAYING"; 
+  var timeLeft       = 120.0; 
+
+  var KEY = { LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40, A: 65, D: 68, S: 83, W: 87 };
+  var COLORS = { SKY: '#72D7EE', TREE: '#005108', FOG: '#005108', LIGHT: { road: '#6B6B6B', grass: '#10AA10', rumble: '#555555', lane: '#CCCCCC' }, DARK: { road: '#696969', grass: '#009A00', rumble: '#BBBBBB' }, START: { road: 'white', grass: 'white', rumble: 'white' }, FINISH: { road: 'black', grass: 'black', rumble: 'black' } };
+  var BACKGROUND = { HILLS: { x: 5, y: 5, w: 1280, h: 480 }, SKY: { x: 5, y: 495, w: 1280, h: 480 }, TREES: { x: 5, y: 985, w: 1280, h: 480 } };
+  var SPRITES = {
+    PALM_TREE: { x: 5, y: 5, w: 215, h: 540 }, TREE1: { x: 625, y: 5, w: 360, h: 360 }, DEAD_TREE1: { x: 5, y: 555, w: 135, h: 332 }, COLUMN: { x: 995, y: 5, w: 200, h: 315 },
+    BILLBOARD01: { x: 625, y: 375, w: 300, h: 170 }, BILLBOARD02: { x: 245, y: 1262, w: 215, h: 220 }, BILLBOARD03: { x: 5, y: 1262, w: 230, h: 220 }, BILLBOARD04: { x: 1205, y: 310, w: 268, h: 170 }, BILLBOARD05: { x: 5, y: 897, w: 298, h: 190 }, BILLBOARD06: { x: 488, y: 555, w: 298, h: 190 }, BILLBOARD07: { x: 313, y: 897, w: 298, h: 190 }, BILLBOARD08: { x: 230, y: 5, w: 385, h: 265 }, BILLBOARD09: { x: 150, y: 555, w: 328, h: 282 },
+    BOULDER1: { x: 1205, y: 760, w: 168, h: 248 }, BOULDER2: { x: 621, y: 897, w: 298, h: 140 }, BOULDER3: { x: 230, y: 280, w: 320, h: 220 },
+    CAR01: { x: 1205, y: 1018, w: 80, h: 56 }, CAR02: { x: 1383, y: 825, w: 80, h: 59 }, CAR03: { x: 1383, y: 760, w: 88, h: 55 }, CAR04: { x: 1383, y: 894, w: 80, h: 57 }, SEMI: { x: 1365, y: 490, w: 122, h: 144 }, TRUCK: { x: 1365, y: 644, w: 100, h: 78 },
+    PLAYER_UPHILL_LEFT: { x: 1383, y: 961, w: 80, h: 45 }, PLAYER_UPHILL_STRAIGHT: { x: 1295, y: 1018, w: 80, h: 45 }, PLAYER_UPHILL_RIGHT: { x: 1385, y: 1018, w: 80, h: 45 }, PLAYER_LEFT: { x: 995, y: 480, w: 80, h: 41 }, PLAYER_STRAIGHT: { x: 1085, y: 480, w: 80, h: 41 }, PLAYER_RIGHT: { x: 995, y: 531, w: 80, h: 41 }
+  };
+  SPRITES.SCALE = 0.3 * (1/SPRITES.PLAYER_STRAIGHT.w);
+  SPRITES.BILLBOARDS = [SPRITES.BILLBOARD01, SPRITES.BILLBOARD02, SPRITES.BILLBOARD03, SPRITES.BILLBOARD04, SPRITES.BILLBOARD05, SPRITES.BILLBOARD06, SPRITES.BILLBOARD07, SPRITES.BILLBOARD08, SPRITES.BILLBOARD09];
+  SPRITES.PLANTS     = [SPRITES.TREE1, SPRITES.DEAD_TREE1, SPRITES.PALM_TREE, SPRITES.COLUMN, SPRITES.BOULDER1, SPRITES.BOULDER2, SPRITES.BOULDER3];
+  SPRITES.CARS       = [SPRITES.CAR01, SPRITES.CAR02, SPRITES.CAR03, SPRITES.CAR04, SPRITES.SEMI, SPRITES.TRUCK];
+
+  function generateRandomCode() {
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var code = 'CRAFTE-';
+    for (var i = 0; i < 6; i++) { code += chars.charAt(Math.floor(Math.random() * chars.length)); }
+    return code; 
+  }
+
+  // Setup Mobile Touch Listeners
+  function setupTouchControls() {
+      const btnL = document.getElementById('btn-left');
+      const btnR = document.getElementById('btn-right');
+      const btnG = document.getElementById('btn-gas');
+      const btnB = document.getElementById('btn-brake');
+
+      // Left
+      btnL.addEventListener('touchstart', function(e) { e.preventDefault(); keyLeft = true; btnL.classList.add('active'); }, {passive: false});
+      btnL.addEventListener('touchend', function(e) { e.preventDefault(); keyLeft = false; btnL.classList.remove('active'); }, {passive: false});
+      // Right
+      btnR.addEventListener('touchstart', function(e) { e.preventDefault(); keyRight = true; btnR.classList.add('active'); }, {passive: false});
+      btnR.addEventListener('touchend', function(e) { e.preventDefault(); keyRight = false; btnR.classList.remove('active'); }, {passive: false});
+      // Gas
+      btnG.addEventListener('touchstart', function(e) { e.preventDefault(); keyFaster = true; btnG.classList.add('active'); }, {passive: false});
+      btnG.addEventListener('touchend', function(e) { e.preventDefault(); keyFaster = false; btnG.classList.remove('active'); }, {passive: false});
+      // Brake
+      btnB.addEventListener('touchstart', function(e) { e.preventDefault(); keySlower = true; btnB.classList.add('active'); }, {passive: false});
+      btnB.addEventListener('touchend', function(e) { e.preventDefault(); keySlower = false; btnB.classList.remove('active'); }, {passive: false});
+  }
+
+  function update(dt) {
+    if (gameState !== "PLAYING") return;
+
+    var playerSegment = findSegment(position+playerZ);
+    var playerW       = SPRITES.PLAYER_STRAIGHT.w * SPRITES.SCALE;
+    var speedPercent  = speed/maxSpeed;
+    var dx            = dt * 2 * speedPercent; 
+    var startPosition = position;
+
+    updateCars(dt, playerSegment, playerW);
+
+    position = Util.increase(position, dt * speed, trackLength);
+
+    if (keyLeft) playerX = playerX - dx;
+    else if (keyRight) playerX = playerX + dx;
+
+    playerX = playerX - (dx * speedPercent * playerSegment.curve * centrifugal);
+
+    if (keyFaster) speed = Util.accelerate(speed, accel, dt);
+    else if (keySlower) speed = Util.accelerate(speed, breaking, dt);
+    else speed = Util.accelerate(speed, decel, dt);
+
+    if ((playerX < -1) || (playerX > 1)) {
+      if (speed > offRoadLimit) speed = Util.accelerate(speed, offRoadDecel, dt);
+      for(var n = 0 ; n < playerSegment.sprites.length ; n++) {
+        var sprite  = playerSegment.sprites[n];
+        var spriteW = sprite.source.w * SPRITES.SCALE;
+        if (Util.overlap(playerX, playerW, sprite.offset + spriteW/2 * (sprite.offset > 0 ? 1 : -1), spriteW)) {
+          triggerGameOver("CRASHED! 💥", "You hit an obstacle on the side!");
+        }
+      }
+    }
+
+    timeLeft -= dt;
+    if (timeLeft <= 0) { timeLeft = 0; triggerWin(); }
+    
+    playerX = Util.limit(playerX, -3, 3);    
+    speed   = Util.limit(speed, 0, maxSpeed); 
+    
+    // GAME OVER IF BELOW 90 MPH
+    if (speed < 9000 && gameState === "PLAYING") {
+      triggerGameOver("TOO SLOW! 🐌", "Speed 90 se kam ho gayi! Race daba ke rakh!");
+    }
+
+    document.getElementById("timer_value").innerText = Math.ceil(timeLeft);
+    document.getElementById("speed_value").innerText = Math.round(speed/100);
+
+    skyOffset  = Util.increase(skyOffset,  skySpeed  * playerSegment.curve * (position-startPosition)/segmentLength, 1);
+    hillOffset = Util.increase(hillOffset, hillSpeed * playerSegment.curve * (position-startPosition)/segmentLength, 1);
+    treeOffset = Util.increase(treeOffset, treeSpeed * playerSegment.curve * (position-startPosition)/segmentLength, 1);
+  }
+
+  function updateCars(dt, playerSegment, playerW) {
+    var n, car, oldSegment, newSegment;
+    for(n = 0 ; n < cars.length ; n++) {
+      car         = cars[n];
+      oldSegment  = findSegment(car.z);
+      car.offset  = car.offset + updateCarOffset(car, oldSegment, playerSegment, playerW);
+      car.z       = Util.increase(car.z, dt * car.speed, trackLength);
+      car.percent = Util.percentRemaining(car.z, segmentLength);
+      newSegment  = findSegment(car.z);
+      if (oldSegment != newSegment) {
+        index = oldSegment.cars.indexOf(car);
+        oldSegment.cars.splice(index, 1);
+        newSegment.cars.push(car);
+      }
+      if (speed > car.speed) {
+        if (Util.overlap(playerX, playerW, car.offset, car.sprite.w * SPRITES.SCALE, 0.8)) {
+          if (findSegment(position+playerZ) === newSegment) {
+            triggerGameOver("CRASHED! 💥", "You Hit the Traffic.");
+          }
+        }
+      }
+    }
+  }
+
+  function updateCarOffset(car, carSegment, playerSegment, playerW) {
+    var i, j, dir, segment, otherCar, otherCarW, lookahead = 20, carW = car.sprite.w * SPRITES.SCALE;
+    if ((carSegment.index - playerSegment.index) > drawDistance) return 0;
+    for(i = 1 ; i < lookahead ; i++) {
+      segment = segments[(carSegment.index+i)%segments.length];
+      if ((segment === playerSegment) && (car.speed > speed) && (Util.overlap(playerX, playerW, car.offset, carW, 1.2))) {
+        if (playerX > 0.5) dir = -1; else if (playerX < -0.5) dir = 1; else dir = (car.offset > playerX) ? 1 : -1;
+        return dir * 1/i * (car.speed-speed)/maxSpeed;
+      }
+      for(j = 0 ; j < segment.cars.length ; j++) {
+        otherCar  = segment.cars[j];
+        otherCarW = otherCar.sprite.w * SPRITES.SCALE;
+        if ((car.speed > otherCar.speed) && Util.overlap(car.offset, carW, otherCar.offset, otherCarW, 1.2)) {
+          if (otherCar.offset > 0.5) dir = -1; else if (otherCar.offset < -0.5) dir = 1; else dir = (car.offset > otherCar.offset) ? 1 : -1;
+          return dir * 1/i * (car.speed-otherCar.speed)/maxSpeed;
+        }
+      }
+    }
+    if (car.offset < -0.9) return 0.1; else if (car.offset > 0.9) return -0.1; else return 0;
+  }
+
+  function triggerGameOver(title, description) {
+    speed = 0;
+    gameState = "GAMEOVER";
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("message_title").innerText = title;
+    document.getElementById("message_title").style.color = "#d32f2f";
+    document.getElementById("message_desc").innerText = description;
+    document.getElementById("winning_code_display").style.display = "none";
+  }
+
+  function triggerWin() {
+    speed = 0;
+    gameState = "WIN";
+    var winningCode = generateRandomCode(); 
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("message_title").innerText = "YOU SURVIVED! 🎉";
+    document.getElementById("message_title").style.color = "#388e3c";
+    document.getElementById("message_desc").innerText = "YOUR CODE IS:";
+    document.getElementById("winning_code_display").innerText = winningCode;
+    document.getElementById("winning_code_display").style.display = "block";
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", { win_code: winningCode, message: "A user survived!" });
+  }
+
+  function render() {
+    var baseSegment   = findSegment(position);
+    var basePercent   = Util.percentRemaining(position, segmentLength);
+    var playerSegment = findSegment(position+playerZ);
+    var playerPercent = Util.percentRemaining(position+playerZ, segmentLength);
+    var playerY       = Util.interpolate(playerSegment.p1.world.y, playerSegment.p2.world.y, playerPercent);
+    var maxy          = height;
+    var x  = 0, dx = - (baseSegment.curve * basePercent);
+    
+    ctx.clearRect(0, 0, width, height);
+    Render.background(ctx, background, width, height, BACKGROUND.SKY,   skyOffset,  resolution * skySpeed  * playerY);
+    Render.background(ctx, background, width, height, BACKGROUND.HILLS, hillOffset, resolution * hillSpeed * playerY);
+    Render.background(ctx, background, width, height, BACKGROUND.TREES, treeOffset, resolution * treeSpeed * playerY);
+
+    var n, i, segment, car, sprite, spriteScale, spriteX, spriteY;
+
+    for(n = 0 ; n < drawDistance ; n++) {
+      segment        = segments[(baseSegment.index + n) % segments.length];
+      segment.looped = segment.index < baseSegment.index;
+      segment.fog    = Util.exponentialFog(n/drawDistance, fogDensity);
+      segment.clip   = maxy;
+
+      Util.project(segment.p1, (playerX * roadWidth) - x,      playerY + cameraHeight, position - (segment.looped ? trackLength : 0), cameraDepth, width, height, roadWidth);
+      Util.project(segment.p2, (playerX * roadWidth) - x - dx, playerY + cameraHeight, position - (segment.looped ? trackLength : 0), cameraDepth, width, height, roadWidth);
+
+      x  = x + dx; dx = dx + segment.curve;
+      if ((segment.p1.camera.z <= cameraDepth) || (segment.p2.screen.y >= maxy) || (segment.p2.screen.y >= segment.p1.screen.y)) continue;
+      Render.segment(ctx, width, lanes, segment.p1.screen.x, segment.p1.screen.y, segment.p1.screen.w, segment.p2.screen.x, segment.p2.screen.y, segment.p2.screen.w, segment.fog, segment.color);
+      maxy = segment.p1.screen.y;
+    }
+
+    for(n = (drawDistance-1) ; n > 0 ; n--) {
+      segment = segments[(baseSegment.index + n) % segments.length];
+      for(i = 0 ; i < segment.cars.length ; i++) { car = segment.cars[i]; sprite = car.sprite; spriteScale = Util.interpolate(segment.p1.screen.scale, segment.p2.screen.scale, car.percent); spriteX = Util.interpolate(segment.p1.screen.x, segment.p2.screen.x, car.percent) + (spriteScale * car.offset * roadWidth * width/2); spriteY = Util.interpolate(segment.p1.screen.y, segment.p2.screen.y, car.percent); Render.sprite(ctx, width, height, resolution, roadWidth, sprites, car.sprite, spriteScale, spriteX, spriteY, -0.5, -1, segment.clip); }
+      for(i = 0 ; i < segment.sprites.length ; i++) { sprite = segment.sprites[i]; spriteScale = segment.p1.screen.scale; spriteX = segment.p1.screen.x + (spriteScale * sprite.offset * roadWidth * width/2); spriteY = segment.p1.screen.y; Render.sprite(ctx, width, height, resolution, roadWidth, sprites, sprite.source, spriteScale, spriteX, spriteY, (sprite.offset < 0 ? -1 : 0), -1, segment.clip); }
+      if (segment == playerSegment) { Render.player(ctx, width, height, resolution, roadWidth, sprites, speed/maxSpeed, cameraDepth/playerZ, width/2, (height/2) - (cameraDepth/playerZ * Util.interpolate(playerSegment.p1.camera.y, playerSegment.p2.camera.y, playerPercent) * height/2), speed * (keyLeft ? -1 : keyRight ? 1 : 0), playerSegment.p2.world.y - playerSegment.p1.world.y); }
+    }
+  }
+
+  function findSegment(z) { return segments[Math.floor(z/segmentLength) % segments.length]; }
+  function lastY() { return (segments.length == 0) ? 0 : segments[segments.length-1].p2.world.y; }
+
+  function addSegment(curve, y) {
+    var n = segments.length;
+    segments.push({ index: n, p1: { world: { y: lastY(), z: n *segmentLength }, camera: {}, screen: {} }, p2: { world: { y: y, z: (n+1)*segmentLength }, camera: {}, screen: {} }, curve: curve, sprites: [], cars: [], color: Math.floor(n/rumbleLength)%2 ? COLORS.DARK : COLORS.LIGHT });
+  }
+  function addSprite(n, sprite, offset) { segments[n].sprites.push({ source: sprite, offset: offset }); }
+  function addRoad(enter, hold, leave, curve, y) { var startY = lastY(); var endY = startY + (Util.toInt(y, 0) * segmentLength); var n, total = enter + hold + leave; for(n = 0 ; n < enter ; n++) addSegment(Util.easeIn(0, curve, n/enter), Util.easeInOut(startY, endY, n/total)); for(n = 0 ; n < hold ; n++) addSegment(curve, Util.easeInOut(startY, endY, (enter+n)/total)); for(n = 0 ; n < leave ; n++) addSegment(Util.easeInOut(curve, 0, n/leave), Util.easeInOut(startY, endY, (enter+hold+n)/total)); }
+
+  var ROAD = { LENGTH: { NONE: 0, SHORT: 25, MEDIUM: 50, LONG: 100 }, HILL: { NONE: 0, LOW: 20, MEDIUM: 40, HIGH: 60 }, CURVE: { NONE: 0, EASY: 2, MEDIUM: 4, HARD: 6 } };
+  function addStraight(num) { num = num || ROAD.LENGTH.MEDIUM; addRoad(num, num, num, 0, 0); }
+  function addHill(num, height) { num = num || ROAD.LENGTH.MEDIUM; height = height || ROAD.HILL.MEDIUM; addRoad(num, num, num, 0, height); }
+  function addCurve(num, curve, height) { num = num || ROAD.LENGTH.MEDIUM; curve = curve || ROAD.CURVE.MEDIUM; height = height || ROAD.HILL.NONE; addRoad(num, num, num, curve, height); }
+  function addSCurves() { addRoad(ROAD.LENGTH.MEDIUM, ROAD.LENGTH.MEDIUM, ROAD.LENGTH.MEDIUM, -ROAD.CURVE.EASY, ROAD.HILL.NONE); addRoad(ROAD.LENGTH.MEDIUM, ROAD.LENGTH.MEDIUM, ROAD.LENGTH.MEDIUM, ROAD.CURVE.MEDIUM, ROAD.HILL.MEDIUM); addRoad(ROAD.LENGTH.MEDIUM, ROAD.LENGTH.MEDIUM, ROAD.LENGTH.MEDIUM, ROAD.CURVE.EASY, -ROAD.HILL.LOW); addRoad(ROAD.LENGTH.MEDIUM, ROAD.LENGTH.MEDIUM, ROAD.LENGTH.MEDIUM, -ROAD.CURVE.EASY, ROAD.HILL.MEDIUM); addRoad(ROAD.LENGTH.MEDIUM, ROAD.LENGTH.MEDIUM, ROAD.LENGTH.MEDIUM, -ROAD.CURVE.MEDIUM, -ROAD.HILL.MEDIUM); }
+  function addLowBumps() { addRoad(10, 10, 10, 0, 5); addRoad(10, 10, 10, 0, -2); addRoad(10, 10, 10, 0, -5); addRoad(10, 10, 10, 0, 8); addRoad(10, 10, 10, 0, 5); addRoad(10, 10, 10, 0, -7); addRoad(10, 10, 10, 0, 5); addRoad(10, 10, 10, 0, -2); }
+
+  function resetRoad() {
+    segments = [];
+    addStraight(ROAD.LENGTH.SHORT); addLowBumps(); addSCurves(); addCurve(ROAD.LENGTH.MEDIUM, ROAD.CURVE.MEDIUM, ROAD.HILL.LOW); addHill(ROAD.LENGTH.LONG, ROAD.HILL.HIGH); addCurve(ROAD.LENGTH.LONG, ROAD.CURVE.MEDIUM, -ROAD.HILL.LOW); addSCurves(); addCurve(ROAD.LENGTH.LONG, -ROAD.CURVE.MEDIUM, ROAD.HILL.MEDIUM); addStraight(); addSCurves(); addCurve(ROAD.LENGTH.LONG, ROAD.CURVE.MEDIUM, ROAD.HILL.LOW); addHill(ROAD.LENGTH.LONG, ROAD.HILL.HIGH); addCurve(ROAD.LENGTH.LONG, ROAD.CURVE.MEDIUM, -ROAD.HILL.LOW); addStraight();
+    resetSprites();
+    trackLength = segments.length * segmentLength;
+  }
+
+  function resetSprites() {
+    for(var n = 10 ; n < segments.length ; n += 20) { addSprite(n, Util.randomChoice(SPRITES.PLANTS), -1 - Math.random()); addSprite(n, Util.randomChoice(SPRITES.PLANTS),  1 + Math.random()); }
+    for(var n = 10 ; n < segments.length ; n += 50) { if (Math.random() > 0.5) addSprite(n, Util.randomChoice(SPRITES.BILLBOARDS), -1.5); if (Math.random() > 0.5) addSprite(n, Util.randomChoice(SPRITES.BILLBOARDS),  1.5); }
+  }
+
+  function resetCars() {
+    cars = [];
+    for (var n = 0 ; n < totalCars ; n++) {
+      var offset = Math.random() * Util.randomChoice([-0.8, 0.8]);
+      var z      = Math.floor(Math.random() * segments.length) * segmentLength;
+      var sprite = Util.randomChoice(SPRITES.CARS);
+      var carSpeed = maxSpeed/4 + Math.random() * maxSpeed/(sprite == SPRITES.SEMI ? 4 : 2);
+      var car = { offset: offset, z: z, sprite: sprite, speed: carSpeed };
+      var segment = findSegment(car.z); segment.cars.push(car); cars.push(car);
+    }
+  }
+
+  function reset() { 
+    cameraDepth = 1 / Math.tan((fieldOfView/2) * Math.PI/180); 
+    playerZ = (cameraHeight * cameraDepth); 
+    resolution = height/480; 
+    resetRoad(); 
+    resetCars(); 
+    
+    // FAST & FURIOUS START: Seedha 85 mph!
+    speed = 12000; 
+  }
+
+  Game.run({
+    canvas: canvas, render: render, update: update, stats: { update: function(){} }, step: step,
+    images: ["background", "sprites"],
+    keys: [
+      { keys: [KEY.LEFT,  KEY.A], mode: 'down', action: function() { keyLeft   = true;  } },
+      { keys: [KEY.RIGHT, KEY.D], mode: 'down', action: function() { keyRight  = true;  } },
+      { keys: [KEY.UP,    KEY.W], mode: 'down', action: function() { keyFaster = true;  } },
+      { keys: [KEY.DOWN,  KEY.S], mode: 'down', action: function() { keySlower = true;  } },
+      { keys: [KEY.LEFT,  KEY.A], mode: 'up',   action: function() { keyLeft   = false; } },
+      { keys: [KEY.RIGHT, KEY.D], mode: 'up',   action: function() { keyRight  = false; } },
+      { keys: [KEY.UP,    KEY.W], mode: 'up',   action: function() { keyFaster = false; } },
+      { keys: [KEY.DOWN,  KEY.S], mode: 'up',   action: function() { keySlower = false; } }
+    ],
+    ready: function(images) { background = images[0]; sprites = images[1]; reset(); setupTouchControls(); }
+  });
+
+</script>
+</body>
+</html>

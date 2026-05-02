@@ -1,0 +1,2 @@
+#racer { position: relative; background: #000; }
+#hud { position: absolute; top: 10px; left: 10px; z-index: 100; }

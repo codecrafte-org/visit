@@ -576,13 +576,7 @@ window.addEventListener('offline', function() {
     </a>
 </nav>
 <style>
-          /* --- BOTTOM NAVIGATION (App Style) --- */
-       :root {
-    --accent: #ffd000;
-    
-    --nav-bg: rgba(255, 255, 255, 0.49);
-}
-
+       
 .bottom-nav {
     position: fixed;
     bottom: 30px;
@@ -595,7 +589,7 @@ window.addEventListener('offline', function() {
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 30px;
+    border-radius: 20px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -673,8 +667,17 @@ window.addEventListener('offline', function() {
         /* Mobile specific adjustments */
         @media (max-width: 768px) {
             .grid-box { border-width: 0.2px; } /* Thinner grid on mobile */
-            .bottom-nav { width: 95%; bottom: 15px; border-radius: 20px; }
-        }
+
+.bottom-nav {
+        width: 100%;
+        justify-content: space-around;
+        bottom: 1px;
+        padding: 8px 5px;
+        border-radius: 0px;
+        border-top-left-radius:  20px;
+        border-top-right-radius: 20px;
+        
+    }        }
 </style>
 
     <script>

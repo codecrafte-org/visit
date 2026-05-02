@@ -2254,117 +2254,292 @@
 }
 
 /*aiiiiiiiiiiiiiiii*/
-
-/* --- FLOATING ACTION MENU POSITIONING --- */
-.floating-action-menu {
+ /* --- SIDE MENU POSITIONING (EDGE ATTACHED) --- */
+.side-action-menu {
     position: fixed;
-    bottom: 30px; /* Laptop/Desktop mein bottom right */
-    right: 30px;
+    /* Desktop positioning - adjusted slightly higher */
+    bottom: 60px; 
+    right: 0; /* Fully attached to screen edge */
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Dono buttons ke darmiyan fasla */
+    gap: 8px; /* Tight gap for tabs */
     z-index: 9999;
 }
 
-/* Mobile par usko Thumb Nav se upar karna */
+/* ========================================================
+   MOBILE RESPONSIVE (HIGHLY IMPORTANT FOR THUMB NAV)
+   ======================================================== */
 @media (max-width: 768px) {
-    .floating-action-menu {
-        bottom: 110px; /* Tere bottom nav se theek upar */
-        right: 20px;
+    .side-action-menu {
+        /* Barha di bottom value taake Thumb Nav se safe door rahay */
+        bottom: 160px; 
+        right: 0;
     }
 }
 
-/* --- BUTTON CONTAINERS & TOOLTIPS --- */
+/* --- BUTTON CONTAINERS & POPOVER LOGIC --- */
 .fab-container {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Tooltip left, button right */
+    justify-content: flex-end; /* Popover left, Tab right */
 }
 
-/* Tooltip (Popover) Styling */
-.fab-tooltip {
-    position: absolute;
-    right: 75px; /* Button ke left par show hoga */
-    background: rgba(15, 15, 15, 0.95);
-    color: #fff;
-    padding: 10px 14px;
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: 500;
-    font-family: sans-serif;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateX(15px);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-/* Tooltip ka teer (Triangle) */
-.fab-tooltip::after {
-    content: '';
-    position: absolute;
-    right: -6px;
-    top: 50%;
-    transform: translateY(-50%);
-    border-width: 6px 0 6px 6px;
-    border-style: solid;
-    border-color: transparent transparent transparent rgba(15, 15, 15, 0.95);
-}
-
-/* Hover effect - Mouse lane par tooltip dikhega */
-.fab-container:hover .fab-tooltip {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* --- THE BUTTONS STYLING --- */
-.fab-btn {
+/* --- THE SIDE TABS STYLING (The rectangular shape) --- */
+.side-tab {
     width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    height: 55px;
+    /* Right side sharp (attached), Left side premium curved */
+    border-radius: 16px 0 0 16px; 
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     border: none;
     cursor: pointer;
-     transition: transform 0.3s ease;
+    box-shadow: -4px 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden; /* For shine/hover effects */
 }
 
-.fab-btn:hover {
-    transform: scale(1.1);
+/* Hover par slightly bahar nikalna (Premium feel) */
+.side-tab:hover {
+    width: 70px; /* Thora expand ho jayega */
+    transform: translateX(-3px); /* Slightly moves left on hover */
 }
 
-/* WhatsApp Button Vibe */
-.whatsapp-fab {
+/* WhatsApp Styling */
+.whatsapp-tab {
     background-color: #25D366;
     color: white;
 }
+.whatsapp-tab:hover { background-color: #1ebe57; }
 
-/* AI Button (CC Logo Vibe) */
-.ai-fab {
-    background-color: #ffffff; /* CC logo black hai, is liye base white rakhi */
-    border: 0.5px solid #287ad1;
+/* AI Tab Styling (Premium White Vibe to contrast GIF) */
+.ai-tab {
+    background: #ffffff;
+    color: #0070f3;
+    border-left: 1.5px solid #eaeaea;
+    border-top: 1.5px solid #eaeaea;
+    border-bottom: 1.5px solid #eaeaea;
+    border-right: none;
+}
+.ai-tab:hover {
+    background: #f0f7ff; /* Halka blue background on hover */
+}
+
+/* --- GIF STYLING INSIDE THE TAB --- */
+.ai-gif {
+    width: 42px; /* Perfect sizing inside the tab */
+    height: 42px;
+    object-fit: contain; /* Aspect ratio maintain rakhega */
+    pointer-events: none; /* GIF par click disable, button handle karega */
+    
+    /* Optional: Slightly make GIF blend with premium look */
+    filter: drop-shadow(0 4px 6px rgba(0,112,243,0.15));
+}
+
+/* --- POPOVER (TOOLTIP) STYLING (Mandatory) --- */
+.fab-tooltip {
+    position: absolute;
+    right: 80px; /* Spacing from the tab */
+    background: #111111; /* Dark sleek background */
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Tooltip Arrow */
+.fab-tooltip::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #111111;
+}
+
+/* Hover par popover show hoga */
+.fab-container:hover .fab-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/*feedback*/
+
+/* ==========================================
+   FEEDBACK WIDGET STYLES (100% FIXED LAYOUT)
+   ========================================== */
+
+/* Main Container (Dono ko side-by-side rakhega) */
+.fb-widget-container {
+    position: fixed;
+    left: 0;
+    bottom: 15vh;
+    z-index: 2500;
+    display: flex;
+    flex-direction: row; /* Pehle Panel, phir Button */
+    align-items: center;
+    /* Panel ki width 280px hai, is liye hum poore widget ko -280px left chupa denge */
+    transform: translateX(-280px); 
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    perspective: 800px;
+}
+
+/* Jab Open Hoga toh 0 par wapis aajayega */
+.fb-widget-container.is-open {
+    transform: translateX(0);
+}
+
+/* --- THE SLIDE OUT PANEL --- */
+.fb-panel {
+    width: 280px; /* Fixed width di hai taake button se na takraye */
+    background: #fff;
+    border: 1px solid #eaeaea;
+    padding: 15px 20px;
+    border-radius: 0; /* Border radius zero kyunke left edge se chipka hai */
+    box-shadow: 10px 5px 20px rgba(0,0,0,0.08);
     position: relative;
+    flex-shrink: 0; /* Mobile par sikrey ga nahi */
 }
 
-/* AI Logo Sizing */
-.ai-fab-logo {
-    width: 40px; 
-    height: 40px;
-    object-fit: contain;
+/* The X Close Button */
+.fb-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 26px; /* Thora bara aur clear kiya */
+    color: #999;
+    cursor: pointer;
+    transition: 0.2s;
+    line-height: 1;
+    padding: 0;
+}
+.fb-close-btn:hover { color: #000; transform: scale(1.2); }
+
+/* Panel Text Contents */
+.fb-title { margin: 0 0 12px 0; font-size: 15px; color: #333; font-weight: 700; }
+.fb-stats { font-size: 11px; color: #888; margin-top: 12px; font-weight: 500; }
+.fb-thanks { font-size: 12px; color: #28a745; margin-top: 10px; font-weight: 700; }
+
+/* --- SVG FACES (Emojis) --- */
+.fb-emojis { 
+    display: flex; 
+    justify-content: space-between; 
+    gap: 5px; 
 }
 
-/* AI Button Glow Animation (Acha lagta hai AI ke sath) */
-.ai-fab {
-    animation: blue-glow 3s infinite;
+.fb-svg-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    transition: transform 0.2s ease;
 }
 
-@keyframes blue-glow {
-    0% { box-shadow: 0 0 0 0 rgba(0, 112, 243, 0.4); }
-    70% { box-shadow: 0 0 0 15px rgba(0, 112, 243, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 112, 243, 0); }
+/* Face Outlines */
+.fb-svg-btn svg { width: 100%; height: 100%; overflow: visible; }
+.fb-svg-btn svg circle { fill: transparent; stroke: #999; stroke-width: 1.5; transition: all 0.3s ease; }
+.fb-svg-btn svg path, .fb-svg-btn svg line { stroke: #999; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; transition: all 0.3s ease; }
+
+/* HOVER & ACTIVE FILL COLORS */
+.fb-svg-btn[data-val="1"]:hover svg circle, .fb-svg-btn[data-val="1"].is-active svg circle { fill: #ff4d4f; stroke: #ff4d4f; }
+.fb-svg-btn[data-val="2"]:hover svg circle, .fb-svg-btn[data-val="2"].is-active svg circle { fill: #ffa940; stroke: #ffa940; }
+.fb-svg-btn[data-val="3"]:hover svg circle, .fb-svg-btn[data-val="3"].is-active svg circle { fill: #ffc53d; stroke: #ffc53d; }
+.fb-svg-btn[data-val="4"]:hover svg circle, .fb-svg-btn[data-val="4"].is-active svg circle { fill: #a0d911; stroke: #a0d911; }
+.fb-svg-btn[data-val="5"]:hover svg circle, .fb-svg-btn[data-val="5"].is-active svg circle { fill: #52c41a; stroke: #52c41a; }
+
+/* Face ki smile/eyes White ho jayengi color fill hone par */
+.fb-svg-btn:hover svg path, .fb-svg-btn:hover svg line,
+.fb-svg-btn.is-active svg path, .fb-svg-btn.is-active svg line { stroke: #fff; }
+
+.fb-svg-btn.is-active { transform: scale(1.15); }
+
+/* --- THE DOOR BUTTON --- */
+.fb-door-wrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.fb-door-btn {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 15px 8px; /* Thori width barhayi hai */
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    transform-origin: left center;
+    animation: door-rattle 4s infinite;
+    transition: background 0.3s ease;
+}
+
+/* Open hone par hilega nahi */
+.fb-widget-container.is-open .fb-door-btn {
+    animation: none;
+    background: #333;
+}
+
+.fb-door-text {
+    display: block;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Tooltip (Hover text) */
+.fb-door-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background: #000;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+    z-index: 10;
+}
+.fb-door-btn:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(15px);
+}
+/* Jab darwaza khul jaye toh tooltip na aye */
+.fb-widget-container.is-open .fb-door-btn::after {
+    display: none;
+}
+
+/* 3D Door Shaking Animation */
+@keyframes door-rattle {
+    0%, 85% { transform: rotateY(0deg); }
+    87% { transform: rotateY(20deg); }
+    89% { transform: rotateY(-5deg); }
+    91% { transform: rotateY(15deg); }
+    93% { transform: rotateY(-2deg); }
+    95% { transform: rotateY(10deg); }
+    100% { transform: rotateY(0deg); }
 }

@@ -374,7 +374,7 @@ window.addEventListener('offline', function() {
         </p>
     </section>
 
-     <nav class="bottom-nav">
+    <nav class="bottom-nav">
     <a href="../index.html" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="home"></i></div>
         <span>Home</span>
@@ -396,6 +396,7 @@ window.addEventListener('offline', function() {
         <span>Careers</span>
     </a>
 </nav>
+
 <style>
           /* --- BOTTOM NAVIGATION (App Style) --- */
        :root {
@@ -416,7 +417,7 @@ window.addEventListener('offline', function() {
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 30px;
+    border-radius: 20px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -494,7 +495,17 @@ window.addEventListener('offline', function() {
         /* Mobile specific adjustments */
         @media (max-width: 768px) {
             .grid-box { border-width: 0.2px; } /* Thinner grid on mobile */
-            .bottom-nav { width: 95%; bottom: 15px; border-radius: 20px; }
+
+            .bottom-nav {
+        width: 100%;
+        justify-content: space-around;
+        bottom: 1px;
+        padding: 8px 5px;
+        border-radius: 0px;
+        border-top-left-radius:  20px;
+        border-top-right-radius: 20px;
+        
+    }
         }
 </style>
 
@@ -1765,6 +1776,7 @@ window.addEventListener('offline', function() {
 
  </style>
 
+n
 </body>
 
 </html>

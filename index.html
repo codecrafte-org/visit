@@ -83,7 +83,90 @@ window.addEventListener('offline', function() {
   </script>
 
   <body>
+<!--anouncement BARR-->
+<div class="top-promo-bar">
+    <div class="promo-track">
+        <span>🔥 BIG SALE: FLAT 20% OFF ON ALL POS SYSTEMS THIS WEEK! USE CODE: ARENA20 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+        <span>🔥 BIG SALE: FLAT 20% OFF ON ALL POS SYSTEMS THIS WEEK! USE CODE: ARENA20 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+        <span>🔥 BIG SALE: FLAT 20% OFF ON ALL POS SYSTEMS THIS WEEK! USE CODE: ARENA20 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+        <span>🔥 BIG SALE: FLAT 20% OFF ON ALL POS SYSTEMS THIS WEEK! USE CODE: ARENA20 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+    </div>
+</div>
+<style>
+ /* Tumhari existing promo bar ki CSS */
+.top-promo-bar {
+    position: fixed; /* Fix rakho taake shuru mein top par rahay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px 0;
+    overflow: hidden;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    /* Yeh transition add karni hai smooth slide ke liye */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+}
 
+/* Yeh wo nayi class hai jo JS lagayegi patti ko hide karne ke liye */
+.top-promo-bar.hide-promo {
+    transform: translateY(-100%); /* Patti ko screen se ooper nikal degi */
+}
+
+/* Track jo text ko move karega */
+.promo-track {
+    display: flex;
+    white-space: nowrap;
+    /* 20s ko change kar ke speed control kar sakte ho */
+    animation: marquee-scroll 20s linear infinite; 
+}
+
+.promo-track span {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Hover karne par agar rokna ho toh (Optional) */
+.top-promo-bar:hover .promo-track {
+    animation-play-state: paused;
+}
+
+/* Smooth Infinite Loop Animation */
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+
+/* IMPORTANT: Body ko thora neeche push karna parega taake website ka header iske peechay na chupe */
+body {
+    padding-top: 32px; /* Promo bar ki height ke barabar */
+}
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const promoBar = document.querySelector('.top-promo-bar');
+
+    if (promoBar) {
+        window.addEventListener('scroll', () => {
+            // Page ki total height ka 4% calculate karo
+            const scrollThreshold = document.documentElement.scrollHeight * 0.012;
+
+            // Agar 4% se zyada scroll ho gaya hai, toh patti hide kar do
+            if (window.scrollY > scrollThreshold) {
+                promoBar.classList.add('hide-promo');
+            } 
+            // Agar wapis upar aagaye, toh patti wapis dikha do
+            else {
+                promoBar.classList.remove('hide-promo');
+            }
+        });
+    }
+});
+</script>
     <!--loadingg-->
 
 <div id="skeleton-overlay">
@@ -253,19 +336,23 @@ window.addEventListener('offline', function() {
 </header>
 
 <nav class="bottom-nav" id="thumbNav">
+    
     <a href="./index.html" aria-label="home" class="nav-item">
         <div class="nav-icon-wrapper"><i data-lucide="home"></i></div>
         <span>Home</span>
     </a>
-    <a href="./components/Team.html" aria-label="our team" class="nav-item">
+
+    <a href="./components/Team.html" aria-label="our team" class="nav-item mac-trigger-btn" data-page="./components/Team.html" data-title="Meet Our Team">
         <div class="nav-icon-wrapper"><i data-lucide="users"></i></div>
         <span>Team</span>
     </a>
-    <a href="./components/Story.html" aria-label="our story" class="nav-item">
+
+    <a href="./components/Story.html" aria-label="our story" class="nav-item mac-trigger-btn" data-page="./components/Story.html" data-title="Our Story">
         <div class="nav-icon-wrapper"><i data-lucide="book-open"></i></div>
         <span>Story</span>
     </a>
-    <a href="./components/contact.html" aria-label="Contact Us" class="nav-item">
+
+    <a href="./components/contact.html" aria-label="Contact Us" class="nav-item mac-trigger-btn" data-page="./components/contact.html" data-title="Contact CodeCrafte">
         <div class="nav-icon-wrapper"><i data-lucide="mail"></i></div>
         <span>Contact</span>
     </a>
@@ -274,6 +361,7 @@ window.addEventListener('offline', function() {
         <div class="nav-icon-wrapper"><i data-lucide="briefcase"></i></div>
         <span>Careers</span>
     </a>
+
 </nav>
 
 <style>
@@ -294,11 +382,12 @@ window.addEventListener('offline', function() {
       display: block !important;
   }
 </style>
+
  <style>
     /* --- TOP NAV STYLES --- */
 .top-header {
     position: fixed;
-    top: 0; width: 100%;
+    top: 20px; width: 100%;
     padding: 20px 6%;
     display: flex;
     justify-content: space-between;
@@ -333,7 +422,7 @@ window.addEventListener('offline', function() {
     backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgba(0, 0, 0, 0.08);
     padding: 8px 12px;
-    border-radius: 100px;
+    border-radius: 20px;
     display: flex;
     gap: 8px;
     z-index: 2001;
@@ -354,13 +443,14 @@ window.addEventListener('offline', function() {
     border-radius: 100px;
     transition: 0.3s;
     min-width: 65px;
+    color: black;
 }
 
 .nav-icon-wrapper { color: #888; margin-bottom: 2px; transition: 0.3s; }
 .nav-item span { font-size: 10px; font-weight: 700; color: #888; }
 
 .nav-item:hover .nav-icon-wrapper, .nav-item:hover span {
-    color: #000;
+    color: #000000;
 }
 
 .nav-item svg { width: 20px; height: 20px; }
@@ -371,10 +461,14 @@ window.addEventListener('offline', function() {
     .top-header { justify-content: center; padding: 15px; background-color: transparent; }
     
     .bottom-nav {
-        width: 92%;
+        width: 100%;
         justify-content: space-around;
-        bottom: 15px;
+        bottom: 1px;
         padding: 8px 5px;
+        border-radius: 0px;
+        border-top-left-radius:  20px;
+        border-top-right-radius: 20px;
+        
     }
     .nav-item { min-width: auto; padding: 8px 10px; }
 }
@@ -956,169 +1050,231 @@ window.addEventListener('scroll', () => {
     <!--impactttt-->
 
     <!--GAMEEEE-->
-    <section class="puzzle-section">
-      <div class="puzzle-container-wrapper">
-        <div class="info-side">
-          <span class="exclusive-tag">CODECRAFTE EXCLUSIVE</span>
-          <div class="sale-badge" style="background-color: #0070f3">
-            <span class="discount-num">15%</span>
-            <span class="discount-text">OFF</span>
-          </div>
-          <h2 class="glaze-text">Play & Unlock the Future</h2>
-          <h3 class="instruction-title">Wanna Save Big?</h3>
-          <p class="instruction-desc">
-            Solve this
-            <strong style="color: #0070f3">*Logo Challenge</strong> and unlock
-            an instant <span class="highlight">15% Discount Token</span> for
-            your project.
-          </p>
+  <section class="choice-arena-section">
+  <div
+    class="bloat-bg-image"
+    style="background-image: url(&quot;./images/controllor.png&quot;)"
+  ></div>
+  <div class="white-overlay"></div>
+  <div class="choice-content-wrapper">
+    <div class="top-bugget">
+      <span class="dot"></span> Get 5% Diccount on Every Service
+    </div>
 
-          <ul class="steps-list">
-            <li>
-              <i data-lucide="play-circle"></i> Click Start for a 3s preview.
-            </li>
-            <li>
-              <i data-lucide="puzzle"></i> Rearrange the pieces correctly.
-            </li>
-            <li>
-              <i data-lucide="check-circle"></i> Win and copy your unique code.
-            </li>
-          </ul>
-        </div>
+    <h2 class="bold-animated-heading">MAKE YOUR  <span>PLAY.</span></h2>
+    <p class="choice-subtitle">
+      Test your reflexes just for the thrill, or compete to unlock an exclusive
+      CodeCrafte discount code.
+    </p>
 
-        <div class="game-side">
-          <div class="board-wrapper">
-            <div id="game-overlay" class="game-overlay">
-              <button id="start-btn" class="start-game-btn">
-                START CHALLENGE
-              </button>
-            </div>
+    <div class="action-btn-group">
+      <a href="#" class="c-btn btn-outline">PLAY FOR FUN</a>
+      <a href="./components/Game/v4.final.html" class="c-btn btn-solid">PLAY FOR 5% OFF</a>
+    </div>
+  </div>
+</section>
 
-            <div
-              id="countdown-overlay"
-              class="countdown-overlay"
-              style="display: none"
-            >
-              <span id="countdown-text">3</span>
-            </div>
+<style>
+  /* --- 1. SECTION WRAPPER & BACKGROUND --- */
+  .choice-arena-section {
+    position: relative;
+    width: auto;
+    min-height: 50vh; /* Thora bara aur premium feel ke liye */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #ffffff; /* Pure White Theme */
+    font-family: "Inter", sans-serif;
+    padding: 80px 5%;
+ 
+  }
 
-            <div class="puzzle-board" id="board"></div>
+  /* Bloating Background Image */
+  .bloat-bg-image {
+    position: absolute;
+     
+    width: 80%;
+    height: 80%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px); /* Heavy blur for aesthetic look */
+    z-index: 1;
+    opacity: 0.6; /* Halka rakha hai taake white theme kharab na ho */
+    animation: bloatEffect 20s ease-in-out infinite alternate;
+  }
 
-            <div id="win-display" class="win-display" style="display: none">
-              <h4>Victory!</h4>
-              <p>Use this code in contact form:</p>
-              <div class="code-box">
-                <span id="promo-code">XXXXXX</span>
-                <button onclick="copyCode()" class="copy-btn">
-                  <i data-lucide="copy"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  /* White Overlay to maintain readability */
+  .white-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.462);
+    z-index: 2;
+  }
 
-    <script>
-      const board = document.getElementById("board");
-      const overlay = document.getElementById("game-overlay");
-      const countdownOverlay = document.getElementById("countdown-overlay");
-      const countdownText = document.getElementById("countdown-text");
-      const winDisplay = document.getElementById("win-display");
-      const startBtn = document.getElementById("start-btn");
+  @keyframes bloatEffect {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+    50% {
+      transform: scale(1.1) translate(2%, 2%);
+    }
+    100% {
+      transform: scale(1.05) translate(-1%, -1%);
+    }
+  }
 
-      let tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-      let gameStarted = false;
+  /* --- 2. CONTENT WRAPPER (Strictly Centered) --- */
+  .choice-content-wrapper {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 600px; /* Width tight rakhi hai taake neat lage */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-      function createBoard(isPreview = false) {
-        board.innerHTML = "";
-        tiles.forEach((tileNum, index) => {
-          const tile = document.createElement("div");
-          tile.classList.add("tile");
-          tile.style.backgroundImage = "url('./images/cc-logo.webp')";
-          tile.style.backgroundSize = "330px 330px";
+  /* --- 3. ELEMENTS (Badge, Heading, Text) --- */
 
-          // Calculate correct positions
-          const row = Math.floor(tileNum / 3);
-          const col = tileNum % 3;
-          tile.style.backgroundPosition = `-${col * 110}px -${row * 110}px`;
+  /* Top Badge (Bugget) */
+  .top-bugget {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1.5px solid #000000;
+    color: #000000;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 30px;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.05);
+  }
 
-          if (!isPreview && tileNum === 8) {
-            tile.style.background = "#1a1a1a";
-            tile.classList.add("empty");
-          } else if (gameStarted) {
-            tile.addEventListener("click", () => moveTile(index));
-          }
-          board.appendChild(tile);
-        });
-      }
+  .top-bugget .dot {
+    width: 7px;
+    height: 7px;
+    background: #0070f3;
+    border-radius: 50%;
+    animation: blinker 1.5s linear infinite;
+  }
 
-      function moveTile(index) {
-        const emptyIndex = tiles.indexOf(8);
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
 
-        // Logic: Calculate row and col for both
-        const row = Math.floor(index / 3);
-        const col = index % 3;
-        const emptyRow = Math.floor(emptyIndex / 3);
-        const emptyCol = emptyIndex % 3;
+  /* Bold Animated Heading */
+  .bold-animated-heading {
+    font-size: 3.2rem; /* Balanced size */
+    font-weight: 900;
+    color: #000000;
+    line-height: 1.2; /* Proper spacing taake lines takrayein nahi */
+    margin-bottom: 20px;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+  }
 
-        // Glitch Fix: Check if distance is exactly 1 (Top, Bottom, Left, Right ONLY)
-        const isAdjacent =
-          Math.abs(row - emptyRow) + Math.abs(col - emptyCol) === 1;
+  /* Shine Animation on Heading */
+  .bold-animated-heading span {
+    background: linear-gradient(90deg, #000, #555, #000);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineText 4s linear infinite;
+  }
 
-        if (isAdjacent) {
-          [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
-          createBoard();
-          checkWin();
-        }
-      }
+  @keyframes shineText {
+    to {
+      background-position: 200% center;
+    }
+  }
 
-      startBtn.addEventListener("click", () => {
-        overlay.style.display = "none";
-        countdownOverlay.style.display = "flex";
+  /* Subtitle */
+  .choice-subtitle {
+    font-size: 1.05rem;
+    color: #555555;
+    margin-bottom: 45px;
+    line-height: 1.7;
+    max-width: 500px;
+  }
 
-        // Phase 1: Show full logo as preview
-        tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-        createBoard(true);
+  /* --- 4. BUTTONS (170px for better fit) --- */
+  .action-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
 
-        let count = 3;
-        const timer = setInterval(() => {
-          count--;
-          if (count > 0) {
-            countdownText.innerText = count;
-          } else {
-            clearInterval(timer);
-            startGame();
-          }
-        }, 1000);
-      });
+  .c-btn {
+    display: inline-block;
+    width: 175px; /* Perfect width as you asked */
+    padding: 16px 0;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+  }
 
-      function startGame() {
-        countdownOverlay.style.display = "none";
-        gameStarted = true;
-        // Shuffle tiles
-        tiles = tiles.sort(() => Math.random() - 0.5);
-        createBoard();
-      }
+  .btn-outline {
+    background: transparent;
+    color: #000;
+    border: 2px solid #000;
+  }
 
-      function checkWin() {
-        if (tiles.every((tile, index) => tile === index)) {
-          const code = Math.floor(100000 + Math.random() * 900000);
-          document.getElementById("promo-code").innerText = code;
-          winDisplay.style.display = "flex";
-          gameStarted = false;
-        }
-      }
+  .btn-outline:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-4px);
+  }
 
-      function copyCode() {
-        const code = document.getElementById("promo-code").innerText;
-        navigator.clipboard.writeText(code);
-        alert("Code Copied! Use it in the contact form.");
-      }
+  .btn-solid {
+    background: #000;
+    color: #fff;
+    border: 2px solid #000;
+  }
 
-      // Initial State
-      createBoard(true);
-    </script>
+  .btn-solid:hover {
+    background: #ffffff; /* Brand Blue */
+    border-color: #1d1d1d;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(92, 92, 92, 0.3);
+    color: rgb(0, 0, 0);
+  }
+
+  /* --- 5. MOBILE RESPONSIVE --- */
+  @media (max-width: 768px) {
+    .bold-animated-heading {
+      font-size: 2.2rem;
+    } /* Chota size for mobile */
+    .choice-subtitle {
+      font-size: 0.95rem;
+    }
+
+    .action-btn-group {
+      flex-direction: column; /* Buttons upar neeche */
+      width: 100%;
+      align-items: center;
+    }
+
+    .c-btn {
+      width: 100%;
+      max-width: 280px; /* Mobile par full width feel */
+    }
+  }
+</style>
 
     
 
@@ -2118,19 +2274,25 @@ window.addEventListener('scroll', () => {
 
 
     <!--AIII-->
-    <div class="floating-action-menu">
+     <div class="side-action-menu" id="floating-menu">
+    
     <div class="fab-container">
-        <div class="fab-tooltip" id="ai-intro-tooltip">Hi! I'm your AI Expert ✨<br>Ask me anything!</div>
-        <button id="bp-toggle-chat" class="fab-btn ai-fab" aria-label="Ask AI">
-            <img src="./images/logo1.png" alt="CodeCrafte AI" class="ai-fab-logo">
+        <div class="fab-tooltip" id="ai-intro-tooltip">Hi! Ask me anything ✨</div>
+        <button id="bp-toggle-chat" class="side-tab ai-tab" aria-label="Ask AI">
+            <img src="./images/robot.png" alt="AI Expert" class="ai-gif">
         </button>
     </div>
+
     <div class="fab-container">
         <div class="fab-tooltip">Chat on WhatsApp 💬</div>
-        <a href="https://wa.me/923059462051" target="_blank" class="fab-btn whatsapp-fab" aria-label="WhatsApp Us">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <a href="https://wa.me/923059462051" target="_blank" class="side-tab whatsapp-tab" aria-label="WhatsApp Us">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
         </a>
     </div>
+
+</div>
 
     
 
@@ -2152,12 +2314,119 @@ window.addEventListener('scroll', () => {
         }, 5000);
     }
 });
-</script>
-    
-    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+</script>    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2026/04/25/18/20260425181340-E2P8GJEL.js" defer></script>
     
-
+<!--feedbackkk-->
  
-  </body>
+<div class="fb-widget-container" id="fbWidget">
+    
+    <div class="fb-panel">
+        <button id="fb-close-btn" class="fb-close-btn">&times;</button>
+        
+        <h4 class="fb-title">How are we doing?</h4>
+        <div class="fb-emojis">
+            <button class="fb-svg-btn" data-val="1" title="Terrible">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8 9l2 1M16 9l-2 1M9 15c.5-1 2-1 3-1s2.5 0 3 1"></path></svg>
+            </button>
+            <button class="fb-svg-btn" data-val="2" title="Bad">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8 9a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2M9 16a3 3 0 0 1 6 0"></path></svg>
+            </button>
+            <button class="fb-svg-btn" data-val="3" title="Okay">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8 9h.01M16 9h.01M8 15h8"></path></svg>
+            </button>
+            <button class="fb-svg-btn" data-val="4" title="Good">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8 9h.01M16 9h.01M8 14a4 4 0 0 0 8 0"></path></svg>
+            </button>
+            <button class="fb-svg-btn" data-val="5" title="Awesome">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8 9q2 -3 4 0M16 9q-2 -3 -4 0M8 14c0 3 3 5 4 5s4-2 4-5z"></path></svg>
+            </button>
+        </div>
+        <div class="fb-stats">
+            <span id="fb-count">1,248</span> people gave feedback
+        </div>
+        <div class="fb-thanks" id="fbThanks" style="display: none;">
+            Thanks for your feedback! 💙
+        </div>
+    </div>
+
+    <div class="fb-door-wrapper">
+        <button id="fb-door-btn" class="fb-door-btn" data-tooltip="Give feedback?">
+            <span class="fb-door-text">FEEDBACK</span>
+        </button>
+    </div>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const widget = document.getElementById('fbWidget');
+    const doorBtn = document.getElementById('fb-door-btn');
+    const closeBtn = document.getElementById('fb-close-btn');
+    const faceBtns = document.querySelectorAll('.fb-svg-btn');
+    const countText = document.getElementById('fb-count');
+    const thanksText = document.getElementById('fbThanks');
+    
+    // 1. Local Storage se data uthao (taake refresh par delete na ho)
+    let currentCount = parseInt(localStorage.getItem('mySite_fbCount')) || 1248; 
+    let savedVote = localStorage.getItem('mySite_fbVote'); // "1", "2", "3", etc.
+
+    // 2. Agar user ne pehle vote diya tha, toh usko show karo
+    if (savedVote) {
+        document.querySelector(`.fb-svg-btn[data-val="${savedVote}"]`).classList.add('is-active');
+        thanksText.style.display = 'block';
+        thanksText.innerText = "Thanks again! 💙";
+    }
+    
+    // Page load hoty hi actual count dikhao
+    countText.innerText = currentCount.toLocaleString();
+
+    // 3. Door Open/Close Logic
+    doorBtn.addEventListener('click', () => {
+        widget.classList.add('is-open');
+        doorBtn.setAttribute('data-tooltip', 'Close panel');
+    });
+
+    // X Button se Close karne ka Logic
+    closeBtn.addEventListener('click', () => {
+        widget.classList.remove('is-open');
+        doorBtn.setAttribute('data-tooltip', 'Give feedback?');
+    });
+
+    // 4. Face Clicks & Counting Logic
+    faceBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const val = this.getAttribute('data-val');
+
+            // Agar same wohi click kiya toh kuch mat karo
+            if (savedVote === val) return; 
+
+            // Pehle sabse color hatao (Change vote ke liye)
+            faceBtns.forEach(e => e.classList.remove('is-active'));
+            // Jispe click kiya usme color fill karo
+            this.classList.add('is-active');
+
+            // --- COUNT LOGIC ---
+            // Agar first time vote kar raha hai (savedVote null hai) tabhi Number barhao.
+            // Agar vote change kar raha hai, toh number wahi rahega, sirf face change hoga.
+            if (!savedVote) {
+                currentCount++;
+            }
+
+            savedVote = val; // Naya vote save kar lo
+
+            // Local Storage mein save karo taake refresh pe yaad rahay
+            localStorage.setItem('mySite_fbVote', savedVote);
+            localStorage.setItem('mySite_fbCount', currentCount);
+
+            // Screen update karo
+            countText.innerText = currentCount.toLocaleString();
+            thanksText.style.display = 'block';
+            thanksText.innerText = "Vote updated! 💙"; 
+        });
+    });
+});
+</script>
+
+   </body>
 </html>
