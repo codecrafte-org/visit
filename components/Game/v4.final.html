@@ -1,7 +1,9 @@
 <!DOCTYPE html> 
 <html>
 <head>
-  <title>Codecrafte Tokyo Survival - Fast & Furious Edition</title>
+  <title>Codecrafte Survival Game</title>
+      <link rel="icon" href="../../images/fav-ion.webp" sizes="48x48" type="image/webp">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <style>
@@ -56,14 +58,14 @@
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
-     (function(){ emailjs.init("TUMHARI_PUBLIC_KEY_YAHAN_AAYEGI"); })();
+     (function(){ emailjs.init("ESmSHyfHNuv4ohN15"); })();
   </script>
 </head> 
 <body> 
 
 <div id="landscape-warning">
     <div style="font-size: 60px;">🔄</div>
-    <p>Bhai Jan!<br>Game khelne ke liye Mobile ko Landscape (Tera) karo.</p>
+<p>Dear Player!<br>Please switch your device to Landscape mode to continue.</p>
 </div>
 
 <div id="game">
@@ -100,7 +102,7 @@
   <div id="fps"></div>
 </div>
 
-<script src="common.js"></script>
+<script src="./common.js"></script>
 
 <script>
   // Fullscreen Logic
@@ -184,7 +186,7 @@
 
   function generateRandomCode() {
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    var code = 'CRAFTE-';
+    var code = 'CC-';
     for (var i = 0; i < 6; i++) { code += chars.charAt(Math.floor(Math.random() * chars.length)); }
     return code; 
   }
@@ -251,7 +253,7 @@
     
     // GAME OVER IF BELOW 90 MPH
     if (speed < 9000 && gameState === "PLAYING") {
-      triggerGameOver("TOO SLOW! 🐌", "Speed 90 se kam ho gayi! Race daba ke rakh!");
+      triggerGameOver("TOO SLOW! ", "Speed is under 90! Hold down the accelerator!");
     }
 
     document.getElementById("timer_value").innerText = Math.ceil(timeLeft);
@@ -327,7 +329,7 @@
     document.getElementById("message_desc").innerText = "YOUR CODE IS:";
     document.getElementById("winning_code_display").innerText = winningCode;
     document.getElementById("winning_code_display").style.display = "block";
-    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", { win_code: winningCode, message: "A user survived!" });
+    emailjs.send("service_74rb8hr", "template_o6phlv6", { win_code: winningCode, message: "A user survived!" });
   }
 
   function render() {
