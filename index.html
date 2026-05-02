@@ -1049,7 +1049,7 @@ window.addEventListener('scroll', () => {
     <!--impactttt-->
 
     <!--GAMEEEE-->
-  <section class="choice-arena-section">
+  <section class="choice-arena-section" id="Game-section-redirect">
   <div
     class="bloat-bg-image"
     style="background-image: url(&quot;./images/controllor.webp &quot;)"
@@ -2452,7 +2452,25 @@ window.addEventListener('scroll', () => {
 });
 </script>
 
- 
+ <!--smooth animatoin scroll-->
+ <script>
+    window.addEventListener('load', function() {
+        // Agar URL mein #Game-section-redirect maujood hai
+        if (window.location.hash === '#Game-section-redirect') {
+            const gameSection = document.getElementById('Game-section-redirect');
+            
+            if (gameSection) {
+                // Thora sa delay taake page poora load ho jaye
+                setTimeout(() => {
+                    gameSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 500); 
+            }
+        }
+    });
+</script>
 
    </body>
 </html>
