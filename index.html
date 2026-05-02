@@ -29,10 +29,20 @@
 
     <link rel="stylesheet" href="./style.css" />
 
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-XRJD6KM644"
-    ></script>
+     <script>
+  // Page load hone ke 3.5 seconds baad GTM load hoga
+  setTimeout(function() {
+    var gtmScript = document.createElement('script');
+    gtmScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XRJD6KM644';
+    gtmScript.async = true;
+    document.head.appendChild(gtmScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XRJD6KM644');
+  }, 3500); // 3500 milliseconds = 3.5 seconds
+</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -42,7 +52,7 @@
       gtag("config", "G-XRJD6KM644");
     </script>
 
-    <script src="network-check.js"></script>
+    <script src="network-check.js" defer></script>
     <script>
       // network-check.js
 window.addEventListener('offline', function() {
@@ -87,10 +97,10 @@ window.addEventListener('offline', function() {
 <!--anouncement BARR-->
 <div class="top-promo-bar">
     <div class="promo-track">
-        <span>🔥 BIG SALE: FLAT 20% OFF ON ALL POS SYSTEMS THIS WEEK! USE CODE: ARENA20 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
-        <span>🔥 BIG SALE: FLAT 20% OFF ON ALL POS SYSTEMS THIS WEEK! USE CODE: ARENA20 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
-        <span>🔥 BIG SALE: FLAT 20% OFF ON ALL POS SYSTEMS THIS WEEK! USE CODE: ARENA20 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
-        <span>🔥 BIG SALE: FLAT 20% OFF ON ALL POS SYSTEMS THIS WEEK! USE CODE: ARENA20 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+        <span>🔥 BIG SALE: FLAT <strong style="color: red;">20%</strong> OFF ON ALL <strong style="text-decoration: wavy;">MANAGMENT SYSTEMS</strong> THIS WEEK! USE CODE: ARENA-20 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+        <span>🔥 BIG SALE: FLAT <strong style="color: red;">5%</strong> OFF ON ALL SERVICES! PLAY A <a href="#Game-section-redirect" style="color: #0070f3; text-decoration: none;"> GAME</a> TO UNLOCK THE DISCOUNT &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+        <span>🔥 BIG SALE: FLAT <strong style="color: red;">20%</strong> OFF ON ALL <strong style="text-decoration: wavy;">MANAGMENT SYSTEMS</strong> THIS WEEK! USE CODE: ARENA-20 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+        <span>🔥 BIG SALE: FLAT <strong style="color: red;">5%</strong> OFF ON ALL SERVICES! PLAY A <a href="#Game-section-redirect" style="color: #0070f3; text-decoration: none;"> GAME</a> TO UNLOCK THE DISCOUNT &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
     </div>
 </div>
 <style>
@@ -333,7 +343,7 @@ body {
         <a href="./components/Story.html" aria-label="story">Our Story</a>
         <a href="https://apply.codecrafte.site/" aria-label="careers">Careers</a>
     </nav>
-    <a href="./components/contact.html" style="text-decoration: none;"><button class="nav-btn" style="width: 140px; height:40px;" aria-label="contact">Contact Us</button></a>
+    <a href="./components/contact.html" aria-label="Contact Us" style="text-decoration: none;"><button class="nav-btn" style="width: 140px; height:40px;" aria-label="contact">Contact Us</button></a>
 </header>
 
 <nav class="bottom-nav" id="thumbNav">
@@ -459,7 +469,7 @@ body {
 /* MOBILE RESPONSIVE FIX */
 @media (max-width: 768px) {
     .desktop-links, .nav-btn { display: none; }
-    .top-header { justify-content: center; padding: 15px; background-color: transparent; }
+    .top-header { justify-content: center; padding: 15px; background-color: transparent; display: none;}
     
     .bottom-nav {
         width: 100%;
@@ -509,8 +519,7 @@ window.addEventListener('scroll', () => {
         Expertise in <a href="#" class="decs-item web">Web</a> &
         <a href="#" class="decs-item app">App Development</a>,
         <a href="#" class="decs-item crm">Custom CRM</a>,
-        <a href="#" class="decs-item ai">AI Automation</a>, and Modern Digital
-        Solutions for your Business.
+        <a href="#" class="decs-item ai">AI Automation</a> etc.
       </p>
 
      <a href="./components/Get_started.html" style="text-decoration: none;">
@@ -939,7 +948,7 @@ window.addEventListener('scroll', () => {
             </div>
           </a>
 
-          <a href="./components/contact.html">
+          <a href="./components/contact.html" aria-label="Contact Us">
             <div class="service-card">
               <div class="card-bg"></div>
               <div class="card-content" id="s-meta">
@@ -949,7 +958,7 @@ window.addEventListener('scroll', () => {
             </div>
           </a>
           
-          <a href="./components/contact.html">
+          <a href="./components/contact.html" aria-label="Contact Us">
             <div class="service-card">
               <div class="card-bg"></div>
               <div class="card-content" id="s-meta">
@@ -1832,7 +1841,7 @@ window.addEventListener('scroll', () => {
     <div class="cc-cta-box">
         
         <div class="cc-cta-image-col">
-            <img src="./images/tel.webp" alt="Call Us" class="cc-floating-phone">
+            <img src="./images/tel.webp" width="302" height="400" alt="Call Us" class="cc-floating-phone">
         </div>
 
         <div class="cc-cta-text-col">
@@ -2041,7 +2050,7 @@ window.addEventListener('scroll', () => {
             <span class="mini-tag">GET STARTED</span>
             <h2>Let’s build something <br /><span>Extraordinary.</span></h2>
             <p>Digital solutions tailored to your brand's growth.</p>
-            <a href="./components/contact.html" class="footer-btn"
+            <a href="./components/contact.html" aria-label="Contact Us" class="footer-btn"
               >Start Project <i data-lucide="arrow-up-right"></i
             ></a>
           </div>
@@ -2315,7 +2324,8 @@ window.addEventListener('scroll', () => {
         }, 5000);
     }
 });
-</script>    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js" defer></script>
+</script>  
+  <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js" defer></script>
 <script src="https://files.bpcontent.cloud/2026/04/25/18/20260425181340-E2P8GJEL.js" defer></script>
     
 <!--feedbackkk-->
@@ -2323,7 +2333,7 @@ window.addEventListener('scroll', () => {
 <div class="fb-widget-container" id="fbWidget">
     <div class="fb-panel">
         <button id="fb-close-btn" class="fb-close-btn">&times;</button>
-        <h4 class="fb-title">How are we doing?</h4>
+        <h2 class="fb-title">How are we doing?</h2>
         <div class="fb-emojis">
             <button class="fb-svg-btn" data-val="1" title="Terrible">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8 9l2 1M16 9l-2 1M9 15c.5-1 2-1 3-1s2.5 0 3 1"></path></svg>
@@ -2342,7 +2352,7 @@ window.addEventListener('scroll', () => {
             </button>
         </div>
         <div class="fb-stats">
-            <span id="fb-count">1,248</span> people gave feedback
+            <span id="fb-count"></span> people gave feedback
         </div>
         <div class="fb-thanks" id="fbThanks" style="display: none;">
             Thanks for your feedback! 💙
