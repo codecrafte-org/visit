@@ -2320,10 +2320,8 @@ window.addEventListener('scroll', () => {
 <!--feedbackkk-->
  
 <div class="fb-widget-container" id="fbWidget">
-    
     <div class="fb-panel">
         <button id="fb-close-btn" class="fb-close-btn">&times;</button>
-        
         <h4 class="fb-title">How are we doing?</h4>
         <div class="fb-emojis">
             <button class="fb-svg-btn" data-val="1" title="Terrible">
@@ -2355,7 +2353,6 @@ window.addEventListener('scroll', () => {
             <span class="fb-door-text">FEEDBACK</span>
         </button>
     </div>
-
 </div>
 
 <script>
@@ -2367,66 +2364,96 @@ window.addEventListener('scroll', () => {
     const countText = document.getElementById('fb-count');
     const thanksText = document.getElementById('fbThanks');
     
-    // 1. Local Storage se data uthao (taake refresh par delete na ho)
-    let currentCount = parseInt(localStorage.getItem('mySite_fbCount')) || 1248; 
-    let savedVote = localStorage.getItem('mySite_fbVote'); // "1", "2", "3", etc.
-
-    // 2. Agar user ne pehle vote diya tha, toh usko show karo
-    if (savedVote) {
-        document.querySelector(`.fb-svg-btn[data-val="${savedVote}"]`).classList.add('is-active');
-        thanksText.style.display = 'block';
-        thanksText.innerText = "Thanks again! 💙";
-    }
+    // API Details
+    const namespace = "shani_feedback_v5"; // Yehi naam rehne dena
+    const key = "total_site_votes";
+    const apiUrl = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+    const baseCount = 1248; 
     
-    // Page load hoty hi actual count dikhao
-    countText.innerText = currentCount.toLocaleString();
+    // User ka vote status
+    let userVoted = localStorage.getItem('shani_vote_status');
+    let currentTotal = baseCount;
 
-    // 3. Door Open/Close Logic
-    doorBtn.addEventListener('click', () => {
-        widget.classList.add('is-open');
-        doorBtn.setAttribute('data-tooltip', 'Close panel');
-    });
+    // 1. PAGE LOAD PAR SAHI TOTAL MANGWAO (Bina cache issue ke)
+    const fetchGlobalCount = async () => {
+        try {
+            let res = await fetch(apiUrl, { cache: 'no-store' }); 
+            if(res.ok) {
+                let data = await res.json();
+                let apiVotes = data.count || 0;
+                currentTotal = baseCount + apiVotes;
+                countText.innerText = currentTotal.toLocaleString();
+            }
+        } catch (error) {
+            countText.innerText = currentTotal.toLocaleString();
+        }
+    };
+    
+    fetchGlobalCount();
 
-    // X Button se Close karne ka Logic
-    closeBtn.addEventListener('click', () => {
-        widget.classList.remove('is-open');
-        doorBtn.setAttribute('data-tooltip', 'Give feedback?');
-    });
+    // 2. CHECK PREVIOUS VOTE AUR UI UPDATE
+    if (userVoted) {
+        let activeBtn = document.querySelector(`.fb-svg-btn[data-val="${userVoted}"]`);
+        if(activeBtn) activeBtn.classList.add('is-active');
+        thanksText.style.display = 'block';
+        thanksText.innerText = "Thanks for your feedback! 💙";
+    }
 
-    // 4. Face Clicks & Counting Logic
+    // 3. DOOR OPEN/CLOSE
+    doorBtn.addEventListener('click', () => widget.classList.add('is-open'));
+    closeBtn.addEventListener('click', () => widget.classList.remove('is-open'));
+
+    // 4. VOTE LOGIC (Count change vs Vote change)
     faceBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const val = this.getAttribute('data-val');
+        btn.addEventListener('click', async function() {
+            let val = this.getAttribute('data-val');
 
-            // Agar same wohi click kiya toh kuch mat karo
-            if (savedVote === val) return; 
+            // Agar wahi face wapis dabaya toh kuch na karo
+            if (userVoted === val) return;
 
-            // Pehle sabse color hatao (Change vote ke liye)
+            // Purane faces se color hata kar naye wale pe lagao
             faceBtns.forEach(e => e.classList.remove('is-active'));
-            // Jispe click kiya usme color fill karo
             this.classList.add('is-active');
 
-            // --- COUNT LOGIC ---
-            // Agar first time vote kar raha hai (savedVote null hai) tabhi Number barhao.
-            // Agar vote change kar raha hai, toh number wahi rahega, sirf face change hoga.
-            if (!savedVote) {
-                currentCount++;
+            // SCENARIO A: Zindagi mein PEHLI dafa vote diya hai
+            if (!userVoted) {
+                thanksText.style.display = 'block';
+                thanksText.innerText = "Submitting... ⏳";
+                
+                userVoted = val; // LocalStorage set karo taake agli dafa catch ho jaye
+                localStorage.setItem('shani_vote_status', val);
+
+                try {
+                    // API par count barhao
+                    let res = await fetch(`${apiUrl}/up`);
+                    let data = await res.json();
+                    let apiVotes = data.count || 1;
+                    
+                    currentTotal = baseCount + apiVotes;
+                    countText.innerText = currentTotal.toLocaleString();
+                    thanksText.innerText = "Vote submitted! 💙";
+                } catch (error) {
+                    currentTotal++; // Agar net ka masla ho toh local barha do
+                    countText.innerText = currentTotal.toLocaleString();
+                    thanksText.innerText = "Vote submitted! 💙";
+                }
+            } 
+            // SCENARIO B: Apna vote sirf CHANGE kiya hai
+            else {
+                // Srif local save update karo aur Thanks message dikhao.
+                // API ko UP command NAHI bhejni, warna count 2 dafa barh jayega.
+                userVoted = val; 
+                localStorage.setItem('shani_vote_status', val);
+                
+                thanksText.style.display = 'block';
+                thanksText.innerText = "Vote updated! 💙";
             }
-
-            savedVote = val; // Naya vote save kar lo
-
-            // Local Storage mein save karo taake refresh pe yaad rahay
-            localStorage.setItem('mySite_fbVote', savedVote);
-            localStorage.setItem('mySite_fbCount', currentCount);
-
-            // Screen update karo
-            countText.innerText = currentCount.toLocaleString();
-            thanksText.style.display = 'block';
-            thanksText.innerText = "Vote updated! 💙"; 
         });
     });
 });
 </script>
+
+ 
 
    </body>
 </html>
