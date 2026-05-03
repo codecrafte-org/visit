@@ -909,6 +909,19 @@ p {
     transform: rotate(12deg) translateY(20px);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+/*servceee*/
+
 .services-section {
   padding: 80px 0;
   background: #fff;
@@ -917,13 +930,33 @@ p {
   width: 100%;
   margin: 0 auto;
 }
+ /* --- Center aur Responsive Services Intro --- */
 .services-intro {
   padding: 0 20px 40px;
+  text-align: center; /* Text ko center kar dega */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Tag ko bhi center mein layega */
+  justify-content: center;
 }
+
 .services-intro h2 {
   font-family: "Space Grotesk", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
+  margin-top: 15px; /* Tag aur Heading ke darmian thora gap */
+  line-height: 1.2;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .services-intro {
+    padding: 0 15px 30px; /* Mobile pe padding thori kam */
+  }
+  
+  .services-intro h2 {
+    font-size: 1.8rem; /* Mobile pe font size chota taakay screen se bahar na jaye */
+  }
 }
 .services-grid {
   display: grid;
@@ -987,6 +1020,25 @@ p {
 .service-card:hover h3 {
   color: #fff;
   transform: scale(1.1);
+}
+
+/* --- SIRF "SEE DETAILS" WALA NAYA CSS (Purani CSS SAFE hai!) --- */
+.see-details {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #777; /* Thora light color taakay main Heading wazeh rahay */
+  margin-top: 8px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  transition: all 0.4s ease; /* Animation ko smooth karne ke liye */
+  transform: translateY(0); /* Normal state pe apni jagah rahay */
+}
+
+.service-card:hover .see-details {
+  color: #fff; /* Hover pe background black hota hai, toh text white ho jayega */
+  letter-spacing: 2.5px; /* Hover pe letters ke beech gap barh jayega */
+  transform: translateY(-5px); /* Hover pe text 5px upar uth jayega */
 }
 @media (max-width: 768px) {
   .services-grid {
@@ -1075,6 +1127,11 @@ p {
 #s-ai:hover h3 {
   color: #1aff00;
 }
+
+
+
+
+/*videoooooooo*/
 .center-text {
   text-align: center;
   width: 100%;
@@ -1083,6 +1140,8 @@ p {
   padding: 100px 0;
   background: #fff;
 }
+
+
 .video-wrapper {
   position: relative;
   margin: 0 100px;
