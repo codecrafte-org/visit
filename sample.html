@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazing Services Section</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+   <style>
+    /* --- Base Resets --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fafafa;
+  color: #000;
+  overflow-x: hidden;
+}
+
+/* --- Header / Intro --- */
+.services-intro {
+  text-align: center;
+  padding: 60px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #777;
+  background: #eee;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+.services-intro h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-top: 15px;
+  line-height: 1.1;
+}
+
+/* --- Morphing Folders (Bento Grid 2/1) --- */
+.magic-container {
+  max-width: 1200px;
+  margin: 40px auto 80px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 Columns Grid */
+  gap: 20px;
+}
+
+/* Bento Style: Teesra folder poori width lega */
+.magic-folder:nth-child(3) {
+  grid-column: 1 / -1; 
+}
+
+/* Mobile pe sab 1 line mein (stacked) aaye ga taakay view kharab na ho */
+@media (max-width: 768px) {
+  .magic-container {
+    grid-template-columns: 1fr;
+  }
+  .magic-folder:nth-child(3) {
+    grid-column: auto; 
+  }
+}
+
+/* --- The Folders --- */
+.magic-folder {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 24px;
+  padding: 40px 30px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+}
+.magic-folder:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  transform: translateY(-5px);
+}
+
+.folder-cover {
+  text-align: center;
+  transition: all 0.5s ease;
+}
+.folder-icon {
+  width: 60px;
+  height: 60px;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+}
+.folder-cover h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.folder-cover p {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* --- Expanded State (When Clicked) --- */
+.magic-folder.active {
+  grid-column: 1 / -1 !important; /* Active folder poori screen cover karega */
+  cursor: default;
+  transform: translateY(0);
+  background: #fff;
+}
+.magic-folder.hidden {
+  display: none; /* Baqi folders ghayab */
+}
+
+/* Active Folder Header tweaks */
+.magic-folder.active .folder-cover {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+.magic-folder.active .folder-cover > div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.magic-folder.active .folder-icon { margin: 0; }
+.magic-folder.active .folder-cover h3 { margin: 0; font-size: 2rem; }
+.magic-folder.active .folder-cover p { display: none; }
+
+/* Close Button */
+.close-btn {
+  display: none;
+  background: #f1f1f1;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.close-btn:hover { background: #000; color: #fff; }
+.magic-folder.active .close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- The Inner Services Grid (2 Columns Jaisa Kaha Tha) --- */
+.folder-contents {
+  display: none;
+  grid-template-columns: repeat(2, 1fr); /* Exactly 2 Columns */
+  gap: 15px;
+  opacity: 0;
+}
+.magic-folder.active .folder-contents {
+  display: grid;
+  animation: fadeInGrid 0.8s ease forwards;
+  animation-delay: 0.3s; 
+}
+
+@keyframes fadeInGrid {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Individual Service Cards & Liquid Hover Animation --- */
+.s-card {
+  position: relative;
+  height: 150px;
+  border: 1px solid #eaeaea;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+/* --- THE LIQUID MAGIC --- */
+.s-card-bg {
+  position: absolute;
+  top: 100%; /* Shuru mein neechay chhupa hua */
+  left: -50%;
+  width: 200%; /* Card se bada taakay waves smooth banen */
+  height: 200%;
+  background: #000;
+  border-radius: 35% 45% 40% 50%; /* Liquid ki irregular shape */
+  z-index: 1;
+  transition: top 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Upar aane ki speed */
+}
+
+/* Hover karte hi Liquid upar aayega aur ghoomega */
+.s-card:hover .s-card-bg {
+  top: -20%; 
+  animation: liquidSpin 4s linear infinite; /* Musalsal hilti hui lehar */
+}
+
+@keyframes liquidSpin {
+  0% { transform: rotate(0deg); border-radius: 35% 45% 40% 50%; }
+  50% { border-radius: 45% 40% 50% 35%; } /* Shape morphing */
+  100% { transform: rotate(360deg); border-radius: 35% 45% 40% 50%; }
+}
+
+/* Content Settings */
+.s-card-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  transition: 0.4s;
+}
+
+/* Default Icon aur Text (BLACK) */
+.s-card-content i {
+  width: 28px;
+  height: 28px;
+  color: #000; /* Default Black */
+  margin-bottom: 10px;
+  transition: 0.4s;
+}
+.s-card-content h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.4s;
+}
+.see-details {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #777;
+  margin-top: 6px;
+  transition: all 0.4s ease;
+  transform: translateY(0);
+}
+
+/* Hover pe Text White hoga */
+.s-card:hover .s-card-content h4 { color: #fff; transform: scale(1.1); }
+.s-card:hover .see-details {
+  color: #fff;
+  letter-spacing: 2px;
+  transform: translateY(-3px);
+}
+.s-card:hover i { transform: scale(1.1); } /* Icon thora bada hoga */
+
+/* --- Custom Icon Colors On Hover (Original Theme) --- */
+/* (In classes ko apnay <a href="#" class="s-card clr-web"> mein use karna) */
+.clr-web:hover i { color: #0070f3; }
+.clr-app:hover i { color: #e7ff33; }
+.clr-wp:hover i { color: #0821c4; }
+.clr-pms:hover i { color: #2e5bff; }
+.clr-crm:hover i { color: #00ff9d; }
+.clr-erp:hover i { color: #09cb53; }
+.clr-pos:hover i { color: #c2315c; }
+.clr-csd:hover i { color: #abd814; }
+.clr-bus:hover i { color: #818181; }
+.clr-saas:hover i { color: #36c31a; }
+.clr-port:hover i { color: #0a775a; }
+.clr-ui:hover i { color: #ff0000; }
+.clr-video:hover i { color: #b27007; }
+.clr-meta:hover i { color: #e1306c; }
+.clr-gd:hover i { color: #ff9a00; }
+.clr-ecom:hover i { color: #f97316; }
+.clr-ppt:hover i { color: #8a2be2; }
+.clr-smm:hover i { color: #ff0050; }
+.clr-ai:hover i { color: #1aff00; }
+   </style>
+</head>
+<body>
+
+  <div class="services-intro">
+    <span class="tag">SERVICES</span>
+    <h2>What We Build</h2>
+  </div>
+
+  <div class="magic-container" id="magicBox">
+
+    <div class="magic-folder" onclick="openFolder(this)">
+      <div class="folder-cover">
+        <div class="folder-icon"><i data-lucide="code-2"></i></div>
+        <h3>Engineering</h3>
+        <p>10 Core Systems & Solutions</p>
+        <button class="close-btn" onclick="closeFolder(event)"><i data-lucide="x"></i></button>
+      </div>
+      <div class="folder-contents">
+        <a href="#" class="s-card clr-web"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="monitor"></i><h4>Web Dev</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card clr-app"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="smartphone"></i><h4>App Dev</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card clr-web"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="layout-template"></i><h4>WordPress</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="clipboard-list"></i><h4>Mgt Systems</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="user-check"></i><h4>CRM</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="factory"></i><h4>ERP</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="shopping-cart"></i><h4>POS</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="braces"></i><h4>Custom Software</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="building-2"></i><h4>Business Apps</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="app-window"></i><h4>SaaS App</h4><span class="see-details">See Details</span></div></a>
+      </div>
+    </div>
+
+    <div class="magic-folder" onclick="openFolder(this)">
+      <div class="folder-cover">
+        <div class="folder-icon"><i data-lucide="palette"></i></div>
+        <h3>Creative</h3>
+        <p>5 Design & Media Services</p>
+        <button class="close-btn" onclick="closeFolder(event)"><i data-lucide="x"></i></button>
+      </div>
+      <div class="folder-contents">
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="mouse-pointer-click"></i><h4>UI/UX</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="image"></i><h4>Portfolio</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card clr-gd"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="pen-tool"></i><h4>Graphic Design</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="play-square"></i><h4>Video Editor</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="presentation"></i><h4>PPT Slides</h4><span class="see-details">See Details</span></div></a>
+      </div>
+    </div>
+
+    <div class="magic-folder" onclick="openFolder(this)">
+      <div class="folder-cover">
+        <div class="folder-icon"><i data-lucide="rocket"></i></div>
+        <h3>Growth & AI</h3>
+        <p>6 Marketing & Tech Solutions</p>
+        <button class="close-btn" onclick="closeFolder(event)"><i data-lucide="x"></i></button>
+      </div>
+      <div class="folder-contents">
+        <a href="#" class="s-card clr-ai"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="sparkles"></i><h4>AI Automation</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card clr-meta"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="bar-chart-3"></i><h4>Meta Ads</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="megaphone"></i><h4>SMM</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="shopping-bag"></i><h4>E-Com</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="trending-up"></i><h4>Data Analytics</h4><span class="see-details">See Details</span></div></a>
+        <a href="#" class="s-card"><div class="s-card-bg"></div><div class="s-card-content"><i data-lucide="server"></i><h4>DevOps</h4><span class="see-details">See Details</span></div></a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    function openFolder(clickedFolder) {
+      // Agar already active hai toh kuch mat karo
+      if(clickedFolder.classList.contains('active')) return;
+
+      const allFolders = document.querySelectorAll('.magic-folder');
+      
+      allFolders.forEach(folder => {
+        if (folder === clickedFolder) {
+          folder.classList.add('active');
+          folder.classList.remove('hidden');
+        } else {
+          folder.classList.remove('active');
+          folder.classList.add('hidden'); // Baqi folders ko ghayab kar do
+        }
+      });
+    }
+
+    function closeFolder(event) {
+      event.stopPropagation(); // Parent ke click event ko rokne ke liye
+      
+      const allFolders = document.querySelectorAll('.magic-folder');
+      
+      allFolders.forEach(folder => {
+        folder.classList.remove('active');
+        folder.classList.remove('hidden'); // Sabko wapas normal state mein le aao
+      });
+    }
+  </script>
+
+</body>
+</html>
