@@ -1071,7 +1071,272 @@ window.addEventListener('scroll', () => {
       lucide.createIcons();
     </script>
 
-    <!--impactttt-->
+    <!--certificates-->
+
+<section class="cert-section">
+    <div class="cert-container">
+        
+        <h2 class="cert-main-title">Our Certificates</h2>
+
+        <div class="cert-grid" id="certGrid">
+            
+            <div class="cert-card">
+                <div class="cert-logo-box">
+                    <img src="./images/adobe-logo.svg" alt="Adobe Logo">
+                </div>
+                <div class="cert-info">
+                    <h3>Adobe Certified</h3>
+                    <p>Graphic Design Expert</p>
+                    <div class="cert-footer">
+                        <span>Verified by TEVTA</span>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+    </div>
+</section>
+
+<style>
+/* 1. Base Styles (Matching your Bento Vibe) */
+.cert-section {
+    padding: 80px 20px;
+    background-color: #fff; /* Ya jo bhi aapka background hai */
+    color: #000;
+    font-family: sans-serif; /* Aapka website font yahan aayega */
+}
+
+.cert-main-title {
+    text-align: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 50px;
+    letter-spacing: -1px;
+}
+
+/* 2. Centered Grid Logic */
+.cert-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Yehi wo cheez hai jo cards ko center rakhti hai */
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 3. Bento Card Style */
+.cert-card {
+    background: #f9f9f9;
+    border: 2px solid #000;
+    border-radius: 20px; /* Bento Style Rounded Corners */
+    padding: 30px;
+    width: 100%;
+    max-width: 350px; /* Card size */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 8px 8px 0px #000;
+}
+
+/* 4. Logo Styling */
+.cert-logo-box {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-logo-box img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* 5. Text Styling */
+.cert-info h3 {
+    margin: 10px 0 5px 0;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.cert-info p {
+    margin: 0;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.cert-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    width: 100%;
+}
+
+.cert-footer span {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #888;
+    text-transform: uppercase;
+}
+
+/* 6. Responsive (3/3 and 2/2) */
+@media (min-width: 992px) {
+    .cert-card {
+        flex: 0 1 calc(33.33% - 25px); /* Desktop: 3 per row */
+    }
+}
+
+@media (max-width: 991px) and (min-width: 600px) {
+    .cert-card {
+        flex: 0 1 calc(50% - 25px); /* Tablet/Mobile: 2 per row */
+    }
+}
+
+@media (max-width: 599px) {
+    .cert-card {
+        flex: 0 1 100%; /* Small Mobile: 1 per row (Better for readability) */
+    }
+}
+</style>
+
+ <!--clinetss-->
+
+<section class="brand-section">
+    <div class="brand-container">
+        
+        <h2 class="brand-title">Our Clients</h2>
+
+        <div class="brand-grid">
+            
+            <div class="brand-card">
+                <div class="brand-logo">
+                    <img src="./images/HM-logo.svg" alt="HM Aesthetics">
+                </div>
+                <h3>HM Aesthetics</h3>
+            </div>
+
+             <div class="brand-card">
+                <div class="brand-logo">
+                    <img src="./images/mini-trendz.webp" alt="HM Aesthetics">
+                </div>
+                <h3>Mini Trendz</h3>
+            </div>
+            </div>
+    </div>
+</section>
+
+<style>
+.brand-section {
+    padding: 60px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.brand-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.brand-title {
+    font-family: sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+/* Centering Logic */
+.brand-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 20px;
+}
+
+/* Bento Style Card */
+.brand-card {
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 25px;
+    width: 100%;
+    max-width: 280px;
+    transition: 0.3s;
+    background: #fafafa;
+}
+
+.brand-card:hover {
+    box-shadow: 6px 6px 0px #000;
+    transform: translateY(-3px);
+}
+
+.brand-logo {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.brand-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.logo-circle {
+    width: 60px;
+    height: 60px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.brand-card h3 {
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* RESPONSIVE GRID */
+
+/* Desktop: 3/3 */
+@media (min-width: 992px) {
+    .brand-card {
+        flex: 0 1 calc(33.33% - 20px);
+    }
+}
+
+/* Mobile: 2/2 */
+@media (max-width: 991px) {
+    .brand-card {
+        flex: 0 1 calc(50% - 20px);
+        padding: 15px;
+    }
+    .brand-title { font-size: 1.6rem; }
+    .brand-logo { height: 60px; }
+}
+</style>
+    
+
+<!--screensaver-->
+
+
+
 
     <!--GAMEEEE-->
   <section class="choice-arena-section" id="Game-section-redirect">
@@ -2498,5 +2763,252 @@ window.addEventListener('scroll', () => {
     });
 </script>
 
+<!--secrrn saverr-->
+
+
+<div id="idle-fluid-overlay">
+    <div class="fluid-echo-container">
+        
+        <div class="fluid-body-wrap">
+            <div class="fluid-echo-1"></div>
+            <div class="fluid-echo-2"></div>
+            <div class="fluid-echo-3"></div>
+            
+            <div class="fluid-text-box">
+                <h1 class="fluid-echo-logo">CODECRAFTE</h1>
+                <p>FLOW STATE</p>
+            </div>
+        </div>
+
+        <div class="fluid-bub cc-bub-1"></div>
+        <div class="fluid-bub cc-bub-2"></div>
+        <div class="fluid-bub cc-bub-3"></div>
+        <div class="fluid-bub cc-bub-4"></div>
+
+    </div>
+</div>
+
+<style>
+/* 1. Base Overlay - B&W Vibe (Keep Bg Visible) */
+#idle-fluid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9); /* Halki si white shade taakay B&W site fade lage */
+    backdrop-filter: blur(12px); /* Background blur k premium look k liye */
+    z-index: 100000; /* Sab se upar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease, visibility 1.5s ease;
+    pointer-events: none; /* Site normal use rhti rhay gi */
+}
+
+/* Active State */
+#idle-fluid-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 2. Fluid Body Wrap */
+.fluid-echo-container {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.7); /* Bento grid k structure k liye initial scale */
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#idle-fluid-overlay.active .fluid-echo-container {
+    transform: scale(1);
+}
+
+/* 3. The Morphing Liquid echo shapes (The Extraordinary part) */
+.fluid-body-wrap {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fluid-echo-1, .fluid-echo-2, .fluid-echo-3 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    filter: blur(2px); /* Edge smooth krne k liye */
+}
+
+.fluid-echo-1 {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent Black */
+    animation: morph1 8s linear infinite;
+}
+
+.fluid-echo-2 {
+    background: rgba(0, 0, 0, 0.3); /* Lighter semi-transparent black */
+    animation: morph2 6s linear infinite 1s;
+    width: 90%; height: 90%;
+}
+
+.fluid-echo-3 {
+    background: rgba(0, 0, 0, 0.15); /* Very light semi-transparent black */
+    animation: morph3 4s linear infinite 2s;
+    width: 80%; height: 80%;
+}
+
+/* 4. Text Logic: CODECRAFTE - Flow State */
+.fluid-text-box {
+    position: absolute;
+    top: 100%;
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease 1s; /* Morphing k baad display */
+}
+
+#idle-fluid-overlay.active .fluid-text-box {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fluid-echo-logo {
+    font-family: sans-serif; /* Aapka preferred font */
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: #000; /* B&W: Black text on white bg */
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: -2px;
+    animation: pulseLogo 2s infinite alternate;
+}
+
+.fluid-text-box p {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 5px 0 0 0;
+    opacity: 0.6;
+}
+
+/* 5. Minor Floating Bubbles */
+.fluid-bub {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 1s ease 1.5s;
+}
+
+#idle-fluid-overlay.active .fluid-bub {
+    opacity: 1;
+}
+
+.cc-bub-1 { width: 30px; height: 30px; top: -100px; left: -100px; animation: bubFloat 10s infinite alternate; }
+.cc-bub-2 { width: 50px; height: 50px; bottom: -80px; right: -120px; animation: bubFloat 12s infinite alternate 1s; }
+.cc-bub-3 { width: 20px; height: 20px; top: 150px; right: -150px; animation: bubFloat 8s infinite alternate 2s; }
+.cc-bub-4 { width: 40px; height: 40px; bottom: 200px; left: -140px; animation: bubFloat 11s infinite alternate 3s; }
+
+/* 6. RESPONSIVE LOGIC (Mobile Responsive) */
+@media (max-width: 768px) {
+    .fluid-body-wrap {
+        width: 200px; /* Choti screens pr chota view */
+        height: 200px;
+    }
+    
+    .fluid-echo-logo {
+        font-size: 1.8rem; /* Chota logo size mobile k liye */
+    }
+    
+    .cc-bub-1 { width: 15px; height: 15px; top: -50px; left: -50px; }
+    .cc-bub-2 { width: 25px; height: 25px; bottom: -40px; right: -60px; }
+    .cc-bub-3 { width: 10px; height: 10px; top: 75px; right: -75px; }
+    .cc-bub-4 { width: 20px; height: 20px; bottom: 100px; left: -70px; }
+}
+
+/* ==============================================
+   7. MORPHING KEYFRAMES (The extraordinary part)
+   ============================================== */
+
+@keyframes morph1 {
+    0%   { border-radius: 50% 50% 50% 50%; transform: translate(0); scale(1); }
+    25%  { border-radius: 70% 30% 70% 30% / 30% 70% 30% 70%; transform: translate(-5px, 5px) scale(1.02); }
+    50%  { border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%; transform: translate(5px, -5px) scale(0.98); }
+    75%  { border-radius: 50% 50% 70% 30% / 30% 70% 50% 50%; transform: translate(-2px, -2px) scale(1.01); }
+    100% { border-radius: 50% 50% 50% 50%; transform: translate(0); scale(1); }
+}
+
+@keyframes morph2 {
+    0%   { border-radius: 70% 30% 70% 30%; transform: translate(0); }
+    33%  { border-radius: 50% 50% 30% 70%; transform: translate(10px, -10px) scale(1.05); }
+    66%  { border-radius: 30% 70% 50% 50%; transform: translate(-10px, 10px) scale(0.95); }
+    100% { border-radius: 70% 30% 70% 30%; transform: translate(0); }
+}
+
+@keyframes morph3 {
+    0%   { border-radius: 30% 70% 30% 70%; }
+    50%  { border-radius: 70% 30% 70% 30%; transform: translate(-15px, 15px); }
+    100% { border-radius: 30% 70% 30% 70%; }
+}
+
+@keyframes bubFloat {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(20px) translateX(15px); }
+}
+
+@keyframes pulseLogo {
+    0% { opacity: 0.7; scale(0.98); }
+    100% { opacity: 1; scale(1); }
+}
+</style>
+
+<script>
+// Standalone Self-contained JavaScript timer
+(function() {
+    let codecrafteIdleTime = 0;
+    // TEST K LIYE: Is neechay wali line ko uncomment (// hata) kr k check karein (5 second baad)
+    const codecrafteIdleLimit = 120; 
+    // FINAL PRODUCTION K LIYE: Ye wali line use karein (3 minute)
+    // const codecrafteIdleLimit = 180; 
+
+    const codecrafteOverlay = document.getElementById('idle-fluid-overlay');
+
+    // Function to Reset Timer: smooth gayab logic k sath
+    function ccResetTimer() {
+        if(codecrafteOverlay.classList.contains('active')){
+            codecrafteOverlay.classList.remove('active');
+        }
+        codecrafteIdleTime = 0;
+    }
+
+    // User activity ko track krne k events
+    window.addEventListener('mousemove', ccResetTimer);
+    window.addEventListener('keypress', ccResetTimer);
+    window.addEventListener('scroll', ccResetTimer); // Important for scrolling
+    window.addEventListener('click', ccResetTimer);
+    window.addEventListener('touchstart', ccResetTimer); // Mobile touch support
+
+    // 1 second wala check interval
+    setInterval(function() {
+        codecrafteIdleTime++;
+        // JS mein koi unnecessary variable check nahi
+        if (codecrafteIdleTime >= codecrafteIdleLimit) {
+            codecrafteOverlay.classList.add('active');
+        }
+    }, 1000);
+
+    console.log("Codecrafte B&W Fluid Echo Idle Script Loaded. Mobile Responsive. Idle Time: " + codecrafteIdleLimit + "s");
+})();
+</script>
    </body>
 </html>
