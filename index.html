@@ -326,7 +326,7 @@ body {
 
 
    <!--hero sectionnnnnnnnnnnnnnnnnn-->
- <body>
+ <body style="background: white;">
 
   
     <div class="bg-decor">
@@ -407,6 +407,7 @@ body {
     backdrop-filter: blur(15px);
     z-index: 2000;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s;
+    
 }
 
 .top-header.hide {
@@ -653,7 +654,7 @@ window.addEventListener('scroll', () => {
   }
 
   .cc-ultra-badge-white {
-    background: #fff; color: #000;
+    background: #ffffff; color: #000;
     padding: 4px 12px; border-radius: 50px;
     font-size: 11px; font-weight: 800;
     display: inline-block; margin-bottom: 15px;
@@ -818,294 +819,386 @@ window.addEventListener('scroll', () => {
 
     <!--Services-->
     <section class="services-section">
-      <div class="services-container">
-        <div class="services-intro">
-  <span class="tag">SERVICES</span>
-  <h2>Our Core Expertise</h2>
-</div>
+  <div class="services-container">
+    <div class="services-intro">
+      <span class="tag">SERVICES</span>
+      <h2>Our Core Expertise</h2>
+    </div>
 
-        <div class="services-grid">
-          <a href="./components/Services/Web.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-web">
-                <i data-lucide="monitor" class="s-icon"></i>
-                <h3>Web Dev.</h3>
-                <span class="see-details">See Details</span>
-              </div>
+    <div class="services-grid-wrapper" id="gridWrapper">
+      <div class="services-grid">
+        
+        <a href="./components/Services/Web.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-web">
+              <i data-lucide="monitor" class="s-icon"></i>
+              <h3>Web Dev.</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
+          </div>
+        </a>
 
-          <a href="./components/Services/app.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-app">
-                <i data-lucide="smartphone" class="s-icon"></i>
-                <h3>App Dev.</h3>
-                <span class="see-details">See Details</span>
-              </div>
+        <a href="./components/Services/app.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-app">
+              <i data-lucide="smartphone" class="s-icon"></i>
+              <h3>App Dev.</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          
-          <a href="./components/Services/wp.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-wp">
-                <i data-lucide="layout-template" class="s-icon"></i>
-                <h3>wordpress</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        
+        <a href="./components/Services/wp.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-wp">
+              <i data-lucide="layout-template" class="s-icon"></i>
+              <h3>wordpress</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
+          </div>
+        </a>
 
-          <a href="./components/Services/PMS.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-pms">
-                <i data-lucide="clipboard-list" class="s-icon"></i>
-                <h3>managment systems</h3>
-                <span class="see-details">See Details</span>
-              </div>
+        <a href="./components/Services/PMS.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-pms">
+              <i data-lucide="clipboard-list" class="s-icon"></i>
+              <h3>managment systems</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
+          </div>
+        </a>
 
-          <a href="./components/Services/CRM.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-crm">
-                <i data-lucide="user-check" class="s-icon"></i>
-                <h3>CRM</h3>
-                <span class="see-details">See Details</span>
-              </div>
+        <a href="./components/Services/CRM.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-crm">
+              <i data-lucide="user-check" class="s-icon"></i>
+              <h3>CRM</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          
-          <a href="./components/Services/ERP.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-erp">
-                <i data-lucide="factory" class="s-icon"></i>
-                <h3>ERP</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        
+        <a href="./components/Services/ERP.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-erp">
+              <i data-lucide="factory" class="s-icon"></i>
+              <h3>ERP</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
+          </div>
+        </a>
 
-          <a href="./components/Services/pos.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-pos">
-                <i data-lucide="shopping-cart" class="s-icon"></i>
-                <h3>POS</h3>
-                <span class="see-details">See Details</span>
-              </div>
+        <a href="./components/Services/pos.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-pos">
+              <i data-lucide="shopping-cart" class="s-icon"></i>
+              <h3>POS</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          
-          <a href="./components/Services/CSD.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-csd">
-                <i data-lucide="braces" class="s-icon"></i>
-                <h3>Custom Software Development</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        
+        <a href="./components/Services/CSD.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-csd">
+              <i data-lucide="braces" class="s-icon"></i>
+              <h3>Custom Software Development</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
+          </div>
+        </a>
 
-          <a href="./components/Services/Buniess.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-bus">
-                <i data-lucide="building-2" class="s-icon"></i>
-                <h3>busniess application</h3>
-                <span class="see-details">See Details</span>
-              </div>
+        <a href="./components/Services/Buniess.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-bus">
+              <i data-lucide="building-2" class="s-icon"></i>
+              <h3>busniess application</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          
-          <a href="./components/Services/saas.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-saas">
-                <i data-lucide="app-window" class="s-icon"></i>
-                <h3>saas application</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        
+        <a href="./components/Services/saas.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-saas">
+              <i data-lucide="app-window" class="s-icon"></i>
+              <h3>saas application</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          
-          <a href="./components/Services/portfolio.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-port">
-                <i data-lucide="image" class="s-icon"></i>
-                <h3>portfolio</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        
+        <a href="./components/Services/portfolio.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-port">
+              <i data-lucide="image" class="s-icon"></i>
+              <h3>portfolio</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
+          </div>
+        </a>
 
-          <a href="./components/Services/uiux.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-ui">
-                <i data-lucide="mouse-pointer-click" class="s-icon"></i>
-                <h3>ui/ux</h3>
-                <span class="see-details">See Details</span>
-              </div>
+        <a href="./components/Services/uiux.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-ui">
+              <i data-lucide="mouse-pointer-click" class="s-icon"></i>
+              <h3>ui/ux</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
+          </div>
+        </a>
 
-          <a href="./components/contact.html" aria-label="Contact Us">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-meta">
-                <i data-lucide="server" class="s-icon"></i>
-                <h3>Devops</h3>
-                <span class="see-details">See Details</span>
-              </div>
+        <a href="./components/contact.html" aria-label="Contact Us">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-meta"> <i data-lucide="server" class="s-icon"></i>
+              <h3>Devops</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          
-          <a href="./components/contact.html" aria-label="Contact Us">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-meta">
-                <i data-lucide="trending-up" class="s-icon"></i>
-                <h3>Data Analytics & Insights</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        
+        <a href="./components/contact.html" aria-label="Contact Us">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-meta"> <i data-lucide="trending-up" class="s-icon"></i>
+              <h3>Data Analytics & Insights</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          
-          <a href="./components/Services/Meta.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-meta">
-                <i data-lucide="bar-chart-3" class="s-icon"></i>
-                <h3>Meta Ads</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        
+        <a href="./components/Services/Meta.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-meta">
+              <i data-lucide="bar-chart-3" class="s-icon"></i>
+              <h3>Meta Ads</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
+          </div>
+        </a>
 
-          <a href="./components/Services/E-com.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-ecom">
-                <i data-lucide="shopping-bag" class="s-icon"></i>
-                <h3>E-com</h3>
-                <span class="see-details">See Details</span>
-              </div>
+        <a href="./components/Services/E-com.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-ecom">
+              <i data-lucide="shopping-bag" class="s-icon"></i>
+              <h3>E-com</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
+          </div>
+        </a>
 
-          <a href="./components/Services/ppt.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-ppt">
-                <i data-lucide="presentation" class="s-icon"></i>
-                <h3>PPT Slides</h3>
-                <span class="see-details">See Details</span>
-              </div>
+        <a href="./components/Services/ppt.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-ppt">
+              <i data-lucide="presentation" class="s-icon"></i>
+              <h3>PPT Slides</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          <a href="./components/Services/smm.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-smm">
-                <i data-lucide="megaphone" class="s-icon"></i>
-                <h3>Social Media Marketing</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        <a href="./components/Services/smm.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-smm">
+              <i data-lucide="megaphone" class="s-icon"></i>
+              <h3>Social Media Marketing</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          <a href="./components/Services/ai.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-ai">
-                <i data-lucide="sparkles" class="s-icon"></i>
-                <h3>AI Automation</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        <a href="./components/Services/ai.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-ai">
+              <i data-lucide="sparkles" class="s-icon"></i>
+              <h3>AI Automation</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          <a href="./components/Services/video.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-video">
-                <i data-lucide="play-square" class="s-icon"></i>
-                <h3>Video Editor</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        <a href="./components/Services/video.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-video">
+              <i data-lucide="play-square" class="s-icon"></i>
+              <h3>Video Editor</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
-          <a href="./components/Services/GD.html">
-            <div class="service-card">
-              <div class="card-bg"></div>
-              <div class="card-content" id="s-gd">
-                <i data-lucide="palette" class="s-icon"></i>
-                <h3>Ghraphic Designer</h3>
-                <span class="see-details">See Details</span>
-              </div>
+          </div>
+        </a>
+        <a href="./components/Services/GD.html">
+          <div class="service-card">
+            <div class="card-bg"></div>
+            <div class="card-content" id="s-gd">
+              <i data-lucide="palette" class="s-icon"></i>
+              <h3>Ghraphic Designer</h3>
+              <span class="see-details">See Details</span>
             </div>
-          </a>
+          </div>
+        </a>
 
-        </div>
       </div>
-    </section>
-    <script>
-      document.querySelectorAll(".service-card").forEach((card) => {
-        card.addEventListener("mouseenter", function (e) {
-          // Ripple logic (optional enhancement)
-          const ripple = document.createElement("div");
-          ripple.classList.add("wave-ripple");
-          this.appendChild(ripple);
+    </div> <div class="view-more-container">
+      <button id="viewMoreBtn" class="view-more-btn">VIEW MORE</button>
+    </div>
 
-          setTimeout(() => ripple.remove(), 1000);
-        });
-      });
+  </div>
+</section>
 
-      // Icons initialize zaroor karna
-      lucide.createIcons();
-    </script>
+<script>
+  // Hover Ripple Logic (Tumhara apna)
+  document.querySelectorAll(".service-card").forEach((card) => {
+    card.addEventListener("mouseenter", function (e) {
+      const ripple = document.createElement("div");
+      ripple.classList.add("wave-ripple");
+      this.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 1000);
+    });
+  });
+
+  // Icons initialize
+  if(typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+
+  // --- NAYA JS: View More Button Transition Logic ---
+  document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("viewMoreBtn");
+    const wrapper = document.getElementById("gridWrapper");
+
+    btn.addEventListener("click", function() {
+      // Toggle logic for the wrapper
+      if (!wrapper.classList.contains("expanded")) {
+        wrapper.classList.add("expanded");
+        btn.innerText = "VIEW LESS";
+      } else {
+        wrapper.classList.remove("expanded");
+        btn.innerText = "VIEW MORE";
+        
+        // Wapas upar scroll karne ke liye (Optional, acha feel deta hai)
+        setTimeout(() => {
+          document.querySelector(".services-section").scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 300);
+      }
+    });
+  });
+</script>
 
     <!--certificates-->
 
-<section class="cert-section">
-    <div class="cert-container">
-        
-        <h2 class="cert-main-title">Our Certificates</h2>
-
-        <div class="cert-grid" id="certGrid">
+<div class="scroll-master" id="scrollMaster">
+    <div class="scroll-sticky">
+        <div class="scroll-track" id="scrollTrack">
             
-            <div class="cert-card">
-                <div class="cert-logo-box">
-                    <img src="./images/adobe-logo.svg" alt="Adobe Logo">
-                </div>
-                <div class="cert-info">
-                    <h3>Adobe Certified</h3>
-                    <p>Graphic Design Expert</p>
-                    <div class="cert-footer">
-                        <span>Verified by TEVTA</span>
+            <section class="scroll-panel cert-section">
+                <div class="panel-content">
+                    <h2 class="cert-main-title">Our Certificates</h2>
+                    <div class="cert-grid">
+                        <div class="cert-card">
+                            <div class="cert-logo-box">
+                                <img src="./images/adobe-logo.svg" alt="Adobe Logo">
+                            </div>
+                            <div class="cert-info">
+                                <h3>Adobe Certified</h3>
+                                <p>Graphic Design Expert</p>
+                                <div class="cert-footer">
+                                    <span>Verified by TEVTA</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            </div>
+            <section class="scroll-panel brand-section">
+                <div class="panel-content">
+                    <h2 class="brand-title">Our Clients</h2>
+                    <div class="brand-grid">
+                        <div class="brand-card">
+                            <div class="brand-logo">
+                                <img src="./images/HM-logo.svg" alt="HM Aesthetics">
+                            </div>
+                            <h3>HM Aesthetics</h3>
+                        </div>
+                        <div class="brand-card">
+                            <div class="brand-logo">
+                                <img src="./images/mini-trendz.webp" alt="Mini Trendz">
+                            </div>
+                            <h3>Mini Trendz</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </div>
-</section>
+</div>
 
 <style>
-/* 1. Base Styles (Matching your Bento Vibe) */
-.cert-section {
-    padding: 80px 20px;
-    background-color: #fff; /* Ya jo bhi aapka background hai */
-    color: #000;
-    font-family: sans-serif; /* Aapka website font yahan aayega */
+  /* ==================================================
+   1. HORIZONTAL SCROLL MAGIC LOGIC
+   ================================================== */
+.scroll-master {
+    /* Height 250vh ka matlab hai user ko neechay 
+       scroll karne k liye lamba rasta milega jis 
+       doraan animation chalegi */
+    position: relative;
+    height: 250vh; 
+    background-color: #fff;
 }
 
+.scroll-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh; /* Screen k barabar */
+    overflow: hidden; /* Bahar nikalnay wala hissa chupana */
+    display: flex;
+    align-items: center;
+}
+
+.scroll-track {
+    display: flex;
+    width: fit-content; /* Content jitna lamba hoga track utna lamba hoga */
+    height: 100%;
+    will-change: transform;
+}
+
+.scroll-panel {
+    width: 100vw; /* Har section screen jitna chora hoga */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.panel-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* ==================================================
+   2. TUMHARI CERTIFICATE CSS (Modified for Panel)
+   ================================================== */
 .cert-main-title {
     text-align: center;
     font-size: 2.5rem;
@@ -1113,31 +1206,29 @@ window.addEventListener('scroll', () => {
     font-weight: 800;
     margin-bottom: 50px;
     letter-spacing: -1px;
+    color: #000;
 }
 
-/* 2. Centered Grid Logic */
 .cert-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Yehi wo cheez hai jo cards ko center rakhti hai */
+    justify-content: center; 
     gap: 25px;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
-/* 3. Bento Card Style */
 .cert-card {
     background: #f9f9f9;
     border: 2px solid #000;
-    border-radius: 20px; /* Bento Style Rounded Corners */
+    border-radius: 20px; 
     padding: 30px;
     width: 100%;
-    max-width: 350px; /* Card size */
+    max-width: 350px; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    color: #000;
 }
 
 .cert-card:hover {
@@ -1145,7 +1236,6 @@ window.addEventListener('scroll', () => {
     box-shadow: 8px 8px 0px #000;
 }
 
-/* 4. Logo Styling */
 .cert-logo-box {
     width: 100px;
     height: 100px;
@@ -1161,7 +1251,6 @@ window.addEventListener('scroll', () => {
     object-fit: contain;
 }
 
-/* 5. Text Styling */
 .cert-info h3 {
     margin: 10px 0 5px 0;
     font-size: 1.5rem;
@@ -1188,73 +1277,19 @@ window.addEventListener('scroll', () => {
     text-transform: uppercase;
 }
 
-/* 6. Responsive (3/3 and 2/2) */
-@media (min-width: 992px) {
-    .cert-card {
-        flex: 0 1 calc(33.33% - 25px); /* Desktop: 3 per row */
-    }
-}
 
-@media (max-width: 991px) and (min-width: 600px) {
-    .cert-card {
-        flex: 0 1 calc(50% - 25px); /* Tablet/Mobile: 2 per row */
-    }
-}
-
-@media (max-width: 599px) {
-    .cert-card {
-        flex: 0 1 100%; /* Small Mobile: 1 per row (Better for readability) */
-    }
-}
-</style>
-
- <!--clinetss-->
-
-<section class="brand-section">
-    <div class="brand-container">
-        
-        <h2 class="brand-title">Our Clients</h2>
-
-        <div class="brand-grid">
-            
-            <div class="brand-card">
-                <div class="brand-logo">
-                    <img src="./images/HM-logo.svg" alt="HM Aesthetics">
-                </div>
-                <h3>HM Aesthetics</h3>
-            </div>
-
-             <div class="brand-card">
-                <div class="brand-logo">
-                    <img src="./images/mini-trendz.webp" alt="HM Aesthetics">
-                </div>
-                <h3>Mini Trendz</h3>
-            </div>
-            </div>
-    </div>
-</section>
-
-<style>
-.brand-section {
-    padding: 60px 20px;
-    background: #fff;
-    text-align: center;
-}
-
-.brand-container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
+/* ==================================================
+   3. TUMHARI CLIENTS / BRANDS CSS
+   ================================================== */
 .brand-title {
-    font-family: sans-serif;
-    font-size: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
     font-weight: 900;
     text-transform: uppercase;
     margin-bottom: 40px;
+    color: #000;
 }
 
-/* Centering Logic */
 .brand-grid {
     display: flex;
     flex-wrap: wrap;
@@ -1262,7 +1297,6 @@ window.addEventListener('scroll', () => {
     gap: 20px;
 }
 
-/* Bento Style Card */
 .brand-card {
     border: 2px solid #000;
     border-radius: 20px;
@@ -1271,6 +1305,7 @@ window.addEventListener('scroll', () => {
     max-width: 280px;
     transition: 0.3s;
     background: #fafafa;
+    text-align: center;
 }
 
 .brand-card:hover {
@@ -1292,279 +1327,298 @@ window.addEventListener('scroll', () => {
     object-fit: contain;
 }
 
-.logo-circle {
-    width: 60px;
-    height: 60px;
-    background: #000;
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.5rem;
-}
-
 .brand-card h3 {
-    font-family: sans-serif;
     font-size: 1.1rem;
     text-transform: uppercase;
     margin: 0;
+    color: #000;
 }
 
-/* RESPONSIVE GRID */
-
-/* Desktop: 3/3 */
-@media (min-width: 992px) {
-    .brand-card {
-        flex: 0 1 calc(33.33% - 20px);
-    }
-}
-
-/* Mobile: 2/2 */
+/* ==================================================
+   4. RESPONSIVE LOGIC
+   ================================================== */
 @media (max-width: 991px) {
-    .brand-card {
-        flex: 0 1 calc(50% - 20px);
-        padding: 15px;
-    }
-    .brand-title { font-size: 1.6rem; }
-    .brand-logo { height: 60px; }
+    .cert-main-title, .brand-title { font-size: 2rem; }
+}
+
+@media (max-width: 599px) {
+    .cert-main-title, .brand-title { font-size: 1.6rem; margin-bottom: 30px; }
+    .cert-card { max-width: 280px; padding: 20px; }
+    .brand-card { max-width: 240px; padding: 15px; }
 }
 </style>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
     
+    const master = document.getElementById('scrollMaster');
+    const track = document.getElementById('scrollTrack');
 
-<!--screensaver-->
+    function updateHorizontalScroll() {
+        // Kitna scroll kar chuke hain
+        let scrollY = window.scrollY;
+        
+        // Master container page pe kahan hai
+        let masterOffsetTop = master.offsetTop;
+        let masterHeight = master.offsetHeight;
+        let windowHeight = window.innerHeight;
 
+        // Agar user scroll karte hue is section k andar hai
+        if (scrollY >= masterOffsetTop && scrollY <= (masterOffsetTop + masterHeight - windowHeight)) {
+            
+            // Percentage nikalna (0 se 1 k darmiyan)
+            let progress = (scrollY - masterOffsetTop) / (masterHeight - windowHeight);
+            
+            // Kitna aagay push karna hai? (Total Track width minus Window width)
+            let moveX = progress * (track.scrollWidth - window.innerWidth);
+            
+            // Smoothly move karo
+            track.style.transform = `translateX(-${moveX}px)`;
+            
+        } 
+        // Agar user section se upar hai toh reset rakho
+        else if (scrollY < masterOffsetTop) {
+            track.style.transform = `translateX(0px)`;
+        } 
+        // Agar user section par kargaya hai toh last point par fix kar do
+        else {
+            let maxMove = track.scrollWidth - window.innerWidth;
+            track.style.transform = `translateX(-${maxMove}px)`;
+        }
+    }
 
-
-
+    // Har scroll aur resize pe function chalao taakay perfect kaam kare
+    window.addEventListener('scroll', updateHorizontalScroll);
+    window.addEventListener('resize', updateHorizontalScroll);
+    
+    // Initial call
+    updateHorizontalScroll();
+});
+</script>
+ 
     <!--GAMEEEE-->
-  <section class="choice-arena-section" id="Game-section-redirect">
-  <div
-    class="bloat-bg-image"
-    style="background-image: url(&quot;./images/controllor.webp &quot;)"
-  ></div>
-  <div class="white-overlay"></div>
-  <div class="choice-content-wrapper">
-    <div class="top-bugget">
-      <span class="dot"></span> Get 5% Diccount on Every Service
-    </div>
+ <section class="game-sign-section">
+    <div class="scene-3d">
+        
+        <div class="signboard-3d" id="gameSignBoard">
+            
+            <div class="signboard-content">
+                <span class="tag">GET 5% OFF</span>
+                <h2>The Game <strong  style="color: #0070f3;">Zone</strong></h2>
+                <p>Ready to test your skills? Play our exclusive mini-games and earn special rewards. The challenge awaits!</p>
+                
+                <div class="game-actions">
+                    <a href="./components/Game/Fun.html"><button class="game-btn primary">PLAY FOR FUN</button></a>
+                    <a href="./components/Game/v4.final.html"><button class="game-btn secondary">GET 5% OFF</button></a>
+                </div>
+            </div>
+            </div>
 
-    <h2 class="bold-animated-heading">MAKE YOUR  <span>PLAY.</span></h2>
-    <p class="choice-subtitle">
-      Test your reflexes just for the thrill, or compete to unlock an exclusive
-      CodeCrafte discount code.
-    </p>
+        <div class="poles-container">
+            <div class="pole"></div>
+            <div class="pole"></div>
+        </div>
 
-    <div class="action-btn-group">
-      <a href="./components/Game/Fun.html" class="c-btn btn-outline">PLAY FOR FUN</a>
-      <a href="./components/Game/v4.final.html" class="c-btn btn-solid">PLAY FOR 5% OFF</a>
+        <div class="ground-shadow"></div>
     </div>
-  </div>
 </section>
 
 <style>
-  /* --- 1. SECTION WRAPPER & BACKGROUND --- */
-  .choice-arena-section {
-    position: relative;
-    width: auto;
-    min-height: 50vh; /* Thora bara aur premium feel ke liye */
+  /* --- 1. Main Section Background --- */
+.game-sign-section {
+    padding: 100px 20px;
+    background-color: #ffffff; /* Light grey background taakay board wazeh ho */
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    background-color: #ffffff; /* Pure White Theme */
-    font-family: "Inter", sans-serif;
-    padding: 80px 5%;
- 
-  }
+    overflow: hidden; /* Taakay 3D element screen se bahar na nikle */
+}
 
-  /* Bloating Background Image */
-  .bloat-bg-image {
-    position: absolute;
-     
-    width: 80%;
-    height: 80%;
-    background-size: cover;
-    background-position: center;
-    filter: blur(4px); /* Heavy blur for aesthetic look */
-    z-index: 1;
-    opacity: 0.6; /* Halka rakha hai taake white theme kharab na ho */
-    animation: bloatEffect 20s ease-in-out infinite alternate;
-  }
-
-  /* White Overlay to maintain readability */
-  .white-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.462);
-    z-index: 2;
-  }
-
-  @keyframes bloatEffect {
-    0% {
-      transform: scale(1) translate(0, 0);
-    }
-    50% {
-      transform: scale(1.1) translate(2%, 2%);
-    }
-    100% {
-      transform: scale(1.05) translate(-1%, -1%);
-    }
-  }
-
-  /* --- 2. CONTENT WRAPPER (Strictly Centered) --- */
-  .choice-content-wrapper {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    max-width: 600px; /* Width tight rakhi hai taake neat lage */
-    margin: 0 auto;
+/* --- 2. The 3D Scene (Camera Perspective) --- */
+.scene-3d {
+    perspective: 1200px; /* Yeh value tay karti hai ke board kitna "dur" hai */
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+}
 
-  /* --- 3. ELEMENTS (Badge, Heading, Text) --- */
+/* --- 3. The Animated 3D Signboard --- */
+.signboard-3d {
+    background: #fff;
+    border: 4px solid #000;
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    /* Yeh board ko tircha (tilted) karta hai */
+    transform: rotateY(-20deg) rotateX(10deg);
+    transform-style: preserve-3d;
+    box-shadow: -15px 20px 0px rgba(0, 0, 0, 0.9); /* Premium Solid Shadow */
+    
+    /* Continuous floating animation */
+    animation: floatingSign 4s ease-in-out infinite;
+}
 
-  /* Top Badge (Bugget) */
-  .top-bugget {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #ffffff;
-    border: 1.5px solid #000000;
-    color: #000000;
-    padding: 6px 16px;
-    border-radius: 50px;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    margin-bottom: 30px;
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.05);
-  }
-
-  .top-bugget .dot {
-    width: 7px;
-    height: 7px;
-    background: #0070f3;
-    border-radius: 50%;
-    animation: blinker 1.5s linear infinite;
-  }
-
-  @keyframes blinker {
+/* Floating Animation Keyframes */
+@keyframes floatingSign {
+    0%, 100% {
+        transform: rotateY(-20deg) rotateX(10deg) translateY(0px);
+    }
     50% {
-      opacity: 0;
+        transform: rotateY(-18deg) rotateX(8deg) translateY(-15px);
     }
-  }
+}
 
-  /* Bold Animated Heading */
-  .bold-animated-heading {
-    font-size: 3.2rem; /* Balanced size */
+/* Hover karnay par thora seedha ho jaye (Interactive feel) */
+.signboard-3d:hover {
+    animation-play-state: paused;
+    transform: rotateY(-5deg) rotateX(5deg) translateY(-5px);
+    box-shadow: -8px 12px 0px rgba(0, 0, 0, 0.9);
+    transition: all 0.5s ease;
+}
+
+/* --- 4. Content Inside the Board --- */
+.signboard-content {
+    text-align: center;
+    /* Content ko thora pop-out karne ke liye (3D effect inside 3D) */
+    transform: translateZ(30px); 
+}
+
+.tag{
+color: #000;  font-weight: 800;
+}
+
+.signboard-content h2 {
+    font-size: 3rem;
     font-weight: 900;
-    color: #000000;
-    line-height: 1.2; /* Proper spacing taake lines takrayein nahi */
-    margin-bottom: 20px;
-    letter-spacing: -1.5px;
     text-transform: uppercase;
-  }
+    margin: 15px 0;
+    color: #000;
+    letter-spacing: 2px;
+}
 
-  /* Shine Animation on Heading */
-  .bold-animated-heading span {
-    background: linear-gradient(90deg, #000, #555, #000);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shineText 4s linear infinite;
-  }
+.signboard-content p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
 
-  @keyframes shineText {
-    to {
-      background-position: 200% center;
-    }
-  }
-
-  /* Subtitle */
-  .choice-subtitle {
-    font-size: 1.05rem;
-    color: #555555;
-    margin-bottom: 45px;
-    line-height: 1.7;
-    max-width: 500px;
-  }
-
-  /* --- 4. BUTTONS (170px for better fit) --- */
-  .action-btn-group {
+/* Buttons Styling (Aap apnay purane buttons bhi use kar sakte ho) */
+.game-actions {
     display: flex;
     justify-content: center;
-    gap: 20px;
-  }
+    gap: 15px;
+}
 
-  .c-btn {
-    display: inline-block;
-    width: 175px; /* Perfect width as you asked */
-    padding: 16px 0;
-    font-size: 13px;
-    font-weight: 800;
-    text-align: center;
-    text-decoration: none;
+.game-btn {
+    
+    font-size: 1rem;
+    font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    border: 2px solid #000;
     border-radius: 50px;
-    transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
-  }
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-  .btn-outline {
-    background: transparent;
+.game-btn.primary {
+    background: #000;
+    color: #fff;
+}
+.game-btn.primary:hover {
+    background: #fff;
     color: #000;
-    border: 2px solid #000;
-  }
+}
 
-  .btn-outline:hover {
-    background: #000;
-    color: #fff;
-    transform: translateY(-4px);
-  }
+.game-btn.secondary {
+    background: #fff;
+    color: #000;
+}
+.game-btn.secondary:hover {
+    background: #f0f0f0;
+}
 
-  .btn-solid {
-    background: #000;
-    color: #fff;
-    border: 2px solid #000;
-  }
+/* --- 5. Poles (Stand of the Signboard) --- */
+.poles-container {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin-top: -10px; /* Board ke peechay chhupane ke liye */
+    z-index: 1;
+}
 
-  .btn-solid:hover {
-    background: #ffffff; /* Brand Blue */
-    border-color: #1d1d1d;
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(92, 92, 92, 0.3);
-    color: rgb(0, 0, 0);
-  }
+.pole {
+    width: 15px;
+    height: 120px;
+    background: linear-gradient(to right, #222, #555, #222); /* Metallic look */
+    border-radius: 0 0 5px 5px;
+}
 
-  /* --- 5. MOBILE RESPONSIVE --- */
-  @media (max-width: 768px) {
-    .bold-animated-heading {
-      font-size: 2.2rem;
-    } /* Chota size for mobile */
-    .choice-subtitle {
-      font-size: 0.95rem;
+/* --- 6. Ground Shadow --- */
+.ground-shadow {
+    width: 100%;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.882);
+    border-radius: 50%;
+    filter: blur(3px);
+    margin-top: 10px;
+    animation: shadowPulse 4s ease-in-out infinite;
+}
+
+@keyframes shadowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.1); opacity: 0.3; }
+}
+
+/* =========================================
+   7. MOBILE RESPONSIVENESS (As you requested)
+   ========================================= */
+@media (max-width: 768px) {
+    /* Perspective khatam kar di */
+    .scene-3d {
+        perspective: none; 
     }
 
-    .action-btn-group {
-      flex-direction: column; /* Buttons upar neeche */
-      width: 100%;
-      align-items: center;
+    /* 3D rotate ko sirf thora sa 2D rotate (tadha) kar diya */
+    .signboard-3d {
+        transform: rotate(-2deg); 
+        animation: none; /* Mobile par CPU bachane aur clear parhne ke liye animation off */
+        box-shadow: -8px 8px 0px rgba(0, 0, 0, 1);
+        padding: 30px 20px;
     }
 
-    .c-btn {
-      width: 100%;
-      max-width: 280px; /* Mobile par full width feel */
+    .signboard-3d:hover {
+        transform: rotate(0deg); /* Hover par seedha ho jaye */
     }
-  }
+
+    .signboard-content {
+        transform: translateZ(0); /* Content pop-out khatam */
+    }
+
+    .signboard-content h2 {
+        font-size: 2rem;
+    }
+    .signboard-content p {
+      font-size: 13px;
+    }
+
+    .poles-container {
+        width: 80%; /* Mobile par poles thore qareeb honge */
+    }
+    
+    .ground-shadow {
+        animation: none; /* Animation off on mobile */
+    }
+    .game-btn{
+      font-size: 11px;
+      padding: 12px 20px;
+    }
+}
 </style>
-
     
 
     <!--Pulse-->
@@ -1611,7 +1665,7 @@ window.addEventListener('scroll', () => {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-color: #fafafa; /* Clean white background */
+    background-color: #ffffff; /* Clean white background */
     padding: 20px;
   }
 
@@ -2151,6 +2205,7 @@ window.addEventListener('scroll', () => {
         background-color: transparent;
         display: flex;
         justify-content: center;
+        background: white;
     }
 
     /* --- THE WHITE BOX (Reduced Height) --- */
@@ -2162,7 +2217,8 @@ window.addEventListener('scroll', () => {
         display: flex;
         align-items: center;
         padding: 40px 60px;
-        box-shadow: 0 15px 40px rgba(126, 132, 167, 0.08); /* Soft shadow */
+        border: 0.2px solid rgb(209, 209, 209);
+        box-shadow: 0 15px 40px rgba(95, 95, 95, 0.725); /* Soft shadow */
     }
 
     /* --- LEFT SIDE: IMAGE COLUMN --- */
@@ -2304,6 +2360,42 @@ window.addEventListener('scroll', () => {
     }
 </style>
 </main>
+
+
+<div class="torn-footer-transition">
+    <img src="./images/black.png" alt="Torn Paper" class="black-torn-img">
+</div>
+
+<style>
+/* Torn Paper Transition Container */
+.torn-footer-transition {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    line-height: 0; /* Image ke neechay aane wali safaid line/gap ko khatam karne ke liye */
+    font-size: 0;
+    margin-bottom: -1px; /* Footer ke sath perfectly chipkane (blend) ke liye */
+    overflow: hidden;
+}
+
+/* Image Styles */
+.black-torn-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: bottom; /* Taakay phata hua hissa hamesha top par nazar aaye */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .black-torn-img {
+        /* Agar mobile screen choti hone ki wajah se image patli ho jaye, 
+           toh yahan ek min-height set kar di hai taakay effect barkarar rahay */
+        min-height: 45px; 
+    }
+}
+</style>
     <!--footerrr-->
 
     <footer class="footer-section">
@@ -2766,249 +2858,201 @@ window.addEventListener('scroll', () => {
 <!--secrrn saverr-->
 
 
-<div id="idle-fluid-overlay">
-    <div class="fluid-echo-container">
-        
-        <div class="fluid-body-wrap">
-            <div class="fluid-echo-1"></div>
-            <div class="fluid-echo-2"></div>
-            <div class="fluid-echo-3"></div>
-            
-            <div class="fluid-text-box">
-                <h1 class="fluid-echo-logo">CODECRAFTE</h1>
-                <p>FLOW STATE</p>
-            </div>
-        </div>
-
-        <div class="fluid-bub cc-bub-1"></div>
-        <div class="fluid-bub cc-bub-2"></div>
-        <div class="fluid-bub cc-bub-3"></div>
-        <div class="fluid-bub cc-bub-4"></div>
-
+<div id="cc-bubble-screen">
+    <canvas id="cc-canvas"></canvas>
+    
+    <div class="cc-text-box">
+        <h1>CODECRAFTE</h1>
+        <p>Scroll to Continue</p>
     </div>
 </div>
 
 <style>
-/* 1. Base Overlay - B&W Vibe (Keep Bg Visible) */
-#idle-fluid-overlay {
+/* 1. Main Overlay Style */
+#cc-bubble-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.9); /* Halki si white shade taakay B&W site fade lage */
-    backdrop-filter: blur(12px); /* Background blur k premium look k liye */
-    z-index: 100000; /* Sab se upar */
+    background: rgba(255, 255, 255, 0.85); /* Halki safaid background taakay peeche wali site nazar aaye */
+    backdrop-filter: blur(8px); /* Page ko halka blur karega */
+    z-index: 999999;
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1.5s ease, visibility 1.5s ease;
-    pointer-events: none; /* Site normal use rhti rhay gi */
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    pointer-events: none; /* Jab tak active na ho, site normal kaam karegi */
 }
 
-/* Active State */
-#idle-fluid-overlay.active {
+/* Jab screensaver active ho */
+#cc-bubble-screen.active {
     opacity: 1;
     visibility: visible;
 }
 
-/* 2. Fluid Body Wrap */
-.fluid-echo-container {
-    position: relative;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: scale(0.7); /* Bento grid k structure k liye initial scale */
-    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#idle-fluid-overlay.active .fluid-echo-container {
-    transform: scale(1);
-}
-
-/* 3. The Morphing Liquid echo shapes (The Extraordinary part) */
-.fluid-body-wrap {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fluid-echo-1, .fluid-echo-2, .fluid-echo-3 {
+/* 2. Canvas Style (Poori screen cover karega) */
+#cc-canvas {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    filter: blur(2px); /* Edge smooth krne k liye */
+    z-index: 1; /* Text ke peechay */
 }
 
-.fluid-echo-1 {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent Black */
-    animation: morph1 8s linear infinite;
-}
-
-.fluid-echo-2 {
-    background: rgba(0, 0, 0, 0.3); /* Lighter semi-transparent black */
-    animation: morph2 6s linear infinite 1s;
-    width: 90%; height: 90%;
-}
-
-.fluid-echo-3 {
-    background: rgba(0, 0, 0, 0.15); /* Very light semi-transparent black */
-    animation: morph3 4s linear infinite 2s;
-    width: 80%; height: 80%;
-}
-
-/* 4. Text Logic: CODECRAFTE - Flow State */
-.fluid-text-box {
-    position: absolute;
-    top: 100%;
-    margin-top: 30px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease 1s; /* Morphing k baad display */
-}
-
-#idle-fluid-overlay.active .fluid-text-box {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.fluid-echo-logo {
-    font-family: sans-serif; /* Aapka preferred font */
-    font-weight: 900;
-    font-size: 2.5rem;
-    color: #000; /* B&W: Black text on white bg */
-    text-transform: uppercase;
-    margin: 0;
-    letter-spacing: -2px;
-    animation: pulseLogo 2s infinite alternate;
-}
-
-.fluid-text-box p {
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
+/* 3. Center Text Style */
+.cc-text-box {
+    position: relative;
+    z-index: 2; /* Bubbles ke aagay */
+    text-align: center;
     color: #000;
+}
+
+.cc-text-box h1 {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 3.5rem;
+    margin: 0;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    letter-spacing: 5px;
+}
+
+.cc-text-box p {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
     margin: 5px 0 0 0;
-    opacity: 0.6;
+    letter-spacing: 5px;
+    opacity: 0.7;
 }
 
-/* 5. Minor Floating Bubbles */
-.fluid-bub {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 0;
-    transition: all 1s ease 1.5s;
-}
-
-#idle-fluid-overlay.active .fluid-bub {
-    opacity: 1;
-}
-
-.cc-bub-1 { width: 30px; height: 30px; top: -100px; left: -100px; animation: bubFloat 10s infinite alternate; }
-.cc-bub-2 { width: 50px; height: 50px; bottom: -80px; right: -120px; animation: bubFloat 12s infinite alternate 1s; }
-.cc-bub-3 { width: 20px; height: 20px; top: 150px; right: -150px; animation: bubFloat 8s infinite alternate 2s; }
-.cc-bub-4 { width: 40px; height: 40px; bottom: 200px; left: -140px; animation: bubFloat 11s infinite alternate 3s; }
-
-/* 6. RESPONSIVE LOGIC (Mobile Responsive) */
-@media (max-width: 768px) {
-    .fluid-body-wrap {
-        width: 200px; /* Choti screens pr chota view */
-        height: 200px;
-    }
-    
-    .fluid-echo-logo {
-        font-size: 1.8rem; /* Chota logo size mobile k liye */
-    }
-    
-    .cc-bub-1 { width: 15px; height: 15px; top: -50px; left: -50px; }
-    .cc-bub-2 { width: 25px; height: 25px; bottom: -40px; right: -60px; }
-    .cc-bub-3 { width: 10px; height: 10px; top: 75px; right: -75px; }
-    .cc-bub-4 { width: 20px; height: 20px; bottom: 100px; left: -70px; }
-}
-
-/* ==============================================
-   7. MORPHING KEYFRAMES (The extraordinary part)
-   ============================================== */
-
-@keyframes morph1 {
-    0%   { border-radius: 50% 50% 50% 50%; transform: translate(0); scale(1); }
-    25%  { border-radius: 70% 30% 70% 30% / 30% 70% 30% 70%; transform: translate(-5px, 5px) scale(1.02); }
-    50%  { border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%; transform: translate(5px, -5px) scale(0.98); }
-    75%  { border-radius: 50% 50% 70% 30% / 30% 70% 50% 50%; transform: translate(-2px, -2px) scale(1.01); }
-    100% { border-radius: 50% 50% 50% 50%; transform: translate(0); scale(1); }
-}
-
-@keyframes morph2 {
-    0%   { border-radius: 70% 30% 70% 30%; transform: translate(0); }
-    33%  { border-radius: 50% 50% 30% 70%; transform: translate(10px, -10px) scale(1.05); }
-    66%  { border-radius: 30% 70% 50% 50%; transform: translate(-10px, 10px) scale(0.95); }
-    100% { border-radius: 70% 30% 70% 30%; transform: translate(0); }
-}
-
-@keyframes morph3 {
-    0%   { border-radius: 30% 70% 30% 70%; }
-    50%  { border-radius: 70% 30% 70% 30%; transform: translate(-15px, 15px); }
-    100% { border-radius: 30% 70% 30% 70%; }
-}
-
-@keyframes bubFloat {
-    0% { transform: translateY(0) translateX(0); }
-    100% { transform: translateY(20px) translateX(15px); }
-}
-
-@keyframes pulseLogo {
-    0% { opacity: 0.7; scale(0.98); }
-    100% { opacity: 1; scale(1); }
+/* Mobile Screens ke liye Text chota */
+@media (max-width: 600px) {
+    .cc-text-box h1 { font-size: 2rem; }
+    .cc-text-box p { font-size: 0.9rem; }
 }
 </style>
 
 <script>
-// Standalone Self-contained JavaScript timer
-(function() {
-    let codecrafteIdleTime = 0;
-    // TEST K LIYE: Is neechay wali line ko uncomment (// hata) kr k check karein (5 second baad)
-    const codecrafteIdleLimit = 120; 
-    // FINAL PRODUCTION K LIYE: Ye wali line use karein (3 minute)
-    // const codecrafteIdleLimit = 180; 
+// "DOMContentLoaded" ensures ke HTML load hone ke baad hi JS chalay (Syntax errors se bachne ke liye)
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // --- 1. TIMER LOGIC ---
+    let idleTime = 0;
+    const idleLimit = 120; // TEST K LIYE: 5 second. Baad mein isay 180 (3 minute) kar dena.
+    const overlay = document.getElementById('cc-bubble-screen');
+    let isScreenSaverActive = false;
 
-    const codecrafteOverlay = document.getElementById('idle-fluid-overlay');
-
-    // Function to Reset Timer: smooth gayab logic k sath
-    function ccResetTimer() {
-        if(codecrafteOverlay.classList.contains('active')){
-            codecrafteOverlay.classList.remove('active');
+    // Reset Function (Jab user screen ko chhuay ya hilaaye)
+    function resetTimer() {
+        idleTime = 0;
+        if (isScreenSaverActive) {
+            overlay.classList.remove('active');
+            isScreenSaverActive = false;
         }
-        codecrafteIdleTime = 0;
     }
 
-    // User activity ko track krne k events
-    window.addEventListener('mousemove', ccResetTimer);
-    window.addEventListener('keypress', ccResetTimer);
-    window.addEventListener('scroll', ccResetTimer); // Important for scrolling
-    window.addEventListener('click', ccResetTimer);
-    window.addEventListener('touchstart', ccResetTimer); // Mobile touch support
+    // User activity track karna
+    window.addEventListener('mousemove', resetTimer);
+    window.addEventListener('keypress', resetTimer);
+    window.addEventListener('scroll', resetTimer);
+    window.addEventListener('click', resetTimer);
+    window.addEventListener('touchstart', resetTimer); // Mobile ke liye
 
-    // 1 second wala check interval
-    setInterval(function() {
-        codecrafteIdleTime++;
-        // JS mein koi unnecessary variable check nahi
-        if (codecrafteIdleTime >= codecrafteIdleLimit) {
-            codecrafteOverlay.classList.add('active');
+    // Har 1 second baad check karna
+    setInterval(() => {
+        idleTime++;
+        if (idleTime >= idleLimit && !isScreenSaverActive) {
+            overlay.classList.add('active');
+            isScreenSaverActive = true;
+            initBubbles(); // Jaise hi screen aaye, bubbles start ho jayein
         }
     }, 1000);
 
-    console.log("Codecrafte B&W Fluid Echo Idle Script Loaded. Mobile Responsive. Idle Time: " + codecrafteIdleLimit + "s");
-})();
+
+    // --- 2. BOUNCING BUBBLES LOGIC (Canvas) ---
+    const canvas = document.getElementById('cc-canvas');
+    const ctx = canvas.getContext('2d');
+    let bubblesArray = [];
+
+    // Canvas ko screen ke size ka banana
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Bubble Class: Yeh tay karegi bubble kahan jayega aur takrayega
+    class Bubble {
+        constructor() {
+            this.radius = Math.random() * 25 + 5; // Size (5px se 30px tak)
+            this.x = Math.random() * (canvas.width - this.radius * 2) + this.radius;
+            this.y = Math.random() * (canvas.height - this.radius * 2) + this.radius;
+            this.dx = (Math.random() - 0.5) * 3; // X Speed
+            this.dy = (Math.random() - 0.5) * 3; // Y Speed
+            // Black/Grey transparent colors B&W theme ke liye
+            const opacities = [0.1, 0.2, 0.3, 0.4];
+            this.opacity = opacities[Math.floor(Math.random() * opacities.length)];
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`; // Black Bubbles
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        update() {
+            // Borders se takrane ki logic (Bouncing)
+            if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+                this.dx = -this.dx;
+            }
+            if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+                this.dy = -this.dy;
+            }
+
+            // Bubble ko aagay move karna
+            this.x += this.dx;
+            this.y += this.dy;
+
+            this.draw();
+        }
+    }
+
+    // Bubbles paida karna
+    function initBubbles() {
+        bubblesArray = [];
+        let numberOfBubbles = 70; // Kitne bubbles chahiye? (Aap isay 100 ya 50 kar sakte ho)
+        
+        // Mobile par thore kam bubbles taakay phone hang na ho
+        if(window.innerWidth < 600) { numberOfBubbles = 40; }
+
+        for (let i = 0; i < numberOfBubbles; i++) {
+            bubblesArray.push(new Bubble());
+        }
+    }
+
+    // Animation Loop
+    function animate() {
+        requestAnimationFrame(animate);
+        // Canvas ko clear karna har frame par (warna lakirein ban jayengi)
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Agar screensaver on hai toh hi bubbles move karein (CPU bachane ke liye)
+        if (isScreenSaverActive) {
+            for (let i = 0; i < bubblesArray.length; i++) {
+                bubblesArray[i].update();
+            }
+        }
+    }
+
+    // Animation start karna
+    animate();
+
+});
 </script>
    </body>
 </html>

@@ -56,7 +56,7 @@ body {
   transform: translateX(-50%);
   width: 90%;
   max-width: 1200px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgb(255, 0, 0);
   backdrop-filter: blur(15px);
   padding: 15px 30px;
   border-radius: 100px;
@@ -922,6 +922,7 @@ p {
 
 /*servceee*/
 
+/* --- TUMHARI PURANI CSS (BILKUL SAME) --- */
 .services-section {
   padding: 80px 0;
   background: #fff;
@@ -930,33 +931,20 @@ p {
   width: 100%;
   margin: 0 auto;
 }
- /* --- Center aur Responsive Services Intro --- */
 .services-intro {
   padding: 0 20px 40px;
-  text-align: center; /* Text ko center kar dega */
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Tag ko bhi center mein layega */
+  align-items: center;
   justify-content: center;
 }
-
 .services-intro h2 {
   font-family: "Space Grotesk", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  margin-top: 15px; /* Tag aur Heading ke darmian thora gap */
+  margin-top: 15px;
   line-height: 1.2;
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .services-intro {
-    padding: 0 15px 30px; /* Mobile pe padding thori kam */
-  }
-  
-  .services-intro h2 {
-    font-size: 1.8rem; /* Mobile pe font size chota taakay screen se bahar na jaye */
-  }
 }
 .services-grid {
   display: grid;
@@ -1021,112 +1009,107 @@ p {
   color: #fff;
   transform: scale(1.1);
 }
-
-/* --- SIRF "SEE DETAILS" WALA NAYA CSS (Purani CSS SAFE hai!) --- */
 .see-details {
   display: block;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #777; /* Thora light color taakay main Heading wazeh rahay */
+  color: #777;
   margin-top: 8px;
   text-transform: capitalize;
   letter-spacing: 0.5px;
-  transition: all 0.4s ease; /* Animation ko smooth karne ke liye */
-  transform: translateY(0); /* Normal state pe apni jagah rahay */
+  transition: all 0.4s ease;
+  transform: translateY(0);
+}
+.service-card:hover .see-details {
+  color: #fff;
+  letter-spacing: 2.5px;
+  transform: translateY(-5px);
 }
 
-.service-card:hover .see-details {
-  color: #fff; /* Hover pe background black hota hai, toh text white ho jayega */
-  letter-spacing: 2.5px; /* Hover pe letters ke beech gap barh jayega */
-  transform: translateY(-5px); /* Hover pe text 5px upar uth jayega */
+/* --- NAYA CSS: Wrapper Animation aur View More Button --- */
+
+/* Wrapper Desktop par sirf 2 rows (362px) dikhayega */
+.services-grid-wrapper {
+  overflow: hidden;
+  max-height: 362px; /* 180px * 2 rows + border margin */
+  transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Expand hone par max-height barh jayegi aur smooth open hoga */
+.services-grid-wrapper.expanded {
+  max-height: 2500px; /* Itni value ke sub cards easily aa jayein */
+}
+
+/* Button ki styling */
+.view-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.view-more-btn {
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 12px 35px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit; /* Aapka theme font utha layega */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.view-more-btn:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* --- MOBILE RESPONSIVE CSS --- */
 @media (max-width: 768px) {
+  .services-intro {
+    padding: 0 15px 30px;
+  }
+  .services-intro h2 {
+    font-size: 2rem; /* Adjusted according to your original CSS */
+  }
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .service-card {
     height: 160px;
   }
-  .services-intro h2 {
-    font-size: 2rem;
+  
+  /* Mobile pe 6 cards = 3 rows, is liye max height change ki hai */
+  .services-grid-wrapper {
+    max-height: 482px; /* 160px * 3 rows + border margin */
   }
 }
-#s-web:hover .s-icon,
-#s-web:hover h3 {
-  color: #0070f3;
-}
-#s-app:hover .s-icon,
-#s-app:hover h3 {
-  color: #e7ff33;
-}
-#s-wp:hover .s-icon,
-#s-wp:hover h3 {
-  color: #0821c4;
-}
-#s-pms:hover .s-icon,
-#s-pms:hover h3 {
-  color: #2e5bff;
-}
-#s-crm:hover .s-icon,
-#s-crm:hover h3 {
-  color: #00ff9d;
-}
-#s-erp:hover .s-icon,
-#s-erp:hover h3 {
-  color: #09cb53;
-}
-#s-csd:hover .s-icon,
-#s-csd:hover h3 {
-  color: #abd814;
-}
-#s-bus:hover .s-icon,
-#s-bus:hover h3 {
-  color: #818181;
-}
-#s-saas:hover .s-icon,
-#s-saas:hover h3 {
-  color: #36c31a;
-}
-#s-port:hover .s-icon,
-#s-port:hover h3 {
-  color: #0a775a;
-}
-#s-ui:hover .s-icon,
-#s-ui:hover h3 {
-  color: #ff0000;
-}
-#s-pos:hover .s-icon,
-#s-pos:hover h3 {
-  color: #c2315c;
-}
-#s-video:hover .s-icon,
-#s-video:hover h3 {
-  color: #b27007;
-}
-#s-meta:hover .s-icon,
-#s-meta:hover h3 {
-  color: #e1306c;
-}
-#s-gd:hover .s-icon,
-#s-gd:hover h3 {
-  color: #ff9a00;
-}
-#s-ecom:hover .s-icon,
-#s-ecom:hover h3 {
-  color: #f97316;
-}
-#s-ppt:hover .s-icon,
-#s-ppt:hover h3 {
-  color: #8a2be2;
-}
-#s-smm:hover .s-icon,
-#s-smm:hover h3 {
-  color: #ff0050;
-}
-#s-ai:hover .s-icon,
-#s-ai:hover h3 {
-  color: #1aff00;
-}
+
+/* Hover Colors (Tumhare Apnay!) */
+#s-web:hover .s-icon, #s-web:hover h3 { color: #0070f3; }
+#s-app:hover .s-icon, #s-app:hover h3 { color: #e7ff33; }
+#s-wp:hover .s-icon, #s-wp:hover h3 { color: #0821c4; }
+#s-pms:hover .s-icon, #s-pms:hover h3 { color: #2e5bff; }
+#s-crm:hover .s-icon, #s-crm:hover h3 { color: #00ff9d; }
+#s-erp:hover .s-icon, #s-erp:hover h3 { color: #09cb53; }
+#s-csd:hover .s-icon, #s-csd:hover h3 { color: #abd814; }
+#s-bus:hover .s-icon, #s-bus:hover h3 { color: #818181; }
+#s-saas:hover .s-icon, #s-saas:hover h3 { color: #36c31a; }
+#s-port:hover .s-icon, #s-port:hover h3 { color: #0a775a; }
+#s-ui:hover .s-icon, #s-ui:hover h3 { color: #ff0000; }
+#s-pos:hover .s-icon, #s-pos:hover h3 { color: #c2315c; }
+#s-video:hover .s-icon, #s-video:hover h3 { color: #b27007; }
+#s-meta:hover .s-icon, #s-meta:hover h3 { color: #e1306c; }
+#s-gd:hover .s-icon, #s-gd:hover h3 { color: #ff9a00; }
+#s-ecom:hover .s-icon, #s-ecom:hover h3 { color: #f97316; }
+#s-ppt:hover .s-icon, #s-ppt:hover h3 { color: #8a2be2; }
+#s-smm:hover .s-icon, #s-smm:hover h3 { color: #ff0050; }
+#s-ai:hover .s-icon, #s-ai:hover h3 { color: #1aff00; }
 
 
 

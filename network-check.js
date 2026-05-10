@@ -8,7 +8,7 @@ function updateOnlineStatus() {
         window.location.replace("/error404.html"); 
     }
 }
-
+    
 window.addEventListener('offline', updateOnlineStatus);
 
 // Initial check agar page load hote hi net na ho
